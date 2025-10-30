@@ -4,10 +4,10 @@
 	"description": "",
 	"main": "webpack.config.js",
 	"scripts": {
-		"start": "wp-scripts start",
+		"start": "wp-scripts start --experimental-modules --webpack-src-dir=resources/blocks",
 		"start:hot": "wp-scripts start --hot",
 		"format": "wp-scripts format",
-		"minify": "wp-scripts build",
+		"minify": "wp-scripts build --experimental-modules --webpack-src-dir=resources/blocks",
 		"compress": "webpack --config dev-tools/webpack.compress.js",
 		"git-compress": "webpack --config dev-tools/webpack.compress.git.js",
 		"fixtextdomain": "grunt fixtextdomain --gruntfile dev-tools/Gruntfile.js",
@@ -26,12 +26,20 @@
 	},
 	"homepage": "https://github.com/wpmvc/wpmvc#readme",
 	"devDependencies": {
+		"@automattic/i18n-loader-webpack-plugin": "^2.0.80",
+		"@svgr/webpack": "^8.1.0",
+		"@wordpress/icons": "^10.27.0",
 		"@wordpress/scripts": "^30.19.0",
 		"filemanager-webpack-plugin": "^8.0.0",
 		"grunt": "^1.6.1",
 		"grunt-checktextdomain": "^1.0.1",
 		"grunt-contrib-clean": "^2.0.1",
 		"grunt-wp-i18n": "^1.0.3",
-		"load-grunt-tasks": "^5.1.0"
+		"load-grunt-tasks": "^5.1.0",
+		"url-loader": "^4.1.1",
+		"webpack": "^5.102.1"
+	},
+	"dependencies": {
+		"react-inlinesvg": "^4.2.0"
 	}
 }

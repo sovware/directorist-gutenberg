@@ -4,6 +4,9 @@ defined( 'ABSPATH' ) || exit;
 
 use DirectoristGutenberg\App\Http\Middleware\EnsureIsUserAdmin;
 use DirectoristGutenberg\App\Providers\MenuServiceProvider;
+use DirectoristGutenberg\App\Providers\BlockServiceProvider;
+use DirectoristGutenberg\App\Providers\PostTypeServiceProvider;
+use DirectoristGutenberg\App\Providers\BlockTemplateServiceProvider;
 // use DirectoristGutenberg\Database\Migrations\TestMigration;
 use DirectoristGutenberg\WpMVC\Helpers\Helpers;
 
@@ -12,6 +15,8 @@ return [
      * The version of the plugin.
      */
     'version'                     => Helpers::get_plugin_version( 'directorist-gutenberg' ),
+
+    'post_type'                   => 'directorist_gbt',
 
     /**
      * Configuration for the REST API.
@@ -46,7 +51,11 @@ return [
     /**
      * Service providers for the plugin.
      */
-    'providers'                   => [],
+    'providers'                   => [
+        BlockServiceProvider::class,
+        PostTypeServiceProvider::class,
+        BlockTemplateServiceProvider::class,
+    ],
 
     /**
      * Service providers for the admin area of the plugin.

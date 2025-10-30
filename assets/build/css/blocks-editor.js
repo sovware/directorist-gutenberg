@@ -17,12 +17,12 @@
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
+/*!*******************************************!*\
+  !*** ./resources/sass/blocks/editor.scss ***!
+  \*******************************************/
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 /******/ })()
 ;
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=blocks-editor.js.map

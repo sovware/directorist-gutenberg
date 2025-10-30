@@ -1,0 +1,1 @@
+console.log( 'directorist gutenberg editor' );
