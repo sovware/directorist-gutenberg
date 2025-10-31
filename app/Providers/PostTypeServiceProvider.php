@@ -67,6 +67,26 @@ class PostTypeServiceProvider implements Provider {
     public function register_meta_fields() {
         register_post_meta(
             directorist_gutenberg_post_type(),
+            'directory_type_id',
+            [
+                'show_in_rest' => true,
+                'single'       => true,
+                'type'         => 'integer',
+                'default'      => 0,
+            ]
+        );
+        register_post_meta(
+            directorist_gutenberg_post_type(),
+            'template_type',
+            [
+                'show_in_rest' => true,
+                'single'       => true,
+                'type'         => 'string',
+                'default'      => '',
+            ]
+        );
+        register_post_meta(
+            directorist_gutenberg_post_type(),
             'is_enabled',
             [
                 'show_in_rest' => true,
