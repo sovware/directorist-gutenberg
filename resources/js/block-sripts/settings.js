@@ -10,15 +10,24 @@ const TemplateSettingsPanel = () => {
 	const [ directoryTypes, setDirectoryTypes ] = useState( [] );
 	const [ isLoading, setIsLoading ] = useState( true );
 
-	const { isEnabled, directoryTypeId } = useSelect( ( select ) => {
+	const { isEnabled, directoryTypeId, templateType } = useSelect( ( select ) => {
 		const meta = select( 'core/editor' ).getEditedPostAttribute( 'meta' ) || {};
 		return {
 			isEnabled: meta.is_enabled || false,
 			directoryTypeId: meta.directory_type_id || 0,
+			templateType: meta.template_type || '',
 		};
 	}, [] );
 
 	const { editPost } = useDispatch( 'core/editor' );
+
+	// Define template type options
+	const templateTypeOptions = [
+		{ label: __( 'Select Template Type', 'directorist-gutenberg' ), value: '' },
+		{ label: __( 'Archive', 'directorist-gutenberg' ), value: 'archive' },
+		{ label: __( 'Archive - Grid View Item', 'directorist-gutenberg' ), value: 'archive-grid-item' },
+		{ label: __( 'Archive - List View Item', 'directorist-gutenberg' ), value: 'archive-list-item' },
+	];
 
 	// Fetch directory types from the taxonomy
 	useEffect( () => {
@@ -64,6 +73,14 @@ const TemplateSettingsPanel = () => {
 		} );
 	};
 
+	const handleTemplateTypeChange = ( value ) => {
+		editPost( {
+			meta: {
+				template_type: value,
+			},
+		} );
+	};
+
 	return (
 		<PluginDocumentSettingPanel
 			name="template-settings-panel"
@@ -81,6 +98,15 @@ const TemplateSettingsPanel = () => {
 				disabled={ directoryTypeId ? true : false }
 			/>
 		) }
+
+		<div style={ { marginTop: '16px' } } />
+
+		<SelectControl
+			label={ __( 'Template Type', 'directorist-gutenberg' ) }
+			value={ templateType }
+			options={ templateTypeOptions }
+			onChange={ handleTemplateTypeChange }
+		/>
 
 		<div style={ { marginTop: '16px' } } />
 

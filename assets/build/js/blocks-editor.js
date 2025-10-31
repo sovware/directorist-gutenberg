@@ -38,17 +38,34 @@ const TemplateSettingsPanel = () => {
   const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(true);
   const {
     isEnabled,
-    directoryTypeId
+    directoryTypeId,
+    templateType
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
     const meta = select('core/editor').getEditedPostAttribute('meta') || {};
     return {
       isEnabled: meta.is_enabled || false,
-      directoryTypeId: meta.directory_type_id || 0
+      directoryTypeId: meta.directory_type_id || 0,
+      templateType: meta.template_type || ''
     };
   }, []);
   const {
     editPost
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)('core/editor');
+
+  // Define template type options
+  const templateTypeOptions = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Select Template Type', 'directorist-gutenberg'),
+    value: ''
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Archive', 'directorist-gutenberg'),
+    value: 'archive'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Archive - Grid View Item', 'directorist-gutenberg'),
+    value: 'archive-grid-item'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Archive - List View Item', 'directorist-gutenberg'),
+    value: 'archive-list-item'
+  }];
 
   // Fetch directory types from the taxonomy
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
@@ -90,6 +107,13 @@ const TemplateSettingsPanel = () => {
       }
     });
   };
+  const handleTemplateTypeChange = value => {
+    editPost({
+      meta: {
+        template_type: value
+      }
+    });
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_1__.PluginDocumentSettingPanel, {
     name: "template-settings-panel",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Template Settings', 'directorist-gutenberg'),
@@ -100,6 +124,15 @@ const TemplateSettingsPanel = () => {
       options: directoryTypes,
       onChange: handleDirectoryTypeChange,
       disabled: directoryTypeId ? true : false
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      style: {
+        marginTop: '16px'
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Template Type', 'directorist-gutenberg'),
+      value: templateType,
+      options: templateTypeOptions,
+      onChange: handleTemplateTypeChange
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
       style: {
         marginTop: '16px'
