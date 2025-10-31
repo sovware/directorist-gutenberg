@@ -89,17 +89,6 @@ class PostTypeServiceProvider implements Provider {
                 'default'      => '',
             ]
         );
-
-        register_post_meta(
-            $post_type,
-            'is_enabled',
-            [
-                'show_in_rest' => true,
-                'single'       => true,
-                'type'         => 'boolean',
-                'default'      => false,
-            ]
-        );
     }
 
     public function handle_template_enable_toggle( $post_id ) {
@@ -108,31 +97,25 @@ class PostTypeServiceProvider implements Provider {
             return;
         }
 
-        // Get the current is_enabled status
-        $is_enabled = get_post_meta( $post_id, 'is_enabled', true );
+        $post = get_post( $post_id );
 
-        // Only proceed if this template is being enabled
-        if ( ! $is_enabled ) {
+        if ( ! in_array( $post->post_status, [ 'publish', 'private' ] ) ) {
             return;
         }
-
-        // Get the template type and directory type of the current post
-        $template_type     = get_post_meta( $post_id, 'template_type', true );
+        
+        // Get the directory and template type of the current post
         $directory_type_id = get_post_meta( $post_id, 'directory_type_id', true );
+        $template_type     = get_post_meta( $post_id, 'template_type', true );
 
-        // Query all other templates with the same template_type and directory_type_id
+        // Query all other templates with the same directory_type_id and template_type 
         $query = new \WP_Query(
             [
                 'post_type'      => directorist_gutenberg_post_type(),
-                'post_status'    => 'any',
+                'post_status'    => $post->post_status === 'publish' ? 'publish' : 'private',
                 'posts_per_page' => -1,
                 'post__not_in'   => [ $post_id ],
                 'meta_query'     => [
                     'relation' => 'AND',
-                    [
-                        'key'   => 'is_enabled',
-                        'value' => '1',
-                    ],
                     [
                         'key'   => 'directory_type_id',
                         'value' => $directory_type_id,
@@ -148,7 +131,10 @@ class PostTypeServiceProvider implements Provider {
         // Disable all other templates
         if ( $query->have_posts() ) {
             foreach ( $query->posts as $template_post ) {
-                update_post_meta( $template_post->ID, 'is_enabled', false );
+                wp_update_post( [
+                    'ID'          => $template_post->ID,
+                    'post_status' => 'draft',
+                ] );
             }
         }
 

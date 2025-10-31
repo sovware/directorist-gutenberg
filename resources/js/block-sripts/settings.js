@@ -1,6 +1,6 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
-import { ToggleControl, SelectControl, Spinner } from '@wordpress/components';
+import { SelectControl, Spinner } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { useEffect, useState } from '@wordpress/element';
@@ -10,10 +10,9 @@ const TemplateSettingsPanel = () => {
 	const [ directoryTypes, setDirectoryTypes ] = useState( [] );
 	const [ isLoading, setIsLoading ] = useState( true );
 
-	const { isEnabled, directoryTypeId, templateType } = useSelect( ( select ) => {
+	const { directoryTypeId, templateType } = useSelect( ( select ) => {
 		const meta = select( 'core/editor' ).getEditedPostAttribute( 'meta' ) || {};
 		return {
-			isEnabled: meta.is_enabled || false,
 			directoryTypeId: meta.directory_type_id || 0,
 			templateType: meta.template_type || '',
 		};
@@ -57,14 +56,6 @@ const TemplateSettingsPanel = () => {
 			} );
 	}, [] );
 
-	const handleToggle = ( value ) => {
-		editPost( {
-			meta: {
-				is_enabled: value,
-			},
-		} );
-	};
-
 	const handleDirectoryTypeChange = ( value ) => {
 		editPost( {
 			meta: {
@@ -106,14 +97,6 @@ const TemplateSettingsPanel = () => {
 			value={ templateType }
 			options={ templateTypeOptions }
 			onChange={ handleTemplateTypeChange }
-		/>
-
-		<div style={ { marginTop: '16px' } } />
-
-		<ToggleControl
-			label={ __( 'Enable the template', 'directorist-gutenberg' ) }
-			checked={ isEnabled }
-			onChange={ handleToggle }
 		/>
 		</PluginDocumentSettingPanel>
 	);

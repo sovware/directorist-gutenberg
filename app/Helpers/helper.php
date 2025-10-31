@@ -49,3 +49,33 @@ function directorist_gutenberg_render_view( string $view, array $data = [] ) {
 function directorist_gutenberg_get_view( string $view, array $data = [] ) {
     return View::get( $view, $data );
 }
+
+function directorist_gutenberg_templates( int $directory_type_id, bool $with_private = false ) {
+    $query = new \WP_Query(
+        [
+            'post_type'      => directorist_gutenberg_post_type(),
+            'post_status'    => $with_private ? ['publish', 'private'] : ['publish'],
+            'posts_per_page' => -1,
+            'meta_query'     => [
+                'relation' => 'AND',
+                [
+                    'key'   => 'directory_type_id',
+                    'value' => $directory_type_id,
+                ],
+            ],
+        ]
+    );
+
+    $templates = [];
+
+    foreach ( $query->posts as $post ) {
+        $templates[] = [
+            'id'            => $post->ID,
+            'title'         => $post->post_title,
+            'status'        => $post->post_status,
+            'template_type' => get_post_meta( $post->ID, 'template_type', true ),
+        ];
+    }
+
+    return $templates;
+}

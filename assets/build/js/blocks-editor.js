@@ -37,13 +37,11 @@ const TemplateSettingsPanel = () => {
   const [directoryTypes, setDirectoryTypes] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)([]);
   const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(true);
   const {
-    isEnabled,
     directoryTypeId,
     templateType
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
     const meta = select('core/editor').getEditedPostAttribute('meta') || {};
     return {
-      isEnabled: meta.is_enabled || false,
       directoryTypeId: meta.directory_type_id || 0,
       templateType: meta.template_type || ''
     };
@@ -93,13 +91,6 @@ const TemplateSettingsPanel = () => {
       setIsLoading(false);
     });
   }, []);
-  const handleToggle = value => {
-    editPost({
-      meta: {
-        is_enabled: value
-      }
-    });
-  };
   const handleDirectoryTypeChange = value => {
     editPost({
       meta: {
@@ -133,14 +124,6 @@ const TemplateSettingsPanel = () => {
       value: templateType,
       options: templateTypeOptions,
       onChange: handleTemplateTypeChange
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-      style: {
-        marginTop: '16px'
-      }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Enable the template', 'directorist-gutenberg'),
-      checked: isEnabled,
-      onChange: handleToggle
     })]
   });
 };
