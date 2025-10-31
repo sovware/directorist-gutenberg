@@ -10,6 +10,7 @@ class PostTypeServiceProvider implements Provider {
     public function boot() {
         add_action( 'init', [ self::class, 'register_post_type' ] );
         add_action( 'init', [ $this, 'register_meta_fields' ] );
+        add_action( 'save_post_' . directorist_gutenberg_post_type(), [ $this, 'handle_template_enable_toggle' ], 10, 1 );
     }
 
     public static function register_post_type() {
@@ -99,5 +100,58 @@ class PostTypeServiceProvider implements Provider {
                 'default'      => false,
             ]
         );
+    }
+
+    public function handle_template_enable_toggle( $post_id ) {
+        // Check if this is an autosave or revision
+        if ( wp_is_post_autosave( $post_id ) || wp_is_post_revision( $post_id ) ) {
+            return;
+        }
+
+        // Get the current is_enabled status
+        $is_enabled = get_post_meta( $post_id, 'is_enabled', true );
+
+        // Only proceed if this template is being enabled
+        if ( ! $is_enabled ) {
+            return;
+        }
+
+        // Get the template type and directory type of the current post
+        $template_type     = get_post_meta( $post_id, 'template_type', true );
+        $directory_type_id = get_post_meta( $post_id, 'directory_type_id', true );
+
+        // Query all other templates with the same template_type and directory_type_id
+        $query = new \WP_Query(
+            [
+                'post_type'      => directorist_gutenberg_post_type(),
+                'post_status'    => 'any',
+                'posts_per_page' => -1,
+                'post__not_in'   => [ $post_id ],
+                'meta_query'     => [
+                    'relation' => 'AND',
+                    [
+                        'key'   => 'is_enabled',
+                        'value' => '1',
+                    ],
+                    [
+                        'key'   => 'directory_type_id',
+                        'value' => $directory_type_id,
+                    ],
+                    [
+                        'key'   => 'template_type',
+                        'value' => $template_type,
+                    ],
+                ],
+            ]
+        );
+
+        // Disable all other templates
+        if ( $query->have_posts() ) {
+            foreach ( $query->posts as $template_post ) {
+                update_post_meta( $template_post->ID, 'is_enabled', false );
+            }
+        }
+
+        wp_reset_postdata();
     }
 }
