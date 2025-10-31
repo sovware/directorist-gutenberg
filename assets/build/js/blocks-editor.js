@@ -19,8 +19,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+
+
 
 
 
@@ -28,12 +34,48 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const TemplateSettingsPanel = () => {
-  const isEnabled = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
-    return select('core/editor').getEditedPostAttribute('meta')?.is_enabled || false;
+  const [directoryTypes, setDirectoryTypes] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)([]);
+  const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(true);
+  const {
+    isEnabled,
+    directoryTypeId
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
+    const meta = select('core/editor').getEditedPostAttribute('meta') || {};
+    return {
+      isEnabled: meta.is_enabled || false,
+      directoryTypeId: meta.directory_type_id || 0
+    };
   }, []);
   const {
     editPost
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)('core/editor');
+
+  // Fetch directory types from the taxonomy
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
+    setIsLoading(true);
+
+    // Fetch all directory types (per_page=-1 gets all results)
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6___default()({
+      path: '/wp/v2/atbdp_listing_types?per_page=-1&orderby=name&order=asc'
+    }).then(terms => {
+      const options = [{
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Select Directory Type', 'directorist-gutenberg'),
+        value: 0
+      }, ...terms.map(term => ({
+        label: term.name,
+        value: term.id
+      }))];
+      setDirectoryTypes(options);
+      setIsLoading(false);
+    }).catch(error => {
+      console.error('Error fetching directory types:', error);
+      setDirectoryTypes([{
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Error loading directory types', 'directorist-gutenberg'),
+        value: 0
+      }]);
+      setIsLoading(false);
+    });
+  }, []);
   const handleToggle = value => {
     editPost({
       meta: {
@@ -41,20 +83,47 @@ const TemplateSettingsPanel = () => {
       }
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_1__.PluginDocumentSettingPanel, {
+  const handleDirectoryTypeChange = value => {
+    editPost({
+      meta: {
+        directory_type_id: parseInt(value, 10)
+      }
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_1__.PluginDocumentSettingPanel, {
     name: "template-settings-panel",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Template Settings', 'directorist-gutenberg'),
     className: "template-settings-panel",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Enable', 'directorist-gutenberg'),
+    children: [isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Directory Type', 'directorist-gutenberg'),
+      value: directoryTypeId,
+      options: directoryTypes,
+      onChange: handleDirectoryTypeChange,
+      disabled: directoryTypeId ? true : false
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      style: {
+        marginTop: '16px'
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Enable the template', 'directorist-gutenberg'),
       checked: isEnabled,
       onChange: handleToggle
-    })
+    })]
   });
 };
 (0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('directorist-gutenberg-template-settings', {
   render: TemplateSettingsPanel
 });
+
+/***/ }),
+
+/***/ "@wordpress/api-fetch":
+/*!**********************************!*\
+  !*** external ["wp","apiFetch"] ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["apiFetch"];
 
 /***/ }),
 
@@ -85,6 +154,16 @@ module.exports = window["wp"]["data"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["editor"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
 
 /***/ }),
 
