@@ -1,1 +1,1 @@
-console.log( 'directorist gutenberg editor' );
+import './settings';

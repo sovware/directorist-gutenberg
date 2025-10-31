@@ -9,6 +9,7 @@ use DirectoristGutenberg\WpMVC\Contracts\Provider;
 class PostTypeServiceProvider implements Provider {
     public function boot() {
         add_action( 'init', [ self::class, 'register_post_type' ] );
+        add_action( 'init', [ $this, 'register_meta_fields' ] );
     }
 
     public static function register_post_type() {
@@ -61,5 +62,18 @@ class PostTypeServiceProvider implements Provider {
         ];
     
         register_post_type( directorist_gutenberg_post_type(), $args );
+    }
+
+    public function register_meta_fields() {
+        register_post_meta(
+            directorist_gutenberg_post_type(),
+            'is_enabled',
+            [
+                'show_in_rest' => true,
+                'single'       => true,
+                'type'         => 'boolean',
+                'default'      => false,
+            ]
+        );
     }
 }

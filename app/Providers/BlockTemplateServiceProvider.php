@@ -28,7 +28,7 @@ class BlockTemplateServiceProvider implements Provider {
         // $listings_controller->gbt_listings_grid_view_template_id = 53;
         // $listings_controller->gbt_listings_list_view_template_id = 54;
 
-        add_filter( 'directorist_should_render_custom_listings_loop_item_template', '__return_true', 10 );
+        // add_filter( 'directorist_should_render_custom_listings_loop_item_template', '__return_true', 10 );
     }
 
     public function render_listings_loop_item_custom_template( $listings_controller, array $args ) {
