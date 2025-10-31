@@ -65,8 +65,10 @@ class PostTypeServiceProvider implements Provider {
     }
 
     public function register_meta_fields() {
+        $post_type = directorist_gutenberg_post_type();
+
         register_post_meta(
-            directorist_gutenberg_post_type(),
+            $post_type,
             'directory_type_id',
             [
                 'show_in_rest' => true,
@@ -75,8 +77,9 @@ class PostTypeServiceProvider implements Provider {
                 'default'      => 0,
             ]
         );
+
         register_post_meta(
-            directorist_gutenberg_post_type(),
+            $post_type,
             'template_type',
             [
                 'show_in_rest' => true,
@@ -85,8 +88,9 @@ class PostTypeServiceProvider implements Provider {
                 'default'      => '',
             ]
         );
+
         register_post_meta(
-            directorist_gutenberg_post_type(),
+            $post_type,
             'is_enabled',
             [
                 'show_in_rest' => true,
