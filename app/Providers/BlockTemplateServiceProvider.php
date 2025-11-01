@@ -10,7 +10,7 @@ class BlockTemplateServiceProvider implements Provider {
     public function boot() {
         add_filter( 'directorist_listings_deferred_props', [ $this, 'add_deferred_props' ], 10, 1 );
         add_action( 'directorist_before_listings_loop', [ $this, 'maybe_set_listing_item_template_id' ], 10, 2 );
-        add_action( 'directorist_render_custom_listings_loop_item_template', [ $this, 'render_listings_loop_item_custom_template' ], 10, 2 );
+        add_action( 'directorist_render_listings_custom_archive_item_template', [ $this, 'render_listings_custom_archive_item_template' ], 10, 2 );
     }
 
     public function add_deferred_props( array $deferred_props ) {
@@ -41,12 +41,12 @@ class BlockTemplateServiceProvider implements Provider {
                 $listings_controller->gbt_archive_list_item_template_id = $template['id'];
             }
 
-            add_filter( 'directorist_should_render_custom_listings_loop_item_template', [ $this, 'should_render_custom_listings_loop_item_template' ], 10, 3 );
+            add_filter( 'directorist_should_render_listings_custom_archive_item_template', [ $this, 'should_render_listings_custom_archive_item_template' ], 10, 3 );
             break;
         }
     }
 
-    public function should_render_custom_listings_loop_item_template( $should_render, $listings_controller, array $args ) {
+    public function should_render_listings_custom_archive_item_template( $should_render, $listings_controller, array $args ) {
         if  ( $args['view_type'] === 'grid' && $listings_controller->gbt_archive_grid_item_template_id ) {
             return true;
         }
@@ -58,7 +58,7 @@ class BlockTemplateServiceProvider implements Provider {
         return $should_render;
     }
 
-    public function render_listings_loop_item_custom_template( $listings_controller, array $args ) {
+    public function render_listings_custom_archive_item_template( $listings_controller, array $args ) {
         $template_id = $args['view_type'] === 'grid' ? $listings_controller->gbt_archive_grid_item_template_id : $listings_controller->gbt_archive_list_item_template_id;
 
         directorist_gutenberg_render_view( 'block-templates/archive/listing-item', [ 'template_id' => $template_id ] );
