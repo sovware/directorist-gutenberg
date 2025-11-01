@@ -55,14 +55,14 @@ const TemplateSettingsPanel = () => {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Select Template Type', 'directorist-gutenberg'),
     value: ''
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Archive', 'directorist-gutenberg'),
-    value: 'archive'
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Listings Archive', 'directorist-gutenberg'),
+    value: 'listings-archive'
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Archive - Grid View Item', 'directorist-gutenberg'),
-    value: 'archive-grid-item'
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('ListingsArchive - Grid View Item', 'directorist-gutenberg'),
+    value: 'listings-archive-grid-item'
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Archive - List View Item', 'directorist-gutenberg'),
-    value: 'archive-list-item'
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Listings Archive - List View Item', 'directorist-gutenberg'),
+    value: 'listings-archive-list-item'
   }];
 
   // Fetch directory types from the taxonomy
