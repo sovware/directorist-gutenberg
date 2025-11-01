@@ -9,7 +9,8 @@ use DirectoristGutenberg\WpMVC\Contracts\Provider;
 class BlockTemplateServiceProvider implements Provider {
     public function boot() {
         add_filter( 'directorist_listings_deferred_props', [ $this, 'add_deferred_props' ], 10, 1 );
-        add_action( 'directorist_before_listings_loop', [ $this, 'maybe_set_listing_item_template_id' ], 10, 2 );
+        add_action( 'directorist_after_init_listings_shortcode', [ $this, 'maybe_set_listing_item_template_id' ], 10, 1 );
+        add_filter( 'directorist_should_render_listings_custom_archive_item_template', [ $this, 'should_render_listings_custom_archive_item_template' ], 10, 3 );
         add_action( 'directorist_render_listings_custom_archive_item_template', [ $this, 'render_listings_custom_archive_item_template' ], 10, 2 );
     }
 
@@ -20,29 +21,24 @@ class BlockTemplateServiceProvider implements Provider {
         return $deferred_props;
     }
 
-    public function maybe_set_listing_item_template_id( $listings_controller, array $args ) {
-        if ( empty( $listings_controller->directory_type_id ) ) {
+    public function maybe_set_listing_item_template_id( $listings_controller ) {
+        if ( empty( $listings_controller->current_listing_type ) ) {
             return;
         }
 
-        $current_template_type = $args['view_type'] === 'grid' ? 'archive-grid-item' : 'archive-list-item';
-
-        $with_private = current_user_can( 'edit_post', $listings_controller->directory_type_id );
-        $templates    = directorist_gutenberg_templates( $listings_controller->directory_type_id,  $with_private );
+        $with_private = current_user_can( 'edit_post', $listings_controller->current_listing_type );
+        $templates    = directorist_gutenberg_templates( $listings_controller->current_listing_type,  $with_private );
 
         foreach ( $templates as $template ) {
-            if ( $template['template_type'] !== $current_template_type ) {
+            if ( $template['template_type'] === 'archive-grid-item' ) {
+                $listings_controller->gbt_archive_grid_item_template_id = $template['id'];
                 continue;
             }
 
-            if ( $args['view_type'] === 'grid' ) {
-                $listings_controller->gbt_archive_grid_item_template_id = $template['id'];
-            } else {
+            if ( $template['template_type'] === 'archive-list-item' ) {
                 $listings_controller->gbt_archive_list_item_template_id = $template['id'];
+                continue;
             }
-
-            add_filter( 'directorist_should_render_listings_custom_archive_item_template', [ $this, 'should_render_listings_custom_archive_item_template' ], 10, 3 );
-            break;
         }
     }
 
