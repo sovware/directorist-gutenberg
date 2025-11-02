@@ -4,7 +4,7 @@
   "name": "directorist-gutenberg/listing-card-thumbnail",
   "version": "0.1.0",
   "title": "Listing Thumbnail",
-  "category": "directorist-listing-card-custom-fields",
+  "category": "directorist-listing-card-preset-fields",
   "description": "Listing thumbnail block",
   "example": {},
   "supports": {
