@@ -73,6 +73,7 @@ module.exports = [
 			 * Block scripts
 			 */
 			'js/blocks-editor': './resources/js/block-sripts/editor.js',
+			'js/blocks-frontend': './resources/js/block-sripts/frontend.js',
 			'css/blocks-frontend': './resources/sass/blocks/frontend.scss',
 			'css/blocks-editor': './resources/sass/blocks/editor.scss',
 		},

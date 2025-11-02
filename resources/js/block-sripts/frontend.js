@@ -1,0 +1,1 @@
+import '@directorist-gutenberg/gutenberg/instantSearch';

@@ -7,7 +7,7 @@ use Directorist\Directorist_Listings;
 $listings = new Directorist_Listings();
 
 ?>
-<div <?php echo get_block_wrapper_attributes(); ?>>
+<div <?php echo get_block_wrapper_attributes(); $listings->data_atts() ?>>
     <?php if ( $listings->header_bar_template() ) : ?>    
     <div class="directorist-gutenberg-listings-archive-header">
         <?php $listings->header_bar_template(); ?>

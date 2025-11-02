@@ -7,11 +7,9 @@ use Directorist\Directorist_Listings;
 $listings = new Directorist_Listings();
 
 ?>
-<div <?php echo get_block_wrapper_attributes(); ?>>
+<div <?php echo get_block_wrapper_attributes(); $listings->data_atts() ?>>
     <div class="directorist-gutenberg-listings-archive-search-nav">
-        <?php
-            $listings->directory_type_nav_template();
-        ?>
+        <?php $listings->directory_type_nav_template(); ?>
     </div>
 
     <div class="directorist-gutenberg-listings-archive-search-form">
