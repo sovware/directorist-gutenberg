@@ -1291,50 +1291,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/gutenberg/components/block.js":
-/*!****************************************************!*\
-  !*** ./resources/js/gutenberg/components/block.js ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Block)
-/* harmony export */ });
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
-/**
- * WordPress dependencies
- */
-
-
-function Block({
-  fields,
-  Edit,
-  attributes,
-  setAttributes,
-  metaData,
-  clientId
-}) {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      ...blockProps,
-      className: `${blockProps.className} directorist-gbt-field-width-${Math.trunc(attributes.block_width)}`,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Edit, {
-        attributes: attributes,
-        setAttributes: setAttributes,
-        metaData: metaData,
-        clientId: clientId
-      })
-    })
-  });
-}
-
-/***/ }),
-
 /***/ "./resources/js/gutenberg/register-block.js":
 /*!**************************************************!*\
   !*** ./resources/js/gutenberg/register-block.js ***!
@@ -1348,10 +1304,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
-/* harmony import */ var _components_block_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/block.js */ "./resources/js/gutenberg/components/block.js");
-/* harmony import */ var _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @block-icon/directorist-logo.svg */ "./resources/blocks-icon/directorist-logo.svg");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @block-icon/directorist-logo.svg */ "./resources/blocks-icon/directorist-logo.svg");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 /**
  * WordPress dependencies
  */
@@ -1367,15 +1322,12 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-
 function registerBlock({
   metadata,
-  fields,
   Edit,
   icon = '',
   exampleAttributes = {},
-  props = {},
-  showWidthControl = true
+  props = {}
 }) {
   if ('directorist_gbt' !== typenow) {
     return;
@@ -1383,11 +1335,11 @@ function registerBlock({
   if (!icon) {
     // Ensure directoristLogo is a valid URL string for ReactSVG
     // webpack asset/resource returns a URL string, but sometimes it's wrapped
-    const logoUrl = typeof _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_3__ === 'string' ? _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_3__ : _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_3__?.default || _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_3__;
-    console.log('directoristLogo', _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_3__);
+    const logoUrl = typeof _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__ === 'string' ? _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__ : _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__?.default || _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__;
+    console.log('directoristLogo', _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__);
     console.log('logoUrl', logoUrl);
     if (logoUrl) {
-      icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
         src: logoUrl
       });
     } else {
@@ -1395,29 +1347,12 @@ function registerBlock({
       icon = 'star-filled';
     }
   }
-
-  // Function to render the Block component
-  const renderBlock = (attributes, setAttributes, clientId) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_block_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    fields: fields,
-    Edit: Edit,
-    attributes: attributes,
-    setAttributes: setAttributes,
-    metaData: metadata,
-    clientId: clientId
-  });
-  const EditBlock = function ({
-    attributes,
-    setAttributes,
-    clientId
-  }) {
-    return renderBlock(attributes, setAttributes, clientId);
-  };
   (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(metadata.name, {
     icon,
     example: {
       attributes: exampleAttributes
     },
-    edit: EditBlock,
+    edit: Edit,
     ...props
   });
 }
