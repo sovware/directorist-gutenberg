@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "directorist-gutenberg/listings-archive-search",
+	"version": "0.1.0",
+	"title": "Listings Archive Search",
+	"category": "directorist-listings-archive",
+	"attributes": {
+		"directory_type_id": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"description": "Listings archive search block",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "directorist-gutenberg-template",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
