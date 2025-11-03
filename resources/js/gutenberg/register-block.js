@@ -28,7 +28,23 @@ export default function registerBlock( {
 	}
 
 	if ( ! icon ) {
-		icon = <ReactSVG src={ directoristLogo } />;
+		// Ensure directoristLogo is a valid URL string for ReactSVG
+		// webpack asset/resource returns a URL string, but sometimes it's wrapped
+		const logoUrl = typeof directoristLogo === 'string'
+			? directoristLogo
+			: (directoristLogo?.default || directoristLogo);
+
+		console.log('directoristLogo', directoristLogo);
+
+		console.log('logoUrl', logoUrl);
+
+
+		if ( logoUrl ) {
+			icon = <ReactSVG src={ logoUrl } />;
+		} else {
+			// Fallback to a dashicon if SVG fails to load
+			icon = 'star-filled';
+		}
 	}
 
 	// Function to render the Block component

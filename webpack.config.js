@@ -40,14 +40,47 @@ const plugins = [
 const moduleConfig = {
 	...defaultConfig[ 0 ].module,
 	rules: [
+		// Filter out default SVG rules from WordPress scripts - we handle SVGs explicitly
+		// This prevents WordPress scripts from processing SVGs into React components
 		...defaultConfig[ 0 ].module.rules.filter(
-			( rule ) => rule.type !== 'asset/resource'
+			( rule ) => {
+				// Exclude any SVG rules that WordPress scripts might have
+				// (WordPress scripts may use @svgr/webpack which transforms SVGs)
+				if ( rule.test && rule.test.toString().includes( 'svg' ) ) {
+					return false;
+				}
+				return true;
+			}
 		),
 		{
 			test: /\.(bmp|png|jpe?g|gif|webp)$/i,
 			type: 'asset/resource',
 			generator: {
 				filename: 'images/[name][ext]',
+			},
+		},
+		{
+			// Special rule for SVG icons directory (font-awesome and line-awesome)
+			// Only used with require.context to get file names, not to bundle
+			test: /\.svg$/i,
+			include: [
+				path.resolve(__dirname, 'resources/svg/icons/icon-library'),
+			],
+			// Use a simple loader that just returns the module path for require.context
+			// This prevents webpack from trying to emit the files as assets
+			use: {
+				loader: path.resolve(__dirname, 'webpack-svg-name-loader.js'),
+			},
+		},
+		{
+			// All other SVGs (like block icons, times.svg, etc.) - treat as assets
+			test: /\.svg$/i,
+			exclude: [
+				path.resolve(__dirname, 'resources/svg/icons/icon-library'),
+			],
+			type: 'asset/resource',
+			generator: {
+				filename: 'icons/[name][ext]',
 			},
 		},
 	],
