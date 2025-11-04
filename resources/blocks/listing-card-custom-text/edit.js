@@ -4,14 +4,35 @@
 import { __ } from '@wordpress/i18n';
 
 /**
+ * External dependencies
+ */
+import ReactSVG from 'react-inlinesvg';
+
+/**
  * Internal dependencies
  */
+import { getIconUrl } from '@directorist-gutenberg/gutenberg/utils/icon-url';
 import './editor.scss';
 
-export default function Edit() {
+export default function Edit( { attributes, setAttributes } ) {
+	const iconUrl = getIconUrl(attributes.icon);
+
 	return (
-		<p>
-			{__('Custom Text', 'directorist-gutenberg')}
-		</p>
+		<div
+			className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-custom-text"
+		>
+			<div className="directorist-gutenberg-listing-card-element-content">
+				{iconUrl && (
+					<span className="directorist-gutenberg-listing-card-element-icon">
+						<ReactSVG src={iconUrl} />
+					</span>
+				)}
+				<div className="directorist-gutenberg-listing-card-element-details">
+					<span className="directorist-gutenberg-listing-card-element-value">
+						{__('Custom Text', 'directorist-gutenberg')}
+					</span>
+				</div>
+			</div>
+		</div>
 	);
 }

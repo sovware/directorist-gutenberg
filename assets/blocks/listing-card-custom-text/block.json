@@ -5,6 +5,16 @@
   "version": "0.1.0",
   "title": "Custom Text",
   "category": "directorist-listing-card-custom-fields",
+  "attributes": {
+    "icon": {
+      "type": "string",
+      "default": ""
+    },
+    "meta_key": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "description": "Listing custom text block",
   "example": {},
   "supports": {
