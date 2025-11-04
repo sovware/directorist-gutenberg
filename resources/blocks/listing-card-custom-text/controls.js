@@ -9,13 +9,11 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import { getLocalizedBlockData } from '@directorist-gutenberg/gutenberg/localized-data';
+import { getSubmissionFormFields } from '@directorist-gutenberg/gutenberg/localized-data';
 import IconPicker from '@directorist-gutenberg/gutenberg/components/controls/icon-picker';
 
 export default function Controls( { attributes, setAttributes } ) {
-    const blockData = getLocalizedBlockData();
-    const { submission_form_fields } = blockData;
-    const submissionFields = submission_form_fields ? submission_form_fields.fields : null;
+    const submissionFields = getSubmissionFormFields();
 
     let customTextFields = [
         {
