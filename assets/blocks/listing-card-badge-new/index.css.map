@@ -1,0 +1,1 @@
+{"version":3,"file":"listing-card-badge-new/index.css","mappings":";;;AAEA;EACI;EACA;AADJ,C","sources":["webpack://wpmvc/./resources/blocks/listing-card-badge-new/editor.scss"],"sourcesContent":["\n\n.directorist-gutenberg-listing-badge-new{\n    background: var(--directorist-color-new-badge);\n    color: #fff;\n}"],"names":[],"sourceRoot":""}

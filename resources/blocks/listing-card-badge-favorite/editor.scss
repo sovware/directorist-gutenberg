@@ -1,0 +1,16 @@
+.directorist-gutenberg-listing-favorite-button{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    svg{
+        width: 15px;
+        height: 15px;
+        fill: var(--directorist-color-danger);
+    }
+}

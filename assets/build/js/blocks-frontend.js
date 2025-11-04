@@ -1,6 +1,51 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
+
+/***/ "./resources/js/fields/listing-card-favorite.js":
+/*!******************************************************!*\
+  !*** ./resources/js/fields/listing-card-favorite.js ***!
+  \******************************************************/
+/***/ (() => {
+
+jQuery(document).ready(function ($) {
+  $('body').on('click', '.directorist-mark-as-favorite__btn', function (event) {
+    event.preventDefault();
+    var data = {
+      action: 'atbdp-favourites-all-listing',
+      directorist_nonce: directorist.directorist_nonce,
+      post_id: $(this).data('listing_id')
+    };
+    var fav_tooltip_success = '<span>' + directorist.i18n_text.added_favourite + '</span>';
+    var fav_tooltip_warning = '<span>' + directorist.i18n_text.please_login + '</span>';
+    $('.directorist-favorite-tooltip').hide();
+    $.post(directorist.ajax_url, data, function (response) {
+      var post_id = data['post_id'].toString();
+      var staElement = $('.directorist-fav_' + post_id);
+      var data_id = staElement.attr('data-listing_id');
+      if (response === 'login_required') {
+        staElement.children('.directorist-favorite-tooltip').append(fav_tooltip_warning);
+        staElement.children('.directorist-favorite-tooltip').fadeIn();
+        setTimeout(function () {
+          staElement.children('.directorist-favorite-tooltip').children('span').remove();
+        }, 3000);
+      } else if ('false' === response) {
+        staElement.removeClass('directorist-added-to-favorite');
+        $('.directorist-favorite-tooltip span').remove();
+      } else {
+        if (data_id === post_id) {
+          staElement.addClass('directorist-added-to-favorite');
+          staElement.children('.directorist-favorite-tooltip').append(fav_tooltip_success);
+          staElement.children('.directorist-favorite-tooltip').fadeIn();
+          setTimeout(function () {
+            staElement.children('.directorist-favorite-tooltip').children('span').remove();
+          }, 3000);
+        }
+      }
+    });
+  });
+});
+
+/***/ }),
 
 /***/ "./resources/js/gutenberg/instantSearch.js":
 /*!*************************************************!*\
@@ -8,6 +53,7 @@
   \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @utils/debounce */ "./resources/js/utils/debounce.js");
 /* harmony import */ var _utils_category_custom_fields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @utils/category-custom-fields */ "./resources/js/utils/category-custom-fields.js");
@@ -951,6 +997,7 @@ jQuery(document).ready(function ($) {
   \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ initSearchCategoryCustomFields)
@@ -1090,6 +1137,7 @@ function initSearchCategoryCustomFields($) {
   \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ debounce)
@@ -1139,6 +1187,18 @@ function debounce(func, wait, immediate) {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -1169,13 +1229,17 @@ function debounce(func, wait, immediate) {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
+"use strict";
 /*!***********************************************!*\
   !*** ./resources/js/block-sripts/frontend.js ***!
   \***********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _directorist_gutenberg_gutenberg_instantSearch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/instantSearch */ "./resources/js/gutenberg/instantSearch.js");
+/* harmony import */ var _directorist_gutenberg_fields_listing_card_favorite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @directorist-gutenberg/fields/listing-card-favorite */ "./resources/js/fields/listing-card-favorite.js");
+/* harmony import */ var _directorist_gutenberg_fields_listing_card_favorite__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_directorist_gutenberg_fields_listing_card_favorite__WEBPACK_IMPORTED_MODULE_1__);
+
 
 })();
 
