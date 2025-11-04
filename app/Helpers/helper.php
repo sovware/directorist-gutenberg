@@ -79,3 +79,14 @@ function directorist_gutenberg_templates( int $directory_type_id, bool $with_pri
 
     return $templates;
 }
+
+function directorist_gutenberg_render_icon( string $icon ) {
+    $svg = directorist_gutenberg_dir( "resources/svg/$icon" );
+
+    if ( ! is_file( $svg ) ) {
+        return;
+    }
+
+    //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+    echo file_get_contents( $svg );
+}

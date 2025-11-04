@@ -30,4 +30,69 @@ return apply_filters( 'directorist_gutenberg_template_blocks', [
         'field_type' => 'listing-card-thumbnail',
         'types'      => ['listings-grid-view', 'listings-list-view'],
     ],
+    'directorist-gutenberg/listing-card-address' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-address',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-phone' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-phone',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-phone-two' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-phone-two',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-location' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-location',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-email' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-email',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-website' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-website',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-posted-date' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-posted-date',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-fax' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-fax',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-zip-code' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-zip-code',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-badge-popular' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-badge-popular',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-badge-featured' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-badge-featured',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-badge-new' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-badge-new',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-badge-favorite' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-badge-favorite',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
 ] );
