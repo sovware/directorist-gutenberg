@@ -1,0 +1,1 @@
+{"version":3,"file":"listing-card-custom-text/style-index.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://wpmvc/./resources/blocks/listing-card-custom-text/style.scss"],"sourcesContent":[".wp-block-directorist-gutenberg-listing-card-custom-text {\n\tfont-size: 20px;\n}\n"],"names":[],"sourceRoot":""}

@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "directorist-gutenberg/listing-card-custom-text",
+	"version": "0.1.0",
+	"title": "Custom Text",
+	"category": "directorist-listing-card-custom-fields",
+	"description": "Listing custom text block",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "directorist-gutenberg-template",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
