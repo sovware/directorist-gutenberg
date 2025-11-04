@@ -5,6 +5,7 @@ import registerBlock from '@directorist-gutenberg/gutenberg/register-block';
 import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
+import Controls from './controls';
 
 const exampleAttributes = {
 	is_preview: true,
@@ -13,5 +14,6 @@ const exampleAttributes = {
 registerBlock( {
 	metadata,
 	Edit,
+	Controls,
 	exampleAttributes,
 } );

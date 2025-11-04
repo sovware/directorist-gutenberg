@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { useBlockProps } from '@wordpress/block-editor';
 
 /**
  * External dependencies
@@ -21,9 +20,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 	return (
 		<>
-			<Controls attributes={attributes} setAttributes={setAttributes} />
 			<div
-				{...useBlockProps()}
 				className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-address"
 			>
 				<div className="directorist-gutenberg-listing-card-element-content">

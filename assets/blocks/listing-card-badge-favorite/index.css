@@ -1,29 +1,21 @@
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./resources/blocks/listing-card-badge-favorite/editor.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-.directorist-gutenberg-listing-badge {
+.directorist-gutenberg-listing-favorite-button {
   display: inline-flex;
-  gap: 4px;
   align-items: center;
   justify-content: center;
-  width: auto;
-  padding: 5px 7px;
-  border-radius: 4px;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
-.directorist-gutenberg-listing-badge svg {
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-.directorist-gutenberg-listing-badge span {
-  line-height: 0;
-}
-.directorist-gutenberg-listing-badge-favorite {
-  background: var(--directorist-color-new-badge);
-  color: #fff;
+.directorist-gutenberg-listing-favorite-button svg {
+  width: 15px;
+  height: 15px;
+  fill: var(--directorist-color-danger);
 }
 
 /*# sourceMappingURL=index.css.map*/

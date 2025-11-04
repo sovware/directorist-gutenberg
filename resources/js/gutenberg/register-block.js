@@ -12,10 +12,12 @@ import ReactSVG from 'react-inlinesvg';
  * Internal dependencies
  */
 import directoristLogo from '@block-icon/directorist-logo.svg';
+import Block from './block';
 
 export default function registerBlock( {
 	metadata,
 	Edit,
+	Controls,
 	icon = '',
 	exampleAttributes = {},
 	props = {},
@@ -31,11 +33,6 @@ export default function registerBlock( {
 			? directoristLogo
 			: (directoristLogo?.default || directoristLogo);
 
-		console.log('directoristLogo', directoristLogo);
-
-		console.log('logoUrl', logoUrl);
-
-
 		if ( logoUrl ) {
 			icon = <ReactSVG src={ logoUrl } />;
 		} else {
@@ -44,12 +41,21 @@ export default function registerBlock( {
 		}
 	}
 
+	// Wrap Edit component with Block wrapper that handles useBlockProps
+	const WrappedEdit = ( editProps ) => (
+		<Block
+			Edit={Edit}
+			Controls={Controls}
+			{...editProps}
+		/>
+	);
+
 	registerBlockType( metadata.name, {
 		icon,
 		example: {
 			attributes: exampleAttributes,
 		},
-		edit: Edit,
+		edit: WrappedEdit,
 		...props,
 	} );
 }
