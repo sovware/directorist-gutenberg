@@ -1163,64 +1163,9 @@ function InlineSVG(props) {
 /*!****************************************************!*\
   !*** ./resources/blocks-icon/directorist-logo.svg ***!
   \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   ReactComponent: () => (/* binding */ SvgDirectoristLogo),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _linearGradient, _path, _path2, _path3, _path4, _path5;
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-
-var SvgDirectoristLogo = function SvgDirectoristLogo(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 222 221.7"
-  }, props), _linearGradient || (_linearGradient = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("linearGradient", {
-    id: "directorist-logo_svg__a",
-    x1: 81.495,
-    x2: 188.519,
-    y1: 2852.024,
-    y2: 2660.084,
-    gradientTransform: "translate(0 -2658.887)",
-    gradientUnits: "userSpaceOnUse"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("stop", {
-    offset: 0,
-    stopColor: "#2ae498"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("stop", {
-    offset: 0.011,
-    stopColor: "#2ae299"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("stop", {
-    offset: 0.484,
-    stopColor: "#359dca"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("stop", {
-    offset: 0.826,
-    stopColor: "#3b72e9"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("stop", {
-    offset: 1,
-    stopColor: "#3e62f5"
-  }))), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    fill: "url(#directorist-logo_svg__a)",
-    d: "M171.4 5c-6.1 0-11.1 5-11.1 11.1v52.1C147.4 56 130.1 48.5 111 48.5c-39.5 0-71.5 32-71.5 71.5s32 71.5 71.5 71.5c19.1 0 36.4-7.5 49.2-19.7v4.4c0 6.1 5 11.1 11.1 11.1s11.1-5 11.1-11.1V16.1c0-6.1-5-11.1-11-11.1"
-  })), _path2 || (_path2 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    d: "M160.3 135.6v3.7c0 9.4-4 20.6-11.5 33-4 6.6-9 13.5-14.9 20.5-8.8 10.5-17.6 19.1-22.8 23.9-5.2-4.8-14-13.3-22.7-23.7-3.5-4.1-6.6-8.1-9.4-12.1-.3-.4-.6-.8-.8-1.1-3.5-4.9-6.4-9.7-8.8-14.3l-.3-.6c-4.8-9.4-7.2-17.9-7.2-25.4v-3.7c0-14.5 6-27.8 15.6-37.1C86.3 90.2 98 84.9 111 84.9s24.9 5.2 33.6 13.8c.9.9 1.8 1.9 2.7 2.9.4.3.6.7.9 1 .2.2.4.5.6.7 7.1 8.8 11.3 20.1 11.5 32.3",
-    opacity: 0.12
-  })), _path3 || (_path3 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    fill: "#fff",
-    d: "M160.3 121.2v3.7c0 9.4-4 20.6-11.5 33-4 6.6-9 13.5-14.9 20.5-8.8 10.5-17.6 19.1-22.8 23.9-5.2-4.8-14-13.3-22.7-23.7-3.5-4.1-6.6-8.1-9.4-12.1-.3-.4-.6-.8-.8-1.1-3.5-4.9-6.4-9.7-8.8-14.3l-.3-.6c-4.8-9.4-7.2-17.9-7.2-25.4v-3.7c0-14.5 6-27.8 15.6-37.1C86.3 75.8 98 70.5 111 70.5s24.9 5.2 33.6 13.8c.9.9 1.8 1.9 2.7 2.9.4.3.6.7.9 1 .2.2.4.5.6.7 7.1 8.8 11.3 20.1 11.5 32.3"
-  })), _path4 || (_path4 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    fill: "#3e62f5",
-    d: "M110.9 91.8c-15.6 0-28.2 12.6-28.2 28.2 0 5 1.3 9.8 3.6 13.9l-17.1 17.2c2.3 4.6 5.3 9.3 8.8 14.3l20.1-20.1c3.8 2 8.2 3.1 12.8 3.1 15.6 0 28.2-12.6 28.2-28.2s-12.6-28.4-28.2-28.4"
-  })), _path5 || (_path5 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    fill: "#fff",
-    d: "M102.5 100.3c-3.7 1.6-6.6 4.2-8.5 7.3-.9 1.5-.1 3.6 1.6 3.9.1 0 .2 0 .3.1 1.1.2 2.1-.3 2.7-1.3 1.4-2.2 3.4-4 6-5.1 2.8-1.2 5.7-1.3 8.4-.6 1 .3 2.1 0 2.7-.9.1-.1.1-.2.2-.3 1-1.4.3-3.5-1.4-3.9-3.8-1.1-8.1-.9-12 .8"
-  })));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMjIgMjIxLjciPgogICAgPGxpbmVhckdyYWRpZW50CiAgICAgICAgaWQ9IlNWR0lEXzFfMTExMTExIgogICAgICAgIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIgogICAgICAgIHgxPSI4MS40OTQ2IgogICAgICAgIHkxPSIyODUyLjAyMzciCiAgICAgICAgeDI9IjE4OC41MTg4IgogICAgICAgIHkyPSIyNjYwLjA4NDIiCiAgICAgICAgZ3JhZGllbnRUcmFuc2Zvcm09InRyYW5zbGF0ZSgwIC0yNjU4Ljg4NzIpIgogICAgPgogICAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzJhZTQ5OCIgLz4KICAgICAgICA8c3RvcCBvZmZzZXQ9Ii4wMTExNzQ2MiIgc3RvcC1jb2xvcj0iIzJhZTI5OSIgLz4KICAgICAgICA8c3RvcCBvZmZzZXQ9Ii40ODQ1IiBzdG9wLWNvbG9yPSIjMzU5ZGNhIiAvPgogICAgICAgIDxzdG9wIG9mZnNldD0iLjgyNjMiIHN0b3AtY29sb3I9IiMzYjcyZTkiIC8+CiAgICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjM2U2MmY1IiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXRoCiAgICAgICAgZD0iTTE3MS40IDVjLTYuMSAwLTExLjEgNS0xMS4xIDExLjF2NTIuMUMxNDcuNCA1NiAxMzAuMSA0OC41IDExMSA0OC41Yy0zOS41IDAtNzEuNSAzMi03MS41IDcxLjVzMzIgNzEuNSA3MS41IDcxLjVjMTkuMSAwIDM2LjQtNy41IDQ5LjItMTkuN3Y0LjRjMCA2LjEgNSAxMS4xIDExLjEgMTEuMXMxMS4xLTUgMTEuMS0xMS4xVjE2LjFjMC02LjEtNS0xMS4xLTExLTExLjF6IgogICAgICAgIGZpbGw9InVybCgjU1ZHSURfMV8xMTExMTEpIgogICAgLz4KICAgIDxwYXRoCiAgICAgICAgZD0iTTE2MC4zIDEzNS42djMuN2MwIDkuNC00IDIwLjYtMTEuNSAzMy00IDYuNi05IDEzLjUtMTQuOSAyMC41LTguOCAxMC41LTE3LjYgMTkuMS0yMi44IDIzLjktNS4yLTQuOC0xNC0xMy4zLTIyLjctMjMuNy0zLjUtNC4xLTYuNi04LjEtOS40LTEyLjEtLjMtLjQtLjYtLjgtLjgtMS4xLTMuNS00LjktNi40LTkuNy04LjgtMTQuM2wtLjMtLjZjLTQuOC05LjQtNy4yLTE3LjktNy4yLTI1LjR2LTMuN2MwLTE0LjUgNi0yNy44IDE1LjYtMzcuMUM4Ni4zIDkwLjIgOTggODQuOSAxMTEgODQuOXMyNC45IDUuMiAzMy42IDEzLjhjLjkuOSAxLjggMS45IDIuNyAyLjkuNC4zLjYuNy45IDEgLjIuMi40LjUuNi43IDcuMSA4LjggMTEuMyAyMC4xIDExLjUgMzIuM3oiCiAgICAgICAgb3BhY2l0eT0iLjEyIgogICAgLz4KICAgIDxwYXRoCiAgICAgICAgZmlsbD0iI2ZmZiIKICAgICAgICBkPSJNMTYwLjMgMTIxLjJ2My43YzAgOS40LTQgMjAuNi0xMS41IDMzLTQgNi42LTkgMTMuNS0xNC45IDIwLjUtOC44IDEwLjUtMTcuNiAxOS4xLTIyLjggMjMuOS01LjItNC44LTE0LTEzLjMtMjIuNy0yMy43LTMuNS00LjEtNi42LTguMS05LjQtMTIuMS0uMy0uNC0uNi0uOC0uOC0xLjEtMy41LTQuOS02LjQtOS43LTguOC0xNC4zbC0uMy0uNmMtNC44LTkuNC03LjItMTcuOS03LjItMjUuNHYtMy43YzAtMTQuNSA2LTI3LjggMTUuNi0zNy4xQzg2LjMgNzUuOCA5OCA3MC41IDExMSA3MC41czI0LjkgNS4yIDMzLjYgMTMuOGMuOS45IDEuOCAxLjkgMi43IDIuOS40LjMuNi43LjkgMSAuMi4yLjQuNS42LjcgNy4xIDguOCAxMS4zIDIwLjEgMTEuNSAzMi4zeiIKICAgIC8+CiAgICA8cGF0aAogICAgICAgIGQ9Ik0xMTAuOSA5MS44Yy0xNS42IDAtMjguMiAxMi42LTI4LjIgMjguMiAwIDUgMS4zIDkuOCAzLjYgMTMuOWwtMTcuMSAxNy4yYzIuMyA0LjYgNS4zIDkuMyA4LjggMTQuM2wyMC4xLTIwLjFjMy44IDIgOC4yIDMuMSAxMi44IDMuMSAxNS42IDAgMjguMi0xMi42IDI4LjItMjguMnMtMTIuNi0yOC40LTI4LjItMjguNHoiCiAgICAgICAgZmlsbD0iIzNlNjJmNSIKICAgIC8+CiAgICA8cGF0aAogICAgICAgIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTEwMi41IDEwMC4zYy0zLjcgMS42LTYuNiA0LjItOC41IDcuMy0uOSAxLjUtLjEgMy42IDEuNiAzLjkuMSAwIC4yIDAgLjMuMSAxLjEuMiAyLjEtLjMgMi43LTEuMyAxLjQtMi4yIDMuNC00IDYtNS4xIDIuOC0xLjIgNS43LTEuMyA4LjQtLjYgMSAuMyAyLjEgMCAyLjctLjkuMS0uMS4xLS4yLjItLjMgMS0xLjQuMy0zLjUtMS40LTMuOS0zLjgtMS4xLTguMS0uOS0xMiAuOHoiCiAgICAvPgo8L3N2Zz4=");
+module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
 
 /***/ }),
 
@@ -1277,7 +1222,7 @@ function Edit({
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       class: `directorist-gutenberg-listing-favorite-button ${isActive ? 'active' : ''}`,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        src: _icon_heart_svg__WEBPACK_IMPORTED_MODULE_2__["default"]
+        src: _icon_heart_svg__WEBPACK_IMPORTED_MODULE_2__
       })
     })
   });
@@ -1437,7 +1382,7 @@ function registerBlock({
   if (!icon) {
     // Ensure directoristLogo is a valid URL string for ReactSVG
     // webpack asset/resource returns a URL string, but sometimes it's wrapped
-    const logoUrl = typeof _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__["default"] === 'string' ? _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__["default"] : _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__["default"]?.default || _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__["default"];
+    const logoUrl = typeof _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__ === 'string' ? _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__ : _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__?.default || _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__;
     if (logoUrl) {
       icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
         src: logoUrl
@@ -1470,28 +1415,9 @@ function registerBlock({
 /*!***************************************!*\
   !*** ./resources/svg/icons/heart.svg ***!
   \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   ReactComponent: () => (/* binding */ SvgHeart),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _path;
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-
-var SvgHeart = function SvgHeart(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 32 32"
-  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    d: "M9.5 5C5.363 5 2 8.402 2 12.5c0 1.43.648 2.668 1.25 3.563a9.3 9.3 0 0 0 1.219 1.468L15.28 28.375l.719.719.719-.719L27.53 17.531S30 15.355 30 12.5C30 8.402 26.637 5 22.5 5c-3.434 0-5.645 2.066-6.5 2.938C15.145 7.066 12.934 5 9.5 5m0 2c2.988 0 5.75 2.906 5.75 2.906l.75.844.75-.844S19.512 7 22.5 7c3.043 0 5.5 2.496 5.5 5.5 0 1.543-1.875 3.625-1.875 3.625L16 26.25 5.875 16.125s-.484-.465-.969-1.187C4.422 14.215 4 13.273 4 12.5 4 9.496 6.457 7 9.5 7"
-  })));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTSA5LjUgNSBDIDUuMzYzMjgxIDUgMiA4LjQwMjM0NCAyIDEyLjUgQyAyIDEzLjkyOTY4OCAyLjY0ODQzOCAxNS4xNjc5NjkgMy4yNSAxNi4wNjI1IEMgMy44NTE1NjMgMTYuOTU3MDMxIDQuNDY4NzUgMTcuNTMxMjUgNC40Njg3NSAxNy41MzEyNSBMIDE1LjI4MTI1IDI4LjM3NSBMIDE2IDI5LjA5Mzc1IEwgMTYuNzE4NzUgMjguMzc1IEwgMjcuNTMxMjUgMTcuNTMxMjUgQyAyNy41MzEyNSAxNy41MzEyNSAzMCAxNS4zNTU0NjkgMzAgMTIuNSBDIDMwIDguNDAyMzQ0IDI2LjYzNjcxOSA1IDIyLjUgNSBDIDE5LjA2NjQwNiA1IDE2Ljg1NTQ2OSA3LjA2NjQwNiAxNiA3LjkzNzUgQyAxNS4xNDQ1MzEgNy4wNjY0MDYgMTIuOTMzNTk0IDUgOS41IDUgWiBNIDkuNSA3IEMgMTIuNDg4MjgxIDcgMTUuMjUgOS45MDYyNSAxNS4yNSA5LjkwNjI1IEwgMTYgMTAuNzUgTCAxNi43NSA5LjkwNjI1IEMgMTYuNzUgOS45MDYyNSAxOS41MTE3MTkgNyAyMi41IDcgQyAyNS41NDI5NjkgNyAyOCA5LjQ5NjA5NCAyOCAxMi41IEMgMjggMTQuMDQyOTY5IDI2LjEyNSAxNi4xMjUgMjYuMTI1IDE2LjEyNSBMIDE2IDI2LjI1IEwgNS44NzUgMTYuMTI1IEMgNS44NzUgMTYuMTI1IDUuMzkwNjI1IDE1LjY2MDE1NiA0LjkwNjI1IDE0LjkzNzUgQyA0LjQyMTg3NSAxNC4yMTQ4NDQgNCAxMy4yNzM0MzggNCAxMi41IEMgNCA5LjQ5NjA5NCA2LjQ1NzAzMSA3IDkuNSA3IFoiLz48L3N2Zz4=");
+module.exports = __webpack_require__.p + "icons/heart.svg";
 
 /***/ }),
 
@@ -1631,6 +1557,18 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -1645,6 +1583,29 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript && document.currentScript.tagName.toUpperCase() === 'SCRIPT')
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && (!scriptUrl || !/^http(s?):/.test(scriptUrl))) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/^blob:/, "").replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl + "../";
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
