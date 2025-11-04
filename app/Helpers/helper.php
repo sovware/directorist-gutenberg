@@ -90,3 +90,21 @@ function directorist_gutenberg_render_icon( string $icon ) {
     //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
     echo file_get_contents( $svg );
 }
+
+function directorist_gutenberg_get_block_post_meta( string $meta_key, int $post_id ) {
+    if ( empty( $meta_key ) ) {
+        return null;
+    }
+    
+    $meta_value = get_post_meta( $post_id, $meta_key, true );
+    
+    if ( empty( $meta_value ) ) {
+        $meta_value = get_post_meta( $post_id, '_' . $meta_key, true );
+    }
+
+    if ( empty( $meta_value ) ) {
+        return null;
+    }
+
+    return $meta_value;
+}

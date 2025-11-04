@@ -10,6 +10,7 @@ class BlockServiceProvider implements Provider {
     public function boot() {
         add_action( 'init', [ $this, 'register_blocks' ] );
         add_filter( 'block_categories_all', [ $this, 'register_block_categories' ] );
+        add_action( 'enqueue_block_editor_assets', [ $this, 'localize_block_editor_scripts' ] );
     }
 
     public function register_blocks() {
@@ -39,6 +40,37 @@ class BlockServiceProvider implements Provider {
                 }
             } );
         }
+    }
+
+    public function localize_block_editor_scripts() {
+        // Get the first block to localize data for all blocks
+        $blocks = directorist_gutenberg_config( 'blocks' );
+        
+        if ( empty( $blocks ) ) {
+            return;
+        }
+
+        // Get the first block name to attach the localized data
+        $first_block = array_key_first( $blocks );
+        
+        // Generate the editor script handle for the first block
+        $script_handle = generate_block_asset_handle( $first_block, 'editorScript' );
+
+        $directory_type_id = get_post_meta( get_post()->ID, "directory_type_id", true );
+
+        // Prepare localized data
+        $localized_data = [
+            'template_type'          => get_post_meta( get_post()->ID, "template_type", true ),
+            'directory_type_id'      => get_post_meta( get_post()->ID, "directory_type_id", true ),
+            'submission_form_fields' => ! empty( $directory_type_id ) ? get_term_meta( $directory_type_id, "submission_form_fields", true ) : null,
+        ];
+
+        // Localize the script
+        wp_localize_script(
+            $script_handle,
+            'directorist_gutenberg_block_data',
+            $localized_data
+        );
     }
 
     public function register_block_categories( $categories ) {
