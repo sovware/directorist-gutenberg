@@ -4,7 +4,7 @@
 .wp-block-directorist-gutenberg-listing-card-thumbnail {
   height: 300px;
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: 12px;
 }
 .wp-block-directorist-gutenberg-listing-card-thumbnail img {
   width: 100%;

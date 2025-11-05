@@ -41,6 +41,8 @@
 		"webpack": "^5.102.1"
 	},
 	"dependencies": {
+		"@wordpress/interactivity": "^6.34.0",
+		"clsx": "^2.1.1",
 		"react-inlinesvg": "^4.2.0",
 		"styled-components": "^6.1.19"
 	}

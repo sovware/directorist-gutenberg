@@ -1,0 +1,19 @@
+.directorist-gutenberg-listing-card-element-view-count{
+    .directorist-gutenberg-listing-card-view-count{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .directorist-gutenberg-listing-card-view-count-icon{
+        line-height: 1;
+        svg{
+            width: 15px;
+            height: 15px;
+            fill: var(--directorist-color-light-gray);
+        }
+    }
+    .directorist-gutenberg-listing-card-view-count-value{
+        font-size: 14px;
+        color: var(--directorist-color-body);
+    }
+}

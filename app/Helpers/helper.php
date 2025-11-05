@@ -84,9 +84,9 @@ function directorist_gutenberg_render_icon( string $icon ) {
     $svg = directorist_gutenberg_dir( "resources/svg/$icon" );
 
     if ( ! is_file( $svg ) ) {
-        return;
+        return '';
     }
 
     //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-    echo file_get_contents( $svg );
+    return file_get_contents( $svg );
 }

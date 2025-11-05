@@ -1,49 +1,152 @@
-/******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
+import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
+/******/ var __webpack_modules__ = ({
 
 /***/ "./resources/js/fields/listing-card-favorite.js":
 /*!******************************************************!*\
   !*** ./resources/js/fields/listing-card-favorite.js ***!
   \******************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-jQuery(document).ready(function ($) {
-  $('body').on('click', '.directorist-mark-as-favorite__btn', function (event) {
-    event.preventDefault();
-    var data = {
-      action: 'atbdp-favourites-all-listing',
-      directorist_nonce: directorist.directorist_nonce,
-      post_id: $(this).data('listing_id')
-    };
-    var fav_tooltip_success = '<span>' + directorist.i18n_text.added_favourite + '</span>';
-    var fav_tooltip_warning = '<span>' + directorist.i18n_text.please_login + '</span>';
-    $('.directorist-favorite-tooltip').hide();
-    $.post(directorist.ajax_url, data, function (response) {
-      var post_id = data['post_id'].toString();
-      var staElement = $('.directorist-fav_' + post_id);
-      var data_id = staElement.attr('data-listing_id');
-      if (response === 'login_required') {
-        staElement.children('.directorist-favorite-tooltip').append(fav_tooltip_warning);
-        staElement.children('.directorist-favorite-tooltip').fadeIn();
-        setTimeout(function () {
-          staElement.children('.directorist-favorite-tooltip').children('span').remove();
-        }, 3000);
-      } else if ('false' === response) {
-        staElement.removeClass('directorist-added-to-favorite');
-        $('.directorist-favorite-tooltip span').remove();
-      } else {
-        if (data_id === post_id) {
-          staElement.addClass('directorist-added-to-favorite');
-          staElement.children('.directorist-favorite-tooltip').append(fav_tooltip_success);
-          staElement.children('.directorist-favorite-tooltip').fadeIn();
-          setTimeout(function () {
-            staElement.children('.directorist-favorite-tooltip').children('span').remove();
-          }, 3000);
-        }
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/interactivity */ "@wordpress/interactivity");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./resources/js/fields/utils.js");
+/**
+ * WordPress Interactivity API
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+// Constants
+const TOOLTIP_HIDE_DELAY = 3000;
+const AJAX_ACTION = 'atbdp-favourites-all-listing';
+
+// Helper function to hide tooltip after delay
+const hideTooltipAfterDelay = ctx => {
+  setTimeout(() => {
+    ctx.showTooltip = false;
+    ctx.tooltipMessage = '';
+  }, TOOLTIP_HIDE_DELAY);
+};
+
+// Helper function to show tooltip
+const showTooltip = (ctx, message) => {
+  ctx.showTooltip = true;
+  ctx.tooltipMessage = message;
+  hideTooltipAfterDelay(ctx);
+};
+
+// Helper function to hide tooltip
+const hideTooltip = ctx => {
+  ctx.showTooltip = false;
+  ctx.tooltipMessage = '';
+};
+(0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.store)('directorist/favorite-button', {
+  state: {
+    get isFavorite() {
+      return (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)().isFavorite === true;
+    },
+    get isNotFavorite() {
+      return (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)().isFavorite !== true;
+    },
+    get tooltipMessage() {
+      return (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)().tooltipMessage || '';
+    },
+    get showTooltip() {
+      return (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)().showTooltip === true;
+    }
+  },
+  actions: {
+    toggleFavorite: async ({
+      event,
+      context
+    }) => {
+      const ctx = context || (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)();
+      const directorist = window.directorist || {};
+
+      // Handle keyboard events - only allow Enter and Space
+      if (event?.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') {
+        return;
       }
-    });
-  });
+
+      // Prevent default action
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      // Hide previous tooltips
+      hideTooltip(ctx);
+
+      // Validate required data
+      if (!directorist.ajax_url || !directorist.directorist_nonce) {
+        console.error('Directorist AJAX configuration missing');
+        return;
+      }
+
+      // Prepare AJAX request data
+      const requestData = {
+        action: AJAX_ACTION,
+        directorist_nonce: directorist.directorist_nonce,
+        post_id: ctx.listingId
+      };
+      try {
+        const result = await (0,_utils__WEBPACK_IMPORTED_MODULE_1__.ajaxFetch)(directorist.ajax_url, requestData);
+
+        // Handle response
+        if (result === 'login_required') {
+          showTooltip(ctx, directorist.i18n_text?.please_login || 'Please login');
+        } else if (result === 'false') {
+          ctx.isFavorite = false;
+          hideTooltip(ctx);
+        } else {
+          // Success - listing was added to favorites
+          ctx.isFavorite = true;
+          showTooltip(ctx, directorist.i18n_text?.added_favourite || 'Added to favorites');
+        }
+      } catch (error) {
+        console.error('Error toggling favorite:', error);
+        hideTooltip(ctx);
+      }
+    }
+  }
 });
+
+/***/ }),
+
+/***/ "./resources/js/fields/utils.js":
+/*!**************************************!*\
+  !*** ./resources/js/fields/utils.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ajaxFetch: () => (/* binding */ ajaxFetch)
+/* harmony export */ });
+/**
+ * AJAX fetch utility for admin-ajax.php calls
+ * @template T
+ * @param {string} url - The AJAX URL (typically admin-ajax.php)
+ * @param {Object} data - The data to send as form-encoded parameters
+ * @return {Promise<T>} A promise that resolves with the response text
+ */
+async function ajaxFetch(url, data) {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams(data)
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return response.text();
+}
 
 /***/ }),
 
@@ -53,7 +156,6 @@ jQuery(document).ready(function ($) {
   \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @utils/debounce */ "./resources/js/utils/debounce.js");
 /* harmony import */ var _utils_category_custom_fields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @utils/category-custom-fields */ "./resources/js/utils/category-custom-fields.js");
@@ -997,7 +1099,6 @@ jQuery(document).ready(function ($) {
   \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ initSearchCategoryCustomFields)
@@ -1137,7 +1238,6 @@ function initSearchCategoryCustomFields($) {
   \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ debounce)
@@ -1158,91 +1258,86 @@ function debounce(func, wait, immediate) {
   };
 }
 
+/***/ }),
+
+/***/ "@wordpress/interactivity":
+/*!*******************************************!*\
+  !*** external "@wordpress/interactivity" ***!
+  \*******************************************/
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__;
+
 /***/ })
 
-/******/ 	});
+/******/ });
 /************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
+/******/ // The module cache
+/******/ var __webpack_module_cache__ = {};
+/******/ 
+/******/ // The require function
+/******/ function __webpack_require__(moduleId) {
+/******/ 	// Check if module is in cache
+/******/ 	var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 	if (cachedModule !== undefined) {
+/******/ 		return cachedModule.exports;
 /******/ 	}
-/******/ 	
+/******/ 	// Create a new module (and put it into the cache)
+/******/ 	var module = __webpack_module_cache__[moduleId] = {
+/******/ 		// no module.id needed
+/******/ 		// no module.loaded needed
+/******/ 		exports: {}
+/******/ 	};
+/******/ 
+/******/ 	// Execute the module function
+/******/ 	__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 
+/******/ 	// Return the exports of the module
+/******/ 	return module.exports;
+/******/ }
+/******/ 
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
+/******/ /* webpack/runtime/define property getters */
+/******/ (() => {
+/******/ 	// define getter functions for harmony exports
+/******/ 	__webpack_require__.d = (exports, definition) => {
+/******/ 		for(var key in definition) {
+/******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
+/******/ 		}
+/******/ 	};
+/******/ })();
+/******/ 
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/ (() => {
+/******/ 	__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ })();
+/******/ 
+/******/ /* webpack/runtime/make namespace object */
+/******/ (() => {
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = (exports) => {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/ })();
+/******/ 
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!***********************************************!*\
   !*** ./resources/js/block-sripts/frontend.js ***!
   \***********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _directorist_gutenberg_gutenberg_instantSearch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/instantSearch */ "./resources/js/gutenberg/instantSearch.js");
 /* harmony import */ var _directorist_gutenberg_fields_listing_card_favorite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @directorist-gutenberg/fields/listing-card-favorite */ "./resources/js/fields/listing-card-favorite.js");
-/* harmony import */ var _directorist_gutenberg_fields_listing_card_favorite__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_directorist_gutenberg_fields_listing_card_favorite__WEBPACK_IMPORTED_MODULE_1__);
 
 
 })();
 
-/******/ })()
-;
+
 //# sourceMappingURL=blocks-frontend.js.map

@@ -1,0 +1,28 @@
+.directorist-gutenberg-listing-card-element-user-avatar{
+    .directorist-gutenberg-listing-card-element-content{
+        display: flex;
+        align-items: center;
+    }
+    .directorist-gutenberg-listing-card-element-content-left{
+        justify-content: flex-start;
+    }
+    .directorist-gutenberg-listing-card-element-content-center{
+        justify-content: center;
+    }
+    .directorist-gutenberg-listing-card-element-content-right{
+        justify-content: flex-end;
+    }
+    .directorist-gutenberg-listing-user-avatar{
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid var(--directorist-color-border);
+        box-sizing: border-box;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
