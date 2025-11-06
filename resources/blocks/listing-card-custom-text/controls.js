@@ -9,27 +9,11 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import { getSubmissionFormFields } from '@directorist-gutenberg/gutenberg/localized-data';
 import IconPicker from '@directorist-gutenberg/gutenberg/components/controls/icon-picker';
+import { useSubmissionFields } from '@directorist-gutenberg/gutenberg/hooks/useSubmissionFields';
 
 export default function Controls( { attributes, setAttributes } ) {
-    const submissionFields = getSubmissionFormFields();
-
-    let customTextFields = [
-        {
-            value: '',
-            label: __( 'Select...', 'directorist-gutenberg' ),
-        },
-    ];
-    
-    for ( const field of Object.values( submissionFields ) ) {
-        if ( field.widget_group === 'custom' && field.widget_name === 'text' ) {
-            customTextFields.push( {
-                value: field.field_key,
-                label: field.label,
-            } );
-        }
-    }
+    const { getFieldsOptions } = useSubmissionFields();
 
     return (
         <InspectorControls>
@@ -49,7 +33,7 @@ export default function Controls( { attributes, setAttributes } ) {
                 <SelectControl
                     label={ __( 'Select Field', 'directorist-gutenberg' ) }
                     value={ attributes.meta_key }
-                    options={ customTextFields }
+                    options={ getFieldsOptions( 'custom', 'text' ) }
                     onChange={ ( value ) => setAttributes( { meta_key: value } ) }
                 />
             </PanelBody>
