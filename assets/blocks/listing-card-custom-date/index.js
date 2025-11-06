@@ -2884,21 +2884,21 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-email/block.json":
-/*!********************************************************!*\
-  !*** ./resources/blocks/listing-card-email/block.json ***!
-  \********************************************************/
+/***/ "./resources/blocks/listing-card-custom-date/block.json":
+/*!**************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-date/block.json ***!
+  \**************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-email","version":"0.1.0","title":"Listing Email","category":"directorist-listing-card-preset-fields","attributes":{"icon":{"type":"string","default":"line-awesome/envelope-solid.svg"},"show_label":{"type":"boolean","default":false},"use_parent_style":{"type":"boolean","default":false}},"description":"Listing Email Block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-custom-date","version":"0.1.0","title":"Custom Date","category":"directorist-listing-card-custom-fields","attributes":{"icon":{"type":"string","default":""},"meta_key":{"type":"string","default":""}},"description":"Listing custom date block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-email/controls.js":
-/*!*********************************************************!*\
-  !*** ./resources/blocks/listing-card-email/controls.js ***!
-  \*********************************************************/
+/***/ "./resources/blocks/listing-card-custom-date/controls.js":
+/*!***************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-date/controls.js ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2913,8 +2913,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _directorist_gutenberg_gutenberg_components_controls_icon_picker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/controls/icon-picker */ "./resources/js/gutenberg/components/controls/icon-picker.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useSubmissionFields */ "./resources/js/gutenberg/hooks/useSubmissionFields.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 /**
  * WordPress dependencies
  */
@@ -2928,30 +2929,33 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
 function Controls({
   attributes,
   setAttributes
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Listings Email Settings', 'directorist-gutenberg'),
+  const {
+    getFieldsOptions
+  } = (0,_directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_4__.useSubmissionFields)();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('General Settings', 'directorist-gutenberg'),
       initialOpen: true,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_directorist_gutenberg_gutenberg_components_controls_icon_picker__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_directorist_gutenberg_gutenberg_components_controls_icon_picker__WEBPACK_IMPORTED_MODULE_3__["default"], {
         attr_key: "icon",
         attributes: attributes,
         setAttributes: setAttributes,
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'directorist-gutenberg')
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Show Label', 'directorist-gutenberg'),
-        checked: attributes.show_label,
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        style: {
+          height: '16px'
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Select Field', 'directorist-gutenberg'),
+        value: attributes.meta_key,
+        options: getFieldsOptions('custom', 'date'),
         onChange: value => setAttributes({
-          show_label: value
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Use Parent Style', 'directorist-gutenberg'),
-        checked: attributes.use_parent_style,
-        onChange: value => setAttributes({
-          use_parent_style: value
+          meta_key: value
         })
       })]
     })
@@ -2960,10 +2964,10 @@ function Controls({
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-email/edit.js":
-/*!*****************************************************!*\
-  !*** ./resources/blocks/listing-card-email/edit.js ***!
-  \*****************************************************/
+/***/ "./resources/blocks/listing-card-custom-date/edit.js":
+/*!***********************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-date/edit.js ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2973,17 +2977,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
-/* harmony import */ var _directorist_gutenberg_gutenberg_utils_icon_url__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/utils/icon-url */ "./resources/js/gutenberg/utils/icon-url.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-email/editor.scss");
+/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
+/* harmony import */ var _directorist_gutenberg_gutenberg_utils_icon_url__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/utils/icon-url */ "./resources/js/gutenberg/utils/icon-url.js");
+/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useSubmissionFields */ "./resources/js/gutenberg/hooks/useSubmissionFields.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-custom-date/editor.scss");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 /**
  * WordPress dependencies
  */
-
 
 
 /**
@@ -2997,29 +2999,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function Edit({
-  attributes,
-  setAttributes
+  attributes
 }) {
-  const iconUrl = (0,_directorist_gutenberg_gutenberg_utils_icon_url__WEBPACK_IMPORTED_MODULE_3__.getIconUrl)(attributes.icon);
+  const iconUrl = (0,_directorist_gutenberg_gutenberg_utils_icon_url__WEBPACK_IMPORTED_MODULE_2__.getIconUrl)(attributes.icon);
+  const {
+    doesCustomFieldExist
+  } = (0,_directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_3__.useSubmissionFields)();
+  const fieldExist = doesCustomFieldExist('date', attributes.meta_key);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-    className: "directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-email",
+    style: {
+      opacity: fieldExist ? 1 : 0.2
+    },
+    className: "directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-custom-text",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "directorist-gutenberg-listing-card-element-content",
       children: [iconUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
         className: "directorist-gutenberg-listing-card-element-icon",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
           src: iconUrl
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "directorist-gutenberg-listing-card-element-details",
-        children: [attributes.show_label && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          className: "directorist-gutenberg-listing-card-element-label",
-          children: "Email:"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
           className: "directorist-gutenberg-listing-card-element-value",
-          children: "info@example.com"
-        })]
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('January 1, 2025', 'directorist-gutenberg')
+        })
       })]
     })
   });
@@ -3027,10 +3033,10 @@ function Edit({
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-email/editor.scss":
-/*!*********************************************************!*\
-  !*** ./resources/blocks/listing-card-email/editor.scss ***!
-  \*********************************************************/
+/***/ "./resources/blocks/listing-card-custom-date/editor.scss":
+/*!***************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-date/editor.scss ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3040,19 +3046,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-email/index.js":
-/*!******************************************************!*\
-  !*** ./resources/blocks/listing-card-email/index.js ***!
-  \******************************************************/
+/***/ "./resources/blocks/listing-card-custom-date/index.js":
+/*!************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-date/index.js ***!
+  \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _directorist_gutenberg_gutenberg_register_block__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/register-block */ "./resources/js/gutenberg/register-block.js");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./resources/blocks/listing-card-email/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listing-card-email/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-email/block.json");
-/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls */ "./resources/blocks/listing-card-email/controls.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./resources/blocks/listing-card-custom-date/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listing-card-custom-date/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-custom-date/block.json");
+/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls */ "./resources/blocks/listing-card-custom-date/controls.js");
 /**
  * Internal dependencies
  */
@@ -3073,10 +3079,10 @@ const exampleAttributes = {
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-email/style.scss":
-/*!********************************************************!*\
-  !*** ./resources/blocks/listing-card-email/style.scss ***!
-  \********************************************************/
+/***/ "./resources/blocks/listing-card-custom-date/style.scss":
+/*!**************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-date/style.scss ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3655,6 +3661,108 @@ const IconPickerStyle = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"
     }
 `;
 
+
+/***/ }),
+
+/***/ "./resources/js/gutenberg/hooks/useSubmissionFields.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/gutenberg/hooks/useSubmissionFields.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useSubmissionFields: () => (/* binding */ useSubmissionFields)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/localized-data */ "./resources/js/gutenberg/localized-data.js");
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+const useSubmissionFields = () => {
+  const fields = (0,_directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_1__.getSubmissionFormFields)();
+  function getFieldsOptions(type, name) {
+    const options = [{
+      value: '',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select...', 'directorist-gutenberg')
+    }];
+    for (const field of Object.values(fields)) {
+      if (field.widget_group === type && field.widget_name === name) {
+        options.push({
+          value: field.field_key,
+          label: field.label
+        });
+      }
+    }
+    return options;
+  }
+  function doesPresetFieldExist(name) {
+    for (const field of Object.values(fields)) {
+      if (field.widget_group === 'preset' && field.widget_name === name) {
+        return true;
+      }
+    }
+    return false;
+  }
+  function doesCustomFieldExist(name, fieldKey) {
+    for (const field of Object.values(fields)) {
+      if (field.widget_group === 'custom' && field.widget_name === name && field.field_key === fieldKey) {
+        return true;
+      }
+    }
+    return false;
+  }
+  return {
+    fields,
+    doesPresetFieldExist,
+    doesCustomFieldExist,
+    getFieldsOptions
+  };
+};
+
+/***/ }),
+
+/***/ "./resources/js/gutenberg/localized-data.js":
+/*!**************************************************!*\
+  !*** ./resources/js/gutenberg/localized-data.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   getLocalizedBlockData: () => (/* binding */ getLocalizedBlockData),
+/* harmony export */   getLocalizedBlockDataByKey: () => (/* binding */ getLocalizedBlockDataByKey),
+/* harmony export */   getSubmissionFormFields: () => (/* binding */ getSubmissionFormFields)
+/* harmony export */ });
+const getLocalizedBlockData = () => {
+  return window.directorist_gutenberg_block_data || {};
+};
+const getLocalizedBlockDataByKey = (key, defaultValue = null) => {
+  const data = getLocalizedBlockData();
+  return data[key] !== undefined ? data[key] : defaultValue;
+};
+const getSubmissionFormFields = () => {
+  const data = getLocalizedBlockData();
+  if (data && data.submission_form_fields && data.submission_form_fields.fields) {
+    return data.submission_form_fields.fields;
+  }
+  return {};
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getLocalizedBlockData,
+  getLocalizedBlockDataByKey,
+  getSubmissionFormFields
+});
 
 /***/ }),
 
@@ -54573,8 +54681,8 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"listing-card-email/index": 0,
-/******/ 			"listing-card-email/style-index": 0
+/******/ 			"listing-card-custom-date/index": 0,
+/******/ 			"listing-card-custom-date/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -54629,7 +54737,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["listing-card-email/style-index"], () => (__webpack_require__("./resources/blocks/listing-card-email/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["listing-card-custom-date/style-index"], () => (__webpack_require__("./resources/blocks/listing-card-custom-date/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

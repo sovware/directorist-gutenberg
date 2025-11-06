@@ -115,4 +115,9 @@ return apply_filters( 'directorist_gutenberg_template_blocks', [
         'field_type' => 'listing-card-custom-url',
         'types'      => ['listings-grid-view', 'listings-list-view'],
     ],
+    'directorist-gutenberg/listing-card-custom-date' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-custom-date',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
 ] );
