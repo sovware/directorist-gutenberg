@@ -15,7 +15,7 @@ import { getIconUrl } from '@directorist-gutenberg/gutenberg/utils/icon-url';
 import { useSubmissionFields } from '@directorist-gutenberg/gutenberg/hooks/useSubmissionFields';
 import './editor.scss';
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes } ) {
 	const iconUrl = getIconUrl(attributes.icon);
 	const { doesCustomFieldExist } = useSubmissionFields();
 	const fieldExist = doesCustomFieldExist( 'text', attributes.meta_key );

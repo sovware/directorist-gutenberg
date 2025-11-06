@@ -11,7 +11,7 @@ import './editor.scss';
 export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div>
-			{__('Listing Filters', 'directorist-gutenberg-template')}
+			{__('Listing Filters', 'directorist-gutenberg')}
 		</div>
 	);
 }

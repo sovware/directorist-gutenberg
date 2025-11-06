@@ -33,7 +33,7 @@ export default function Edit( { attributes } ) {
 				)}
 				<div className="directorist-gutenberg-listing-card-element-details">
 					<span className="directorist-gutenberg-listing-card-element-value">
-						{__('Custom Number', 'directorist-gutenberg')}
+						1234567890
 					</span>
 				</div>
 			</div>

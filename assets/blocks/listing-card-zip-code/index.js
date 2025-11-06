@@ -2940,7 +2940,7 @@ function Controls({
         attr_key: "icon",
         attributes: attributes,
         setAttributes: setAttributes,
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'directorist-gutenberg-template')
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'directorist-gutenberg')
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Show Label', 'directorist-gutenberg'),
         checked: attributes.show_label,

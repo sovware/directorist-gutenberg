@@ -4,7 +4,7 @@ import './editor.scss';
 export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div>
-			{__('Listings Archive Search', 'directorist-gutenberg-template')}
+			{__('Listings Archive Search', 'directorist-gutenberg')}
 		</div>
 	);
 }
