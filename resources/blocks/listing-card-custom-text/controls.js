@@ -18,7 +18,7 @@ export default function Controls( { attributes, setAttributes } ) {
     return (
         <InspectorControls>
             <PanelBody
-                title={ __( 'Listings Custom Text Settings', 'directorist-gutenberg' ) }
+                title={ __( 'General Settings', 'directorist-gutenberg' ) }
                 initialOpen={ true }
             >
                 <IconPicker
