@@ -2884,21 +2884,21 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-time/block.json":
-/*!**************************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-time/block.json ***!
-  \**************************************************************/
+/***/ "./resources/blocks/listing-card-custom-select/block.json":
+/*!****************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-select/block.json ***!
+  \****************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-custom-time","version":"0.1.0","title":"Custom Time","category":"directorist-listing-card-custom-fields","attributes":{"icon":{"type":"string","default":""},"meta_key":{"type":"string","default":""}},"description":"Listing custom time block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-custom-select","version":"0.1.0","title":"Custom Select","category":"directorist-listing-card-custom-fields","attributes":{"icon":{"type":"string","default":""},"directory_type_id":{"type":"number","default":0},"meta_key":{"type":"string","default":""}},"description":"Listing custom select block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-time/controls.js":
-/*!***************************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-time/controls.js ***!
-  \***************************************************************/
+/***/ "./resources/blocks/listing-card-custom-select/controls.js":
+/*!*****************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-select/controls.js ***!
+  \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2908,17 +2908,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _directorist_gutenberg_gutenberg_components_controls_icon_picker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/controls/icon-picker */ "./resources/js/gutenberg/components/controls/icon-picker.js");
-/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useSubmissionFields */ "./resources/js/gutenberg/hooks/useSubmissionFields.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _directorist_gutenberg_gutenberg_components_controls_icon_picker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/controls/icon-picker */ "./resources/js/gutenberg/components/controls/icon-picker.js");
+/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useSubmissionFields */ "./resources/js/gutenberg/hooks/useSubmissionFields.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -2935,25 +2938,31 @@ function Controls({
   setAttributes
 }) {
   const {
+    directoryTypeId,
     getFieldsOptions
-  } = (0,_directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_4__.useSubmissionFields)();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('General Settings', 'directorist-gutenberg'),
+  } = (0,_directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_5__.useSubmissionFields)();
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    setAttributes({
+      directory_type_id: directoryTypeId
+    });
+  }, [directoryTypeId]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('General Settings', 'directorist-gutenberg'),
       initialOpen: true,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_directorist_gutenberg_gutenberg_components_controls_icon_picker__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_directorist_gutenberg_gutenberg_components_controls_icon_picker__WEBPACK_IMPORTED_MODULE_4__["default"], {
         attr_key: "icon",
         attributes: attributes,
         setAttributes: setAttributes,
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'directorist-gutenberg')
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Icon', 'directorist-gutenberg')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         style: {
           height: '16px'
         }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Select Field', 'directorist-gutenberg'),
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Select Field', 'directorist-gutenberg'),
         value: attributes.meta_key,
-        options: getFieldsOptions('custom', 'time'),
+        options: getFieldsOptions('custom', 'select'),
         onChange: value => setAttributes({
           meta_key: value
         })
@@ -2964,10 +2973,10 @@ function Controls({
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-time/edit.js":
-/*!***********************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-time/edit.js ***!
-  \***********************************************************/
+/***/ "./resources/blocks/listing-card-custom-select/edit.js":
+/*!*************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-select/edit.js ***!
+  \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2980,7 +2989,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
 /* harmony import */ var _directorist_gutenberg_gutenberg_utils_icon_url__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/utils/icon-url */ "./resources/js/gutenberg/utils/icon-url.js");
 /* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useSubmissionFields */ "./resources/js/gutenberg/hooks/useSubmissionFields.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-custom-time/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-custom-select/editor.scss");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 /**
@@ -3007,12 +3016,12 @@ function Edit({
   const {
     doesCustomFieldExist
   } = (0,_directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_3__.useSubmissionFields)();
-  const fieldExist = doesCustomFieldExist('time', attributes.meta_key);
+  const fieldExist = doesCustomFieldExist('select', attributes.meta_key);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     style: {
       opacity: fieldExist ? 1 : 0.2
     },
-    className: "directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-custom-time",
+    className: "directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-custom-select",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "directorist-gutenberg-listing-card-element-content",
       children: [iconUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
@@ -3024,7 +3033,7 @@ function Edit({
         className: "directorist-gutenberg-listing-card-element-details",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
           className: "directorist-gutenberg-listing-card-element-value",
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('12:00 am', 'directorist-gutenberg')
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Custom Text', 'directorist-gutenberg')
         })
       })]
     })
@@ -3033,10 +3042,10 @@ function Edit({
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-time/editor.scss":
-/*!***************************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-time/editor.scss ***!
-  \***************************************************************/
+/***/ "./resources/blocks/listing-card-custom-select/editor.scss":
+/*!*****************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-select/editor.scss ***!
+  \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3046,19 +3055,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-time/index.js":
-/*!************************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-time/index.js ***!
-  \************************************************************/
+/***/ "./resources/blocks/listing-card-custom-select/index.js":
+/*!**************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-select/index.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _directorist_gutenberg_gutenberg_register_block__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/register-block */ "./resources/js/gutenberg/register-block.js");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./resources/blocks/listing-card-custom-time/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listing-card-custom-time/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-custom-time/block.json");
-/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls */ "./resources/blocks/listing-card-custom-time/controls.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./resources/blocks/listing-card-custom-select/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listing-card-custom-select/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-custom-select/block.json");
+/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls */ "./resources/blocks/listing-card-custom-select/controls.js");
 /**
  * Internal dependencies
  */
@@ -3079,10 +3088,10 @@ const exampleAttributes = {
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-time/style.scss":
-/*!**************************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-time/style.scss ***!
-  \**************************************************************/
+/***/ "./resources/blocks/listing-card-custom-select/style.scss":
+/*!****************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-select/style.scss ***!
+  \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -54685,8 +54694,8 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"listing-card-custom-time/index": 0,
-/******/ 			"listing-card-custom-time/style-index": 0
+/******/ 			"listing-card-custom-select/index": 0,
+/******/ 			"listing-card-custom-select/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -54741,7 +54750,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["listing-card-custom-time/style-index"], () => (__webpack_require__("./resources/blocks/listing-card-custom-time/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["listing-card-custom-select/style-index"], () => (__webpack_require__("./resources/blocks/listing-card-custom-select/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

@@ -6,10 +6,11 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import { getSubmissionFormFields } from '@directorist-gutenberg/gutenberg/localized-data';
+import { getLocalizedBlockData, getSubmissionFormFields } from '@directorist-gutenberg/gutenberg/localized-data';
 
 export const useSubmissionFields = () => {
-	const fields = getSubmissionFormFields();
+	const { directory_type_id } = getLocalizedBlockData();
+	const fields                = getSubmissionFormFields();
 
     function getFieldsOptions( type, name ) {
         const options = [
@@ -52,6 +53,7 @@ export const useSubmissionFields = () => {
     }
 
     return {
+        directoryTypeId: directory_type_id ? parseInt( directory_type_id ) : null,
         fields,
         doesPresetFieldExist,
         doesCustomFieldExist,

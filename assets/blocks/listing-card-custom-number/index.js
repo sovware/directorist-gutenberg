@@ -3688,6 +3688,9 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 const useSubmissionFields = () => {
+  const {
+    directory_type_id
+  } = (0,_directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_1__.getLocalizedBlockData)();
   const fields = (0,_directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_1__.getSubmissionFormFields)();
   function getFieldsOptions(type, name) {
     const options = [{
@@ -3721,6 +3724,7 @@ const useSubmissionFields = () => {
     return false;
   }
   return {
+    directoryTypeId: directory_type_id ? parseInt(directory_type_id) : null,
     fields,
     doesPresetFieldExist,
     doesCustomFieldExist,
