@@ -147,7 +147,11 @@ function directorist_gutenberg_get_directory_submission_field( int $directory_ty
     return null;
 }
 
-function directorist_gutenberg_get_directory_submission_field_option( int $directory_type_id, string $field_type, string $field_name_or_key, $field_value ) {
+function directorist_gutenberg_get_directory_submission_field_option( int $directory_type_id, string $field_type, string $field_name_or_key, ?string $field_value = null ) {
+    if ( empty( $field_value ) ) {
+        return null;
+    }
+
     $field = directorist_gutenberg_get_directory_submission_field( $directory_type_id, $field_type, $field_name_or_key );
     
     if ( empty( $field ) ) {
@@ -159,10 +163,36 @@ function directorist_gutenberg_get_directory_submission_field_option( int $direc
     }
 
     foreach ( $field['options'] as $option ) {
-        if ( $option['option_value'] === $field_value ) {
+        if ( strval( $option['option_value'] ) === $field_value ) {
             return $option;
         }
     }
 
     return null;
+}
+
+function directorist_gutenberg_get_directory_submission_field_options( int $directory_type_id, string $field_type, string $field_name_or_key, ?array $field_values ) {
+    if ( empty( $field_values ) ) {
+        return null;
+    }
+
+    $field = directorist_gutenberg_get_directory_submission_field( $directory_type_id, $field_type, $field_name_or_key );
+
+    if ( empty( $field ) ) {
+        return null;
+    }
+
+    if ( empty( $field['options'] ) ) {
+        return null;
+    }
+
+    $selected_options = [];
+
+    foreach ( $field['options'] as $option ) {
+        if ( in_array( strval( $option['option_value'] ), $field_values ) ) {
+            $selected_options[] = $option;
+        }
+    }
+
+    return $selected_options;
 }

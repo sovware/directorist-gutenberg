@@ -130,4 +130,9 @@ return apply_filters( 'directorist_gutenberg_template_blocks', [
         'field_type' => 'listing-card-custom-select',
         'types'      => ['listings-grid-view', 'listings-list-view'],
     ],
+    'directorist-gutenberg/listing-card-custom-checkbox' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-custom-checkbox',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
 ] );

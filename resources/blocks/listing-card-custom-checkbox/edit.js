@@ -18,12 +18,12 @@ import './editor.scss';
 export default function Edit( { attributes } ) {
 	const iconUrl = getIconUrl(attributes.icon);
 	const { doesCustomFieldExist } = useSubmissionFields();
-	const fieldExist = doesCustomFieldExist( 'select', attributes.meta_key );
+	const fieldExist = doesCustomFieldExist( 'checkbox', attributes.meta_key );
 
 	return (
 		<div
 			style={{ opacity: fieldExist ? 1 : 0.2 }}
-			className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-custom-select"
+			className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-custom-checkbox"
 		>
 			<div className="directorist-gutenberg-listing-card-element-content">
 				{iconUrl && (
@@ -33,7 +33,7 @@ export default function Edit( { attributes } ) {
 				)}
 				<div className="directorist-gutenberg-listing-card-element-details">
 					<span className="directorist-gutenberg-listing-card-element-value">
-						{__('Option 1', 'directorist-gutenberg')}
+						{__('Option 1, Option 2', 'directorist-gutenberg')}
 					</span>
 				</div>
 			</div>

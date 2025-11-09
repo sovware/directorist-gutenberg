@@ -2884,21 +2884,21 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-select/block.json":
-/*!****************************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-select/block.json ***!
-  \****************************************************************/
+/***/ "./resources/blocks/listing-card-custom-checkbox/block.json":
+/*!******************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-checkbox/block.json ***!
+  \******************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-custom-select","version":"0.1.0","title":"Custom Select","category":"directorist-listing-card-custom-fields","attributes":{"icon":{"type":"string","default":""},"directory_type_id":{"type":"number","default":0},"meta_key":{"type":"string","default":""}},"description":"Listing custom select block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-custom-checkbox","version":"0.1.0","title":"Custom Checkbox","category":"directorist-listing-card-custom-fields","attributes":{"icon":{"type":"string","default":""},"directory_type_id":{"type":"number","default":0},"meta_key":{"type":"string","default":""}},"description":"Listing custom checkbox block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-select/controls.js":
-/*!*****************************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-select/controls.js ***!
-  \*****************************************************************/
+/***/ "./resources/blocks/listing-card-custom-checkbox/controls.js":
+/*!*******************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-checkbox/controls.js ***!
+  \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2962,7 +2962,7 @@ function Controls({
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Select Field', 'directorist-gutenberg'),
         value: attributes.meta_key,
-        options: getFieldsOptions('custom', 'select'),
+        options: getFieldsOptions('custom', 'checkbox'),
         onChange: value => setAttributes({
           meta_key: value
         })
@@ -2973,10 +2973,10 @@ function Controls({
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-select/edit.js":
-/*!*************************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-select/edit.js ***!
-  \*************************************************************/
+/***/ "./resources/blocks/listing-card-custom-checkbox/edit.js":
+/*!***************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-checkbox/edit.js ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2989,7 +2989,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
 /* harmony import */ var _directorist_gutenberg_gutenberg_utils_icon_url__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/utils/icon-url */ "./resources/js/gutenberg/utils/icon-url.js");
 /* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useSubmissionFields */ "./resources/js/gutenberg/hooks/useSubmissionFields.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-custom-select/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-custom-checkbox/editor.scss");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 /**
@@ -3016,12 +3016,12 @@ function Edit({
   const {
     doesCustomFieldExist
   } = (0,_directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_3__.useSubmissionFields)();
-  const fieldExist = doesCustomFieldExist('select', attributes.meta_key);
+  const fieldExist = doesCustomFieldExist('checkbox', attributes.meta_key);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     style: {
       opacity: fieldExist ? 1 : 0.2
     },
-    className: "directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-custom-select",
+    className: "directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-custom-checkbox",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "directorist-gutenberg-listing-card-element-content",
       children: [iconUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
@@ -3033,7 +3033,7 @@ function Edit({
         className: "directorist-gutenberg-listing-card-element-details",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
           className: "directorist-gutenberg-listing-card-element-value",
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Option 1', 'directorist-gutenberg')
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Option 1, Option 2', 'directorist-gutenberg')
         })
       })]
     })
@@ -3042,10 +3042,10 @@ function Edit({
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-select/editor.scss":
-/*!*****************************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-select/editor.scss ***!
-  \*****************************************************************/
+/***/ "./resources/blocks/listing-card-custom-checkbox/editor.scss":
+/*!*******************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-checkbox/editor.scss ***!
+  \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3055,19 +3055,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-select/index.js":
-/*!**************************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-select/index.js ***!
-  \**************************************************************/
+/***/ "./resources/blocks/listing-card-custom-checkbox/index.js":
+/*!****************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-checkbox/index.js ***!
+  \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _directorist_gutenberg_gutenberg_register_block__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/register-block */ "./resources/js/gutenberg/register-block.js");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./resources/blocks/listing-card-custom-select/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listing-card-custom-select/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-custom-select/block.json");
-/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls */ "./resources/blocks/listing-card-custom-select/controls.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./resources/blocks/listing-card-custom-checkbox/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listing-card-custom-checkbox/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-custom-checkbox/block.json");
+/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls */ "./resources/blocks/listing-card-custom-checkbox/controls.js");
 /**
  * Internal dependencies
  */
@@ -3088,10 +3088,10 @@ const exampleAttributes = {
 
 /***/ }),
 
-/***/ "./resources/blocks/listing-card-custom-select/style.scss":
-/*!****************************************************************!*\
-  !*** ./resources/blocks/listing-card-custom-select/style.scss ***!
-  \****************************************************************/
+/***/ "./resources/blocks/listing-card-custom-checkbox/style.scss":
+/*!******************************************************************!*\
+  !*** ./resources/blocks/listing-card-custom-checkbox/style.scss ***!
+  \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -54694,8 +54694,8 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"listing-card-custom-select/index": 0,
-/******/ 			"listing-card-custom-select/style-index": 0
+/******/ 			"listing-card-custom-checkbox/index": 0,
+/******/ 			"listing-card-custom-checkbox/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -54750,7 +54750,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["listing-card-custom-select/style-index"], () => (__webpack_require__("./resources/blocks/listing-card-custom-select/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["listing-card-custom-checkbox/style-index"], () => (__webpack_require__("./resources/blocks/listing-card-custom-checkbox/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
