@@ -12,7 +12,9 @@ if ( ! Helper::has_price_range( $id ) && ! Helper::has_price( $id ) ) {
 <div <?php echo get_block_wrapper_attributes(); ?>>
 	<div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-pricing">
 		<div class="directorist-gutenberg-listing-card-element-content">
-			<?php echo directorist_gutenberg_render_icon( 'icons/icon-library/' . $default_icon ); ?>
+			<?php if ( ! empty( $default_icon ) ) : ?>
+				<span><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $default_icon ); ?></span>
+			<?php endif; ?>
 			<span class="directorist-gutenberg-pricing-meta">
 				<?php
 				if ( 'range' === Helper::pricing_type( $id ) ) {

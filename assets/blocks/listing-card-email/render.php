@@ -31,7 +31,9 @@ $label = __( 'Email', 'directorist' );
 <div <?php echo get_block_wrapper_attributes(); ?>>
 	<div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-email">
 		<div class="directorist-gutenberg-listing-card-element-content">
-			<span><?php echo directorist_gutenberg_render_icon( 'icons/icon-library/' . $default_icon ); ?></span>
+			<?php if ( ! empty( $default_icon ) ) : ?>
+				<span><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $default_icon ); ?></span>
+			<?php endif; ?>
 			<div class="directorist-gutenberg-listing-card-element-details">
 				<?php if ( $show_label ) : ?>
 					<span class="directorist-gutenberg-listing-card-element-label"><?php echo esc_html( $label . ' : ' ); ?></span>

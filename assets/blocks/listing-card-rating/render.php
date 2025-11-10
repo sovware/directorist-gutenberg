@@ -12,9 +12,9 @@ $average       = directorist_get_listing_rating( $listing_id );
 $reviews_count = directorist_get_listing_review_count( $listing_id );
 
 // Icons
-$icon_empty_star = directorist_gutenberg_render_icon( 'icons/icon-library/font-awesome/star-alt.svg' );
-$icon_half_star  = directorist_gutenberg_render_icon( 'icons/icon-library/font-awesome/star-half-alt-2.svg' );
-$icon_full_star  = directorist_gutenberg_render_icon( 'icons/icon-library/font-awesome/star.svg' );
+$icon_empty_star = directorist_gutenberg_get_icon( 'icons/icon-library/font-awesome/star-alt.svg' );
+$icon_half_star  = directorist_gutenberg_get_icon( 'icons/icon-library/font-awesome/star-half-alt-2.svg' );
+$icon_full_star  = directorist_gutenberg_get_icon( 'icons/icon-library/font-awesome/star.svg' );
 
 // Generate stars
 $review_stars = '';

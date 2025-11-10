@@ -28,7 +28,7 @@ if ( defined( 'ATBDP_CATEGORY' ) ) {
 						if ( function_exists( 'directorist_icon' ) && ( strpos( $term_icon, 'fa-' ) === 0 || strpos( $term_icon, 'fas ' ) === 0 || strpos( $term_icon, 'far ' ) === 0 || strpos( $term_icon, 'fab ' ) === 0 ) ) {
 							directorist_icon( $term_icon );
 						} else {
-							echo '<span class="directorist-gutenberg-listing-category-icon"> ' . directorist_gutenberg_render_icon( 'icons/icon-library/' . $term_icon ) . '</span>';
+							echo '<span class="directorist-gutenberg-listing-category-icon"> ' . directorist_gutenberg_get_icon( 'icons/icon-library/' . $term_icon ) . '</span>';
 						}
 						?>
 						<?php echo esc_html( $term_label ); ?>
@@ -53,7 +53,7 @@ if ( defined( 'ATBDP_CATEGORY' ) ) {
 										if ( function_exists( 'directorist_icon' ) && ( strpos( $term_icon, 'fa-' ) === 0 || strpos( $term_icon, 'fas ' ) === 0 || strpos( $term_icon, 'far ' ) === 0 || strpos( $term_icon, 'fab ' ) === 0 ) ) {
 											directorist_icon( $term_icon );
 										} else {
-											echo '<span class="directorist-gutenberg-listing-category-icon">' . directorist_gutenberg_render_icon( 'icons/icon-library/' . $term_icon ) . '</span>';
+											echo '<span class="directorist-gutenberg-listing-category-icon">' . directorist_gutenberg_get_icon( 'icons/icon-library/' . $term_icon ) . '</span>';
 										}
 										?>
 										<?php echo esc_html( $term_label ); ?>
@@ -69,7 +69,7 @@ if ( defined( 'ATBDP_CATEGORY' ) ) {
 					}
 				} else { ?>
 					<a href="#">
-						<span><?php echo directorist_gutenberg_render_icon( 'icons/icon-library/' . $default_icon ); ?></span>
+						<span><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $default_icon ); ?></span>
 						<?php esc_html_e( 'Uncategorized', 'directorist' ); ?>
 					</a>
 					<?php

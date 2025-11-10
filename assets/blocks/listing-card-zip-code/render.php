@@ -2,7 +2,9 @@
     <div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-zip-code">
         <?php //echo esc_html( get_the_title( get_the_ID() ) ); ?>
         <div class="directorist-gutenberg-listing-card-element-content">
-            <span><?php echo directorist_gutenberg_render_icon( 'icons/icon-library/' . $attributes['icon'] ); ?></span>
+            <?php if ( ! empty( $attributes['icon'] ) ) : ?>
+                <span><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $attributes['icon'] ); ?></span>
+            <?php endif; ?>
             <div class="directorist-gutenberg-listing-card-element-details">
                 <?php if ( $attributes['show_label'] ) : ?>
                     <span class="directorist-gutenberg-listing-card-element-label">Zip/Post Code:</span>

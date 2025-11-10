@@ -80,7 +80,7 @@ function directorist_gutenberg_templates( int $directory_type_id, bool $with_pri
     return $templates;
 }
 
-function directorist_gutenberg_render_icon( string $icon ) {
+function directorist_gutenberg_get_icon( string $icon ) {
     $svg = directorist_gutenberg_dir( "resources/svg/$icon" );
 
     if ( ! is_file( $svg ) ) {

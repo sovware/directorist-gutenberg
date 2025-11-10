@@ -35,13 +35,13 @@ if ( function_exists( 'directorist_get_user_favorites' ) ) {
 				class="directorist-listing-favorite-icon"
 				data-wp-class--directorist-hidden="state.isFavorite"
 			>
-				<?php echo directorist_gutenberg_render_icon( 'icons/heart.svg' ); ?>
+				<?php echo directorist_gutenberg_get_icon( 'icons/heart.svg' ); ?>
 			</span>
 			<span
 				class="directorist-listing-favorite-icon directorist-listing-favorite-icon-filled"
 				data-wp-class--directorist-hidden="state.isNotFavorite"
 			>
-				<?php echo directorist_gutenberg_render_icon( 'icons/heart-solid.svg' ); ?>
+				<?php echo directorist_gutenberg_get_icon( 'icons/heart-solid.svg' ); ?>
 			</span>
 			<span
 				class="directorist-listing-favorite-tooltip"
