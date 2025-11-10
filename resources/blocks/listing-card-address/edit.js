@@ -11,7 +11,6 @@ import ReactSVG from 'react-inlinesvg';
 /**
  * Internal dependencies
  */
-import Controls from './controls';
 import { getIconUrl } from '@directorist-gutenberg/gutenberg/utils/icon-url';
 import './editor.scss';
 

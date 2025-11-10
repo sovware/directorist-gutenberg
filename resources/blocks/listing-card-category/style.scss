@@ -1,0 +1,109 @@
+.directorist-gutenberg-listing-category {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    a {
+        text-decoration: none;
+        font-size: 14px;
+        color: var(--directorist-color-body);
+        border-bottom: 0 none;
+        box-shadow: none;
+        display: flex;
+        align-items: center;
+        word-break: break-word;
+        transition: color 0.3s ease;
+        gap: 10px;
+
+        &:hover {
+          color: var(--directorist-color-primary);
+        }
+    }
+    .directorist-icon-mask,
+    .directorist-gutenberg-listing-category-icon{
+        height: 34px;
+        width: 34px;
+        border-radius: 50%;
+        background-color: var(--directorist-color-light);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        &:after{
+            background-color: var(--directorist-color-primary);
+            width: 14px;
+            height: 14px;
+        }
+    }
+    .directorist-gutenberg-listing-category-icon svg{
+        width: 14px;
+        height: 14px;
+        fill: var(--directorist-color-primary);
+    }
+}
+.directorist-gutenberg-listing-category__popup {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    &:hover {
+        .directorist-gutenberg-listing-category__popup__content {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: all;
+        }
+    }
+}
+.directorist-gutenberg-listing-category__popup__content {
+    display: block;
+    position: absolute;
+    width: 150px;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    bottom: 20px;
+    left: -34px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--directorist-color-white);
+    box-shadow: var(--directorist-box-shadow);
+    border: 1px solid var(--directorist-color-border-light);
+    line-break: auto;
+    word-break: break-all;
+    transition: 0.3s ease;
+    z-index: 1;
+    &:after{
+        content: "";
+        left: 40px;
+        bottom: -11px;
+        border: 6px solid transparent;
+        border-top-color: var(--directorist-color-white);
+        display: inline-block;
+        position: absolute;
+    }
+
+    a {
+        color: var(--directorist-color-body);
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding: 10px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+            color: var(--directorist-color-primary);
+            background-color: var(--directorist-color-light);
+            i::after {
+                background-color: var(--directorist-color-primary);
+            }
+        }
+    }
+    .directorist-icon-mask,
+    .directorist-gutenberg-listing-category-icon{
+        width: auto;
+        height: auto;
+        background: none;
+    }
+}

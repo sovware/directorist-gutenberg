@@ -1,0 +1,32 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./resources/blocks/listing-card-user-avatar/editor.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.directorist-gutenberg-listing-card-element-user-avatar .directorist-gutenberg-listing-card-element-content {
+  display: flex;
+  align-items: center;
+}
+.directorist-gutenberg-listing-card-element-user-avatar .directorist-gutenberg-listing-card-element-content-left {
+  justify-content: flex-start;
+}
+.directorist-gutenberg-listing-card-element-user-avatar .directorist-gutenberg-listing-card-element-content-center {
+  justify-content: center;
+}
+.directorist-gutenberg-listing-card-element-user-avatar .directorist-gutenberg-listing-card-element-content-right {
+  justify-content: flex-end;
+}
+.directorist-gutenberg-listing-card-element-user-avatar .directorist-gutenberg-listing-user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--directorist-color-border);
+  box-sizing: border-box;
+}
+.directorist-gutenberg-listing-card-element-user-avatar .directorist-gutenberg-listing-user-avatar img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/*# sourceMappingURL=index.css.map*/

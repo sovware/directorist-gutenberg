@@ -1,4 +1,7 @@
 // Listing Card Element Content
+.directorist-gutenberg-listing-card-element{
+    margin-bottom: 0.5em;
+}
 .directorist-gutenberg-listing-card-element-content{
 	display: flex;
     gap: 10px;
@@ -6,10 +9,10 @@
     font-size: 14px;
     line-height: 1.3;
     color: var(--directorist-color-body);
-    margin-bottom: 0.5em;
     svg{
         width: 16px;
         height: 16px;
+        fill: var(--directorist-color-light-gray);
     }
 }
 
@@ -46,4 +49,15 @@
 .directorist-gutenberg-listing-badge-popular{
     background: var(--directorist-color-primary);
     color: #fff;
+}
+
+// Radius search style
+.directorist-search-field-radius_search{
+    .directorist-search-field__label{
+        position: unset;
+        transform: unset;
+        display: block;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
 }

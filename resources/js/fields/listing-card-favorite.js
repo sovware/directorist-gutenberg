@@ -1,62 +1,103 @@
-jQuery(document).ready(function($) {
-    $('body').on(
-        'click',
-        '.directorist-mark-as-favorite__btn',
-        function (event) {
-            event.preventDefault();
-            var data = {
-                action: 'atbdp-favourites-all-listing',
-                directorist_nonce: directorist.directorist_nonce,
-                post_id: $(this).data('listing_id'),
-            };
-            var fav_tooltip_success =
-                '<span>' +
-                directorist.i18n_text.added_favourite +
-                '</span>';
-            var fav_tooltip_warning =
-                '<span>' + directorist.i18n_text.please_login + '</span>';
-            $('.directorist-favorite-tooltip').hide();
-            $.post(directorist.ajax_url, data, function (response) {
-                var post_id = data['post_id'].toString();
-                var staElement = $('.directorist-fav_' + post_id);
-                var data_id = staElement.attr('data-listing_id');
+/**
+ * WordPress Interactivity API
+ */
+import { store, getContext } from '@wordpress/interactivity';
 
-                if (response === 'login_required') {
-                    staElement
-                        .children('.directorist-favorite-tooltip')
-                        .append(fav_tooltip_warning);
-                    staElement
-                        .children('.directorist-favorite-tooltip')
-                        .fadeIn();
-                    setTimeout(function () {
-                        staElement
-                            .children('.directorist-favorite-tooltip')
-                            .children('span')
-                            .remove();
-                    }, 3000);
-                } else if ('false' === response) {
-                    staElement.removeClass('directorist-added-to-favorite');
-                    $('.directorist-favorite-tooltip span').remove();
+/**
+ * Internal dependencies
+ */
+import { ajaxFetch } from './utils';
+
+// Constants
+const TOOLTIP_HIDE_DELAY = 3000;
+const AJAX_ACTION = 'atbdp-favourites-all-listing';
+
+// Helper function to hide tooltip after delay
+const hideTooltipAfterDelay = (ctx) => {
+    setTimeout(() => {
+        ctx.showTooltip = false;
+        ctx.tooltipMessage = '';
+    }, TOOLTIP_HIDE_DELAY);
+};
+
+// Helper function to show tooltip
+const showTooltip = (ctx, message) => {
+    ctx.showTooltip = true;
+    ctx.tooltipMessage = message;
+    hideTooltipAfterDelay(ctx);
+};
+
+// Helper function to hide tooltip
+const hideTooltip = (ctx) => {
+    ctx.showTooltip = false;
+    ctx.tooltipMessage = '';
+};
+
+store('directorist/favorite-button', {
+    state: {
+        get isFavorite() {
+            return getContext().isFavorite === true;
+        },
+        get isNotFavorite() {
+            return getContext().isFavorite !== true;
+        },
+        get tooltipMessage() {
+            return getContext().tooltipMessage || '';
+        },
+        get showTooltip() {
+            return getContext().showTooltip === true;
+        },
+    },
+    actions: {
+        toggleFavorite: async ({ event, context }) => {
+            const ctx = context || getContext();
+            const directorist = window.directorist || {};
+
+            // Handle keyboard events - only allow Enter and Space
+            if (event?.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') {
+                return;
+            }
+
+            // Prevent default action
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            // Hide previous tooltips
+            hideTooltip(ctx);
+
+            // Validate required data
+            if (!directorist.ajax_url || !directorist.directorist_nonce) {
+                console.error('Directorist AJAX configuration missing');
+                return;
+            }
+
+            // Prepare AJAX request data
+            const requestData = {
+                action: AJAX_ACTION,
+                directorist_nonce: directorist.directorist_nonce,
+                post_id: ctx.listingId,
+            };
+
+            try {
+                const result = await ajaxFetch(directorist.ajax_url, requestData);
+
+                // Handle response
+                if (result === 'login_required') {
+                    showTooltip(ctx, directorist.i18n_text?.please_login || 'Please login');
+                } else if (result === 'false') {
+                    ctx.isFavorite = false;
+                    hideTooltip(ctx);
                 } else {
-                    if (data_id === post_id) {
-                        staElement.addClass(
-                            'directorist-added-to-favorite'
-                        );
-                        staElement
-                            .children('.directorist-favorite-tooltip')
-                            .append(fav_tooltip_success);
-                        staElement
-                            .children('.directorist-favorite-tooltip')
-                            .fadeIn();
-                        setTimeout(function () {
-                            staElement
-                                .children('.directorist-favorite-tooltip')
-                                .children('span')
-                                .remove();
-                        }, 3000);
-                    }
+                    // Success - listing was added to favorites
+                    ctx.isFavorite = true;
+                    showTooltip(ctx, directorist.i18n_text?.added_favourite || 'Added to favorites');
                 }
-            });
-        }
-    );
+            } catch (error) {
+                console.error('Error toggling favorite:', error);
+                hideTooltip(ctx);
+            }
+        },
+    },
 });

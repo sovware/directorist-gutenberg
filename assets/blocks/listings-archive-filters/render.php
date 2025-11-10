@@ -7,7 +7,7 @@ use Directorist\Directorist_Listings;
 $listings = new Directorist_Listings();
 
 ?>
-<div <?php echo get_block_wrapper_attributes(); $listings->data_atts() ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => 'directorist-gutenberg-listings-archive-filters']); $listings->data_atts() ?>>
     <?php
         $listings->advance_search_form_template();
     ?>

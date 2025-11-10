@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "directorist-gutenberg/listing-card-category",
+	"version": "0.1.0",
+	"title": "Listing Category",
+	"category": "directorist-listing-card-preset-fields",
+	"attributes": {
+		"icon": {
+			"type": "string",
+			"default": "font-awesome/folder-alt.svg"
+		}
+	},
+	"description": "Listing Category Block",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "directorist-gutenberg",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

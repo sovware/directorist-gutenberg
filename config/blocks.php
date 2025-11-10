@@ -10,6 +10,11 @@ return apply_filters( 'directorist_gutenberg_template_blocks', [
         'field_type' => 'listings-archive',
         'types'      => ['listings-archive'],
     ],
+    'directorist-gutenberg/listings-archive-header' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listings-archive-header',
+        'types'      => ['listings-archive'],
+    ],
     'directorist-gutenberg/listings-archive-search' => [
         'dir'        => $blocks_dir,
         'field_type' => 'listings-archive-search',
@@ -93,6 +98,31 @@ return apply_filters( 'directorist_gutenberg_template_blocks', [
     'directorist-gutenberg/listing-card-badge-favorite' => [
         'dir'        => $blocks_dir,
         'field_type' => 'listing-card-badge-favorite',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-category' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-category',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-pricing' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-pricing',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-rating' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-rating',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-user-avatar' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-user-avatar',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-view-count' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-view-count',
         'types'      => ['listings-grid-view', 'listings-list-view'],
     ],
     'directorist-gutenberg/listing-card-custom-text' => [

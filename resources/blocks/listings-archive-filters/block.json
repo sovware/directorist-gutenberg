@@ -9,6 +9,14 @@
 		"directory_type_id": {
 			"type": "number",
 			"default": 0
+		},
+		"filters_text": {
+			"type": "string",
+			"default": "Filters"
+		},
+		"reset_text": {
+			"type": "string",
+			"default": "Clear All"
 		}
 	},
 	"description": "Listings archive filters block",

@@ -2,8 +2,8 @@ import debounce from '@utils/debounce';
 import initSearchCategoryCustomFields from '@utils/category-custom-fields';
 
 jQuery(document).ready(function($) {
-	/** 
-		Global Variables 
+	/**
+		Global Variables
 	*/
 
 	// Globally accessible form_data
@@ -14,67 +14,63 @@ jQuery(document).ready(function($) {
 	let infinitePaginationIsLoading = false;
 	let infinitePaginationCompleted = false;
 
-	/** 
-		Main Functions 
+	/**
+		Main Functions
 	*/
 
 	// Perform Instant Search
 	function performInstantSearch(searchElement) {
-		// get parent element
-		const searchElm = searchElement.closest('.directorist-instant-search');
+		// Get archive container - works for both old and new structure
+		const archiveContainer = getArchiveContainer();
 
 		// Instant Search Data
-		const instant_search_data = prepareInstantSearchData(searchElm);
+		const instant_search_data = prepareInstantSearchData(searchElement);
 
 		$.ajax({
 			url: directorist.ajaxurl,
 			type: 'POST',
 			data: instant_search_data,
 			beforeSend: function () {
-				searchElm
-					.find(
-						'.directorist-advanced-filter__form .directorist-btn-sm'
-					)
+				// Disable buttons in advanced filter form
+				$('.directorist-advanced-filter__form .directorist-btn-sm')
 					.attr('disabled', true);
-				searchElm
-					.find('.directorist-archive-items')
+
+				// Add fade class to archive items
+				$('.directorist-archive-items, .directorist-gutenberg-listings-archive-contents')
 					.addClass('atbdp-form-fade');
-				searchElm
-					.find(
-						'.directorist-header-bar .directorist-advanced-filter'
-					)
+
+				// Hide advanced filter
+				$('.directorist-header-bar .directorist-advanced-filter')
 					.removeClass('directorist-advanced-filter--show')
 					.hide();
 
-				if (searchElm.offset()?.top > 0) {
-					$(document).scrollTop(searchElm.offset().top);
+				// Scroll to archive if it exists
+				if (archiveContainer.length && archiveContainer.offset()?.top > 0) {
+					$(document).scrollTop(archiveContainer.offset().top);
 				}
 
 				closeAllSearchModal();
 			},
 			success: function (html) {
 				if (html.search_result) {
-					searchElm
-						.find(
-							'.directorist-header-found-title, .dsa-save-search-container'
-						)
+					// Remove existing header titles
+					$('.directorist-header-found-title, .dsa-save-search-container')
 						.remove();
+
 					if (html.header_title) {
-						searchElm
-							.find('.directorist-listings-header__left')
+						$('.directorist-listings-header__left')
 							.append(html.header_title);
-						searchElm
-							.find('.directorist-header-found-title span')
+						$('.directorist-header-found-title span')
 							.text(html.count);
 					}
-					searchElm
-						.find('.directorist-archive-items')
+
+					// Replace archive items
+					$('.directorist-archive-items, .directorist-gutenberg-listings-archive-contents')
 						.replaceWith(html.search_result)
 						.removeClass('atbdp-form-fade');
-					searchElm
-						.find(
-							'.directorist-advanced-filter__form .directorist-btn-sm'
-						)
+
+					// Re-enable buttons
+					$('.directorist-advanced-filter__form .directorist-btn-sm')
 						.attr('disabled', false);
 
 					window.dispatchEvent(
@@ -113,24 +109,27 @@ jQuery(document).ready(function($) {
 
 	// Perform Instant Search for directory type change
 	function onDirectoryChange(searchElement) {
-		// get parent element
-		const searchElm = searchElement.closest('.directorist-instant-search');
+		// Get archive container
+		const archiveContainer = getArchiveContainer();
 
 		// Instant Search Data
-		const instant_search_data = prepareInstantSearchData(searchElm);
+		const instant_search_data = prepareInstantSearchData(searchElement);
 
 		$.ajax({
 			url: directorist.ajaxurl,
 			type: 'POST',
 			data: instant_search_data,
 			beforeSend: function () {
-				searchElm.addClass('atbdp-form-fade');
+				archiveContainer.addClass('atbdp-form-fade');
 			},
 			success: function (html) {
 				if (html.directory_type) {
-					searchElm.replaceWith(html.directory_type);
-					searchElm
-						.find('.atbdp-form-fade')
+					// Replace the entire container if it exists
+					if (archiveContainer.length) {
+						archiveContainer.replaceWith(html.directory_type);
+					}
+
+					$('.atbdp-form-fade')
 						.removeClass('atbdp-form-fade');
 
 					window.dispatchEvent(
@@ -163,11 +162,8 @@ jQuery(document).ready(function($) {
 			'.directorist-infinite-scroll .directorist-container-fluid .directorist-row'
 		);
 
-		// get parent element
-		const searchElm = searchElement.closest('.directorist-instant-search');
-
 		// Instant Search Data
-		const preparedData = prepareInstantSearchData(searchElm);
+		const preparedData = prepareInstantSearchData(searchElement);
 
 		// make ajax data
 		const instant_search_data = {
@@ -207,15 +203,56 @@ jQuery(document).ready(function($) {
 	}
 
 	/**
-    	Helper Functions  
+    	Helper Functions
   	**/
+
+	// Find related Gutenberg block by searching for blocks with data-atts
+	function findRelatedBlock(selector) {
+		// Try to find in document - works for both old and new structure
+		const block = $(selector).first();
+		if (block.length) {
+			return block;
+		}
+		// Fallback: search all blocks with data-atts
+		return $('[data-atts]').first();
+	}
+
+	// Get the archive container (listings block) - works for both structures
+	function getArchiveContainer() {
+		// New structure: wp-block-directorist-gutenberg-listings-archive
+		let container = $('.wp-block-directorist-gutenberg-listings-archive').first();
+		if (!container.length) {
+			// Fallback: find any archive container with data-atts
+			container = $('.directorist-archive-items, .directorist-gutenberg-listings-archive-contents').closest('[data-atts]').first();
+		}
+		if (!container.length) {
+			// Final fallback: find archive items container
+			container = $('.directorist-archive-items').closest('[data-atts]').first();
+		}
+		return container;
+	}
+
+	// Get data-atts from any related block
+	function getDataAtts(element) {
+		// Try to find data-atts in the element or its closest block
+		let $el = $(element);
+		let atts = $el.data('atts') || $el.closest('[data-atts]').data('atts');
+
+		// If still not found, try finding any related block
+		if (!atts) {
+			const relatedBlock = findRelatedBlock('[data-atts]');
+			atts = relatedBlock.data('atts');
+		}
+
+		return atts;
+	}
 
 	// Prepare Instant Search Data
 	function prepareInstantSearchData(searchElm) {
-		// Get data-atts
-		const instant_search_atts = searchElm.data('atts');
+		// Get data-atts from the element or related blocks
+		const instant_search_atts = getDataAtts(searchElm);
 
-		// Make ajax data
+		// Make ajax data - ensure form_data is properly included
 		const instant_search_data = {
 			...form_data,
 			action: 'directorist_instant_search',
@@ -223,6 +260,11 @@ jQuery(document).ready(function($) {
 			current_page_id: directorist.current_page_id,
 			data_atts: instant_search_atts,
 		};
+
+		// Debug: log the query being sent
+		if (instant_search_data.q !== undefined) {
+			console.log('Search query being sent:', instant_search_data.q);
+		}
 
 		return instant_search_data;
 	}
@@ -352,9 +394,21 @@ jQuery(document).ready(function($) {
 	}
 
 	// Check required fields are valid or not
+	// Checks across all related forms (basic search + advanced filter)
 	function checkRequiredFields(searchElm) {
-		// Select all required inputs and selects inside searchElm
-		const requiredInputs = searchElm.find(
+		// Find all related forms - search in basic and advanced search forms
+		const basicForm = $('.directorist-basic-search').first();
+		const advancedForm = $('.directorist-advanced-search').first();
+
+		// Combine all forms if they exist, otherwise use the passed searchElm
+		const allForms = [];
+		if (basicForm.length) allForms.push(basicForm);
+		if (advancedForm.length) allForms.push(advancedForm);
+
+		const searchScope = allForms.length > 0 ? $(allForms) : searchElm;
+
+		// Select all required inputs and selects inside searchScope
+		const requiredInputs = searchScope.find(
 			'input[required], select[required], textarea[required]'
 		);
 
@@ -370,7 +424,7 @@ jQuery(document).ready(function($) {
 					// For checkboxes/radios, at least one with this name must be checked
 					const name = $el.attr('name');
 					const checked =
-						searchElm.find(`input[name="${name}"]:checked`).length >
+						searchScope.find(`input[name="${name}"]:checked`).length >
 						0;
 					if (!checked) {
 						requiredFieldsAreValid = false;
@@ -396,26 +450,46 @@ jQuery(document).ready(function($) {
 	}
 
 	//  Build form_data from searchElm inputs.
+	// Collects from all related forms (basic search + advanced filter)
 	function buildFormData(searchElm) {
+		// Find all related forms - search in basic and advanced search forms
+		// Always search in both forms to collect all data
+		const basicForm = $('.directorist-basic-search').first();
+		const advancedForm = $('.directorist-advanced-search').first();
+
+		// Collect from the form that triggered the event first, then check other forms
+		// This ensures we get the most up-to-date value from the triggering form
+		let searchScope = searchElm;
+
+		// If we have multiple forms, combine them for comprehensive data collection
+		if (basicForm.length && advancedForm.length) {
+			// Combine both forms
+			searchScope = basicForm.add(advancedForm);
+		} else if (basicForm.length) {
+			searchScope = basicForm;
+		} else if (advancedForm.length) {
+			searchScope = advancedForm;
+		}
+
 		let tag = [];
 		let price = [];
 		let custom_field = {};
 		let search_by_rating = [];
 
 		// Collect selected tags
-		searchElm.find('input[name^="in_tag["]:checked').each((_, el) => {
+		searchScope.find('input[name^="in_tag["]:checked').each((_, el) => {
 			tag.push($(el).val());
 		});
 
 		// Collect selected ratings
-		searchElm
+		searchScope
 			.find('input[name^="search_by_rating["]:checked')
 			.each((_, el) => {
 				search_by_rating.push($(el).val());
 			});
 
 		// Collect price values
-		searchElm.find('input[name^="price["]').each((_, el) => {
+		searchScope.find('input[name^="price["]').each((_, el) => {
 			price.push($(el).val());
 		});
 
@@ -427,7 +501,7 @@ jQuery(document).ready(function($) {
 		}
 
 		// Collect custom field values
-		searchElm.find('[name^="custom_field"]').each(function (_, el) {
+		searchScope.find('[name^="custom_field"]').each(function (_, el) {
 			const $el = $(el);
 			const name = $el.attr('name');
 			const type = $el.attr('type');
@@ -437,13 +511,13 @@ jQuery(document).ready(function($) {
 			if (!post_id) return;
 
 			if (type === 'radio') {
-				const checked = searchElm
+				const checked = searchScope
 					.find(`input[name="custom_field[${post_id}]"]:checked`)
 					.val();
 				if (checked) custom_field[post_id] = checked;
 			} else if (type === 'checkbox') {
 				const values = [];
-				searchElm
+				searchScope
 					.find(`input[name="custom_field[${post_id}][]"]:checked`)
 					.each(function () {
 						const val = $(this).val();
@@ -458,7 +532,7 @@ jQuery(document).ready(function($) {
 
 		// Collect custom range slider min/max values
 		let range_slider_values = {};
-		searchElm
+		searchScope
 			.find('.directorist-custom-range-slider__text.directorist-custom-range-slider__value__min')
 			.each(function () {
 				const minVal = $(this).val();
@@ -468,7 +542,7 @@ jQuery(document).ready(function($) {
 					] = minVal;
 				}
 			});
-		searchElm
+		searchScope
 			.find('.directorist-custom-range-slider__text.directorist-custom-range-slider__value__max')
 			.each(function () {
 				const maxVal = $(this).val();
@@ -479,30 +553,39 @@ jQuery(document).ready(function($) {
 				}
 			});
 
-		// Collect basic form values
-		const q = searchElm.find('input[name="q"]').val();
-		const in_cat = searchElm.find('.directorist-category-select').val();
-		const in_loc = searchElm.find('.directorist-location-select').val();
-		const price_range = searchElm
+		// Collect basic form values - search across all forms
+		// For query, prioritize getting from the triggering form, then search all forms
+		let q = searchElm.find('input[name="q"]').val();
+		// jQuery .val() returns empty string if input is empty, so check for empty string
+		if (!q || q === '') {
+			q = basicForm.find('input[name="q"]').val();
+		}
+		if (!q || q === '') {
+			q = searchScope.find('input[name="q"]').val();
+		}
+		// Normalize empty string to undefined so it gets deleted from form_data
+		if (!q || q === '') {
+			q = undefined;
+		}
+		const in_cat = searchScope.find('.directorist-category-select').val();
+		const in_loc = searchScope.find('.directorist-location-select').val();
+		const price_range = searchScope
 			.find("input[name='price_range']:checked")
 			.val();
-		const address = searchElm.find('input[name="address"]').val();
-		const zip = searchElm.find('input[name="zip"]').val();
-		const fax = searchElm.find('input[name="fax"]').val();
-		const email = searchElm.find('input[name="email"]').val();
-		const website = searchElm.find('input[name="website"]').val();
-		const phone = searchElm.find('input[name="phone"]').val();
-		const phone2 = searchElm.find('input[name="phone2"]').val();
+		const address = searchScope.find('input[name="address"]').val();
+		const zip = searchScope.find('input[name="zip"]').val();
+		const fax = searchScope.find('input[name="fax"]').val();
+		const email = searchScope.find('input[name="email"]').val();
+		const website = searchScope.find('input[name="website"]').val();
+		const phone = searchScope.find('input[name="phone"]').val();
+		const phone2 = searchScope.find('input[name="phone2"]').val();
 		const view = form_data.view;
 		const paged = form_data.paged;
 
-		// Get directory type - look in the parent container to ensure it's found regardless of form
+		// Get directory type - look in all forms to ensure it's found regardless of form
 		const directory_type =
-			searchElm.find('input[name="directory_type"]').val() ||
-			searchElm
-				.closest('.directorist-instant-search')
-				.find('input[name="directory_type"]')
-				.val();
+			searchScope.find('input[name="directory_type"]').val() ||
+			$('input[name="directory_type"]').first().val();
 
 		// Update form_data
 		updateFormData({
@@ -528,29 +611,29 @@ jQuery(document).ready(function($) {
 		});
 
 		// open_now checkbox
-		const open_now_val = searchElm
+		const open_now_val = searchScope
 			.find('input[name="open_now"]')
 			.is(':checked')
-			? searchElm.find('input[name="open_now"]').val()
+			? searchScope.find('input[name="open_now"]').val()
 			: undefined;
 		updateFormData({ open_now: open_now_val });
 
-		const radius_search_based_on = searchElm
+		const radius_search_based_on = searchScope
 			.find('.directorist-radius_search_based_on')
 			.val();
 
 		// Check if the address or zip code is present to update miles, lat, and lng
 		if (radius_search_based_on === 'address' && address) {
 			updateFormData({
-				cityLat: searchElm.find('#cityLat').val(),
-				cityLng: searchElm.find('#cityLng').val(),
-				miles: searchElm.find('input[name="miles"]').val(),
+				cityLat: searchScope.find('#cityLat').val(),
+				cityLng: searchScope.find('#cityLng').val(),
+				miles: searchScope.find('input[name="miles"]').val(),
 			});
 		} else if (radius_search_based_on === 'zip' && zip) {
 			updateFormData({
-				zip_cityLat: searchElm.find('.zip-cityLat').val(),
-				zip_cityLng: searchElm.find('.zip-cityLng').val(),
-				miles: searchElm.find('input[name="miles"]').val(),
+				zip_cityLat: searchScope.find('.zip-cityLat').val(),
+				zip_cityLng: searchScope.find('.zip-cityLng').val(),
+				miles: searchScope.find('input[name="miles"]').val(),
 			});
 		} else {
 			updateFormData({
@@ -637,10 +720,8 @@ jQuery(document).ready(function($) {
 			infinitePaginationIsLoading = true;
 			scrollingPage++;
 
-			// get parent element
-			const instantSearchElement = $('.directorist-instant-search');
 			// get active form
-			const activeForm = getActiveForm(instantSearchElement);
+			const activeForm = getActiveForm();
 
 			// build form_data
 			buildFormData(activeForm);
@@ -684,33 +765,22 @@ jQuery(document).ready(function($) {
 	}
 
 	// Determine the active form with intelligent fallback strategy
-	function getActiveForm(instantSearchElement) {
-		const forms = {
-			sidebar: instantSearchElement,
-			advanced: instantSearchElement.find(
-				'.directorist-advanced-filter__form'
-			),
-			search: instantSearchElement.find('.directorist-search-form'),
-		};
-
-		// Early return for sidebar listings
-		if (forms.sidebar.length) {
-			return instantSearchElement;
-		}
+	function getActiveForm() {
+		// Find forms directly in the document
+		const advancedForm = $('.directorist-advanced-search, .directorist-advanced-filter__form').first();
+		const searchForm = $('.directorist-basic-search, .directorist-search-form').first();
 
 		// Create form candidates with metadata
 		const candidates = [
 			{
-				form: forms.advanced,
+				form: advancedForm,
 				hasDirectoryType:
-					forms.advanced.find('input[name="directory_type"]').length >
-					0,
+					advancedForm.find('input[name="directory_type"]').length > 0,
 			},
 			{
-				form: forms.search,
+				form: searchForm,
 				hasDirectoryType:
-					forms.search.find('input[name="directory_type"]').length >
-					0,
+					searchForm.find('input[name="directory_type"]').length > 0,
 			},
 		].filter((candidate) => candidate.form.length > 0);
 
@@ -723,7 +793,7 @@ jQuery(document).ready(function($) {
 		}
 
 		// Fallback: use responsive selection if no directory_type found
-		return screen.width > 575 ? forms.advanced : forms.search;
+		return screen.width > 575 ? advancedForm : searchForm;
 	}
 
 	// Get directory type
@@ -756,14 +826,15 @@ jQuery(document).ready(function($) {
 
 	// Range Slider searching observer
 	function initObserver() {
+		// Find all range slider inputs in both old and new structures
 		let targetNodes = document.querySelectorAll(
-			'.directorist-instant-search .directorist-custom-range-slider__value input'
+			'.directorist-custom-range-slider__value input'
 		);
 
 		targetNodes.forEach((targetNode) => {
 			let searchElm = $(targetNode.closest('form'));
 
-			if (targetNode) {
+			if (targetNode && searchElm.length) {
 				let timeout;
 				const observerCallback = (mutationList, observer) => {
 					for (const mutation of mutationList) {
@@ -791,8 +862,9 @@ jQuery(document).ready(function($) {
 
 	// Single Location Category Page Search Form Item Disable
 	function singleCategoryLocationInit() {
+		// Try to find data-atts in any block (old or new structure)
 		const directoristArchiveContents = document.querySelector(
-			'.directorist-archive-contents'
+			'.directorist-archive-contents, [data-atts]'
 		);
 		if (!directoristArchiveContents) {
 			return;
@@ -800,9 +872,19 @@ jQuery(document).ready(function($) {
 
 		const directoristDataAttributes =
 			directoristArchiveContents.getAttribute('data-atts');
-		const { shortcode, location, category } = JSON.parse(
-			directoristDataAttributes
-		);
+		if (!directoristDataAttributes) {
+			return;
+		}
+
+		let shortcode, location, category;
+		try {
+			const parsed = JSON.parse(directoristDataAttributes);
+			shortcode = parsed.shortcode || parsed._current_page;
+			location = parsed.location || '';
+			category = parsed.category || '';
+		} catch (e) {
+			return;
+		}
 
 		if (shortcode === 'directorist_category' && category.trim() !== '') {
 			const categorySelect = document.querySelector(
@@ -827,18 +909,15 @@ jQuery(document).ready(function($) {
 		}
 	}
 
-	/** 
-		Event Listeners 
+	/**
+		Event Listeners
 	*/
 
-	// sidebar on keyup searching
+	// sidebar on keyup searching - listen on input fields directly
 	$('body').on(
 		'keyup',
-		'.directorist-instant-search form',
+		'.directorist-search-form input, .directorist-basic-search input, .directorist-advanced-search input',
 		debounce(function (e) {
-
-			console.log(e.target);
-
 			if (
 				$(e.target).closest('.directorist-custom-range-slider__value')
 					.length > 0 ||
@@ -848,7 +927,13 @@ jQuery(document).ready(function($) {
 			}
 
 			e.preventDefault();
-			var searchElm = $(this);
+			// Get the form containing this input
+			var searchElm = $(this).closest('form');
+
+			// Only proceed if we have a valid form
+			if (!searchElm.length) {
+				searchElm = $(this).closest('.directorist-search-form, .directorist-basic-search, .directorist-advanced-search');
+			}
 
 			// Instant search with required value
 			performInstantSearchWithRequiredValue(searchElm);
@@ -858,10 +943,10 @@ jQuery(document).ready(function($) {
 	// sidebar on change searching - radio/checkbox/location/range
 	$('body').on(
 		'change',
-		".directorist-instant-search input[type='checkbox'],.directorist-instant-search input[type='radio'], .directorist-instant-search input[type='time'], .directorist-instant-search input[type='date'], .directorist-instant-search .directorist-custom-range-slider__wrap .directorist-custom-range-slider__range, .directorist-instant-search .directorist-search-location .location-name",
+		".directorist-search-form input[type='checkbox'], .directorist-search-form input[type='radio'], .directorist-search-form input[type='time'], .directorist-search-form input[type='date'], .directorist-search-form .directorist-custom-range-slider__wrap .directorist-custom-range-slider__range, .directorist-search-form .directorist-search-location .location-name, .directorist-basic-search input[type='checkbox'], .directorist-basic-search input[type='radio'], .directorist-basic-search input[type='time'], .directorist-basic-search input[type='date'], .directorist-advanced-search input[type='checkbox'], .directorist-advanced-search input[type='radio'], .directorist-advanced-search input[type='time'], .directorist-advanced-search input[type='date'], .directorist-basic-search .directorist-custom-range-slider__wrap .directorist-custom-range-slider__range, .directorist-advanced-search .directorist-custom-range-slider__wrap .directorist-custom-range-slider__range, .directorist-basic-search .directorist-search-location .location-name, .directorist-advanced-search .directorist-search-location .location-name",
 		debounce(function (e) {
 			e.preventDefault();
-			var searchElm = $(this);
+			var searchElm = $(this).closest('form');
 
 			// Instant search with required value
 			performInstantSearchWithRequiredValue(searchElm);
@@ -871,10 +956,10 @@ jQuery(document).ready(function($) {
 	// sidebar on change searching - zipcode/location
 	$('body').on(
 		'change',
-		'.directorist-instant-search .directorist-search-location, .directorist-instant-search .directorist-zipcode-search',
+		'.directorist-search-form .directorist-search-location, .directorist-search-form .directorist-zipcode-search, .directorist-basic-search .directorist-search-location, .directorist-basic-search .directorist-zipcode-search, .directorist-advanced-search .directorist-search-location, .directorist-advanced-search .directorist-zipcode-search',
 		debounce(function (e) {
 			e.preventDefault();
-			const searchElm = $(this);
+			const searchElm = $(this).closest('form');
 
 			// If it's a location field, ensure it has a value before triggering the filter
 			if ($(this).hasClass('directorist-search-location')) {
@@ -892,16 +977,14 @@ jQuery(document).ready(function($) {
 	// sidebar on change searching - select
 	$('body').on(
 		'change',
-		'.directorist-instant-search select',
+		'.directorist-search-form select, .directorist-basic-search select, .directorist-advanced-search select',
 		debounce(function (e) {
 			e.preventDefault();
 			if (!$(this).val()) {
 				return; // Skip search if the value is empty
 			}
 
-			e.preventDefault();
-			var searchElm =
-				$(this).val() && $(this);
+			var searchElm = $(this).closest('form');
 
 			// Instant search with required value
 			performInstantSearchWithRequiredValue(searchElm);
@@ -925,10 +1008,10 @@ jQuery(document).ready(function($) {
 	// sidebar on click searching - location icon
 	$('body').on(
 		'click',
-		'.directorist-instant-search .directorist-filter-location-icon',
+		'.directorist-search-form .directorist-filter-location-icon, .directorist-basic-search .directorist-filter-location-icon, .directorist-advanced-search .directorist-filter-location-icon',
 		debounce(function (e) {
 			e.preventDefault();
-			var searchElm = $(this);
+			var searchElm = $(this).closest('form');
 
 			// Instant search with required value
 			performInstantSearchWithRequiredValue(searchElm);
@@ -938,20 +1021,20 @@ jQuery(document).ready(function($) {
 	// Clear Input Value
 	$('body').on(
 		'click',
-		'.directorist-instant-search .directorist-search-field__btn--clear',
+		'.directorist-search-form .directorist-search-field__btn--clear, .directorist-basic-search .directorist-search-field__btn--clear, .directorist-advanced-search .directorist-search-field__btn--clear',
 		function (e) {
 			// Clear Color Field Value
 			let irisPicker = $(this)
 				.closest('.directorist-search-field.directorist-color')
 				.find('input.wp-picker-clear');
 
-			if (irisPicker !== null) {
+			if (irisPicker !== null && irisPicker.length) {
 				irisPicker.click();
 			}
 
 			let $searchField = $(this).closest('.directorist-search-field');
 
-			var searchElm = $(this);
+			var searchElm = $(this).closest('form');
 
 			// Clear text, email, number, select fields etc
 			$searchField
@@ -974,33 +1057,27 @@ jQuery(document).ready(function($) {
 	);
 
 	// Directorist instant search reset
-	$('body').on(
-		'click',
-		'.directorist-instant-search .directorist-btn-reset-js',
-		function (e) {
-			e.preventDefault();
-			let searchElm = $(this).closest('.directorist-instant-search');
-			// Get active form
-			const activeForm = getActiveForm(searchElm);
+	// Note: The actual form field reset is handled by search-form-reset.js
+	// This listener handles the instant search data reset and triggers the search after form reset
+	window.addEventListener('directorist-form-reset-complete', function (e) {
+		// Get active form
+		const activeForm = getActiveForm();
 
-			// ✅ only update `page`, preserve others
-			updateFormData({ paged: 1 });
+		// Reset form_data - clear all search parameters
+		resetFormData();
 
-			// ✅ Define Filter Listing debounced function
-			const debouncedResetSearch = debounce(function () {
-				// Build form data
-				buildFormData(activeForm);
+		// ✅ only update `page` to 1
+		updateFormData({ paged: 1 });
 
-				performInstantSearch(activeForm);
-			}, 250);
-
-			// Reset Search after resetting form value
-			debouncedResetSearch();
-		}
-	);
+		// Build form data and perform search after form reset
+		setTimeout(function () {
+			buildFormData(activeForm);
+			performInstantSearch(activeForm);
+		}, 150);
+	});
 
 	// Directorist instant search submit
-	$('body').on('submit', '.directorist-instant-search form', function (e) {
+	$('body').on('submit', '.directorist-search-form, .directorist-basic-search, .directorist-advanced-search', function (e) {
 		e.preventDefault();
 		let _this = $(this);
 
@@ -1013,7 +1090,8 @@ jQuery(document).ready(function($) {
 		'submit',
 		'.widget .default-ad-search:not(.directorist_single) .directorist-advanced-filter__form',
 		function (e) {
-			if ($('.directorist-instant-search').length) {
+			// Check if instant search forms are available
+			if ($('.directorist-search-form, .directorist-basic-search, .directorist-advanced-search').length) {
 				e.preventDefault();
 				let _this = $(this);
 
@@ -1026,7 +1104,7 @@ jQuery(document).ready(function($) {
 	// Directorist type changes
 	$('body').on(
 		'click',
-		'.directorist-instant-search .directorist-type-nav__link',
+		'.directorist-gutenberg-listings-archive-search-nav .directorist-type-nav__link, .directorist-type-nav__link',
 		function (e) {
 			e.preventDefault();
 
@@ -1038,9 +1116,6 @@ jQuery(document).ready(function($) {
 			) {
 				return; // Skip if already active
 			}
-
-			// get parent element
-			let searchElm = $(this).closest('.directorist-instant-search');
 
 			// reset form data
 			resetFormData();
@@ -1054,14 +1129,11 @@ jQuery(document).ready(function($) {
 			// Update URL with form data
 			update_instant_search_url(form_data);
 
-			// Set the directory_type value in the input
-			$(this)
-				.closest('.directorist-instant-search')
-				.find('input[name="directory_type"]')
-				.val(directory_type);
+			// Set the directory_type value in all inputs
+			$('input[name="directory_type"]').val(directory_type);
 
 			// Get active form
-			const activeForm = getActiveForm(searchElm);
+			const activeForm = getActiveForm();
 
 			// Instant search for directory type change
 			onDirectoryChange(activeForm);
@@ -1071,7 +1143,7 @@ jQuery(document).ready(function($) {
 	// Directorist view as changes
 	$('body').on(
 		'click',
-		'.directorist-instant-search .directorist-viewas .directorist-viewas__item',
+		'.directorist-viewas .directorist-viewas__item',
 		function (e) {
 			e.preventDefault();
 
@@ -1080,16 +1152,13 @@ jQuery(document).ready(function($) {
 				return; // Skip if already active
 			}
 
-			// get parent element
-			let searchElm = $(this).closest('.directorist-instant-search');
-
 			// get view as value
 			const view = getViewAs($(this));
 			// ✅ only update `view`, preserve others
 			updateFormData({ view });
 
 			// Get active form
-			const activeForm = getActiveForm(searchElm);
+			const activeForm = getActiveForm();
 
 			// Instant search without required value
 			performInstantSearchWithoutRequiredValue(activeForm);
@@ -1099,7 +1168,7 @@ jQuery(document).ready(function($) {
 	// Directorist sort by changes
 	$('body').on(
 		'click',
-		'.directorist-instant-search .directorist-sortby-dropdown .directorist-dropdown__links__single-js',
+		'.directorist-sortby-dropdown .directorist-dropdown__links__single-js',
 		function (e) {
 			e.preventDefault();
 
@@ -1109,16 +1178,13 @@ jQuery(document).ready(function($) {
 				.siblings('.directorist-dropdown__links__single-js')
 				.removeClass('active');
 
-			// get parent element
-			let searchElm = $(this).closest('.directorist-instant-search');
-
 			// get sort value
 			const sort = getSortValue($(this));
 			// ✅ only update `sort`, preserve others
 			updateFormData({ sort });
 
 			// get active form
-			const activeForm = getActiveForm(searchElm);
+			const activeForm = getActiveForm();
 
 			// Instant search without required value
 			performInstantSearchWithoutRequiredValue(activeForm);
@@ -1128,7 +1194,7 @@ jQuery(document).ready(function($) {
 	// Directorist pagination changes
 	$('body').on(
 		'click',
-		'.directorist-instant-search .directorist-pagination .page-numbers',
+		'.directorist-pagination .page-numbers',
 		function (e) {
 			e.preventDefault();
 			let page = form_data.paged || 1;
@@ -1140,22 +1206,19 @@ jQuery(document).ready(function($) {
 			} else if ($(this).hasClass('prev')) {
 				page = parseInt(page) - 1;
 			}
-			// ✅ only update `sort`, preserve others
+			// ✅ only update `paged`, preserve others
 			updateFormData({ paged: page });
 
-			// get parent element
-			let searchElm = $(this).closest('.directorist-instant-search');
-
 			// get active form
-			const activeForm = getActiveForm(searchElm);
+			const activeForm = getActiveForm();
 
 			// Instant search without required value
 			performInstantSearchWithoutRequiredValue(activeForm);
 		}
 	);
 
-	// Submit on sidebar form
-	if ($('.directorist-instant-search').length === 0) {
+	// Submit on sidebar form - fallback for non-instant search
+	if ($('.directorist-search-form, .directorist-basic-search, .directorist-advanced-search').length === 0) {
 		$('body').on(
 			'submit',
 			'.directorist-basic-search, .directorist-advanced-search',
@@ -1183,9 +1246,7 @@ jQuery(document).ready(function($) {
 	});
 
 	// Prevent default action for dropdown links
-	$(
-		'.directorist-instant-search .directorist-dropdown__links__single-js'
-	).off('click');
+	$('.directorist-dropdown__links__single-js').off('click');
 
 	// Initialize Infinite Scroll
 	window.addEventListener('scroll', function () {

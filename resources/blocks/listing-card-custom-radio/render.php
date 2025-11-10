@@ -1,4 +1,4 @@
-<?php 
+<?php
     $meta_value = directorist_gutenberg_get_block_post_meta( $attributes['meta_key'], get_the_ID() );
     $option     = directorist_gutenberg_get_directory_submission_field_option( $attributes['directory_type_id'], 'custom', $attributes['meta_key'], $meta_value );
     $meta_label = $option ? $option['option_label'] : $meta_value;
@@ -8,7 +8,7 @@
 <div <?php echo get_block_wrapper_attributes(); ?> class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-custom-radio">
     <div class="directorist-gutenberg-listing-card-element-content">
         <?php if ( ! empty( $attributes['icon'] ) ) : ?>
-        <span><?php directorist_gutenberg_render_icon( 'icons/icon-library/' . $attributes['icon'] ); ?></span>
+            <span><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $attributes['icon'] ); ?></span>
         <?php endif; ?>
 
         <div class="directorist-gutenberg-listing-card-element-details">

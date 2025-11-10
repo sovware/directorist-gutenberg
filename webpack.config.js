@@ -106,7 +106,6 @@ module.exports = [
 			 * Block scripts
 			 */
 			'js/blocks-editor': './resources/js/block-sripts/editor.js',
-			'js/blocks-frontend': './resources/js/block-sripts/frontend.js',
 			'css/blocks-frontend': './resources/sass/blocks/frontend.scss',
 			'css/blocks-editor': './resources/sass/blocks/editor.scss',
 		},
@@ -118,6 +117,25 @@ module.exports = [
 		},
 		plugins: plugins.reduce( ( acc, plugin ) => {
 			if ( plugin.constructor.name !== 'CopyPlugin' ) {
+				acc.push( plugin );
+			}
+			return acc;
+		}, [] ),
+		resolve,
+	},
+	{
+		...defaultConfig[1],
+		entry: {
+			'js/blocks-frontend': './resources/js/block-sripts/frontend.js',
+		},
+		output: {
+			...defaultConfig[ 1 ].output,
+			path: path.resolve( __dirname, './assets/build/' ),
+			filename: '[name].js',
+			chunkFilename: '[name].js?ver=' + chunkUniqueKey,
+		},
+		plugins: defaultConfig[ 1 ].plugins.reduce( ( acc, plugin ) => {
+			if ( plugin.constructor.name !== 'RtlCssPlugin' ) {
 				acc.push( plugin );
 			}
 			return acc;
