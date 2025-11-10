@@ -125,4 +125,49 @@ return apply_filters( 'directorist_gutenberg_template_blocks', [
         'field_type' => 'listing-card-view-count',
         'types'      => ['listings-grid-view', 'listings-list-view'],
     ],
+    'directorist-gutenberg/listing-card-custom-text' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-custom-text',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-custom-textarea' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-custom-textarea',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-custom-number' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-custom-number',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-custom-url' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-custom-url',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-custom-date' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-custom-date',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-custom-time' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-custom-time',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-custom-select' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-custom-select',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-custom-checkbox' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-custom-checkbox',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
+    'directorist-gutenberg/listing-card-custom-radio' => [
+        'dir'        => $blocks_dir,
+        'field_type' => 'listing-card-custom-radio',
+        'types'      => ['listings-grid-view', 'listings-list-view'],
+    ],
 ] );
