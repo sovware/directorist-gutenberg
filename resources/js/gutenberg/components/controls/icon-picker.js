@@ -237,18 +237,18 @@ export default function IconPicker({ attr_key, attributes, setAttributes, label 
 							className="directorist-gutenberg-icon-picker-change"
 							onClick={openModal}
 						>
-							{__('Change', 'directorist-gutenberg-template')}
+							{__('Change', 'directorist-gutenberg')}
 						</span>
 					</div>
 				) : (
 					<div className="directorist-gutenberg-icon-picker-preview-empty"
 						onClick={openModal}
 					>
-						<span>{__('No icon selected', 'directorist-gutenberg-template')}</span>
+						<span>{__('No icon selected', 'directorist-gutenberg')}</span>
 						<span
 							className="directorist-gutenberg-icon-picker-change"
 						>
-							{__('Select Icon', 'directorist-gutenberg-template')}
+							{__('Select Icon', 'directorist-gutenberg')}
 						</span>
 					</div>
 				)}
@@ -268,7 +268,7 @@ export default function IconPicker({ attr_key, attributes, setAttributes, label 
 								<SearchControl
 									value={searchTerm}
 									onChange={setSearchTerm}
-									placeholder={__('Search Icons...', 'directorist-gutenberg-template')}
+									placeholder={__('Search Icons...', 'directorist-gutenberg')}
 								/>
 							</div>
 							<div className="directorist-gutenberg-icon-picker-filter">
@@ -277,13 +277,13 @@ export default function IconPicker({ attr_key, attributes, setAttributes, label 
 									onChange={(e) => setSelectedIconSet(e.target.value)}
 									className="components-select-control__input"
 								>
-									<option value="fa">{__('Font Awesome', 'directorist-gutenberg-template')}</option>
-									<option value="la">{__('Line Awesome', 'directorist-gutenberg-template')}</option>
+									<option value="fa">{__('Font Awesome', 'directorist-gutenberg')}</option>
+									<option value="la">{__('Line Awesome', 'directorist-gutenberg')}</option>
 								</select>
 							</div>
 							<div className="directorist-gutenberg-icon-picker-info">
 								<p>
-									{__('Total Icons:', 'directorist-gutenberg-template')}{' '}
+									{__('Total Icons:', 'directorist-gutenberg')}{' '}
 									<strong>{filteredIcons.length}</strong>
 								</p>
 							</div>
@@ -303,7 +303,7 @@ export default function IconPicker({ attr_key, attributes, setAttributes, label 
 							)}
 							<div className="directorist-gutenberg-icon-picker-done">
 								<Button variant="primary" onClick={handleSelectionDone}>
-									{__('Done', 'directorist-gutenberg-template')}
+									{__('Done', 'directorist-gutenberg')}
 								</Button>
 							</div>
 						</div>
@@ -311,14 +311,14 @@ export default function IconPicker({ attr_key, attributes, setAttributes, label 
 							<div className="directorist-gutenberg-icon-picker-header">
 								<h2>
 									{selectedIconSet === 'fa'
-										? __('Font Awesome Icons', 'directorist-gutenberg-template')
-										: __('Line Awesome Icons', 'directorist-gutenberg-template')}
+										? __('Font Awesome Icons', 'directorist-gutenberg')
+										: __('Line Awesome Icons', 'directorist-gutenberg')}
 								</h2>
 								<button
 									onClick={closeModal}
 									className="directorist-gutenberg-icon-picker-close"
 									type="button"
-									aria-label={__('Close', 'directorist-gutenberg-template')}
+									aria-label={__('Close', 'directorist-gutenberg')}
 								>
 									<ReactSVG src={times} />
 								</button>
@@ -353,13 +353,13 @@ export default function IconPicker({ attr_key, attributes, setAttributes, label 
 										})}
 										{visibleCount < filteredIcons.length && (
 											<div className="directorist-gutenberg-icon-picker-loading">
-												{__('Loading more icons...', 'directorist-gutenberg-template')}
+												{__('Loading more icons...', 'directorist-gutenberg')}
 											</div>
 										)}
 									</>
 								) : (
 									<div className="directorist-gutenberg-icon-picker-empty">
-										<p>{__('No icons found. Try a different search term.', 'directorist-gutenberg-template')}</p>
+										<p>{__('No icons found. Try a different search term.', 'directorist-gutenberg')}</p>
 									</div>
 								)}
 							</div>

@@ -1175,7 +1175,7 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
   \*************************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive-search","version":"0.1.0","title":"Listings Archive Search","category":"directorist-listings-archive","attributes":{"directory_type_id":{"type":"number","default":0}},"description":"Listings archive search block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg-template","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive-search","version":"0.1.0","title":"Listings Archive Search","category":"directorist-listings-archive","attributes":{"directory_type_id":{"type":"number","default":0}},"description":"Listings archive search block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -1228,7 +1228,7 @@ function Edit({
   setAttributes
 }) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Listings Archive Search', 'directorist-gutenberg-template')
+    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Listings Archive Search', 'directorist-gutenberg')
   });
 }
 

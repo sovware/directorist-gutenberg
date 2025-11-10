@@ -21,7 +21,7 @@ export default function Controls( { attributes, setAttributes } ) {
                     attr_key="icon"
                     attributes={ attributes }
                     setAttributes={ setAttributes }
-                    label={ __( 'Icon', 'directorist-gutenberg-template' ) }
+                    label={ __( 'Icon', 'directorist-gutenberg' ) }
                 />
             </PanelBody>
         </InspectorControls>

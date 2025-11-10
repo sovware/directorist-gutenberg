@@ -21,7 +21,7 @@ export default function Edit({ attributes, setAttributes }) {
 		>
 			<div class="directorist-gutenberg-listing-badge directorist-gutenberg-listing-badge-featured">
 				<ReactSVG src={ featuredIcon } />
-				<span>{__('Featured', 'directorist-gutenberg-template')}</span>
+				<span>{__('Featured', 'directorist-gutenberg')}</span>
 			</div>
 		</div>
 	)

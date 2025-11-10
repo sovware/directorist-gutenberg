@@ -1,0 +1,49 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "directorist-gutenberg/listings-archive-header",
+	"version": "0.1.0",
+	"title": "Listings Archive Header",
+	"category": "directorist-listings-archive",
+	"attributes": {
+		"directory_type_id": {
+			"type": "number",
+			"default": 0
+		},
+		"show_listings_count": {
+			"type": "boolean",
+			"default": true
+		},
+		"listings_count_text": {
+			"type": "string",
+			"default": "Items Found"
+		},
+		"view_type": {
+			"type": "array",
+			"default": [ "grid", "list", "map" ]
+		},
+		"enable_sorting": {
+			"type": "boolean",
+			"default": true
+		},
+		"sort_by_label": {
+			"type": "string",
+			"default": "Sort by"
+		},
+		"sort_by": {
+			"type": "array",
+			"default": [ "a_z", "z_a", "latest", "oldest", "popular", "price_low_to_high", "price_high_to_low", "random" ]
+		}
+	},
+	"description": "Listings archive header block",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "directorist-gutenberg",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

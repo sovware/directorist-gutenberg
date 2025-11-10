@@ -11,7 +11,7 @@ import './editor.scss';
 export default function Edit() {
 	return (
 		<p>
-			{__('Listing Title', 'directorist-gutenberg-template')}
+			{__('Listing Title', 'directorist-gutenberg')}
 		</p>
 	);
 }

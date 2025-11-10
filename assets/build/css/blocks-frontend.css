@@ -17,6 +17,7 @@
 .directorist-gutenberg-listing-card-element-content svg {
   width: 16px;
   height: 16px;
+  fill: var(--directorist-color-light-gray);
 }
 
 .directorist-gutenberg-listing-badge {
@@ -55,6 +56,14 @@
 .directorist-gutenberg-listing-badge-popular {
   background: var(--directorist-color-primary);
   color: #fff;
+}
+
+.directorist-search-field-radius_search .directorist-search-field__label {
+  position: unset;
+  transform: unset;
+  display: block;
+  font-size: 14px;
+  margin-bottom: 15px;
 }
 
 /*# sourceMappingURL=blocks-frontend.css.map*/

@@ -2939,7 +2939,7 @@ function Controls({
         attr_key: "icon",
         attributes: attributes,
         setAttributes: setAttributes,
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'directorist-gutenberg-template')
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'directorist-gutenberg')
       })
     })
   });
@@ -3402,16 +3402,16 @@ function IconPicker({
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
           className: "directorist-gutenberg-icon-picker-change",
           onClick: openModal,
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Change', 'directorist-gutenberg-template')
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Change', 'directorist-gutenberg')
         })]
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
         className: "directorist-gutenberg-icon-picker-preview-empty",
         onClick: openModal,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('No icon selected', 'directorist-gutenberg-template')
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('No icon selected', 'directorist-gutenberg')
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
           className: "directorist-gutenberg-icon-picker-change",
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Select Icon', 'directorist-gutenberg-template')
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Select Icon', 'directorist-gutenberg')
         })]
       })
     }), isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Modal, {
@@ -3428,7 +3428,7 @@ function IconPicker({
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SearchControl, {
               value: searchTerm,
               onChange: setSearchTerm,
-              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Search Icons...', 'directorist-gutenberg-template')
+              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Search Icons...', 'directorist-gutenberg')
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
             className: "directorist-gutenberg-icon-picker-filter",
@@ -3438,16 +3438,16 @@ function IconPicker({
               className: "components-select-control__input",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("option", {
                 value: "fa",
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Font Awesome', 'directorist-gutenberg-template')
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Font Awesome', 'directorist-gutenberg')
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("option", {
                 value: "la",
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Line Awesome', 'directorist-gutenberg-template')
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Line Awesome', 'directorist-gutenberg')
               })]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
             className: "directorist-gutenberg-icon-picker-info",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-              children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Total Icons:', 'directorist-gutenberg-template'), ' ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("strong", {
+              children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Total Icons:', 'directorist-gutenberg'), ' ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("strong", {
                 children: filteredIcons.length
               })]
             })
@@ -3472,7 +3472,7 @@ function IconPicker({
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
               variant: "primary",
               onClick: handleSelectionDone,
-              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Done', 'directorist-gutenberg-template')
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Done', 'directorist-gutenberg')
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
@@ -3480,12 +3480,12 @@ function IconPicker({
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             className: "directorist-gutenberg-icon-picker-header",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h2", {
-              children: selectedIconSet === 'fa' ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Font Awesome Icons', 'directorist-gutenberg-template') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Line Awesome Icons', 'directorist-gutenberg-template')
+              children: selectedIconSet === 'fa' ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Font Awesome Icons', 'directorist-gutenberg') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Line Awesome Icons', 'directorist-gutenberg')
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
               onClick: closeModal,
               className: "directorist-gutenberg-icon-picker-close",
               type: "button",
-              "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Close', 'directorist-gutenberg-template'),
+              "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Close', 'directorist-gutenberg'),
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_3__["default"], {
                 src: _icon_times_svg__WEBPACK_IMPORTED_MODULE_7__
               })
@@ -3507,12 +3507,12 @@ function IconPicker({
                 }, `${icon.set}-${icon.name}`);
               }), visibleCount < filteredIcons.length && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                 className: "directorist-gutenberg-icon-picker-loading",
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Loading more icons...', 'directorist-gutenberg-template')
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Loading more icons...', 'directorist-gutenberg')
               })]
             }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
               className: "directorist-gutenberg-icon-picker-empty",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('No icons found. Try a different search term.', 'directorist-gutenberg-template')
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('No icons found. Try a different search term.', 'directorist-gutenberg')
               })
             })
           })]

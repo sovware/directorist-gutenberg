@@ -43,7 +43,7 @@ class PostTypeServiceProvider implements Provider {
             'items_list_navigation' => __( 'Templates list navigation', 'directorist-gutenberg' ),
             'filter_items_list'     => __( 'Filter templates list', 'directorist-gutenberg' ),
         ];
-    
+
         $args = [
             'label'                 => __( 'Directorist Gutenberg Template', 'directorist-gutenberg' ),
             'description'           => __( 'Gutenberg templates for Directorist', 'directorist-gutenberg' ),
@@ -61,7 +61,7 @@ class PostTypeServiceProvider implements Provider {
             'supports'              => [ 'title', 'editor', 'author', 'custom-fields' ],
             'show_in_rest'          => true,
         ];
-    
+
         register_post_type( directorist_gutenberg_post_type(), $args );
     }
 
@@ -89,6 +89,17 @@ class PostTypeServiceProvider implements Provider {
                 'default'      => '',
             ]
         );
+
+        register_post_meta(
+            $post_type,
+            'default_view',
+            [
+                'show_in_rest' => true,
+                'single'       => true,
+                'type'         => 'string',
+                'default'      => 'grid',
+            ]
+        );
     }
 
     public function handle_template_enable_toggle( $post_id ) {
@@ -102,12 +113,12 @@ class PostTypeServiceProvider implements Provider {
         if ( ! in_array( $post->post_status, [ 'publish', 'private' ] ) ) {
             return;
         }
-        
+
         // Get the directory and template type of the current post
         $directory_type_id = get_post_meta( $post_id, 'directory_type_id', true );
         $template_type     = get_post_meta( $post_id, 'template_type', true );
 
-        // Query all other templates with the same directory_type_id and template_type 
+        // Query all other templates with the same directory_type_id and template_type
         $query = new \WP_Query(
             [
                 'post_type'      => directorist_gutenberg_post_type(),

@@ -1206,7 +1206,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Edit() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Listing Title', 'directorist-gutenberg-template')
+    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Listing Title', 'directorist-gutenberg')
   });
 }
 

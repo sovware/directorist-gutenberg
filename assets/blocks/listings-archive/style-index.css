@@ -7,8 +7,9 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-directorist-gutenberg-listing-card-title {
-  font-size: 20px;
+.directorist-gutenberg-listings-archive-contents .directorist-container-fluid,
+.directorist-gutenberg-listings-archive .directorist-container-fluid {
+  padding: 0;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

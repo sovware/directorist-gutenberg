@@ -9,6 +9,22 @@
     "directory_type_id": {
       "type": "number",
       "default": 0
+    },
+    "listings_columns": {
+      "type": "number",
+      "default": "3"
+    },
+    "listings_per_page": {
+      "type": "number",
+      "default": 6
+    },
+    "pagination_type": {
+      "type": "string",
+      "default": "numbered"
+    },
+    "default_view": {
+      "type": "string",
+      "default": "grid"
     }
   },
   "description": "Listings archive block",
@@ -16,7 +32,7 @@
   "supports": {
     "html": false
   },
-  "textdomain": "directorist-gutenberg-template",
+  "textdomain": "directorist-gutenberg",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
