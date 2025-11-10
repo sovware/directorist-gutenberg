@@ -5,7 +5,15 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl, ToggleControl, CheckboxControl, __experimentalVStack as VStack, } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+/**
+ * Internal dependencies
+ */
+import useArchiveBlockCommonTask from '@directorist-gutenberg/gutenberg/hooks/useArchiveBlockCommonTask';
+
 export default function Controls( { attributes, setAttributes } ) {
+
+	useArchiveBlockCommonTask( { setAttributes } );
+
     return (
         <InspectorControls>
             <PanelBody

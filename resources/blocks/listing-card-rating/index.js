@@ -14,4 +14,8 @@ registerBlock( {
 	metadata,
 	Edit,
 	exampleAttributes,
+	templateTypes: [
+		'listings-archive-grid-view',
+		'listings-archive-list-view',
+	],
 } );

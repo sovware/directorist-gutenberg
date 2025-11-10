@@ -7,7 +7,15 @@ import { SelectControl, TextControl } from '@wordpress/components';
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+/**
+ * Internal dependencies
+ */
+import useArchiveBlockCommonTask from '@directorist-gutenberg/gutenberg/hooks/useArchiveBlockCommonTask';
+
 export default function Controls( { attributes, setAttributes } ) {
+
+	useArchiveBlockCommonTask( { setAttributes } );
+
 	const defaultViewOptions = [
 		{ label: __( 'Grid', 'directorist-gutenberg' ), value: 'grid' },
 		{ label: __( 'List', 'directorist-gutenberg' ), value: 'list' },

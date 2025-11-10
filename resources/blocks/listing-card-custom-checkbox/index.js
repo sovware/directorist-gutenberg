@@ -15,4 +15,8 @@ registerBlock( {
 	Edit,
 	Controls,
 	exampleAttributes,
+	templateTypes: [
+		'listings-archive-grid-view',
+		'listings-archive-list-view',
+	],
 } );

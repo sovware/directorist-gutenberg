@@ -24,8 +24,8 @@ const TemplateSettingsPanel = () => {
 	const templateTypeOptions = [
 		{ label: __( 'Select Template Type', 'directorist-gutenberg' ), value: '' },
 		{ label: __( 'Listings Archive', 'directorist-gutenberg' ), value: 'listings-archive' },
-		{ label: __( 'ListingsArchive - Grid View Item', 'directorist-gutenberg' ), value: 'listings-archive-grid-item' },
-		{ label: __( 'Listings Archive - List View Item', 'directorist-gutenberg' ), value: 'listings-archive-list-item' },
+		{ label: __( 'Listings Archive - Grid View Item', 'directorist-gutenberg' ), value: 'listings-archive-grid-view' },
+		{ label: __( 'Listings Archive - List View Item', 'directorist-gutenberg' ), value: 'listings-archive-list-view' },
 	];
 
 	// Fetch directory types from the taxonomy
