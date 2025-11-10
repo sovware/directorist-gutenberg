@@ -1396,17 +1396,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ useArchiveBlockCommonTask)
 /* harmony export */ });
-/* harmony import */ var _useTemplateMeta__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useTemplateMeta */ "./resources/js/gutenberg/hooks/useTemplateMeta.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _useTemplateMeta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useTemplateMeta */ "./resources/js/gutenberg/hooks/useTemplateMeta.js");
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
 
 function useArchiveBlockCommonTask({
   setAttributes
 }) {
   const {
     directory_type_id
-  } = (0,_useTemplateMeta__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  setAttributes({
-    directory_type_id: directory_type_id
-  });
+  } = (0,_useTemplateMeta__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setAttributes({
+      directory_type_id: directory_type_id
+    });
+  }, [directory_type_id]);
 }
 
 /***/ }),
@@ -1593,6 +1605,16 @@ module.exports = window["wp"]["components"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["data"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
 
 /***/ }),
 
