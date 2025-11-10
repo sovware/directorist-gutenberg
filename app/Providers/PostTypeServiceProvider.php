@@ -10,7 +10,90 @@ class PostTypeServiceProvider implements Provider {
     public function boot() {
         add_action( 'init', [ self::class, 'register_post_type' ] );
         add_action( 'init', [ $this, 'register_meta_fields' ] );
+        add_filter( 'allowed_block_types_all', [ $this, 'allowed_block_types_all' ], 10, 2 );
         add_action( 'save_post_' . directorist_gutenberg_post_type(), [ $this, 'handle_template_enable_toggle' ], 10, 1 );
+    }
+
+    public function allowed_block_types_all( $allowed_block_types, $editor_context ) {
+        if ( empty( $editor_context->post->post_type ) || directorist_gutenberg_post_type() !== $editor_context->post->post_type ) {
+            return $allowed_block_types;
+        }
+
+        $blocks = array_keys( directorist_gutenberg_config( 'blocks' ) );
+
+        $blocks[] = "core/paragraph";
+        $blocks[] = "core/image";
+        $blocks[] = "core/heading";
+        $blocks[] = "core/gallery";
+        $blocks[] = "core/list";
+        $blocks[] = "core/list-item";
+        $blocks[] = "core/quote";
+        $blocks[] = "core/audio";
+        $blocks[] = "core/button";
+        $blocks[] = "core/buttons";
+        $blocks[] = "core/calendar";
+        $blocks[] = "core/code";
+        $blocks[] = "core/column";
+        $blocks[] = "core/columns";
+        $blocks[] = "core/cover";
+        $blocks[] = "core/details";
+        $blocks[] = "core/embed";
+        $blocks[] = "core/file";
+        $blocks[] = "core/group";
+        $blocks[] = "core/html";
+        $blocks[] = "core/media-text";
+        $blocks[] = "core/more";
+        $blocks[] = "core/nextpage";
+        $blocks[] = "core/page-list";
+        $blocks[] = "core/page-list-item";
+        $blocks[] = "core/pattern";
+        $blocks[] = "core/preformatted";
+        $blocks[] = "core/pullquote";
+        $blocks[] = "core/block";
+        $blocks[] = "core/rss";
+        $blocks[] = "core/separator";
+        $blocks[] = "core/shortcode";
+        $blocks[] = "core/social-link";
+        $blocks[] = "core/social-links";
+        $blocks[] = "core/spacer";
+        $blocks[] = "core/table";
+        $blocks[] = "core/text-columns";
+        $blocks[] = "core/verse";
+        $blocks[] = "core/video";
+        $blocks[] = "core/footnotes";
+        $blocks[] = "core/site-logo";
+        $blocks[] = "core/site-title";
+        $blocks[] = "core/site-tagline";
+        $blocks[] = "core/query";
+        $blocks[] = "core/template-part";
+        $blocks[] = "core/avatar";
+        $blocks[] = "core/post-title";
+        $blocks[] = "core/post-excerpt";
+        $blocks[] = "core/post-featured-image";
+        $blocks[] = "core/post-content";
+        $blocks[] = "core/post-author";
+        $blocks[] = "core/post-author-name";
+        $blocks[] = "core/post-date";
+        $blocks[] = "core/post-terms";
+        $blocks[] = "core/post-navigation-link";
+        $blocks[] = "core/post-template";
+        $blocks[] = "core/query-pagination";
+        $blocks[] = "core/query-pagination-next";
+        $blocks[] = "core/query-pagination-numbers";
+        $blocks[] = "core/query-pagination-previous";
+        $blocks[] = "core/query-no-results";
+        $blocks[] = "core/query-total";
+        $blocks[] = "core/read-more";
+        $blocks[] = "core/comments";
+        $blocks[] = "core/home-link";
+        $blocks[] = "core/loginout";
+        $blocks[] = "core/term-description";
+        $blocks[] = "core/query-title";
+        $blocks[] = "core/post-author-biography";
+        $blocks[] = "core/freeform";
+        $blocks[] = "core/widget-group";
+
+        return apply_filters( 'directorist_gutenberg_allowed_block_types', $blocks );
     }
 
     public static function register_post_type() {
