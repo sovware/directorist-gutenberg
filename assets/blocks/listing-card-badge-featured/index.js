@@ -1159,6 +1159,16 @@ function InlineSVG(props) {
 
 /***/ }),
 
+/***/ "./resources/blocks-icon/badge-featured.svg":
+/*!**************************************************!*\
+  !*** ./resources/blocks-icon/badge-featured.svg ***!
+  \**************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "icons/badge-featured.svg";
+
+/***/ }),
+
 /***/ "./resources/blocks-icon/directorist-logo.svg":
 /*!****************************************************!*\
   !*** ./resources/blocks-icon/directorist-logo.svg ***!
@@ -1254,11 +1264,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./resources/blocks/listing-card-badge-featured/style.scss");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listing-card-badge-featured/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-badge-featured/block.json");
+/* harmony import */ var _block_icon_badge_featured_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @block-icon/badge-featured.svg */ "./resources/blocks-icon/badge-featured.svg");
+/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 /**
  * Internal dependencies
  */
 
 
+
+
+
+
+/**
+ * External dependencies
+ */
 
 
 const exampleAttributes = {
@@ -1268,6 +1289,9 @@ const exampleAttributes = {
   metadata: _block_json__WEBPACK_IMPORTED_MODULE_3__,
   Edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   exampleAttributes,
+  icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    src: _block_icon_badge_featured_svg__WEBPACK_IMPORTED_MODULE_4__
+  }),
   templateTypes: ['listings-archive-grid-view', 'listings-archive-list-view']
 });
 
@@ -1321,7 +1345,9 @@ function Block({
   Controls,
   ...rest
 }) {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
+    className: 'directorist-gutenberg-listing-card-block'
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     ...blockProps,
     children: [Controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Controls, {

@@ -9,12 +9,45 @@
 		"icon": {
 			"type": "string",
 			"default": "line-awesome/eye-solid.svg"
+		},
+		"icon_color": {
+			"type": "string",
+			"default": ""
+		},
+		"icon_size": {
+			"type": "string",
+			"default": "16px"
 		}
 	},
 	"description": "Listing View Count Block",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"color": {
+			"text": true,
+			"background": true,
+			"gradients": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalLetterSpacing": true
+		},
+		"spacing": {
+			"padding": true,
+			"margin": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		}
 	},
 	"textdomain": "directorist-gutenberg",
 	"editorScript": "file:./index.js",

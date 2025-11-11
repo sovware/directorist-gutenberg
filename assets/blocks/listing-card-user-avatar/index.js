@@ -1169,6 +1169,16 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
 
 /***/ }),
 
+/***/ "./resources/blocks-icon/user-avatar.svg":
+/*!***********************************************!*\
+  !*** ./resources/blocks-icon/user-avatar.svg ***!
+  \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "icons/user-avatar.svg";
+
+/***/ }),
+
 /***/ "./resources/blocks/listing-card-user-avatar/block.json":
 /*!**************************************************************!*\
   !*** ./resources/blocks/listing-card-user-avatar/block.json ***!
@@ -1311,12 +1321,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listing-card-user-avatar/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-user-avatar/block.json");
 /* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls */ "./resources/blocks/listing-card-user-avatar/controls.js");
+/* harmony import */ var _block_icon_user_avatar_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @block-icon/user-avatar.svg */ "./resources/blocks-icon/user-avatar.svg");
+/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * Internal dependencies
  */
 
 
 
+
+
+
+
+/**
+ * External dependencies
+ */
 
 
 const exampleAttributes = {
@@ -1327,6 +1348,9 @@ const exampleAttributes = {
   Edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   Controls: _controls__WEBPACK_IMPORTED_MODULE_4__["default"],
   exampleAttributes,
+  icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    src: _block_icon_user_avatar_svg__WEBPACK_IMPORTED_MODULE_5__
+  }),
   templateTypes: ['listings-archive-grid-view', 'listings-archive-list-view']
 });
 
@@ -1390,7 +1414,9 @@ function Block({
   Controls,
   ...rest
 }) {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
+    className: 'directorist-gutenberg-listing-card-block'
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     ...blockProps,
     children: [Controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Controls, {

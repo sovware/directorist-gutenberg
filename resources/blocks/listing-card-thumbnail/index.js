@@ -6,6 +6,12 @@ import './style.scss';
 import Edit from './edit';
 import Save from './save';
 import metadata from './block.json';
+import thumbnailIcon from '@block-icon/thumbnail.svg';
+
+/**
+ * External dependencies
+ */
+import ReactSVG from 'react-inlinesvg';
 
 const exampleAttributes = {
 	is_preview: true,
@@ -18,6 +24,7 @@ registerBlock( {
 		save: Save,
 	},
 	exampleAttributes,
+	icon: <ReactSVG src={thumbnailIcon} />,
 	templateTypes: [
 		'listings-archive-grid-view',
 		'listings-archive-list-view',

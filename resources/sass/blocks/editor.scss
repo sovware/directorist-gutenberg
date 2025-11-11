@@ -62,3 +62,9 @@
     background: var(--directorist-color-primary);
     color: #fff;
 }
+
+// Block Icon Styles
+.block-editor-block-icon svg.directorist-gutenberg-block-icon{
+    fill: none !important;
+    color: #000;
+}

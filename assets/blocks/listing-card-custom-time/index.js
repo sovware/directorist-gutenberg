@@ -2873,6 +2873,17 @@ function __disposeResources(env) {
 
 /***/ }),
 
+/***/ "./resources/blocks-icon/custom-time.svg":
+/*!***********************************************!*\
+  !*** ./resources/blocks-icon/custom-time.svg ***!
+  \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+module.exports = __webpack_require__.p + "icons/custom-time.svg";
+
+/***/ }),
+
 /***/ "./resources/blocks-icon/directorist-logo.svg":
 /*!****************************************************!*\
   !*** ./resources/blocks-icon/directorist-logo.svg ***!
@@ -2891,7 +2902,7 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-custom-time","version":"0.1.0","title":"Custom Time","category":"directorist-listing-card-custom-fields","attributes":{"icon":{"type":"string","default":""},"meta_key":{"type":"string","default":""}},"description":"Listing custom time block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-custom-time","version":"0.1.0","title":"Custom Time","category":"directorist-listing-card-custom-fields","attributes":{"icon":{"type":"string","default":""},"meta_key":{"type":"string","default":""},"icon_color":{"type":"string","default":""},"icon_size":{"type":"string","default":"16px"}},"description":"Listing custom time block","example":{},"supports":{"html":false,"color":{"text":true,"background":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalTextDecoration":true,"__experimentalLetterSpacing":true},"spacing":{"padding":true,"margin":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -2912,13 +2923,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _directorist_gutenberg_gutenberg_components_controls_icon_picker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/controls/icon-picker */ "./resources/js/gutenberg/components/controls/icon-picker.js");
-/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useSubmissionFields */ "./resources/js/gutenberg/hooks/useSubmissionFields.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _directorist_gutenberg_gutenberg_components_controls_icon_picker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/controls/icon-picker */ "./resources/js/gutenberg/components/controls/icon-picker.js");
+/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useSubmissionFields */ "./resources/js/gutenberg/hooks/useSubmissionFields.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -2934,23 +2948,92 @@ function Controls({
   attributes,
   setAttributes
 }) {
+  const [isIconColorPickerOpen, setIsIconColorPickerOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+  const iconColor = attributes.icon_color || '';
   const {
     getFieldsOptions
-  } = (0,_directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_4__.useSubmissionFields)();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+  } = (0,_directorist_gutenberg_gutenberg_hooks_useSubmissionFields__WEBPACK_IMPORTED_MODULE_5__.useSubmissionFields)();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('General Settings', 'directorist-gutenberg'),
       initialOpen: true,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_directorist_gutenberg_gutenberg_components_controls_icon_picker__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_directorist_gutenberg_gutenberg_components_controls_icon_picker__WEBPACK_IMPORTED_MODULE_4__["default"], {
         attr_key: "icon",
         attributes: attributes,
         setAttributes: setAttributes,
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'directorist-gutenberg')
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      }), attributes?.icon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          style: {
+            marginBottom: '16px'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+            style: {
+              display: 'block',
+              marginBottom: '8px',
+              fontWeight: 500
+            },
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Color', 'directorist-gutenberg')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            style: {
+              position: 'relative',
+              display: 'inline-block',
+              width: '100%'
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+              onClick: () => setIsIconColorPickerOpen(!isIconColorPickerOpen),
+              style: {
+                width: '100%',
+                height: '30px',
+                backgroundColor: iconColor || '#000',
+                border: '1px solid #ccc',
+                borderRadius: '3px',
+                cursor: 'pointer'
+              }
+            }), isIconColorPickerOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
+              onClose: () => setIsIconColorPickerOpen(false),
+              placement: "left-start",
+              offset: 20,
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
+                color: iconColor,
+                onChangeComplete: colorValue => {
+                  const colorString = colorValue.rgb ? `rgba(${colorValue.rgb.r}, ${colorValue.rgb.g}, ${colorValue.rgb.b}, ${colorValue.rgb.a})` : colorValue.hex || '';
+                  setAttributes({
+                    icon_color: colorString
+                  });
+                },
+                enableAlpha: true
+              })
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Size', 'directorist-gutenberg'),
+          value: attributes.icon_size || '16px',
+          onChange: value => setAttributes({
+            icon_size: value || '16px'
+          }),
+          units: [{
+            value: 'px',
+            label: 'px'
+          }, {
+            value: 'em',
+            label: 'em'
+          }, {
+            value: 'rem',
+            label: 'rem'
+          }, {
+            value: 'vh',
+            label: 'vh'
+          }, {
+            value: 'vw',
+            label: 'vw'
+          }]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         style: {
           height: '16px'
         }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Select Field', 'directorist-gutenberg'),
         value: attributes.meta_key,
         options: getFieldsOptions('custom', 'time'),
@@ -3017,8 +3100,13 @@ function Edit({
       className: "directorist-gutenberg-listing-card-element-content",
       children: [iconUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
         className: "directorist-gutenberg-listing-card-element-icon",
+        style: {
+          '--directorist-gutenberg-icon-color': attributes.icon_color
+        },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          src: iconUrl
+          src: iconUrl,
+          width: attributes.icon_size,
+          height: attributes.icon_size
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "directorist-gutenberg-listing-card-element-details",
@@ -3059,12 +3147,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listing-card-custom-time/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-custom-time/block.json");
 /* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls */ "./resources/blocks/listing-card-custom-time/controls.js");
+/* harmony import */ var _block_icon_custom_time_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @block-icon/custom-time.svg */ "./resources/blocks-icon/custom-time.svg");
+/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * Internal dependencies
  */
 
 
 
+
+
+
+
+/**
+ * External dependencies
+ */
 
 
 const exampleAttributes = {
@@ -3075,6 +3174,9 @@ const exampleAttributes = {
   Edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   Controls: _controls__WEBPACK_IMPORTED_MODULE_4__["default"],
   exampleAttributes,
+  icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    src: _block_icon_custom_time_svg__WEBPACK_IMPORTED_MODULE_5__
+  }),
   templateTypes: ['listings-archive-grid-view', 'listings-archive-list-view']
 });
 
@@ -3130,7 +3232,9 @@ function Block({
   Controls,
   ...rest
 }) {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
+    className: 'directorist-gutenberg-listing-card-block'
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     ...blockProps,
     children: [Controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Controls, {

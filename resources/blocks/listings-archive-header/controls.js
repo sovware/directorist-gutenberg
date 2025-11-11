@@ -2,9 +2,63 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ToggleControl, CheckboxControl, __experimentalVStack as VStack, } from '@wordpress/components';
+import { PanelBody, TextControl, ToggleControl, FormTokenField } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+// View Type mappings
+const VIEW_TYPE_MAP = {
+	grid: __( 'Grid', 'directorist-gutenberg' ),
+	list: __( 'List', 'directorist-gutenberg' ),
+	map: __( 'Map', 'directorist-gutenberg' ),
+};
+
+const VIEW_TYPE_VALUES = Object.keys( VIEW_TYPE_MAP );
+const VIEW_TYPE_SUGGESTIONS = Object.values( VIEW_TYPE_MAP );
+
+// Sort By mappings
+const SORT_BY_MAP = {
+	a_z: __( 'A to Z (title)', 'directorist-gutenberg' ),
+	z_a: __( 'Z to A (title)', 'directorist-gutenberg' ),
+	latest: __( 'Latest Listings', 'directorist-gutenberg' ),
+	oldest: __( 'Oldest Listings', 'directorist-gutenberg' ),
+	popular: __( 'Popular Listings', 'directorist-gutenberg' ),
+	price_low_to_high: __( 'Price: Low to High', 'directorist-gutenberg' ),
+	price_high_to_low: __( 'Price: High to Low', 'directorist-gutenberg' ),
+	random: __( 'Random Listings', 'directorist-gutenberg' ),
+};
+
+const SORT_BY_VALUES = Object.keys( SORT_BY_MAP );
+const SORT_BY_SUGGESTIONS = Object.values( SORT_BY_MAP );
+
+// Reverse maps for onChange handlers (label to value)
+const VIEW_TYPE_LABEL_TO_VALUE = Object.fromEntries(
+	Object.entries( VIEW_TYPE_MAP ).map( ( [ key, value ] ) => [ value, key ] )
+);
+const SORT_BY_LABEL_TO_VALUE = Object.fromEntries(
+	Object.entries( SORT_BY_MAP ).map( ( [ key, value ] ) => [ value, key ] )
+);
+
+// Helper function to convert values to labels
+const valuesToLabels = ( values, valueToLabelMap ) => {
+	return ( values || [] ).map( ( value ) => valueToLabelMap[ value ] || value );
+};
+
+// Helper function to convert tokens to values
+const tokensToValues = ( tokens, labelToValueMap, validValues ) => {
+	return tokens
+		.map( ( token ) => {
+			// Handle label (translated)
+			if ( labelToValueMap[ token ] ) {
+				return labelToValueMap[ token ];
+			}
+			// Handle value (already a valid value)
+			if ( validValues.includes( token ) ) {
+				return token;
+			}
+			return null;
+		} )
+		.filter( ( value ) => value !== null );
+};
 /**
  * Internal dependencies
  */
@@ -32,45 +86,17 @@ export default function Controls( { attributes, setAttributes } ) {
 					onChange={ ( value ) => setAttributes( { listings_count_text: value } ) }
 				/>
 
-				<VStack>
-					<span>{ __( 'View Type', 'directorist-gutenberg' ) }</span>
-					<CheckboxControl
-						label={ __( 'Grid', 'directorist-gutenberg' ) }
-						checked={ ( attributes.view_type || [] ).includes( 'grid' ) }
-						onChange={ ( value ) => {
-							const currentViewType = attributes.view_type || [];
-							setAttributes( {
-								view_type: value
-									? ( currentViewType.includes( 'grid' ) ? currentViewType : [...currentViewType, 'grid'] )
-									: currentViewType.filter( v => v !== 'grid' )
-							} );
-						} }
-					/>
-					<CheckboxControl
-						label={ __( 'List', 'directorist-gutenberg' ) }
-						checked={ ( attributes.view_type || [] ).includes( 'list' ) }
-						onChange={ ( value ) => {
-							const currentViewType = attributes.view_type || [];
-							setAttributes( {
-								view_type: value
-									? ( currentViewType.includes( 'list' ) ? currentViewType : [...currentViewType, 'list'] )
-									: currentViewType.filter( v => v !== 'list' )
-							} );
-						} }
-					/>
-					<CheckboxControl
-						label={ __( 'Map', 'directorist-gutenberg' ) }
-						checked={ ( attributes.view_type || [] ).includes( 'map' ) }
-						onChange={ ( value ) => {
-							const currentViewType = attributes.view_type || [];
-							setAttributes( {
-								view_type: value
-									? ( currentViewType.includes( 'map' ) ? currentViewType : [...currentViewType, 'map'] )
-									: currentViewType.filter( v => v !== 'map' )
-							} );
-						} }
-					/>
-				</VStack>
+				<FormTokenField
+					label={ __( 'View Type', 'directorist-gutenberg' ) }
+					value={ valuesToLabels( attributes.view_type, VIEW_TYPE_MAP ) }
+					suggestions={ VIEW_TYPE_SUGGESTIONS }
+					onChange={ ( tokens ) => {
+						setAttributes( {
+							view_type: tokensToValues( tokens, VIEW_TYPE_LABEL_TO_VALUE, VIEW_TYPE_VALUES ),
+						} );
+					} }
+					__experimentalExpandOnFocus
+				/>
 
 				<ToggleControl
 					label={ __( 'Enable Sorting', 'directorist-gutenberg' ) }
@@ -84,98 +110,17 @@ export default function Controls( { attributes, setAttributes } ) {
 					onChange={ ( value ) => setAttributes( { sort_by_label: value } ) }
 				/>
 
-				<VStack>
-					<span>{ __( 'Sort By', 'directorist-gutenberg' ) }</span>
-					<CheckboxControl
-						label={ __( 'A to Z (title)', 'directorist-gutenberg' ) }
-						checked={ ( attributes.sort_by || [] ).includes( 'a_z' ) }
-						onChange={ ( value ) => {
-							const currentSortBy = attributes.sort_by || [];
-							setAttributes( {
-								sort_by: value
-									? ( currentSortBy.includes( 'a_z' ) ? currentSortBy : [...currentSortBy, 'a_z'] )
-									: currentSortBy.filter( v => v !== 'a_z' )
-							} );
-						} }
-					/>
-					<CheckboxControl
-						label={ __( 'Z to A (title)', 'directorist-gutenberg' ) }
-						checked={ ( attributes.sort_by || [] ).includes( 'z_a' ) }
-						onChange={ ( value ) => {
-							const currentSortBy = attributes.sort_by || [];
-							setAttributes( {
-								sort_by: value
-									? ( currentSortBy.includes( 'z_a' ) ? currentSortBy : [...currentSortBy, 'z_a'] )
-									: currentSortBy.filter( v => v !== 'z_a' )
-							} );
-						} }
-					/>
-					<CheckboxControl
-						label={ __( 'Latest Listings', 'directorist-gutenberg' ) }
-						checked={ ( attributes.sort_by || [] ).includes( 'latest' ) }
-						onChange={ ( value ) => {
-							const currentSortBy = attributes.sort_by || [];
-							setAttributes( {
-								sort_by: value
-									? ( currentSortBy.includes( 'latest' ) ? currentSortBy : [...currentSortBy, 'latest'] )
-									: currentSortBy.filter( v => v !== 'latest' )
-							} );
-						} }
-					/>
-					<CheckboxControl
-						label={ __( 'Oldest Listings', 'directorist-gutenberg' ) }
-						checked={ ( attributes.sort_by || [] ).includes( 'oldest' ) }
-						onChange={ ( value ) => {
-							const currentSortBy = attributes.sort_by || [];
-							setAttributes( {
-								sort_by: value
-									? ( currentSortBy.includes( 'oldest' ) ? currentSortBy : [...currentSortBy, 'oldest'] )
-									: currentSortBy.filter( v => v !== 'oldest' )
-							} );
-						} }
-					/>
-					<CheckboxControl
-						label={ __( 'Popular Listings', 'directorist-gutenberg' ) }
-						checked={ ( attributes.sort_by || [] ).includes( 'popular' ) }
-						onChange={ ( value ) => {
-							const currentSortBy = attributes.sort_by || [];
-							setAttributes( {
-								sort_by: value
-									? ( currentSortBy.includes( 'popular' ) ? currentSortBy : [...currentSortBy, 'popular'] )
-									: currentSortBy.filter( v => v !== 'popular' )
-							} );
-						} }
-					/>
-					<CheckboxControl
-						label={ __( 'Price: Low to High', 'directorist-gutenberg' ) }
-						checked={ ( attributes.sort_by || [] ).includes( 'price_low_to_high' ) }
-						onChange={ ( value ) => {
-							const currentSortBy = attributes.sort_by || [];
-							setAttributes( {
-								sort_by: value
-									? ( currentSortBy.includes( 'price_low_to_high' ) ? currentSortBy : [...currentSortBy, 'price_low_to_high'] )
-									: currentSortBy.filter( v => v !== 'price_low_to_high' )
-							} );
-						} }
-					/>
-					<CheckboxControl
-						label={ __( 'Price: High to Low', 'directorist-gutenberg' ) }
-						checked={ ( attributes.sort_by || [] ).includes( 'price_high_to_low' ) }
-						onChange={ ( value ) => {
-							const currentSortBy = attributes.sort_by || [];
-							setAttributes( {
-								sort_by: value
-									? ( currentSortBy.includes( 'price_high_to_low' ) ? currentSortBy : [...currentSortBy, 'price_high_to_low'] )
-									: currentSortBy.filter( v => v !== 'price_high_to_low' )
-							} );
-						} }
-					/>
-					<CheckboxControl
-						label={ __( 'Random Listings', 'directorist-gutenberg' ) }
-						checked={ attributes.sort_by.includes( 'random' ) }
-						onChange={ ( value ) => setAttributes( { sort_by: value ? [...attributes.sort_by, 'random'] : attributes.sort_by.filter( v => v !== 'random' ) } ) }
-					/>
-				</VStack>
+				<FormTokenField
+					label={ __( 'Sort By', 'directorist-gutenberg' ) }
+					value={ valuesToLabels( attributes.sort_by, SORT_BY_MAP ) }
+					suggestions={ SORT_BY_SUGGESTIONS }
+					onChange={ ( tokens ) => {
+						setAttributes( {
+							sort_by: tokensToValues( tokens, SORT_BY_LABEL_TO_VALUE, SORT_BY_VALUES ),
+						} );
+					} }
+					__experimentalExpandOnFocus
+				/>
 
             </PanelBody>
         </InspectorControls>

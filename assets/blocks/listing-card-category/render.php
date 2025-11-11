@@ -3,6 +3,9 @@
 $listing_id = get_the_ID();
 $default_icon = isset( $attributes['icon'] ) ? $attributes['icon'] : 'font-awesome/folder-alt.svg';
 
+// Build icon style from icon_color and icon_size attributes
+$icon_style = directorist_gutenberg_build_icon_style( $attributes );
+
 // Get categories for the current listing
 $cats = array();
 if ( defined( 'ATBDP_CATEGORY' ) ) {
@@ -13,7 +16,7 @@ if ( defined( 'ATBDP_CATEGORY' ) ) {
 }
 
 ?>
-<div <?php echo get_block_wrapper_attributes(); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => 'directorist-gutenberg-listing-card-block']); ?>>
     <div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-category">
 		<div class="directorist-gutenberg-listing-card-element-content">
 			<div class="directorist-gutenberg-listing-category">
@@ -28,7 +31,7 @@ if ( defined( 'ATBDP_CATEGORY' ) ) {
 						if ( function_exists( 'directorist_icon' ) && ( strpos( $term_icon, 'fa-' ) === 0 || strpos( $term_icon, 'fas ' ) === 0 || strpos( $term_icon, 'far ' ) === 0 || strpos( $term_icon, 'fab ' ) === 0 ) ) {
 							directorist_icon( $term_icon );
 						} else {
-							echo '<span class="directorist-gutenberg-listing-category-icon"> ' . directorist_gutenberg_get_icon( 'icons/icon-library/' . $term_icon ) . '</span>';
+							echo '<span class="directorist-gutenberg-listing-card-element-icon directorist-gutenberg-listing-category-icon" style="' . $icon_style . '"> ' . directorist_gutenberg_get_icon( 'icons/icon-library/' . $term_icon ) . '</span>';
 						}
 						?>
 						<?php echo esc_html( $term_label ); ?>
@@ -53,7 +56,7 @@ if ( defined( 'ATBDP_CATEGORY' ) ) {
 										if ( function_exists( 'directorist_icon' ) && ( strpos( $term_icon, 'fa-' ) === 0 || strpos( $term_icon, 'fas ' ) === 0 || strpos( $term_icon, 'far ' ) === 0 || strpos( $term_icon, 'fab ' ) === 0 ) ) {
 											directorist_icon( $term_icon );
 										} else {
-											echo '<span class="directorist-gutenberg-listing-category-icon">' . directorist_gutenberg_get_icon( 'icons/icon-library/' . $term_icon ) . '</span>';
+											echo '<span class="directorist-gutenberg-listing-card-element-icon directorist-gutenberg-listing-category-icon" style="' . $icon_style . '">' . directorist_gutenberg_get_icon( 'icons/icon-library/' . $term_icon ) . '</span>';
 										}
 										?>
 										<?php echo esc_html( $term_label ); ?>
@@ -67,9 +70,9 @@ if ( defined( 'ATBDP_CATEGORY' ) ) {
 						</div>
 						<?php
 					}
-				} else { ?>
+					} else { ?>
 					<a href="#">
-						<span><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $default_icon ); ?></span>
+						<span class="directorist-gutenberg-listing-card-element-icon" style="<?php echo $icon_style; ?>"><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $default_icon ); ?></span>
 						<?php esc_html_e( 'Uncategorized', 'directorist' ); ?>
 					</a>
 					<?php

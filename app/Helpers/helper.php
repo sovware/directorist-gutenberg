@@ -172,27 +172,49 @@ function directorist_gutenberg_get_directory_submission_field_option( int $direc
 }
 
 function directorist_gutenberg_get_directory_submission_field_options( int $directory_type_id, string $field_type, string $field_name_or_key, ?array $field_values ) {
-    if ( empty( $field_values ) ) {
-        return null;
-    }
+	if ( empty( $field_values ) ) {
+		return null;
+	}
 
-    $field = directorist_gutenberg_get_directory_submission_field( $directory_type_id, $field_type, $field_name_or_key );
+	$field = directorist_gutenberg_get_directory_submission_field( $directory_type_id, $field_type, $field_name_or_key );
 
-    if ( empty( $field ) ) {
-        return null;
-    }
+	if ( empty( $field ) ) {
+		return null;
+	}
 
-    if ( empty( $field['options'] ) ) {
-        return null;
-    }
+	if ( empty( $field['options'] ) ) {
+		return null;
+	}
 
-    $selected_options = [];
+	$selected_options = [];
 
-    foreach ( $field['options'] as $option ) {
-        if ( in_array( strval( $option['option_value'] ), $field_values ) ) {
-            $selected_options[] = $option;
-        }
-    }
+	foreach ( $field['options'] as $option ) {
+		if ( in_array( strval( $option['option_value'] ), $field_values ) ) {
+			$selected_options[] = $option;
+		}
+	}
 
-    return $selected_options;
+	return $selected_options;
+}
+
+/**
+ * Build icon style string from block attributes
+ *
+ * @param array $attributes Block attributes array
+ * @param string $color_key Attribute key for icon color (default: 'icon_color')
+ * @param string $size_key Attribute key for icon size (default: 'icon_size')
+ * @return string CSS custom properties string for icon styles
+ */
+function directorist_gutenberg_build_icon_style( array $attributes, string $color_key = 'icon_color', string $size_key = 'icon_size' ): string {
+	$icon_style_parts = [];
+
+	if ( ! empty( $attributes[ $color_key ] ) ) {
+		$icon_style_parts[] = '--directorist-gutenberg-icon-color: ' . esc_attr( $attributes[ $color_key ] );
+	}
+
+	if ( ! empty( $attributes[ $size_key ] ) ) {
+		$icon_style_parts[] = '--directorist-gutenberg-icon-size: ' . esc_attr( $attributes[ $size_key ] );
+	}
+
+	return ! empty( $icon_style_parts ) ? implode( '; ', $icon_style_parts ) . ';' : '';
 }

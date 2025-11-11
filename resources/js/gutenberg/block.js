@@ -19,7 +19,7 @@ export default function Block( {
     Controls,
 	...rest
 } ) {
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps({ className: 'directorist-gutenberg-listing-card-block' });
 
 	return (
         <div {...blockProps}>

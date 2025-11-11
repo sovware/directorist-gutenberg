@@ -24,8 +24,8 @@ export default function Edit({ attributes, setAttributes }) {
 			>
 				<div className="directorist-gutenberg-listing-card-element-content">
 					{iconUrl && (
-						<span className="directorist-gutenberg-listing-card-element-icon">
-							<ReactSVG src={iconUrl} />
+						<span className="directorist-gutenberg-listing-card-element-icon" style={{ '--directorist-gutenberg-icon-color': attributes.icon_color }}>
+							<ReactSVG src={iconUrl} width={attributes.icon_size} height={attributes.icon_size} />
 						</span>
 					)}
 					<span>Category</span>
