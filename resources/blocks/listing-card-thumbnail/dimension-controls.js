@@ -62,9 +62,14 @@ const DimensionControls = ( {
 			'dimensions.aspectRatios.theme',
 			'dimensions.defaultAspectRatios'
 		);
+
+	const safeAvailableUnits = Array.isArray( availableUnits )
+		? availableUnits
+		: [ 'px', '%', 'vw', 'em', 'rem' ];
+
 	const units = useCustomUnits( {
-		availableUnits: availableUnits || [ 'px', '%', 'vw', 'em', 'rem' ],
-	} );
+		availableUnits: safeAvailableUnits,
+	} ) || safeAvailableUnits;
 
 	const onDimensionChange = ( dimension, nextValue ) => {
 		const parsedValue = parseFloat( nextValue );
@@ -85,15 +90,19 @@ const DimensionControls = ( {
 	const showScaleControl =
 		height || ( aspectRatio && aspectRatio !== 'auto' );
 
-	const themeOptions = themeRatios?.map( ( { name, ratio } ) => ( {
-		label: name,
-		value: ratio,
-	} ) );
+	const themeOptions = Array.isArray( themeRatios )
+		? themeRatios.map( ( { name, ratio } ) => ( {
+				label: name,
+				value: ratio,
+		  } ) )
+		: [];
 
-	const defaultOptions = defaultRatios?.map( ( { name, ratio } ) => ( {
-		label: name,
-		value: ratio,
-	} ) );
+	const defaultOptions = Array.isArray( defaultRatios )
+		? defaultRatios.map( ( { name, ratio } ) => ( {
+				label: name,
+				value: ratio,
+		  } ) )
+		: [];
 
 	const aspectRatioOptions = [
 		{
@@ -105,7 +114,7 @@ const DimensionControls = ( {
 			value: 'auto',
 		},
 		...( showDefaultRatios ? defaultOptions : [] ),
-		...( themeOptions ? themeOptions : [] ),
+		...( themeOptions || [] ),
 	];
 
 	return (
@@ -151,7 +160,7 @@ const DimensionControls = ( {
 					onChange={ ( nextHeight ) =>
 						onDimensionChange( 'height', nextHeight )
 					}
-					units={ units }
+					units={ Array.isArray( units ) ? units : safeAvailableUnits }
 				/>
 			</ToolsPanelItem>
 			<ToolsPanelItem
@@ -174,7 +183,7 @@ const DimensionControls = ( {
 					onChange={ ( nextWidth ) =>
 						onDimensionChange( 'width', nextWidth )
 					}
-					units={ units }
+					units={ Array.isArray( units ) ? units : safeAvailableUnits }
 				/>
 			</ToolsPanelItem>
 			{ showScaleControl && (

@@ -18,19 +18,19 @@ import { compose } from '@wordpress/compose';
  */
 import { dimRatioToClass } from './utils';
 
-const Overlay = ( { attributes, overlayColor } ) => {
+const Overlay = ( { attributes, overlayColor = {} } ) => {
 	const { dimRatio } = attributes;
 	const { gradientClass, gradientValue } = __experimentalUseGradient();
 	const colorGradientSettings = useMultipleOriginColorsAndGradients();
 
-	const overlayStyles = {
-		backgroundColor: overlayColor.color,
-		backgroundImage: gradientValue,
-	};
-
 	if ( ! colorGradientSettings.hasColorsOrGradients || ! dimRatio ) {
 		return null;
 	}
+
+	const overlayStyles = {
+		backgroundColor: overlayColor?.color,
+		backgroundImage: gradientValue,
+	};
 
 	return (
 		<span
@@ -39,7 +39,7 @@ const Overlay = ( { attributes, overlayColor } ) => {
 				'directorist-gutenberg-listing-card-thumbnail-overlay',
 				dimRatioToClass( dimRatio ),
 				{
-					[ overlayColor.class ]: overlayColor.class,
+					[ overlayColor?.class ]: overlayColor?.class,
 					'has-background-dim': dimRatio !== undefined,
 					'has-background-gradient': gradientValue,
 					[ gradientClass ]: gradientClass,
