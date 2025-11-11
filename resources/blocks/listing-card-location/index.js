@@ -6,6 +6,12 @@ import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
 import Controls from './controls';
+import locationIcon from '@block-icon/listing-location.svg';
+
+/**
+ * External dependencies
+ */
+import ReactSVG from 'react-inlinesvg';
 
 const exampleAttributes = {
 	is_preview: true,
@@ -16,4 +22,5 @@ registerBlock( {
 	Edit,
 	Controls,
 	exampleAttributes,
+	icon: <ReactSVG src={locationIcon} />,
 } );

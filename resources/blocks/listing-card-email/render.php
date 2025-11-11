@@ -26,13 +26,16 @@ $show_label   = isset( $attributes['show_label'] ) ? $attributes['show_label'] :
 
 // Get label text (default to "Email").
 $label = __( 'Email', 'directorist' );
+
+// Build icon style from icon_color and icon_size attributes
+$icon_style = directorist_gutenberg_build_icon_style( $attributes );
 ?>
 
-<div <?php echo get_block_wrapper_attributes(); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => 'directorist-gutenberg-listing-card-block']); ?>>
 	<div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-email">
 		<div class="directorist-gutenberg-listing-card-element-content">
 			<?php if ( ! empty( $default_icon ) ) : ?>
-				<span><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $default_icon ); ?></span>
+				<span class="directorist-gutenberg-listing-card-element-icon" style="<?php echo $icon_style; ?>"><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $default_icon ); ?></span>
 			<?php endif; ?>
 			<div class="directorist-gutenberg-listing-card-element-details">
 				<?php if ( $show_label ) : ?>

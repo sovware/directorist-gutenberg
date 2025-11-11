@@ -6,7 +6,7 @@ $icon_style = directorist_gutenberg_build_icon_style( $attributes );
     <div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-address">
         <div class="directorist-gutenberg-listing-card-element-content">
             <?php if ( ! empty( $attributes['icon'] ) ) : ?>
-                <span style="<?php echo $icon_style; ?>"><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $attributes['icon'] ); ?></span>
+                <span class="directorist-gutenberg-listing-card-element-icon" style="<?php echo $icon_style; ?>"><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $attributes['icon'] ); ?></span>
             <?php endif; ?>
 
             <div class="directorist-gutenberg-listing-card-element-details">
