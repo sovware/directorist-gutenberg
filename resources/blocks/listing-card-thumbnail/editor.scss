@@ -1,5 +1,69 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
+.directorist-gutenberg-listing-card-thumbnail {
+	.directorist-gutenberg-listing-card-thumbnail-back {
+		// Ensure back element doesn't interfere with interactions
+		user-select: none;
+		pointer-events: none !important; // Critical: prevent blocking clicks
+		
+		// Make sure the image also doesn't capture events
+		img {
+			pointer-events: none !important;
+			user-select: none;
+		}
+	}
+
+	.directorist-gutenberg-listing-card-thumbnail-front {
+		position: relative;
+		min-height: 300px;
+		isolation: isolate;
+		
+		// Ensure the entire area is interactive
+		pointer-events: auto;
+		
+		// Make sure nested layout blocks (groups, columns, rows, stacks) are clickable
+		.block-editor-inner-blocks,
+		.block-editor-block-list__layout {
+			position: relative;
+			z-index: 1;
+		}
+
+		// Style the block list appender - CRITICAL for plus button to work
+		.block-list-appender {
+			position: relative;
+			z-index: 10;
+			pointer-events: auto;
+			
+			// Make sure the button itself is clickable
+			button {
+				position: relative;
+				z-index: 11;
+				pointer-events: auto;
+			}
+		}
+
+		// Default appender when no blocks exist
+		.block-editor-default-block-appender {
+			position: relative;
+			z-index: 10;
+			pointer-events: auto;
+			
+			button {
+				position: relative;
+				z-index: 11;
+				pointer-events: auto;
+			}
+		}
+
+		// Ensure all child blocks are interactive
+		.wp-block {
+			position: relative;
+			z-index: 1;
+			pointer-events: auto;
+		}
+
+		// Make sure block toolbar and inserter are accessible
+		.block-editor-block-list__block {
+			position: relative;
+			z-index: 2;
+		}
+	}
+}

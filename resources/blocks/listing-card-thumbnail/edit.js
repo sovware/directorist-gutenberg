@@ -1,20 +1,36 @@
 /**
  * WordPress dependencies
  */
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
  */
+import sampleImage from '@image/sample-image.jpg';
 import './editor.scss';
 
 export default function Edit() {
+	const blockProps = useBlockProps( {
+		className: 'directorist-gutenberg-listing-card-thumbnail',
+	} );
+
+	const innerBlocksProps = useInnerBlocksProps(
+		{
+			className: 'directorist-gutenberg-listing-card-thumbnail-front',
+		}
+	);
+
 	return (
-		<div>
-			<img
-				src="https://images.unsplash.com/vector-1745846418226-2e2588f6b766?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1160"
-				alt="Listing Thumbnail"
-			/>
+		<div { ...blockProps }>
+			<div className="directorist-gutenberg-listing-card-thumbnail-back">
+				<img
+					className="directorist-gutenberg-listing-card-thumbnail-preview-img"
+					src={ sampleImage }
+					alt="Listing Thumbnail"
+				/>
+			</div>
+			<div { ...innerBlocksProps } />
 		</div>
 	);
 }
