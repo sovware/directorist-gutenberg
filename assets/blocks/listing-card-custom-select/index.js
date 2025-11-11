@@ -3182,7 +3182,8 @@ const exampleAttributes = {
   exampleAttributes,
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__["default"], {
     src: _block_icon_custom_dropdown_svg__WEBPACK_IMPORTED_MODULE_5__
-  })
+  }),
+  templateTypes: ['listings-archive-grid-view', 'listings-archive-list-view']
 });
 
 /***/ }),
@@ -3896,8 +3897,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
 /* harmony import */ var _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @block-icon/directorist-logo.svg */ "./resources/blocks-icon/directorist-logo.svg");
 /* harmony import */ var _block__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block */ "./resources/js/gutenberg/block.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _localized_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./localized-data */ "./resources/js/gutenberg/localized-data.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 /**
  * WordPress dependencies
  */
@@ -3914,23 +3916,31 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function registerBlock({
   metadata,
   Edit,
   Controls,
   icon = '',
   exampleAttributes = {},
-  props = {}
+  props = {},
+  templateTypes = false
 }) {
   if ('directorist_gbt' !== typenow) {
     return;
+  }
+  if (templateTypes) {
+    const template_type = (0,_localized_data__WEBPACK_IMPORTED_MODULE_4__.getLocalizedBlockDataByKey)('template_type');
+    if (!templateTypes.includes(template_type)) {
+      return;
+    }
   }
   if (!icon) {
     // Ensure directoristLogo is a valid URL string for ReactSVG
     // webpack asset/resource returns a URL string, but sometimes it's wrapped
     const logoUrl = typeof _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__ === 'string' ? _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__ : _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__?.default || _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__;
     if (logoUrl) {
-      icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
         src: logoUrl
       });
     } else {
@@ -3940,7 +3950,7 @@ function registerBlock({
   }
 
   // Wrap Edit component with Block wrapper that handles useBlockProps
-  const WrappedEdit = editProps => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_block__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  const WrappedEdit = editProps => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_block__WEBPACK_IMPORTED_MODULE_3__["default"], {
     Edit: Edit,
     Controls: Controls,
     ...editProps

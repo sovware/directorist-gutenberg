@@ -16,4 +16,5 @@ registerBlock( {
 	Edit,
 	Controls,
 	exampleAttributes,
+	templateTypes: [ 'listings-archive' ],
 } );

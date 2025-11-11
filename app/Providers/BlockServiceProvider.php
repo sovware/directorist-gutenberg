@@ -5,11 +5,12 @@ namespace DirectoristGutenberg\App\Providers;
 defined( "ABSPATH" ) || exit;
 
 use DirectoristGutenberg\WpMVC\Contracts\Provider;
+use WP_Block_Editor_Context;
 
 class BlockServiceProvider implements Provider {
     public function boot() {
         add_action( 'init', [ $this, 'register_blocks' ] );
-        add_filter( 'block_categories_all', [ $this, 'register_block_categories' ] );
+        add_filter( 'block_categories_all', [ $this, 'register_block_categories' ], 10, 2 );
         add_action( 'enqueue_block_editor_assets', [ $this, 'localize_block_editor_scripts' ] );
     }
 
@@ -73,22 +74,26 @@ class BlockServiceProvider implements Provider {
         );
     }
 
-    public function register_block_categories( $categories ) {
-        $categories[] = [
-            'slug' => 'directorist-listings-archive',
-            'title' => __( 'Directorist Listings Archive', 'directorist-gutenberg' ),
+    public function register_block_categories( array $categories, WP_Block_Editor_Context $block_editor_context ) {
+        if ( $block_editor_context->post->post_type !== directorist_gutenberg_post_type() ) {
+            return $categories;
+        }
+
+        $custom_categories = [
+            [
+                'slug'  => 'directorist-listings-archive',
+                'title' => __( 'Directorist Listings Archive', 'directorist-gutenberg' ),
+            ],
+            [
+                'slug'  => 'directorist-listing-card-preset-fields',
+                'title' => __( 'Directorist Preset Fields', 'directorist-gutenberg' ),
+            ],
+            [
+                'slug'  => 'directorist-listing-card-custom-fields',
+                'title' => __( 'Directorist Custom Fields', 'directorist-gutenberg' ),
+            ],
         ];
 
-        $categories[] = [
-            'slug' => 'directorist-listing-card-preset-fields',
-            'title' => __( 'Directorist Preset Fields', 'directorist-gutenberg' ),
-        ];
-
-        $categories[] = [
-            'slug' => 'directorist-listing-card-custom-fields',
-            'title' => __( 'Directorist Custom Fields', 'directorist-gutenberg' ),
-        ];
-
-        return $categories;
+        return array_merge( $custom_categories, $categories );
     }
 }

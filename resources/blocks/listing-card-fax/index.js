@@ -23,4 +23,8 @@ registerBlock( {
 	Controls,
 	exampleAttributes,
 	icon: <ReactSVG src={faxIcon} />,
+	templateTypes: [
+		'listings-archive-grid-view',
+		'listings-archive-list-view',
+	],
 } );

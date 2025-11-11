@@ -23,4 +23,8 @@ registerBlock( {
 	Controls,
 	exampleAttributes,
 	icon: <ReactSVG src={userAvatarIcon} />,
+	templateTypes: [
+		'listings-archive-grid-view',
+		'listings-archive-list-view',
+	],
 } );

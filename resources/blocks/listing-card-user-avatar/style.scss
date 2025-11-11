@@ -1,5 +1,7 @@
-.directorist-gutenberg-listing-card-element-user-avatar{
-    .directorist-gutenberg-listing-user-avatar{
+.directorist-gutenberg-listing-card-element-user-avatar {
+    position: relative;
+    z-index: 10;
+    .directorist-gutenberg-listing-user-avatar {
         display: flex;
         align-items: center;
         a{
@@ -17,13 +19,13 @@
             }
         }
     }
-    .directorist-gutenberg-listing-user-avatar-left{
+    .directorist-gutenberg-listing-user-avatar-left {
         justify-content: flex-start;
     }
-    .directorist-gutenberg-listing-user-avatar-center{
+    .directorist-gutenberg-listing-user-avatar-center {
         justify-content: center;
     }
-    .directorist-gutenberg-listing-user-avatar-right{
+    .directorist-gutenberg-listing-user-avatar-right {
         justify-content: flex-end;
     }
 }

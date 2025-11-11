@@ -59,8 +59,15 @@ const tokensToValues = ( tokens, labelToValueMap, validValues ) => {
 		} )
 		.filter( ( value ) => value !== null );
 };
+/**
+ * Internal dependencies
+ */
+import useArchiveBlockCommonTask from '@directorist-gutenberg/gutenberg/hooks/useArchiveBlockCommonTask';
 
 export default function Controls( { attributes, setAttributes } ) {
+
+	useArchiveBlockCommonTask( { setAttributes } );
+
     return (
         <InspectorControls>
             <PanelBody

@@ -1,5 +1,5 @@
 /**
- * WordPress dependencies
+ * Internal dependencies
  */
 import useArchiveBlockCommonTask from '@directorist-gutenberg/gutenberg/hooks/useArchiveBlockCommonTask';
 

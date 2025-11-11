@@ -1199,14 +1199,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Edit)
 /* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-thumbnail/editor.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _image_sample_image_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @image/sample-image.jpg */ "./resources/images/sample-image.jpg");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-thumbnail/editor.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 /**
  * WordPress dependencies
  */
+
 
 
 /**
@@ -1214,12 +1218,26 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
 function Edit() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-      src: "https://images.unsplash.com/vector-1745846418226-2e2588f6b766?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1160",
-      alt: "Listing Thumbnail"
-    })
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
+    className: 'directorist-gutenberg-listing-card-thumbnail'
+  });
+  const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useInnerBlocksProps)({
+    className: 'directorist-gutenberg-listing-card-thumbnail-front'
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    ...blockProps,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "directorist-gutenberg-listing-card-thumbnail-back",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+        className: "directorist-gutenberg-listing-card-thumbnail-preview-img",
+        src: _image_sample_image_jpg__WEBPACK_IMPORTED_MODULE_2__,
+        alt: "Listing Thumbnail"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      ...innerBlocksProps
+    })]
   });
 }
 
@@ -1247,14 +1265,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _directorist_gutenberg_gutenberg_register_block__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/register-block */ "./resources/js/gutenberg/register-block.js");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./resources/blocks/listing-card-thumbnail/style.scss");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listing-card-thumbnail/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-thumbnail/block.json");
-/* harmony import */ var _block_icon_thumbnail_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @block-icon/thumbnail.svg */ "./resources/blocks-icon/thumbnail.svg");
-/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./resources/blocks/listing-card-thumbnail/save.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-thumbnail/block.json");
+/* harmony import */ var _block_icon_thumbnail_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @block-icon/thumbnail.svg */ "./resources/blocks-icon/thumbnail.svg");
+/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -1270,13 +1290,53 @@ const exampleAttributes = {
   is_preview: true
 };
 (0,_directorist_gutenberg_gutenberg_register_block__WEBPACK_IMPORTED_MODULE_0__["default"])({
-  metadata: _block_json__WEBPACK_IMPORTED_MODULE_3__,
+  metadata: _block_json__WEBPACK_IMPORTED_MODULE_4__,
   Edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  props: {
+    save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
   exampleAttributes,
-  icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    src: _block_icon_thumbnail_svg__WEBPACK_IMPORTED_MODULE_4__
-  })
+  icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    src: _block_icon_thumbnail_svg__WEBPACK_IMPORTED_MODULE_5__
+  }),
+  templateTypes: ['listings-archive-grid-view', 'listings-archive-list-view']
 });
+
+/***/ }),
+
+/***/ "./resources/blocks/listing-card-thumbnail/save.js":
+/*!*********************************************************!*\
+  !*** ./resources/blocks/listing-card-thumbnail/save.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Save)
+/* harmony export */ });
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * WordPress dependencies
+ */
+
+
+function Save() {
+  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
+    className: 'directorist-gutenberg-listing-card-thumbnail'
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    ...blockProps,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "directorist-gutenberg-listing-card-thumbnail-back"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "directorist-gutenberg-listing-card-thumbnail-front",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InnerBlocks.Content, {})
+    })]
+  });
+}
 
 /***/ }),
 
@@ -1289,6 +1349,16 @@ const exampleAttributes = {
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "./resources/images/sample-image.jpg":
+/*!*******************************************!*\
+  !*** ./resources/images/sample-image.jpg ***!
+  \*******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "images/sample-image.jpg";
 
 /***/ }),
 
@@ -1346,6 +1416,41 @@ function Block({
 
 /***/ }),
 
+/***/ "./resources/js/gutenberg/localized-data.js":
+/*!**************************************************!*\
+  !*** ./resources/js/gutenberg/localized-data.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   getLocalizedBlockData: () => (/* binding */ getLocalizedBlockData),
+/* harmony export */   getLocalizedBlockDataByKey: () => (/* binding */ getLocalizedBlockDataByKey),
+/* harmony export */   getSubmissionFormFields: () => (/* binding */ getSubmissionFormFields)
+/* harmony export */ });
+const getLocalizedBlockData = () => {
+  return window.directorist_gutenberg_block_data || {};
+};
+const getLocalizedBlockDataByKey = (key, defaultValue = null) => {
+  const data = getLocalizedBlockData();
+  return data[key] !== undefined ? data[key] : defaultValue;
+};
+const getSubmissionFormFields = () => {
+  const data = getLocalizedBlockData();
+  if (data && data.submission_form_fields && data.submission_form_fields.fields) {
+    return data.submission_form_fields.fields;
+  }
+  return {};
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getLocalizedBlockData,
+  getLocalizedBlockDataByKey,
+  getSubmissionFormFields
+});
+
+/***/ }),
+
 /***/ "./resources/js/gutenberg/register-block.js":
 /*!**************************************************!*\
   !*** ./resources/js/gutenberg/register-block.js ***!
@@ -1361,8 +1466,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
 /* harmony import */ var _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @block-icon/directorist-logo.svg */ "./resources/blocks-icon/directorist-logo.svg");
 /* harmony import */ var _block__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block */ "./resources/js/gutenberg/block.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _localized_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./localized-data */ "./resources/js/gutenberg/localized-data.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 /**
  * WordPress dependencies
  */
@@ -1379,23 +1485,31 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function registerBlock({
   metadata,
   Edit,
   Controls,
   icon = '',
   exampleAttributes = {},
-  props = {}
+  props = {},
+  templateTypes = false
 }) {
   if ('directorist_gbt' !== typenow) {
     return;
+  }
+  if (templateTypes) {
+    const template_type = (0,_localized_data__WEBPACK_IMPORTED_MODULE_4__.getLocalizedBlockDataByKey)('template_type');
+    if (!templateTypes.includes(template_type)) {
+      return;
+    }
   }
   if (!icon) {
     // Ensure directoristLogo is a valid URL string for ReactSVG
     // webpack asset/resource returns a URL string, but sometimes it's wrapped
     const logoUrl = typeof _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__ === 'string' ? _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__ : _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__?.default || _block_icon_directorist_logo_svg__WEBPACK_IMPORTED_MODULE_2__;
     if (logoUrl) {
-      icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
         src: logoUrl
       });
     } else {
@@ -1405,7 +1519,7 @@ function registerBlock({
   }
 
   // Wrap Edit component with Block wrapper that handles useBlockProps
-  const WrappedEdit = editProps => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_block__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  const WrappedEdit = editProps => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_block__WEBPACK_IMPORTED_MODULE_3__["default"], {
     Edit: Edit,
     Controls: Controls,
     ...editProps

@@ -13,6 +13,7 @@ import ReactSVG from 'react-inlinesvg';
  */
 import directoristLogo from '@block-icon/directorist-logo.svg';
 import Block from './block';
+import { getLocalizedBlockDataByKey } from './localized-data';
 
 export default function registerBlock( {
 	metadata,
@@ -21,9 +22,18 @@ export default function registerBlock( {
 	icon = '',
 	exampleAttributes = {},
 	props = {},
+	templateTypes = false,
 } ) {
 	if ( 'directorist_gbt' !== typenow ) {
 		return;
+	}
+
+	if ( templateTypes ) {
+		const template_type = getLocalizedBlockDataByKey( 'template_type' );
+
+		if ( ! templateTypes.includes( template_type ) ) {
+			return;
+		}
 	}
 
 	if ( ! icon ) {

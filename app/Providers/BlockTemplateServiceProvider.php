@@ -42,12 +42,12 @@ class BlockTemplateServiceProvider implements Provider {
                 continue;
             }
 
-            if ( $template['template_type'] === 'listings-archive-grid-item' ) {
+            if ( $template['template_type'] === 'listings-archive-grid-view' ) {
                 $listings_controller->gbt_archive_grid_item_template_id = $template['id'];
                 continue;
             }
 
-            if ( $template['template_type'] === 'listings-archive-list-item' ) {
+            if ( $template['template_type'] === 'listings-archive-list-view' ) {
                 $listings_controller->gbt_archive_list_item_template_id = $template['id'];
                 continue;
             }

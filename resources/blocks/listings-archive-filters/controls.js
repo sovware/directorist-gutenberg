@@ -6,7 +6,15 @@ import { TextControl } from '@wordpress/components';
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+/**
+ * Internal dependencies
+ */
+import useArchiveBlockCommonTask from '@directorist-gutenberg/gutenberg/hooks/useArchiveBlockCommonTask';
+
 export default function Controls( { attributes, setAttributes } ) {
+
+	useArchiveBlockCommonTask( { setAttributes } );
+
     return (
         <InspectorControls>
             <PanelBody

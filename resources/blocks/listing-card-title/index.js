@@ -21,4 +21,8 @@ registerBlock( {
 	Edit,
 	exampleAttributes,
 	icon: <ReactSVG src={titleIcon} />,
+	templateTypes: [
+		'listings-archive-grid-view',
+		'listings-archive-list-view',
+	],
 } );
