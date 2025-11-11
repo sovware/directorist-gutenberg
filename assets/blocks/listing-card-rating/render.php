@@ -33,8 +33,10 @@ for ( $i = 1; $i <= 5; $i++ ) {
 	$star_class = $is_active || $is_half ? 'directorist-gutenberg-listing-card-rating-star-active' : 'directorist-gutenberg-listing-card-rating-star-inactive';
 	$review_stars .= '<span class="' . esc_attr( $star_class ) . '">' . $star_icon . '</span>';
 }
+// Get block width class
+$block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
 ?>
-<div <?php echo get_block_wrapper_attributes(); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => $block_width_class . ' directorist-gutenberg-listing-card-block']); ?>>
 	<div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-rating">
 		<div class="directorist-gutenberg-listing-card-element-content">
 			<div class="directorist-gutenberg-listing-card-rating-stars">

@@ -46,6 +46,10 @@
         "price_high_to_low",
         "random"
       ]
+    },
+    "block_width": {
+      "type": "string",
+      "default": "100"
     }
   },
   "description": "Listings archive header block",

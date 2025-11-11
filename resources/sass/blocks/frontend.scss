@@ -4,7 +4,7 @@
     align-items: center;
     gap: 10px;
     svg{
-        fill: var(--directorist-gutenberg-icon-color);
+        fill: var(--directorist-gutenberg-icon-color, #808080);
     }
     .directorist-gutenberg-listing-card-element-icon{
         display: flex;
@@ -16,13 +16,22 @@
     }
 }
 .directorist-gutenberg-listing-card-block{
-    margin: 0 0 0.5em;
     font-size: 14px;
     line-height: 1.3;
     color: var(--directorist-color-body);
     svg{
         width: var(--directorist-gutenberg-icon-size);
     }
+}
+.block-editor-block-list__block .directorist-gutenberg-listing-card-block,
+.directorist-gutenberg-blocks-wrap .directorist-gutenberg-listing-card-block,
+.block-editor-block-list__layout .block-editor-block-list__block,
+.block-editor-block-list__layout.is-root-container .block-editor-block-list__block{
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	width: 100%;
 }
 
 // Listing Card Badge Styles
@@ -69,4 +78,106 @@
         font-size: 14px;
         margin-bottom: 15px;
     }
+}
+
+// Listing Card Title Styles
+.directorist-gutenberg-listing-card-title {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 0;
+    text-transform: none;
+    line-height: 20px;
+    margin: 0;
+    text-decoration: none;
+    color: var(--directorist-color-dark);
+}
+
+// Toolbar Styles
+.directorist-gutenberg-toolbar {
+	gap: 6px;
+	padding: 0px 6px;
+	.components-button {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		box-shadow: 0 0;
+
+		&:focus:before {
+			box-shadow: 0 0;
+			outline: none;
+		}
+
+		&:hover:not(:disabled, [aria-disabled="true"]) {
+			box-shadow: 0 0;
+		}
+
+		&.is-selected {
+			span {
+				color: #fff;
+				background-color: #000;
+			}
+		}
+
+		span {
+			border: 1px solid;
+			padding: 6px;
+			border-radius: 2px;
+			line-height: 1.4;
+			font-size: 13px;
+		}
+	}
+}
+
+// Block Width Styles
+.post-type-directorist_gbt .block-editor-block-list__layout,
+.directorist-gutenberg-blocks-wrap,
+.directorist-gutenberg-blocks-wrap .wp-block-group {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 0 12px;
+	.directorist-gutenberg-block-width-100 {
+		flex: 0 1 100%;
+	}
+	.directorist-gutenberg-block-width-75 {
+		flex: 0 1 calc(75% - 12px);
+		@media only screen and (max-width: 480px) {
+			flex: 0 1 100%;
+		}
+	}
+	.directorist-gutenberg-block-width-67 {
+		flex: 0 1 calc(66.67% - 12px);
+		@media only screen and (max-width: 480px) {
+			flex: 0 1 100%;
+		}
+	}
+	.directorist-gutenberg-block-width-50 {
+		flex: 0 1 calc(50% - 12px);
+		@media only screen and (max-width: 480px) {
+			flex: 0 1 100%;
+		}
+	}
+	.directorist-gutenberg-block-width-33 {
+		flex: 0 1 calc(33.33% - 12px);
+		@media only screen and (max-width: 767px) {
+			flex: 0 1 calc(50% - 12px);
+		}
+		@media only screen and (max-width: 480px) {
+			flex: 0 1 100%;
+		}
+	}
+	.directorist-gutenberg-block-width-25 {
+		flex: 0 1 calc(25% - 12px);
+		@media only screen and (max-width: 767px) {
+			flex: 0 1 calc(50% - 12px);
+		}
+		@media only screen and (max-width: 480px) {
+			flex: 0 1 100%;
+		}
+	}
+}
+.directorist-gutenberg-blocks-wrap{
+	.wp-block-group,
+	.wp-block-columns{
+		width: 100%;
+	}
 }

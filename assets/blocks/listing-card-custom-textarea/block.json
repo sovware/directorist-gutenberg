@@ -21,6 +21,10 @@
     "icon_size": {
       "type": "string",
       "default": "16px"
+    },
+    "block_width": {
+      "type": "string",
+      "default": "100"
     }
   },
   "description": "Listing custom textarea block",

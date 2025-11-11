@@ -15,8 +15,10 @@ if ( defined( 'ATBDP_CATEGORY' ) ) {
 	}
 }
 
+// Get block width class
+$block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
 ?>
-<div <?php echo get_block_wrapper_attributes(['class' => 'directorist-gutenberg-listing-card-block']); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => 'directorist-gutenberg-listing-card-block ' . $block_width_class]); ?>>
     <div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-category">
 		<div class="directorist-gutenberg-listing-card-element-content">
 			<div class="directorist-gutenberg-listing-category">

@@ -9,6 +9,10 @@
     "directory_type_id": {
       "type": "number",
       "default": 0
+    },
+    "block_width": {
+      "type": "string",
+      "default": "100"
     }
   },
   "description": "Listings archive search block",

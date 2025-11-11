@@ -53,5 +53,8 @@
   position: relative;
   z-index: 2;
 }
+.directorist-gutenberg-listing-card-thumbnail .components-button {
+  pointer-events: auto !important;
+}
 
 /*# sourceMappingURL=index.css.map*/

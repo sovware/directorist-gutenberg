@@ -17,6 +17,10 @@
     "reset_text": {
       "type": "string",
       "default": "Clear All"
+    },
+    "block_width": {
+      "type": "string",
+      "default": "100"
     }
   },
   "description": "Listings archive filters block",

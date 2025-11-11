@@ -218,3 +218,15 @@ function directorist_gutenberg_build_icon_style( array $attributes, string $colo
 
 	return ! empty( $icon_style_parts ) ? implode( '; ', $icon_style_parts ) . ';' : '';
 }
+
+/**
+ * Get block width class name from block attributes
+ *
+ * @param array $attributes Block attributes array
+ * @param string $width_key Attribute key for block width (default: 'block_width')
+ * @return string Block width class name (e.g., 'directorist-gutenberg-block-width-100')
+ */
+function directorist_gutenberg_get_block_width_class( array $attributes, string $width_key = 'block_width' ): string {
+	$block_width = ! empty( $attributes[ $width_key ] ) ? $attributes[ $width_key ] : '100';
+	return 'directorist-gutenberg-block-width-' . esc_attr( $block_width );
+}

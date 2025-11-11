@@ -7,7 +7,7 @@ import Edit from './edit';
 import Save from './save';
 import metadata from './block.json';
 import thumbnailIcon from '@block-icon/thumbnail.svg';
-
+import Controls from './controls';
 /**
  * External dependencies
  */
@@ -20,6 +20,7 @@ const exampleAttributes = {
 registerBlock( {
 	metadata,
 	Edit,
+	Controls,
 	props: {
 		save: Save,
 	},

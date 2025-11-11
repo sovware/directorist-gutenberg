@@ -25,6 +25,10 @@
 		"default_view": {
 			"type": "string",
 			"default": "grid"
+		},
+		"block_width": {
+			"type": "string",
+			"default": "100"
 		}
 	},
 	"description": "Listings archive block",

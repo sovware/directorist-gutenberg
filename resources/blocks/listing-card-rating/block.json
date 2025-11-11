@@ -5,7 +5,12 @@
 	"version": "0.1.0",
 	"title": "Listing Rating",
 	"category": "directorist-listing-card-preset-fields",
-	"attributes": {},
+	"attributes": {
+		"block_width": {
+			"type": "string",
+			"default": "100"
+		}
+	},
 	"description": "Listing Rating Block",
 	"example": {},
 	"supports": {
