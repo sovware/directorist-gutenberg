@@ -354,6 +354,31 @@ __webpack_require__.r(__webpack_exports__);
 const BLOCKS_TO_EXTEND = ['core/group', 'core/column', 'core/columns', 'core/row', 'core/stack', 'core/grid'];
 
 /**
+ * Default shadow value (no shadow)
+ */
+const DEFAULT_SHADOW = '0px 0px 0px 0px rgba(0, 0, 0, 0)';
+
+/**
+ * Check if shadow value is meaningful (not default/no shadow)
+ */
+const isMeaningfulShadow = shadowValue => {
+  if (!shadowValue || shadowValue === DEFAULT_SHADOW) {
+    return false;
+  }
+  // Check if all offset/blur/spread values are 0
+  const shadowRegex = /^(\d+px|0)\s+(\d+px|0)\s+(\d+px|0)\s+(\d+px|0)/;
+  const match = shadowValue.match(shadowRegex);
+  if (match) {
+    const [, x, y, blur, spread] = match;
+    // If all values are 0 or 0px, it's not meaningful
+    if ((x === '0' || x === '0px') && (y === '0' || y === '0px') && (blur === '0' || blur === '0px') && (spread === '0' || spread === '0px')) {
+      return false;
+    }
+  }
+  return true;
+};
+
+/**
  * Add drop_shadow attribute to block settings
  */
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__.addFilter)('blocks.registerBlockType', 'directorist-gutenberg/add-drop-shadow-attribute', (settings, name) => {
@@ -367,7 +392,7 @@ const BLOCKS_TO_EXTEND = ['core/group', 'core/column', 'core/columns', 'core/row
       ...settings.attributes,
       drop_shadow: {
         type: 'string',
-        default: '0px 0px 0px 0px rgba(0, 0, 0, 0.3)'
+        default: DEFAULT_SHADOW
       }
     }
   };
@@ -414,8 +439,8 @@ const withShadowControl = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.cre
     return props;
   }
 
-  // Apply shadow style if drop_shadow attribute exists
-  if (attributes.drop_shadow) {
+  // Apply shadow style only if drop_shadow is meaningful (not default/no shadow)
+  if (attributes.drop_shadow && isMeaningfulShadow(attributes.drop_shadow)) {
     const existingStyle = props.style || {};
     return {
       ...props,
@@ -438,8 +463,8 @@ const withShadowControl = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.cre
     attributes
   } = props;
 
-  // Only apply to specified blocks
-  if (!BLOCKS_TO_EXTEND.includes(name) || !attributes.drop_shadow) {
+  // Only apply to specified blocks and if shadow is meaningful
+  if (!BLOCKS_TO_EXTEND.includes(name) || !attributes.drop_shadow || !isMeaningfulShadow(attributes.drop_shadow)) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(BlockListBlock, {
       ...props
     });

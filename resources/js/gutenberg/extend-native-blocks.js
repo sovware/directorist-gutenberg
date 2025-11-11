@@ -23,6 +23,36 @@ const BLOCKS_TO_EXTEND = [
 ];
 
 /**
+ * Default shadow value (no shadow)
+ */
+const DEFAULT_SHADOW = '0px 0px 0px 0px rgba(0, 0, 0, 0)';
+
+/**
+ * Check if shadow value is meaningful (not default/no shadow)
+ */
+const isMeaningfulShadow = (shadowValue) => {
+	if (!shadowValue || shadowValue === DEFAULT_SHADOW) {
+		return false;
+	}
+	// Check if all offset/blur/spread values are 0
+	const shadowRegex = /^(\d+px|0)\s+(\d+px|0)\s+(\d+px|0)\s+(\d+px|0)/;
+	const match = shadowValue.match(shadowRegex);
+	if (match) {
+		const [, x, y, blur, spread] = match;
+		// If all values are 0 or 0px, it's not meaningful
+		if (
+			(x === '0' || x === '0px') &&
+			(y === '0' || y === '0px') &&
+			(blur === '0' || blur === '0px') &&
+			(spread === '0' || spread === '0px')
+		) {
+			return false;
+		}
+	}
+	return true;
+};
+
+/**
  * Add drop_shadow attribute to block settings
  */
 addFilter(
@@ -40,7 +70,7 @@ addFilter(
 				...settings.attributes,
 				drop_shadow: {
 					type: 'string',
-					default: '0px 0px 0px 0px rgba(0, 0, 0, 0.3)',
+					default: DEFAULT_SHADOW,
 				},
 			},
 		};
@@ -95,8 +125,8 @@ addFilter(
 			return props;
 		}
 
-		// Apply shadow style if drop_shadow attribute exists
-		if (attributes.drop_shadow) {
+		// Apply shadow style only if drop_shadow is meaningful (not default/no shadow)
+		if (attributes.drop_shadow && isMeaningfulShadow(attributes.drop_shadow)) {
 			const existingStyle = props.style || {};
 			return {
 				...props,
@@ -121,8 +151,8 @@ addFilter(
 	(BlockListBlock) => (props) => {
 		const { name, attributes } = props;
 
-		// Only apply to specified blocks
-		if (!BLOCKS_TO_EXTEND.includes(name) || !attributes.drop_shadow) {
+		// Only apply to specified blocks and if shadow is meaningful
+		if (!BLOCKS_TO_EXTEND.includes(name) || !attributes.drop_shadow || !isMeaningfulShadow(attributes.drop_shadow)) {
 			return <BlockListBlock {...props} />;
 		}
 
