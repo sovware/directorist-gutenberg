@@ -2,7 +2,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
-// use DirectoristGutenberg\App\Http\Controllers\UserController;
-// use DirectoristGutenberg\WpMVC\Routing\Route;
+use DirectoristGutenberg\App\Http\Controllers\BlocksPreviewTemplateController;
+use DirectoristGutenberg\WpMVC\Routing\Route;
 
-// Route::get( 'user', [UserController::class, 'index'], ['admin'] );
+Route::group( 'blocks-preview', function() {
+    
+    Route::get( 'listings-archive/{block_type}', [ BlocksPreviewTemplateController::class, 'listings_archive_blocks_preview' ] );
+
+}, [] );
+
+
+
+

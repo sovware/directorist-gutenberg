@@ -1343,24 +1343,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listings-archive/editor.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/localized-data */ "./resources/js/gutenberg/localized-data.js");
+/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useBlocksPreview */ "./resources/js/gutenberg/hooks/useBlocksPreview.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 /**
  * WordPress dependencies
  */
 
+// import { useEffect } from '@wordpress/element';
 
 /**
  * Internal dependencies
  */
 
 
+
+
 function Edit({
   attributes,
   setAttributes
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Listings Archive', 'directorist-gutenberg')
+  const directoryId = (0,_directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_2__.getLocalizedBlockDataByKey)('directory_type_id', 0);
+  const {
+    template,
+    isLoading,
+    refreshTemplate
+  } = (0,_directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_3__["default"])({
+    directoryId,
+    blockType: 'listings-archive/archive'
+  });
+
+  // useEffect( () => {
+  // 	refreshTemplate( attributes );
+  // }, [ attributes ] );
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    style: {
+      pointerEvents: 'none'
+    },
+    dangerouslySetInnerHTML: {
+      __html: isLoading ? 'Loading...' : template
+    }
   });
 }
 
@@ -1512,6 +1536,69 @@ function useArchiveBlockCommonTask({
 
 /***/ }),
 
+/***/ "./resources/js/gutenberg/hooks/useBlocksPreview.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/gutenberg/hooks/useBlocksPreview.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useBlocksPreview)
+/* harmony export */ });
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/url */ "@wordpress/url");
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function useBlocksPreview({
+  directoryId,
+  blockType,
+  blockAttributes = {}
+}) {
+  const [args, setArgs] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(blockAttributes);
+  const [appliedArgs, setAppliedArgs] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [template, setTemplate] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)('');
+  const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(true);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    if (appliedArgs && JSON.stringify(args) === JSON.stringify(appliedArgs)) {
+      return;
+    }
+    fetchTemplate();
+  }, [args]);
+  function refreshTemplate(newBlockAttributes = {}) {
+    setArgs(newBlockAttributes);
+  }
+  function fetchTemplate() {
+    const url = (0,_wordpress_url__WEBPACK_IMPORTED_MODULE_1__.addQueryArgs)(`/directorist-gutenberg/blocks-preview/${blockType}`, {
+      directory_id: directoryId,
+      ...args
+    });
+    setIsLoading(true);
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+      path: url
+    }).then(response => {
+      setTemplate(response.template);
+      setIsLoading(false);
+      setAppliedArgs(args);
+    }).catch(error => {
+      console.error('error', error);
+      setIsLoading(false);
+    });
+  }
+  return {
+    template,
+    isLoading,
+    refreshTemplate
+  };
+}
+
+/***/ }),
+
 /***/ "./resources/js/gutenberg/hooks/useTemplateMeta.js":
 /*!*********************************************************!*\
   !*** ./resources/js/gutenberg/hooks/useTemplateMeta.js ***!
@@ -1657,6 +1744,16 @@ function registerBlock({
 
 /***/ }),
 
+/***/ "@wordpress/api-fetch":
+/*!**********************************!*\
+  !*** external ["wp","apiFetch"] ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["apiFetch"];
+
+/***/ }),
+
 /***/ "@wordpress/block-editor":
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
@@ -1714,6 +1811,16 @@ module.exports = window["wp"]["element"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "@wordpress/url":
+/*!*****************************!*\
+  !*** external ["wp","url"] ***!
+  \*****************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["url"];
 
 /***/ }),
 
