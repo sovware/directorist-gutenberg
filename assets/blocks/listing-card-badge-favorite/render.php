@@ -11,8 +11,14 @@ if ( function_exists( 'directorist_get_user_favorites' ) ) {
 
 // Get block width class
 $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
+
+// Get text alignment class
+$text_align_class = directorist_gutenberg_get_text_align_class( $attributes );
+
+// Combine classes
+$wrapper_classes = array_filter( [ $block_width_class, $text_align_class ] );
 ?>
-<div <?php echo get_block_wrapper_attributes(['class' => $block_width_class]); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => implode( ' ', $wrapper_classes )]); ?>>
 	<div
 		class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-badge"
 		data-wp-interactive="directorist/favorite-button"

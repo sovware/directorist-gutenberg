@@ -12,6 +12,7 @@ class PostTypeServiceProvider implements Provider {
         add_action( 'init', [ $this, 'register_meta_fields' ] );
         add_filter( 'allowed_block_types_all', [ $this, 'allowed_block_types_all' ], 10, 2 );
         add_action( 'save_post_' . directorist_gutenberg_post_type(), [ $this, 'handle_template_enable_toggle' ], 10, 1 );
+        add_filter( 'admin_body_class', [ $this, 'add_template_type_body_class' ], 10, 1 );
     }
 
     public function allowed_block_types_all( $allowed_block_types, $editor_context ) {
@@ -233,5 +234,54 @@ class PostTypeServiceProvider implements Provider {
         }
 
         wp_reset_postdata();
+    }
+
+    /**
+     * Add custom body class based on template_type post meta in Gutenberg editor
+     *
+     * @param string $classes Existing body classes
+     * @return string Modified body classes
+     */
+    public function add_template_type_body_class( $classes ) {
+        // Check if we're in the admin
+        if ( ! is_admin() ) {
+            return $classes;
+        }
+
+        // Get current screen
+        $screen = get_current_screen();
+        if ( ! $screen || directorist_gutenberg_post_type() !== $screen->post_type ) {
+            return $classes;
+        }
+
+        // Get the post ID from the screen or global post
+        $post_id = 0;
+        if ( isset( $_GET['post'] ) ) {
+            $post_id = absint( $_GET['post'] );
+        } elseif ( isset( $_GET['post_ID'] ) ) {
+            $post_id = absint( $_GET['post_ID'] );
+        } elseif ( isset( $screen->post_id ) ) {
+            $post_id = absint( $screen->post_id );
+        } else {
+            global $post;
+            if ( $post && isset( $post->ID ) ) {
+                $post_id = $post->ID;
+            }
+        }
+
+        // If we don't have a post ID, return early
+        if ( ! $post_id ) {
+            return $classes;
+        }
+
+        // Get the template_type post meta
+        $template_type = get_post_meta( $post_id, 'template_type', true );
+
+        // Add the class if template_type exists
+        if ( ! empty( $template_type ) ) {
+            $classes .= ' directorist-gutenberg-' . esc_attr( sanitize_html_class( $template_type ) );
+        }
+
+        return $classes;
     }
 }

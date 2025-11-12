@@ -17,4 +17,5 @@ registerBlock( {
 	Controls,
 	exampleAttributes,
 	templateTypes: [ 'listings-archive' ],
+	showWidthControls: false,
 } );

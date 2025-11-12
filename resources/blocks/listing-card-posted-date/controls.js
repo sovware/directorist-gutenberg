@@ -90,11 +90,6 @@ export default function Controls( { attributes, setAttributes } ) {
 					onChange={ ( value ) => setAttributes( { date_type: value } ) }
 					selected={ attributes.date_type }
 				/>
-				<ToggleControl
-					label={ __( 'Use Parent Style', 'directorist-gutenberg' ) }
-					checked={ attributes.use_parent_style }
-					onChange={ ( value ) => setAttributes( { use_parent_style: value } ) }
-				/>
 			</PanelBody>
 		</InspectorControls>
 	);
