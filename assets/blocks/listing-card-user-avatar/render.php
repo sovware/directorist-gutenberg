@@ -50,9 +50,12 @@ $author_link_class = ! empty( $author_first_name ) && ! empty( $author_last_name
 // Get avatar image.
 $avatar_size = apply_filters( 'atbdp_avatar_size', 32 );
 $avatar_img  = get_avatar( $author_id, $avatar_size, '', $author_display_name );
+
+// Get block width class
+$block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
 ?>
 
-<div <?php echo get_block_wrapper_attributes(); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => $block_width_class]); ?>>
     <div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-user-avatar">
         <div class="directorist-gutenberg-listing-user-avatar directorist-gutenberg-listing-user-avatar-<?php echo esc_attr( $alignment ); ?>">
             <a href="<?php echo esc_url( $author_link ); ?>" aria-label="<?php esc_attr_e( 'Author Image', 'directorist' ); ?>" class="<?php echo esc_attr( $author_link_class ); ?>">

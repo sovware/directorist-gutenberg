@@ -5,7 +5,12 @@
   "version": "0.1.0",
   "title": "Listing Badge Popular",
   "category": "directorist-listing-card-preset-fields",
-  "attributes": {},
+  "attributes": {
+    "block_width": {
+      "type": "string",
+      "default": "100"
+    }
+  },
   "description": "Listing Badge Popular Block",
   "example": {},
   "supports": {

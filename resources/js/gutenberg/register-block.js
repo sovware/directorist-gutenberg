@@ -14,6 +14,7 @@ import ReactSVG from 'react-inlinesvg';
 import directoristLogo from '@block-icon/directorist-logo.svg';
 import Block from './block';
 import { getLocalizedBlockDataByKey } from './localized-data';
+import WidthControls from './width-control';
 
 export default function registerBlock( {
 	metadata,
@@ -23,6 +24,8 @@ export default function registerBlock( {
 	exampleAttributes = {},
 	props = {},
 	templateTypes = false,
+	classNames = '',
+	showWidthControls = true,
 } ) {
 	if ( 'directorist_gbt' !== typenow ) {
 		return;
@@ -53,11 +56,15 @@ export default function registerBlock( {
 
 	// Wrap Edit component with Block wrapper that handles useBlockProps
 	const WrappedEdit = ( editProps ) => (
-		<Block
-			Edit={Edit}
-			Controls={Controls}
-			{...editProps}
-		/>
+		<>
+			{ showWidthControls && <WidthControls attributes={editProps.attributes} setAttributes={editProps.setAttributes} /> }
+			<Block
+				Edit={Edit}
+				Controls={Controls}
+				classNames={classNames}
+				{...editProps}
+			/>
+		</>
 	);
 
 	registerBlockType( metadata.name, {

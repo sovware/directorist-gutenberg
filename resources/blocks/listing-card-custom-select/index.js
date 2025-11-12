@@ -6,15 +6,23 @@ import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
 import Controls from './controls';
+import customSelectIcon from '@block-icon/custom-dropdown.svg';
+
+/**
+ * External dependencies
+ */
+import ReactSVG from 'react-inlinesvg';
+
 const exampleAttributes = {
 	is_preview: true,
 };
 
 registerBlock( {
-	metadata, 
+	metadata,
 	Edit,
 	Controls,
 	exampleAttributes,
+	icon: <ReactSVG src={customSelectIcon} />,
 	templateTypes: [
 		'listings-archive-grid-view',
 		'listings-archive-list-view',

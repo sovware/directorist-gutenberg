@@ -10,8 +10,8 @@ import './editor.scss';
 
 export default function Edit() {
 	return (
-		<p>
+		<span>
 			{__('Listing Title', 'directorist-gutenberg')}
-		</p>
+		</span>
 	);
 }

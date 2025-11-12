@@ -60,5 +60,9 @@
   background: var(--directorist-color-primary);
   color: #fff;
 }
+.block-editor-block-icon svg.directorist-gutenberg-block-icon {
+  fill: none !important;
+  color: #000;
+}
 
 /*# sourceMappingURL=blocks-editor.css.map*/

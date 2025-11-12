@@ -9,6 +9,10 @@
 		"alignment": {
 			"type": "string",
 			"default": "left"
+		},
+		"block_width": {
+			"type": "string",
+			"default": "100"
 		}
 	},
 	"description": "Listing User Avatar Block",

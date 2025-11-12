@@ -6,6 +6,12 @@ import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
 import Controls from './controls';
+import userAvatarIcon from '@block-icon/user-avatar.svg';
+
+/**
+ * External dependencies
+ */
+import ReactSVG from 'react-inlinesvg';
 
 const exampleAttributes = {
 	is_preview: true,
@@ -16,6 +22,7 @@ registerBlock( {
 	Edit,
 	Controls,
 	exampleAttributes,
+	icon: <ReactSVG src={userAvatarIcon} />,
 	templateTypes: [
 		'listings-archive-grid-view',
 		'listings-archive-list-view',
