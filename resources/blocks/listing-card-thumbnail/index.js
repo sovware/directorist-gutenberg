@@ -1,4 +1,9 @@
 /**
+ * WordPress dependencies
+ */
+import { createBlock } from '@wordpress/blocks';
+
+/**
  * Internal dependencies
  */
 import registerBlock from '@directorist-gutenberg/gutenberg/register-block';
@@ -7,7 +12,7 @@ import Edit from './edit';
 import Save from './save';
 import metadata from './block.json';
 import thumbnailIcon from '@block-icon/thumbnail.svg';
-
+import Controls from './controls';
 /**
  * External dependencies
  */
@@ -20,8 +25,29 @@ const exampleAttributes = {
 registerBlock( {
 	metadata,
 	Edit,
+	Controls,
 	props: {
 		save: Save,
+		transforms: {
+			from: [
+				{
+					type: 'block',
+					blocks: [ 'core/post-featured-image' ],
+					transform: ( attributes ) => {
+						return createBlock( 'directorist-gutenberg/listing-card-thumbnail', attributes );
+					},
+				},
+			],
+			to: [
+				{
+					type: 'block',
+					blocks: [ 'core/post-featured-image' ],
+					transform: ( attributes ) => {
+						return createBlock( 'core/post-featured-image', attributes );
+					},
+				},
+			],
+		},
 	},
 	exampleAttributes,
 	icon: <ReactSVG src={thumbnailIcon} />,

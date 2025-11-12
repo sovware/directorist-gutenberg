@@ -3,7 +3,7 @@
 		// Ensure back element doesn't interfere with interactions
 		user-select: none;
 		pointer-events: none !important; // Critical: prevent blocking clicks
-		
+
 		// Make sure the image also doesn't capture events
 		img {
 			pointer-events: none !important;
@@ -15,10 +15,10 @@
 		position: relative;
 		min-height: 300px;
 		isolation: isolate;
-		
+
 		// Ensure the entire area is interactive
 		pointer-events: auto;
-		
+
 		// Make sure nested layout blocks (groups, columns, rows, stacks) are clickable
 		.block-editor-inner-blocks,
 		.block-editor-block-list__layout {
@@ -31,7 +31,7 @@
 			position: relative;
 			z-index: 10;
 			pointer-events: auto;
-			
+
 			// Make sure the button itself is clickable
 			button {
 				position: relative;
@@ -45,7 +45,7 @@
 			position: relative;
 			z-index: 10;
 			pointer-events: auto;
-			
+
 			button {
 				position: relative;
 				z-index: 11;
@@ -65,5 +65,8 @@
 			position: relative;
 			z-index: 2;
 		}
+	}
+	.components-button{
+		pointer-events: auto !important;
 	}
 }

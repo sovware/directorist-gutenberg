@@ -1,4 +1,9 @@
 /**
+ * WordPress dependencies
+ */
+import { createBlock } from '@wordpress/blocks';
+
+/**
  * Internal dependencies
  */
 import registerBlock from '@directorist-gutenberg/gutenberg/register-block';
@@ -25,4 +30,29 @@ registerBlock( {
 		'listings-archive-grid-view',
 		'listings-archive-list-view',
 	],
+	classNames: [
+		'directorist-gutenberg-listing-card-title',
+	],
+	props: {
+		transforms: {
+			from: [
+				{
+					type: 'block',
+					blocks: [ 'core/post-title' ],
+					transform: ( attributes ) => {
+						return createBlock( 'directorist-gutenberg/listing-card-title', attributes );
+					},
+				},
+			],
+			to: [
+				{
+					type: 'block',
+					blocks: [ 'core/post-title' ],
+					transform: ( attributes ) => {
+						return createBlock( 'core/post-title', attributes );
+					},
+				},
+			],
+		},
+	},
 } );

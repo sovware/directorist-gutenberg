@@ -6,9 +6,58 @@
   "title": "Listing Thumbnail",
   "category": "directorist-listing-card-preset-fields",
   "description": "Listing thumbnail block",
+  "attributes": {
+    "block_width": {
+      "type": "string",
+      "default": "100"
+    },
+    "image_quality": {
+      "type": "string",
+      "default": "default"
+    },
+    "aspectRatio": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "scale": {
+      "type": "string",
+      "default": "cover"
+    },
+    "overlayColor": {
+      "type": "string"
+    },
+    "customOverlayColor": {
+      "type": "string"
+    },
+    "dimRatio": {
+      "type": "number",
+      "default": 0
+    },
+    "gradient": {
+      "type": "string"
+    },
+    "customGradient": {
+      "type": "string"
+    }
+  },
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
   },
   "textdomain": "directorist-gutenberg",
   "editorScript": "file:./index.js",

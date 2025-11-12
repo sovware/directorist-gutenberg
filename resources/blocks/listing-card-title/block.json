@@ -6,6 +6,12 @@
 	"title": "Listing Title",
 	"category": "directorist-listing-card-preset-fields",
 	"description": "Listing title block",
+	"attributes": {
+		"block_width": {
+			"type": "string",
+			"default": "100"
+		}
+	},
 	"example": {},
 	"supports": {
 		"html": false,

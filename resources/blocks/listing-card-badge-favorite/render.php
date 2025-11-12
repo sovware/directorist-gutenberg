@@ -9,8 +9,10 @@ if ( function_exists( 'directorist_get_user_favorites' ) ) {
 	$is_favorite = in_array( $listing_id, $favourites );
 }
 
+// Get block width class
+$block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
 ?>
-<div <?php echo get_block_wrapper_attributes(); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => $block_width_class]); ?>>
 	<div
 		class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-badge"
 		data-wp-interactive="directorist/favorite-button"
