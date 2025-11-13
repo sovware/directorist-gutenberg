@@ -30,7 +30,7 @@ export default function Controls({ attributes, setAttributes }) {
 				<ColorPickerControl
 					label={__( 'Text Color', 'directorist-gutenberg' )}
 					color={attributes.text_color}
-					defaultColor="#ffffff"
+					defaultColor="#000"
 					onChange={(color) => setAttributes({ text_color: color })}
 					isOpen={isTextColorPickerOpen}
 					onToggle={() => setIsTextColorPickerOpen(!isTextColorPickerOpen)}
@@ -39,7 +39,7 @@ export default function Controls({ attributes, setAttributes }) {
 				<ColorPickerControl
 					label={__( 'Background Color', 'directorist-gutenberg' )}
 					color={attributes.background_color}
-					defaultColor="#444752"
+					defaultColor="#000"
 					onChange={(color) => setAttributes({ background_color: color })}
 					isOpen={isBackgroundColorPickerOpen}
 					onToggle={() => setIsBackgroundColorPickerOpen(!isBackgroundColorPickerOpen)}

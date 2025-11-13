@@ -57,16 +57,16 @@
   line-height: 0;
 }
 .directorist-gutenberg-listing-badge-featured {
-  background: var(--directorist-color-warning);
-  color: #fff;
+  background: var(--directorist-gutenberg-listing-badge-background-color, var(--directorist-color-warning));
+  color: var(--directorist-gutenberg-listing-badge-text-color, #fff);
 }
 .directorist-gutenberg-listing-badge-new {
-  background: var(--directorist-color-new-badge);
-  color: #fff;
+  background: var(--directorist-gutenberg-listing-badge-background-color, var(--directorist-color-new-badge));
+  color: var(--directorist-gutenberg-listing-badge-text-color, #fff);
 }
 .directorist-gutenberg-listing-badge-popular {
-  background: var(--directorist-color-primary);
-  color: #fff;
+  background: var(--directorist-gutenberg-listing-badge-background-color, var(--directorist-color-primary));
+  color: var(--directorist-gutenberg-listing-badge-text-color, #fff);
 }
 .directorist-search-field-radius_search .directorist-search-field__label {
   position: unset;

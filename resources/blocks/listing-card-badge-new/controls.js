@@ -39,7 +39,7 @@ export default function Controls({ attributes, setAttributes }) {
 				<ColorPickerControl
 					label={__( 'Background Color', 'directorist-gutenberg' )}
 					color={attributes.background_color}
-					defaultColor="#444752"
+					defaultColor="#2C99FF"
 					onChange={(color) => setAttributes({ background_color: color })}
 					isOpen={isBackgroundColorPickerOpen}
 					onToggle={() => setIsBackgroundColorPickerOpen(!isBackgroundColorPickerOpen)}

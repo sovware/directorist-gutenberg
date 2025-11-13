@@ -68,3 +68,30 @@
     fill: none !important;
     color: #000;
 }
+
+// Color Picker Styles
+.directorist-gutenberg-color-picker-container{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    .directorist-gutenberg-color-picker-label{
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        line-height: 1.4;
+        display: block;
+    }
+    .components-button{
+        width: 100px;
+        height: 30px;
+        border: 1px solid var(--directorist-color-border);
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .directorist-gutenberg-color-picker-wrapper{
+        position: relative;
+        display: inline-block;
+    }
+}

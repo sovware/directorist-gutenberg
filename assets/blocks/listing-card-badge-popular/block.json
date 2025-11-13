@@ -12,6 +12,18 @@
     },
     "textAlign": {
       "type": "string"
+    },
+    "text": {
+      "type": "string",
+      "default": "Popular"
+    },
+    "text_color": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "background_color": {
+      "type": "string",
+      "default": "#444752"
     }
   },
   "description": "Listing Badge Popular Block",

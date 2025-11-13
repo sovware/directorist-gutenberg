@@ -6,6 +6,11 @@ import { PanelBody, Button, Popover, ColorPicker, RangeControl } from '@wordpres
 import { useState, useMemo } from '@wordpress/element';
 
 /**
+ * Internal dependencies
+ */
+import ColorPickerControl from './color-picker-control';
+
+/**
  * Parse drop shadow string to extract values
  * Format: "offset-x offset-y blur spread color"
  * Example: "10px 12px 15px 17px rgba(188, 2, 2, 0.3)"
@@ -86,42 +91,13 @@ export default function ShadowControl({
 			title={label}
 			initialOpen={initialOpen}
 		>
-			<div style={{ marginBottom: '16px' }}>
-				<label style={{ display: 'block', marginBottom: '8px', fontWeight: 500 }}>
-					{__( 'Shadow Color', 'directorist-gutenberg' )}
-				</label>
-				<div style={{ position: 'relative', display: 'inline-block', width: '100%' }}>
-					<Button
-						onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}
-						style={{
-							width: '100%',
-							height: '30px',
-							backgroundColor: shadowValues.color,
-							border: '1px solid #ccc',
-							borderRadius: '3px',
-							cursor: 'pointer',
-						}}
-					/>
-					{isColorPickerOpen && (
-						<Popover
-							onClose={() => setIsColorPickerOpen(false)}
-							placement="left-start"
-                            offset={20}
-						>
-							<ColorPicker
-								color={shadowValues.color}
-								onChangeComplete={(colorValue) => {
-									const colorString = colorValue.rgb
-										? `rgba(${colorValue.rgb.r}, ${colorValue.rgb.g}, ${colorValue.rgb.b}, ${colorValue.rgb.a})`
-										: colorValue.hex || shadowValues.color;
-									updateShadow('color', colorString);
-								}}
-								enableAlpha
-							/>
-						</Popover>
-					)}
-				</div>
-			</div>
+			<ColorPickerControl
+				label={__( 'Shadow Color', 'directorist-gutenberg' )}
+				color={shadowValues.color}
+				onChange={(color) => updateShadow('color', color)}
+				isOpen={isColorPickerOpen}
+				onToggle={() => setIsColorPickerOpen(!isColorPickerOpen)}
+			/>
 
 			<RangeControl
 				label={__( 'Horizontal Offset (X)', 'directorist-gutenberg' )}

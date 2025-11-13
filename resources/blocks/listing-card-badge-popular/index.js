@@ -11,6 +11,7 @@ import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
 import badgePopularIcon from '@block-icon/badge-popular.svg';
+import Controls from './controls';
 
 /**
  * External dependencies
@@ -24,6 +25,7 @@ const exampleAttributes = {
 registerBlock( {
 	metadata,
 	Edit,
+	Controls,
 	exampleAttributes,
 	icon: <ReactSVG src={badgePopularIcon} />,
 	templateTypes: [

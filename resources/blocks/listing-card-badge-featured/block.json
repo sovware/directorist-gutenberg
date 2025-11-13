@@ -13,9 +13,17 @@
 		"textAlign": {
 			"type": "string"
 		},
-		"badge_text": {
+		"text": {
 			"type": "string",
 			"default": "Featured"
+		},
+		"text_color": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"background_color": {
+			"type": "string",
+			"default": "#f28100"
 		}
 	},
 	"description": "Listing Badge Featured Block",
