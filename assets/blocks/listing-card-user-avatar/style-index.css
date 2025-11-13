@@ -33,5 +33,8 @@
 .directorist-gutenberg-listing-card-element-user-avatar .directorist-gutenberg-listing-user-avatar-right {
   justify-content: flex-end;
 }
+.directorist-gutenberg-listing-card-element-avatar-overlap {
+  margin-top: -24px !important;
+}
 
 /*# sourceMappingURL=style-index.css.map*/

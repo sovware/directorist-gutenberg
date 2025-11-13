@@ -26,3 +26,11 @@
         }
     }
 }
+.directorist-gutenberg-listing-card-element-avatar-overlap {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: -40px;
+    margin-top: 0 !important;
+    z-index: 999;
+}
