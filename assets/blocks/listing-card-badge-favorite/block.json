@@ -9,6 +9,9 @@
     "block_width": {
       "type": "string",
       "default": "100"
+    },
+    "textAlign": {
+      "type": "string"
     }
   },
   "description": "Listing Badge Favorite Block",

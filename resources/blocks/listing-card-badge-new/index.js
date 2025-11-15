@@ -11,7 +11,7 @@ import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
 import badgeNewIcon from '@block-icon/badge-new.svg';
-
+import Controls from './controls';
 /**
  * External dependencies
  */
@@ -24,6 +24,7 @@ const exampleAttributes = {
 registerBlock( {
 	metadata,
 	Edit,
+	Controls,
 	exampleAttributes,
 	icon: <ReactSVG src={badgeNewIcon} />,
 	templateTypes: [

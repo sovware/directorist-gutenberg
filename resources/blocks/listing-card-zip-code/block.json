@@ -14,10 +14,6 @@
 			"type": "boolean",
 			"default": false
 		},
-		"use_parent_style": {
-			"type": "boolean",
-			"default": false
-		},
 		"icon_color": {
 			"type": "string",
 			"default": ""

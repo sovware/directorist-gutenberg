@@ -1,5 +1,5 @@
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.2_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./resources/sass/blocks/editor.scss ***!
+  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./resources/sass/blocks/editor.scss ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .directorist-gutenberg-listing-card-element-content {
   display: flex;
@@ -63,6 +63,31 @@
 .block-editor-block-icon svg.directorist-gutenberg-block-icon {
   fill: none !important;
   color: #000;
+}
+.directorist-gutenberg-color-picker-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.directorist-gutenberg-color-picker-container .directorist-gutenberg-color-picker-label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1.4;
+  display: block;
+}
+.directorist-gutenberg-color-picker-container .components-button {
+  width: 100px;
+  height: 30px;
+  border: 1px solid var(--directorist-color-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.directorist-gutenberg-color-picker-container .directorist-gutenberg-color-picker-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
 /*# sourceMappingURL=blocks-editor.css.map*/

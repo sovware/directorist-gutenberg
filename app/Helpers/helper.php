@@ -230,3 +230,17 @@ function directorist_gutenberg_get_block_width_class( array $attributes, string 
 	$block_width = ! empty( $attributes[ $width_key ] ) ? $attributes[ $width_key ] : '100';
 	return 'directorist-gutenberg-block-width-' . esc_attr( $block_width );
 }
+
+/**
+ * Get text alignment class name from block attributes
+ *
+ * @param array $attributes Block attributes array
+ * @param string $align_key Attribute key for text alignment (default: 'textAlign')
+ * @return string Text alignment class name (e.g., 'has-text-align-center') or empty string if not set
+ */
+function directorist_gutenberg_get_text_align_class( array $attributes, string $align_key = 'textAlign' ): string {
+	if ( empty( $attributes[ $align_key ] ) ) {
+		return '';
+	}
+	return 'has-text-align-' . esc_attr( $attributes[ $align_key ] );
+}

@@ -27,4 +27,5 @@ registerBlock( {
 		'listings-archive-grid-view',
 		'listings-archive-list-view',
 	],
+	showWidthControls: false,
 } );

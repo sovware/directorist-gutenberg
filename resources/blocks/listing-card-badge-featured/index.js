@@ -7,10 +7,11 @@ import { createBlock } from '@wordpress/blocks';
  * Internal dependencies
  */
 import registerBlock from '@directorist-gutenberg/gutenberg/register-block';
-import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
 import badgeFeaturedIcon from '@block-icon/badge-featured.svg';
+import './style.scss';
+import Controls from './controls';
 
 /**
  * External dependencies
@@ -24,6 +25,7 @@ const exampleAttributes = {
 registerBlock( {
 	metadata,
 	Edit,
+	Controls,
 	exampleAttributes,
 	icon: <ReactSVG src={badgeFeaturedIcon} />,
 	templateTypes: [

@@ -3,10 +3,10 @@
  */
 import { InspectorControls } from '@wordpress/block-editor';
 import {  __experimentalToggleGroupControl as ToggleGroupControl,
-    __experimentalToggleGroupControlOption as ToggleGroupControlOption, } from '@wordpress/components';
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
+    ToggleControl } from '@wordpress/components';
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
 
 export default function Controls( { attributes, setAttributes } ) {
     return (
@@ -36,6 +36,11 @@ export default function Controls( { attributes, setAttributes } ) {
                         value="right"
                     />
                 </ToggleGroupControl>
+                <ToggleControl
+                    label={__('Overlap Avatar on Image', 'directorist-gutenberg')}
+                    checked={attributes.avatar_overlap}
+                    onChange={(value) => setAttributes({ avatar_overlap: value })}
+                />
             </PanelBody>
         </InspectorControls>
     );

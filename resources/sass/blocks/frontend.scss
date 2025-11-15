@@ -24,13 +24,14 @@
     }
 }
 .block-editor-block-list__block .directorist-gutenberg-listing-card-block,
-.directorist-gutenberg-blocks-wrap .directorist-gutenberg-listing-card-block,
-.block-editor-block-list__layout .block-editor-block-list__block,
-.block-editor-block-list__layout.is-root-container .block-editor-block-list__block{
+.block-editor-block-list__layout.is-root-container .directorist-gutenberg-listing-card-block,
+.directorist-gutenberg-blocks-wrap .directorist-gutenberg-listing-card-block{
 	margin-left: 0 !important;
 	margin-right: 0 !important;
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
+}
+.block-editor-block-list__layout.is-root-container .block-editor-block-list__block:not(.directorist-gutenberg-listing-card-block){
 	width: 100%;
 }
 
@@ -57,16 +58,16 @@
     }
 }
 .directorist-gutenberg-listing-badge-featured{
-    background: var(--directorist-color-warning);
-    color: #fff;
+    background: var(--directorist-gutenberg-listing-badge-background-color, var(--directorist-color-warning));
+    color: var(--directorist-gutenberg-listing-badge-text-color, #fff);
 }
 .directorist-gutenberg-listing-badge-new{
-    background: var(--directorist-color-new-badge);
-    color: #fff;
+    background: var(--directorist-gutenberg-listing-badge-background-color, var(--directorist-color-new-badge));
+    color: var(--directorist-gutenberg-listing-badge-text-color, #fff);
 }
 .directorist-gutenberg-listing-badge-popular{
-    background: var(--directorist-color-primary);
-    color: #fff;
+    background: var(--directorist-gutenberg-listing-badge-background-color, var(--directorist-color-primary));
+    color: var(--directorist-gutenberg-listing-badge-text-color, #fff);
 }
 
 // Radius search style
@@ -128,51 +129,63 @@
 }
 
 // Block Width Styles
-.post-type-directorist_gbt .block-editor-block-list__layout,
+body.directorist-gutenberg-listings-archive-grid-view{
+	.block-editor-block-list__layout.is-root-container{
+		max-width: 645px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+.post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid),
 .directorist-gutenberg-blocks-wrap,
-.directorist-gutenberg-blocks-wrap .wp-block-group {
+.directorist-gutenberg-blocks-wrap .wp-block-group:not(.is-layout-grid) {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
 	gap: 0 12px;
 	.directorist-gutenberg-block-width-100 {
-		flex: 0 1 100%;
+		width: 100%;
 	}
 	.directorist-gutenberg-block-width-75 {
-		flex: 0 1 calc(75% - 12px);
+		width: calc(75% - 12px);
 		@media only screen and (max-width: 480px) {
-			flex: 0 1 100%;
+			width: 100%;
 		}
 	}
 	.directorist-gutenberg-block-width-67 {
-		flex: 0 1 calc(66.67% - 12px);
+		width: calc(66.67% - 12px);
 		@media only screen and (max-width: 480px) {
-			flex: 0 1 100%;
+			width: 100%;
 		}
 	}
 	.directorist-gutenberg-block-width-50 {
-		flex: 0 1 calc(50% - 12px);
+		width: calc(50% - 12px);
 		@media only screen and (max-width: 480px) {
-			flex: 0 1 100%;
+			width: 100%;
 		}
 	}
 	.directorist-gutenberg-block-width-33 {
-		flex: 0 1 calc(33.33% - 12px);
+		width: calc(33.33% - 12px);
 		@media only screen and (max-width: 767px) {
-			flex: 0 1 calc(50% - 12px);
+			width: calc(50% - 12px);
 		}
 		@media only screen and (max-width: 480px) {
-			flex: 0 1 100%;
+			width: 100%;
 		}
 	}
 	.directorist-gutenberg-block-width-25 {
-		flex: 0 1 calc(25% - 12px);
+		width: calc(25% - 12px);
 		@media only screen and (max-width: 767px) {
-			flex: 0 1 calc(50% - 12px);
+			width: calc(50% - 12px);
 		}
 		@media only screen and (max-width: 480px) {
-			flex: 0 1 100%;
+			width: 100%;
 		}
+	}
+}
+.post-type-directorist_gbt .block-editor-block-list__layout.is-layout-flex{
+	.directorist-gutenberg-listing-card-block{
+		flex: unset;
 	}
 }
 .directorist-gutenberg-blocks-wrap{

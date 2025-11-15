@@ -10,6 +10,7 @@ import { useState } from '@wordpress/element';
  * Internal dependencies
  */
 import IconPicker from '@directorist-gutenberg/gutenberg/components/controls/icon-picker';
+import ColorPickerControl from '@directorist-gutenberg/gutenberg/components/controls/color-picker-control';
 
 export default function Controls( { attributes, setAttributes } ) {
 	const [isIconColorPickerOpen, setIsIconColorPickerOpen] = useState(false);
@@ -30,42 +31,15 @@ export default function Controls( { attributes, setAttributes } ) {
 
 				{ attributes?.icon && (
 					<>
-						<div style={{ marginBottom: '16px' }}>
-							<label style={{ display: 'block', marginBottom: '8px', fontWeight: 500 }}>
-								{__( 'Icon Color', 'directorist-gutenberg' )}
-							</label>
-							<div style={{ position: 'relative', display: 'inline-block', width: '100%' }}>
-								<Button
-									onClick={() => setIsIconColorPickerOpen(!isIconColorPickerOpen)}
-									style={{
-										width: '100%',
-										height: '30px',
-										backgroundColor: iconColor || '#000',
-										border: '1px solid #ccc',
-										borderRadius: '3px',
-										cursor: 'pointer',
-									}}
-								/>
-								{isIconColorPickerOpen && (
-									<Popover
-										onClose={() => setIsIconColorPickerOpen(false)}
-										placement="left-start"
-										offset={20}
-									>
-										<ColorPicker
-											color={iconColor}
-											onChangeComplete={(colorValue) => {
-												const colorString = colorValue.rgb
-													? `rgba(${colorValue.rgb.r}, ${colorValue.rgb.g}, ${colorValue.rgb.b}, ${colorValue.rgb.a})`
-													: colorValue.hex || '';
-												setAttributes({ icon_color: colorString });
-											}}
-											enableAlpha
-										/>
-									</Popover>
-								)}
-							</div>
-						</div>
+						<ColorPickerControl
+							label={__( 'Icon Color', 'directorist-gutenberg' )}
+							color={attributes.icon_color}
+							defaultColor={attributes.icon_color || '#808080'}
+							onChange={(color) => setAttributes({ icon_color: color })}
+							isOpen={isIconColorPickerOpen}
+							onToggle={() => setIsIconColorPickerOpen(!isIconColorPickerOpen)}
+						/>
+
 						<UnitControl
 							label={ __( 'Icon Size', 'directorist-gutenberg' ) }
 							value={ attributes.icon_size || '16px' }

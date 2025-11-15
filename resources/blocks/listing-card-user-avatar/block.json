@@ -13,12 +13,19 @@
 		"block_width": {
 			"type": "string",
 			"default": "100"
+		},
+		"avatar_overlap": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"description": "Listing User Avatar Block",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"spacing": {
+			"margin": true
+		}
 	},
 	"textdomain": "directorist-gutenberg",
 	"editorScript": "file:./index.js",

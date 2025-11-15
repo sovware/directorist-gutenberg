@@ -2,6 +2,10 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import {
+	AlignmentControl,
+	BlockControls,
+} from '@wordpress/block-editor';
 
 /**
  * External dependencies
@@ -15,14 +19,26 @@ import newIcon from '@icon/bolt-solid.svg';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
+	const { textAlign } = attributes;
+
 	return (
-		<div
-			className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-badge"
-		>
-			<div class="directorist-gutenberg-listing-badge directorist-gutenberg-listing-badge-new">
-				<ReactSVG src={ newIcon } />
-				<span>{__('New', 'directorist-gutenberg')}</span>
+		<>
+			<BlockControls group="block">
+				<AlignmentControl
+					value={ textAlign }
+					onChange={ ( nextAlign ) => {
+						setAttributes( { textAlign: nextAlign } );
+					} }
+				/>
+			</BlockControls>
+			<div
+				className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-badge"
+			>
+				<div className="directorist-gutenberg-listing-badge directorist-gutenberg-listing-badge-new" style={{ backgroundColor: attributes.background_color, color: attributes.text_color }}>
+					<ReactSVG src={ newIcon } />
+					{ attributes.text && <span>{attributes.text}</span> }
+				</div>
 			</div>
-		</div>
+		</>
 	)
 }

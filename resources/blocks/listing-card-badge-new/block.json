@@ -9,6 +9,21 @@
 		"block_width": {
 			"type": "string",
 			"default": "100"
+		},
+		"textAlign": {
+			"type": "string"
+		},
+		"text": {
+			"type": "string",
+			"default": "New"
+		},
+		"text_color": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"background_color": {
+			"type": "string",
+			"default": "#2C99FF"
 		}
 	},
 	"description": "Listing Badge New Block",

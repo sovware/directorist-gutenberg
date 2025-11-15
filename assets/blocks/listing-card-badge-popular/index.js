@@ -1200,7 +1200,82 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
   \****************************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-badge-popular","version":"0.1.0","title":"Listing Badge Popular","category":"directorist-listing-card-preset-fields","attributes":{"block_width":{"type":"string","default":"100"}},"description":"Listing Badge Popular Block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-badge-popular","version":"0.1.0","title":"Listing Badge Popular","category":"directorist-listing-card-preset-fields","attributes":{"block_width":{"type":"string","default":"100"},"textAlign":{"type":"string"},"text":{"type":"string","default":"Popular"},"text_color":{"type":"string","default":"#ffffff"},"background_color":{"type":"string","default":"#444752"}},"description":"Listing Badge Popular Block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+
+/***/ }),
+
+/***/ "./resources/blocks/listing-card-badge-popular/controls.js":
+/*!*****************************************************************!*\
+  !*** ./resources/blocks/listing-card-badge-popular/controls.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Controls)
+/* harmony export */ });
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _directorist_gutenberg_gutenberg_components_controls_color_picker_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/controls/color-picker-control */ "./resources/js/gutenberg/components/controls/color-picker-control.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+function Controls({
+  attributes,
+  setAttributes
+}) {
+  const [isTextColorPickerOpen, setIsTextColorPickerOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+  const [isBackgroundColorPickerOpen, setIsBackgroundColorPickerOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Badge Settings', 'directorist-gutenberg'),
+      initialOpen: true,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Badge Text', 'directorist-gutenberg'),
+        value: attributes.text,
+        onChange: value => setAttributes({
+          text: value
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_directorist_gutenberg_gutenberg_components_controls_color_picker_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text Color', 'directorist-gutenberg'),
+        color: attributes.text_color,
+        defaultColor: "#ffffff",
+        onChange: color => setAttributes({
+          text_color: color
+        }),
+        isOpen: isTextColorPickerOpen,
+        onToggle: () => setIsTextColorPickerOpen(!isTextColorPickerOpen)
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_directorist_gutenberg_gutenberg_components_controls_color_picker_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Background Color', 'directorist-gutenberg'),
+        color: attributes.background_color,
+        defaultColor: "#444752",
+        onChange: color => setAttributes({
+          background_color: color
+        }),
+        isOpen: isBackgroundColorPickerOpen,
+        onToggle: () => setIsBackgroundColorPickerOpen(!isBackgroundColorPickerOpen)
+      })]
+    })
+  });
+}
 
 /***/ }),
 
@@ -1214,16 +1289,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Edit)
 /* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
-/* harmony import */ var _icon_fire_solid_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @icon/fire-solid.svg */ "./resources/svg/icons/fire-solid.svg");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-badge-popular/editor.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
+/* harmony import */ var _icon_fire_solid_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @icon/fire-solid.svg */ "./resources/svg/icons/fire-solid.svg");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-badge-popular/editor.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 /**
  * WordPress dependencies
  */
+
 
 
 /**
@@ -1241,16 +1319,35 @@ function Edit({
   attributes,
   setAttributes
 }) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-    className: "directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-badge",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      class: "directorist-gutenberg-listing-badge directorist-gutenberg-listing-badge-popular",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        src: _icon_fire_solid_svg__WEBPACK_IMPORTED_MODULE_2__
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Popular', 'directorist-gutenberg')
-      })]
-    })
+  const {
+    textAlign
+  } = attributes;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.BlockControls, {
+      group: "block",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.AlignmentControl, {
+        value: textAlign,
+        onChange: nextAlign => {
+          setAttributes({
+            textAlign: nextAlign
+          });
+        }
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-badge",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "directorist-gutenberg-listing-badge directorist-gutenberg-listing-badge-popular",
+        style: {
+          backgroundColor: attributes.background_color,
+          color: attributes.text_color
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          src: _icon_fire_solid_svg__WEBPACK_IMPORTED_MODULE_3__
+        }), attributes.text && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          children: attributes.text
+        })]
+      })
+    })]
   });
 }
 
@@ -1282,9 +1379,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listing-card-badge-popular/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listing-card-badge-popular/block.json");
 /* harmony import */ var _block_icon_badge_popular_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @block-icon/badge-popular.svg */ "./resources/blocks-icon/badge-popular.svg");
-/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controls */ "./resources/blocks/listing-card-badge-popular/controls.js");
+/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
 /**
  * WordPress dependencies
  */
@@ -1293,6 +1391,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -1310,8 +1409,9 @@ const exampleAttributes = {
 (0,_directorist_gutenberg_gutenberg_register_block__WEBPACK_IMPORTED_MODULE_1__["default"])({
   metadata: _block_json__WEBPACK_IMPORTED_MODULE_4__,
   Edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
+  Controls: _controls__WEBPACK_IMPORTED_MODULE_6__["default"],
   exampleAttributes,
-  icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_7__["default"], {
     src: _block_icon_badge_popular_svg__WEBPACK_IMPORTED_MODULE_5__
   }),
   templateTypes: ['listings-archive-grid-view', 'listings-archive-list-view'],
@@ -1367,11 +1467,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/.pnpm/clsx@2.1.1/node_modules/clsx/dist/clsx.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 /**
  * WordPress dependencies
  */
+
 
 
 /**
@@ -1396,6 +1498,7 @@ const setCustomClassNames = classNames => {
  * @param {Object} props.attributes - Block attributes
  * @param {Function} props.setAttributes - Function to set block attributes
  * @param {string|string[]} props.classNames - Additional custom class names to add
+ * @param {string} props.name - Block name
  * @param {Object} props.rest - Additional props to pass to Edit component
  */
 function Block({
@@ -1404,23 +1507,127 @@ function Block({
   setAttributes,
   Controls,
   classNames = '',
+  name,
   ...rest
 }) {
   const customClasses = setCustomClassNames(classNames);
 
-  // Block props
+  // For thumbnail block, don't use useBlockProps on outer wrapper (Edit component handles it)
+  const isThumbnailBlock = name === 'directorist-gutenberg/listing-card-thumbnail';
+  if (isThumbnailBlock) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: `directorist-gutenberg-listing-card-block ${customClasses} directorist-gutenberg-block-width-${Math.trunc(attributes.block_width)}`,
+      children: [Controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Controls, {
+        attributes: attributes,
+        setAttributes: setAttributes
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Edit, {
+        attributes: attributes,
+        setAttributes: setAttributes,
+        name: name,
+        ...rest
+      })]
+    });
+  }
+
+  // Block props with textAlign support
+  const {
+    textAlign
+  } = attributes || {};
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
-    className: `directorist-gutenberg-listing-card-block ${customClasses} directorist-gutenberg-block-width-${Math.trunc(attributes.block_width)}`
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])('directorist-gutenberg-listing-card-block', customClasses, `directorist-gutenberg-block-width-${Math.trunc(attributes.block_width || 100)}`, {
+      [`has-text-align-${textAlign}`]: textAlign
+    })
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     ...blockProps,
-    children: [Controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Controls, {
+    children: [Controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Controls, {
       attributes: attributes,
       setAttributes: setAttributes
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Edit, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Edit, {
       attributes: attributes,
       setAttributes: setAttributes,
+      name: name,
       ...rest
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/gutenberg/components/controls/color-picker-control.js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/gutenberg/components/controls/color-picker-control.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ColorPickerControl),
+/* harmony export */   getColorString: () => (/* binding */ getColorString)
+/* harmony export */ });
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Convert color value to string format
+ *
+ * @param {Object} colorValue - Color value from ColorPicker
+ * @returns {string} Color string (rgba or hex)
+ */
+
+const getColorString = colorValue => {
+  return colorValue.rgb ? `rgba(${colorValue.rgb.r}, ${colorValue.rgb.g}, ${colorValue.rgb.b}, ${colorValue.rgb.a})` : colorValue.hex || '';
+};
+
+/**
+ * Color Picker Control Component
+ *
+ * @param {Object} props - Component props
+ * @param {string} props.label - Label for the color picker
+ * @param {string} props.color - Current color value
+ * @param {string} props.defaultColor - Default color if none is set
+ * @param {Function} props.onChange - Callback when color changes
+ * @param {boolean} props.isOpen - Whether the picker is open
+ * @param {Function} props.onToggle - Toggle function for picker open state
+ */
+function ColorPickerControl({
+  label,
+  color,
+  defaultColor,
+  onChange,
+  isOpen,
+  onToggle
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "directorist-gutenberg-color-picker-container",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+      className: "directorist-gutenberg-color-picker-label",
+      children: label
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "directorist-gutenberg-color-picker-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.Button, {
+        onClick: onToggle,
+        style: {
+          backgroundColor: color || defaultColor
+        }
+      }), isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.Popover, {
+        onClose: onToggle,
+        placement: "left-start",
+        offset: 20,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ColorPicker, {
+          color: color || defaultColor,
+          onChangeComplete: colorValue => {
+            onChange(getColorString(colorValue));
+          },
+          enableAlpha: true
+        })
+      })]
     })]
   });
 }
@@ -1672,6 +1879,16 @@ module.exports = window["wp"]["blocks"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
 
 /***/ }),
 

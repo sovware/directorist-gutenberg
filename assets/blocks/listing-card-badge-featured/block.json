@@ -9,6 +9,21 @@
     "block_width": {
       "type": "string",
       "default": "100"
+    },
+    "textAlign": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string",
+      "default": "Featured"
+    },
+    "text_color": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "background_color": {
+      "type": "string",
+      "default": "#f28100"
     }
   },
   "description": "Listing Badge Featured Block",
