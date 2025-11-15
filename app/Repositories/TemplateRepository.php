@@ -5,6 +5,7 @@ namespace DirectoristGutenberg\App\Repositories;
 defined( "ABSPATH" ) || exit;
 
 use DirectoristGutenberg\App\DTO\TemplateReadDTO;
+use DirectoristGutenberg\App\DTO\TemplateCreateDTO;
 use DirectoristGutenberg\App\DTO\TemplateDeleteDTO;
 use DirectoristGutenberg\App\Models\Post;
 use DirectoristGutenberg\App\Models\PostMeta;
@@ -68,6 +69,26 @@ class TemplateRepository {
             'items' => $select_query->pagination( $read_dto->get_page(), $read_dto->get_per_page(), 1, 100 ),
             'total' => $count,
         ];
+    }
+
+    public function create( TemplateCreateDTO $create_dto ) {
+        $post_id = wp_insert_post(
+            [
+                'post_type'    => directorist_gutenberg_post_type(),
+                'post_title'   => $create_dto->get_title(),
+                'post_content' => $create_dto->get_content(),
+                'post_status'  => $create_dto->get_status(),
+            ]
+        );
+
+        if ( false === $post_id ) {
+            throw new Exception( esc_html__( 'Failed to create the template.', 'directorist-gutenberg' ), 500 );
+        }
+
+        update_post_meta( $post_id, 'directory_type_id', $create_dto->get_directory_type() );
+        update_post_meta( $post_id, 'template_type', $create_dto->get_template_type() );
+
+        return $post_id;
     }
 
     public function delete( int $id ) {
