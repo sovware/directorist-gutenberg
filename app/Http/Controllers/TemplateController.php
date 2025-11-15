@@ -47,6 +47,26 @@ class TemplateController extends Controller {
         );
     }
 
+    public function directories(): array {
+        $directories     = directorist_get_directories( [ 'hide_empty' => false ] );
+        $directory_types = [];
+
+        if ( ! is_wp_error( $directories ) && ! empty( $directories ) ) {
+            $directory_types = array_map( function( $directory ) {
+                return [
+                    'value' => $directory->term_id,
+                    'label' => $directory->name,
+                ];
+            }, $directories );
+        }
+
+        return Response::send(
+            [
+                'directories' => $directory_types,
+            ]
+        );
+    }
+
     public function create_single_template( Validator $validator, WP_REST_Request $request ): array {
         $validator->validate(
             [
