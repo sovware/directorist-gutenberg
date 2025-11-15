@@ -74,7 +74,7 @@ class TemplateController extends Controller {
             throw new Exception( esc_html__( 'Failed to create the template.', 'directorist-gutenberg' ), 500 );
         }
 
-        $post_id = wp_update_post(
+        wp_update_post(
             [
                 'ID'         => $post_id,
                 'post_title' => $title . ' #' . $post_id,
@@ -85,6 +85,63 @@ class TemplateController extends Controller {
             [
                 'post_id' => $post_id,
                 'message' => __( 'The template was created successfully.' )
+            ]
+        );
+    }
+
+    public function create_all_templates( Validator $validator, WP_REST_Request $request ): array {
+        $validator->validate(
+            [
+                "directory_type" => "required|numeric",
+                "status"         => "string",
+            ]
+        );
+
+        $all_templates = [
+            'listings-archive', 
+            'listings-archive-grid-view', 
+            'listings-archive-list-view',
+        ];
+
+        $created_ids = [];
+        $has_error   = false;
+
+        foreach ( $all_templates as $template_type ) {
+            $demo_template = $this->get_demo_template( $template_type );
+
+            $create_dto = ( new TemplateCreateDTO() )
+                ->set_directory_type( $request->get_param( 'directory_type' ) )
+                ->set_template_type( $template_type )
+                ->set_title( $demo_template['title'] )
+                ->set_content( $demo_template['content'] )
+                ->set_status( $request->get_param( 'status' ) ?? 'publish' );
+
+            $post_id = $this->repository->create( $create_dto );
+
+            if ( false === $post_id ) {
+                $has_error = true;
+                break;
+            }
+
+            wp_update_post(
+                [
+                    'ID'         => $post_id,
+                    'post_title' => $demo_template['title'] . ' #' . $post_id,
+                ] 
+            );
+
+            $created_ids[] = $post_id;
+        }
+
+        if ( $has_error ) {
+            $this->repository->delete_by_ids( $created_ids );
+            throw new Exception( esc_html__( 'Failed to create some of the templates.', 'directorist-gutenberg' ), 500 );
+        }
+
+        return Response::send(
+            [
+                'created_ids' => $created_ids,
+                'message'     => __( 'The templates were created successfully.' )
             ]
         );
     }

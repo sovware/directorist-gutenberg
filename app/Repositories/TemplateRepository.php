@@ -111,6 +111,18 @@ class TemplateRepository {
         return $status;
     }
 
+    public function delete_by_ids( array $ids ) {
+        $status = Post::query()
+            ->where_in( 'ID', $ids )
+            ->delete();
+
+        if ( false !== $status ) {
+            $this->delete_template_meta( [ $ids ] );
+        }
+
+        return $status;
+    }
+
     public function delete_by( TemplateDeleteDTO $delete_dto ) {
         $select_query = Post::query()
             ->where( 'post_type', directorist_gutenberg_post_type() )
