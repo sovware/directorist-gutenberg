@@ -49,12 +49,23 @@ class TemplateRepository {
         $count_query = clone $select_query;
         $count       = $count_query->count( 'DISTINCT posts.ID' );
 
-        $posts = $select_query
-            ->order_by( 'posts.post_date', 'desc' )
-            ->pagination( $read_dto->get_page(), $read_dto->get_per_page(), 1, 100 );
+        switch ( $read_dto->get_order_by() ) {
+            case 'latest':
+                $select_query->order_by( 'posts.post_modified', 'desc' );
+                break;
+            case 'oldest':
+                $select_query->order_by( 'posts.post_modified', 'asc' );
+                break;
+            case 'title':
+                $select_query->order_by( 'posts.post_title', 'asc' );
+                break;
+            default:
+                $select_query->order_by( 'posts.post_modified', 'desc' );
+                break;
+        }
 
         return [
-            'items' => $posts,
+            'items' => $select_query->pagination( $read_dto->get_page(), $read_dto->get_per_page(), 1, 100 ),
             'total' => $count,
         ];
     }

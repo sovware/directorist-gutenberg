@@ -28,7 +28,8 @@ class TemplateController extends Controller {
                 "page"           => "numeric",
                 "template_type"  => "string",
                 "directory_type" => "numeric",
-                "status"         => "array"
+                "status"         => "array",
+                "order_by"       => "string"
             ]
         );
 
@@ -37,7 +38,8 @@ class TemplateController extends Controller {
             ->set_page( $request->get_param( 'page' ) ?? 1 )
             ->set_template_type( $request->get_param( 'template_type' ) )
             ->set_directory_type( $request->get_param( 'directory_type' ) )
-            ->set_status( $request->get_param( 'status' ) );
+            ->set_status( $request->get_param( 'status' ) )
+            ->set_order_by( $request->get_param( 'order_by' ) ?? 'latest' );
 
         return Response::send(
             $this->repository->get( $read_dto )

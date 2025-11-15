@@ -12,6 +12,7 @@ class TemplateReadDTO extends DTO {
     private ?string $template_type = null;
     private ?int $directory_type = null;
     private ?array $status = null;
+    private string $order_by = 'latest';
 
     public function get_per_page(): int {
         return $this->per_page;
@@ -55,6 +56,15 @@ class TemplateReadDTO extends DTO {
 
     public function set_status( ?array $status ): self {
         $this->status = $status;
+        return $this;
+    }
+
+    public function get_order_by(): string {
+        return $this->order_by;
+    }
+
+    public function set_order_by( string $order_by ): self {
+        $this->order_by = $order_by;
         return $this;
     }
 }
