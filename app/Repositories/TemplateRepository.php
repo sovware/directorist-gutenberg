@@ -5,8 +5,10 @@ namespace DirectoristGutenberg\App\Repositories;
 defined( "ABSPATH" ) || exit;
 
 use DirectoristGutenberg\App\DTO\TemplateReadDTO;
+use DirectoristGutenberg\App\DTO\TemplateDeleteDTO;
 use DirectoristGutenberg\App\Models\Post;
 use DirectoristGutenberg\App\Models\PostMeta;
+use DirectoristGutenberg\WpMVC\Exceptions\Exception;
 
 class TemplateRepository {
     
@@ -14,13 +16,13 @@ class TemplateRepository {
         $select_query = Post::query()
             ->where( 'post_type', directorist_gutenberg_post_type() )
             ->where_in( 'posts.post_status', [ 'publish', 'draft', 'pending', 'private', 'future' ] )
-            ->left_join( PostMeta::get_table_name() . ' as template_meta', function( $join ) {
-                $join->on_column( 'template_meta.post_id', '=', 'posts.ID' )
-                    ->where( 'template_meta.meta_key', '=', 'template_type' );
-            } )
             ->left_join( PostMeta::get_table_name() . ' as directory_meta', function( $join ) {
                 $join->on_column( 'directory_meta.post_id', '=', 'posts.ID' )
                     ->where( 'directory_meta.meta_key', '=', 'directory_type_id' );
+            } )
+            ->left_join( PostMeta::get_table_name() . ' as template_meta', function( $join ) {
+                $join->on_column( 'template_meta.post_id', '=', 'posts.ID' )
+                    ->where( 'template_meta.meta_key', '=', 'template_type' );
             } )
             ->select(
                 'posts.ID', 
@@ -32,20 +34,20 @@ class TemplateRepository {
                 'directory_meta.meta_value as directory_type'
             );
 
-        if ( ! empty( $read_dto->get_template_type() ) ) {
-            $select_query->where( 'template_meta.meta_value', $read_dto->get_template_type() );
-        }
-
         if ( ! empty( $read_dto->get_directory_type() ) ) {
             $select_query->where( 'directory_meta.meta_value', $read_dto->get_directory_type() );
         }
 
-        $count_query = clone $select_query;
-        $sql_query   = clone $select_query;
-        $count       = $count_query->count( 'DISTINCT posts.ID' );
-        $sql         = $sql_query->to_sql();
+        if ( ! empty( $read_dto->get_template_type() ) ) {
+            $select_query->where( 'template_meta.meta_value', $read_dto->get_template_type() );
+        }
 
-        file_put_contents( __DIR__ . '/sql.sql', $sql );
+        if ( ! empty( $read_dto->get_status() ) ) {
+            $select_query->where_in( 'posts.post_status', $read_dto->get_status() );
+        }
+
+        $count_query = clone $select_query;
+        $count       = $count_query->count( 'DISTINCT posts.ID' );
 
         $posts = $select_query
             ->order_by( 'posts.post_date', 'desc' )
@@ -55,6 +57,74 @@ class TemplateRepository {
             'items' => $posts,
             'total' => $count,
         ];
+    }
+
+    public function delete( int $id ) {
+        $item = Post::query()
+            ->where( 'ID', $id )
+            ->first();
+
+        if ( ! $item ) {
+            throw new Exception( esc_html__( 'Template not found.', 'directorist-gutenberg' ), 404 );
+        }
+
+        $status = Post::query()
+            ->where( 'ID', $id )
+            ->delete();
+
+        if ( false !== $status ) {
+            $this->delete_template_meta( [ $id ] );
+        }
+
+        return $status;
+    }
+
+    public function delete_by( TemplateDeleteDTO $delete_dto ) {
+        $select_query = Post::query()
+            ->where( 'post_type', directorist_gutenberg_post_type() )
+            ->left_join( PostMeta::get_table_name() . ' as directory_meta', function( $join ) {
+                $join->on_column( 'directory_meta.post_id', '=', 'posts.ID' )
+                    ->where( 'directory_meta.meta_key', '=', 'directory_type_id' );
+            } )
+            ->left_join( PostMeta::get_table_name() . ' as template_meta', function( $join ) {
+                $join->on_column( 'template_meta.post_id', '=', 'posts.ID' )
+                    ->where( 'template_meta.meta_key', '=', 'template_type' );
+            } )
+            ->where( 'directory_meta.meta_value', $delete_dto->get_directory_type() )
+            ->select( 'posts.ID' );
+
+        if ( ! empty( $delete_dto->get_template_type() ) ) {
+            $select_query->where( 'template_meta.meta_value', $delete_dto->get_template_type() );
+        }
+
+        if ( ! empty( $delete_dto->get_status() ) ) {
+            $select_query->where_in( 'posts.post_status', $delete_dto->get_status() );
+        }
+
+        $items = $select_query->get();
+
+        if ( empty( $items ) ) {
+            throw new Exception( esc_html__( 'No template was found.', 'directorist-gutenberg' ), 404 );
+        }
+
+        $ids = array_column( $items, 'ID' );
+
+        $status = Post::query()
+            ->where_in( 'ID', $ids )
+            ->delete();
+
+        if ( false !== $status ) {
+            $this->delete_template_meta( $ids );
+        }
+
+        return $status;
+    }
+
+    public function delete_template_meta( array $post_ids ) {
+        PostMeta::query()
+            ->where_in( 'post_id', $post_ids )
+            ->where( 'meta_key', 'template_type' )
+            ->delete();
     }
 
 }
