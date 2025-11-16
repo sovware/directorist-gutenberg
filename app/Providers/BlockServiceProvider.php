@@ -6,6 +6,8 @@ defined( "ABSPATH" ) || exit;
 
 use DirectoristGutenberg\WpMVC\Contracts\Provider;
 use WP_Block_Editor_Context;
+use DirectoristGutenberg\App\Repositories\TemplateRepository;
+use DirectoristGutenberg\App\DTO\TemplateReadDTO;
 
 class BlockServiceProvider implements Provider {
     public function boot() {
@@ -59,11 +61,33 @@ class BlockServiceProvider implements Provider {
 
         $directory_type_id = get_post_meta( get_post()->ID, "directory_type_id", true );
 
+        /**
+         * @var TemplateRepository
+         */
+        $template_repository = directorist_gutenberg_singleton( TemplateRepository::class );
+
+        $templates = $template_repository->get( 
+            ( new TemplateReadDTO )
+                ->set_directory_type( $directory_type_id )
+                ->set_page( 1 )
+                ->set_per_page( 100 )
+        );
+
+        $template_links = array_map( function( $template ) {
+            return [
+                'id'         => $template->ID,
+                'title'      => $template->post_title,
+                'is_current' => (int) $template->ID === (int) get_post()->ID,
+                'url'        => get_edit_post_link( $template->ID ),
+            ];
+        }, $templates['items'] );
+
         // Prepare localized data
         $localized_data = [
             'template_type'          => get_post_meta( get_post()->ID, "template_type", true ),
             'directory_type_id'      => get_post_meta( get_post()->ID, "directory_type_id", true ),
             'submission_form_fields' => ! empty( $directory_type_id ) ? get_term_meta( $directory_type_id, "submission_form_fields", true ) : null,
+            'template_links'         => $template_links,
         ];
 
         // Localize the script

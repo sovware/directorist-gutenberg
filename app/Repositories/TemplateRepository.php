@@ -16,7 +16,6 @@ class TemplateRepository {
     public function get( TemplateReadDTO $read_dto ): array {
         $select_query = Post::query()
             ->where( 'post_type', directorist_gutenberg_post_type() )
-            ->where_in( 'posts.post_status', [ 'publish', 'draft', 'pending', 'private', 'future' ] )
             ->left_join( PostMeta::get_table_name() . ' as directory_meta', function( $join ) {
                 $join->on_column( 'directory_meta.post_id', '=', 'posts.ID' )
                     ->where( 'directory_meta.meta_key', '=', 'directory_type_id' );
@@ -45,6 +44,8 @@ class TemplateRepository {
 
         if ( ! empty( $read_dto->get_status() ) ) {
             $select_query->where_in( 'posts.post_status', $read_dto->get_status() );
+        } else {
+            $select_query->where_in( 'posts.post_status', [ 'publish', 'draft', 'pending', 'private', 'future' ] );
         }
 
         $count_query = clone $select_query;
