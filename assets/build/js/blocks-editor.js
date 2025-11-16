@@ -416,6 +416,13 @@ function ShadowControl({
       [attrName]: newShadowString
     });
   };
+
+  // Reset shadow to default values
+  const resetShadow = () => {
+    setAttributes({
+      [attrName]: ''
+    });
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: label,
     initialOpen: initialOpen,
@@ -449,6 +456,14 @@ function ShadowControl({
       onChange: value => updateShadow('spread', value || 0),
       min: -100,
       max: 100
+    }), dropShadow && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+      variant: "secondary",
+      size: "small",
+      onClick: resetShadow,
+      style: {
+        marginTop: '12px'
+      },
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Reset Shadow', 'directorist-gutenberg')
     })]
   });
 }
