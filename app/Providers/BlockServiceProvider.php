@@ -78,6 +78,7 @@ class BlockServiceProvider implements Provider {
                 'id'         => $template->ID,
                 'title'      => $template->post_title,
                 'is_current' => (int) $template->ID === (int) get_post()->ID,
+                'status'     => $template->post_status,
                 'url'        => get_edit_post_link( $template->ID ),
             ];
         }, $templates['items'] );
