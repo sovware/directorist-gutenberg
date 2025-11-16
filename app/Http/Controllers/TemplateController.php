@@ -143,13 +143,6 @@ class TemplateController extends Controller {
                 break;
             }
 
-            wp_update_post(
-                [
-                    'ID'         => $post_id,
-                    'post_title' => $demo_template['title'] . ' #' . $post_id,
-                ] 
-            );
-
             $created_ids[] = $post_id;
         }
 
