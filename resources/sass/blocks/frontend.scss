@@ -91,6 +91,14 @@
     margin: 0;
     text-decoration: none;
     color: var(--directorist-color-dark);
+	a{
+		color: inherit !important;
+		text-decoration: inherit !important;
+		font-weight: inherit !important;
+		font-size: inherit !important;
+		line-height: inherit !important;
+		text-transform: inherit !important;
+	}
 }
 
 // Toolbar Styles
@@ -143,6 +151,37 @@ body.directorist-gutenberg-listings-archive-grid-view{
 	flex-wrap: wrap;
 	width: 100%;
 	gap: 12px;
+	&.is-vertical{
+		flex-direction: column;
+	}
+	&.is-horizontal{
+		flex-direction: row;
+	}
+	&.is-vertical.is-content-justification-left{
+		align-items: flex-start;
+	}
+	&.is-vertical.is-content-justification-center{
+		align-items: center;
+	}
+	&.is-vertical.is-content-justification-right{
+		align-items: flex-end;
+	}
+	&.is-vertical.is-content-justification-stretch{
+		align-items: stretch;
+	}
+	&.is-horizontal.is-content-justification-left{
+		justify-content: flex-start;
+	}
+	&.is-horizontal.is-content-justification-center{
+		justify-content: center;
+	}
+	&.is-horizontal.is-content-justification-right{
+		justify-content: flex-end;
+	}
+	&.is-horizontal.is-content-justification-space-between{
+		justify-content: space-between;
+	}
+
 	.directorist-gutenberg-block-width-100 {
 		width: 100%;
 	}
@@ -192,5 +231,124 @@ body.directorist-gutenberg-listings-archive-grid-view{
 	.wp-block-group,
 	.wp-block-columns{
 		width: 100%;
+	}
+}
+
+/**
+ * Skeleton Loading Component Styles
+ */
+
+ .directorist-gutenberg-skeleton {
+	display: inline-block;
+	background: linear-gradient(
+		90deg,
+		#f0f0f0 25%,
+		#e0e0e0 50%,
+		#f0f0f0 75%
+	);
+	background-size: 200% 100%;
+	border-radius: 4px;
+	position: relative;
+	overflow: hidden;
+
+	// Variants
+	&--text {
+		width: 100%;
+		height: 12px;
+		border-radius: 4px;
+	}
+
+	&--circular {
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+	}
+
+	&--rectangular {
+		width: 100%;
+		height: 200px;
+		border-radius: 4px;
+	}
+
+	&--card {
+		width: 100%;
+		border-radius: 8px;
+		overflow: hidden;
+		min-height: 20px;
+	}
+
+	&--list {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		padding: 12px;
+		border-radius: 4px;
+	}
+
+	// Animation
+	&--animated {
+		animation: directorist-skeleton-shimmer 1.5s ease-in-out infinite;
+	}
+
+	// Line elements (for custom layouts)
+	&__line {
+		background: linear-gradient(
+			90deg,
+			#f0f0f0 25%,
+			#e0e0e0 50%,
+			#f0f0f0 75%
+		);
+		background-size: 200% 100%;
+		border-radius: 4px;
+		display: block;
+
+		.directorist-gutenberg-skeleton--animated & {
+			animation: directorist-skeleton-shimmer 1.5s ease-in-out infinite;
+		}
+	}
+}
+
+// Container for multiple skeletons
+.directorist-gutenberg-skeleton-container {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 100%;
+}
+
+// Card skeleton layout
+.directorist-gutenberg-skeleton-card {
+	width: 100%;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	background: #fff;
+}
+
+// List skeleton layout
+.directorist-gutenberg-skeleton-list {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 100%;
+
+	&__item {
+		display: flex;
+		align-items: flex-start;
+		width: 100%;
+		padding: 12px;
+		border-radius: 4px;
+		background: #fff;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	}
+}
+
+// Shimmer animation
+@keyframes directorist-skeleton-shimmer {
+	0% {
+		background-position: -200% 0;
+	}
+	100% {
+		background-position: 200% 0;
 	}
 }

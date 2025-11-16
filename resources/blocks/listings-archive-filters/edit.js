@@ -12,6 +12,7 @@ import { getLocalizedBlockDataByKey } from '@directorist-gutenberg/gutenberg/loc
 import useBlocksPreview from '@directorist-gutenberg/gutenberg/hooks/useBlocksPreview';
 import BlockPreview from '@directorist-gutenberg/gutenberg/components/block-preview';
 import previewImg from '@image/blocks-preview/archive-filters.png';
+import Skeleton from '@directorist-gutenberg/gutenberg/components/skeleton';
 
 export default function Edit( { attributes, setAttributes } ) {
 	// Show block preview image
@@ -23,9 +24,9 @@ export default function Edit( { attributes, setAttributes } ) {
 	const { template, isLoading, refreshTemplate } = useBlocksPreview( { directoryId, blockType: 'listings-archive/filter' } );
 	const containerRef = useRef( null );
 
-	// useEffect( () => {
-	// 	refreshTemplate( attributes );
-	// }, [ attributes ] );
+	useEffect( () => {
+		refreshTemplate( attributes );
+	}, [ attributes ] );
 
 	// Add class to the element after template is loaded and DOM is updated
 	useEffect( () => {
@@ -44,11 +45,23 @@ export default function Edit( { attributes, setAttributes } ) {
 		return () => clearTimeout( timeoutId );
 	}, [ template, isLoading ] );
 
+	if ( isLoading ) {
+		return (
+			<div style={ { pointerEvents: 'none', padding: '20px' } }>
+				<Skeleton
+					variant="card"
+					count={ 3 }
+					width="100%"
+				/>
+			</div>
+		);
+	}
+
 	return (
 		<div
 			ref={containerRef}
 			style={ { pointerEvents: 'none' } }
-			dangerouslySetInnerHTML={ { __html: isLoading ? 'Loading...' : template } }
+			dangerouslySetInnerHTML={ { __html: template } }
 		/>
 	);
 }
