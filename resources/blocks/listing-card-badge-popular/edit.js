@@ -15,11 +15,18 @@ import ReactSVG from 'react-inlinesvg';
 /**
  * Internal dependencies
  */
+import BlockPreview from '@directorist-gutenberg/gutenberg/components/block-preview';
+import previewImg from '@image/blocks-preview/badge-popular.webp';
 import popularIcon from '@icon/fire-solid.svg';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
 	const { textAlign } = attributes;
+
+	// Show block preview image
+	if ( attributes.is_preview ) {
+		return <BlockPreview image={ previewImg } />;
+	}
 
 	return (
 		<>

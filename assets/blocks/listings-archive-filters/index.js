@@ -1174,6 +1174,16 @@ function InlineSVG(props) {
 
 /***/ }),
 
+/***/ "./resources/blocks-icon/archive-filter.svg":
+/*!**************************************************!*\
+  !*** ./resources/blocks-icon/archive-filter.svg ***!
+  \**************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "icons/archive-filter.svg";
+
+/***/ }),
+
 /***/ "./resources/blocks-icon/directorist-logo.svg":
 /*!****************************************************!*\
   !*** ./resources/blocks-icon/directorist-logo.svg ***!
@@ -1190,7 +1200,7 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
   \**************************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive-filters","version":"0.1.0","title":"Listings Archive Filters","category":"directorist-listings-archive","attributes":{"directory_type_id":{"type":"number","default":0},"filters_text":{"type":"string","default":"Filters"},"reset_text":{"type":"string","default":"Clear All"},"block_width":{"type":"string","default":"100"}},"description":"Listings archive filters block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive-filters","version":"0.1.0","title":"Listings Archive Filters","category":"directorist-listings-archive","attributes":{"directory_type_id":{"type":"number","default":0},"filters_text":{"type":"string","default":"Filters"},"reset_text":{"type":"string","default":"Clear All"},"block_width":{"type":"string","default":"100"},"is_preview":{"type":"boolean","default":false}},"description":"Listings archive filters block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -1268,16 +1278,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listings-archive-filters/editor.scss");
-/* harmony import */ var _directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/localized-data */ "./resources/js/gutenberg/localized-data.js");
-/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useBlocksPreview */ "./resources/js/gutenberg/hooks/useBlocksPreview.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listings-archive-filters/editor.scss");
+/* harmony import */ var _directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/localized-data */ "./resources/js/gutenberg/localized-data.js");
+/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useBlocksPreview */ "./resources/js/gutenberg/hooks/useBlocksPreview.js");
+/* harmony import */ var _directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/block-preview */ "./resources/js/gutenberg/components/block-preview.js");
+/* harmony import */ var _image_blocks_preview_archive_filters_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @image/blocks-preview/archive-filters.png */ "./resources/images/blocks-preview/archive-filters.png");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * WordPress dependencies
  */
 
-// import { useEffect } from '@wordpress/element';
+
 
 /**
  * Internal dependencies
@@ -1286,25 +1300,50 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 function Edit({
   attributes,
   setAttributes
 }) {
-  const directoryId = (0,_directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_2__.getLocalizedBlockDataByKey)('directory_type_id', 0);
+  // Show block preview image
+  if (attributes.is_preview) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      image: _image_blocks_preview_archive_filters_png__WEBPACK_IMPORTED_MODULE_6__
+    });
+  }
+  const directoryId = (0,_directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_3__.getLocalizedBlockDataByKey)('directory_type_id', 0);
   const {
     template,
     isLoading,
     refreshTemplate
-  } = (0,_directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_3__["default"])({
+  } = (0,_directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_4__["default"])({
     directoryId,
     blockType: 'listings-archive/filter'
   });
+  const containerRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
 
   // useEffect( () => {
   // 	refreshTemplate( attributes );
   // }, [ attributes ] );
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+  // Add class to the element after template is loaded and DOM is updated
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (isLoading || !template || !containerRef.current) {
+      return;
+    }
+
+    // Wait for DOM to update after dangerouslySetInnerHTML
+    const timeoutId = setTimeout(() => {
+      const searchWrapper = containerRef.current?.querySelector('.directorist-gutenberg-listings-archive-filter');
+      if (searchWrapper) {
+        searchWrapper.classList.add('directorist-gutenberg-listings-archive-filters');
+      }
+    }, 0);
+    return () => clearTimeout(timeoutId);
+  }, [template, isLoading]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    ref: containerRef,
     style: {
       pointerEvents: 'none'
     },
@@ -1340,12 +1379,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listings-archive-filters/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listings-archive-filters/block.json");
 /* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls */ "./resources/blocks/listings-archive-filters/controls.js");
+/* harmony import */ var _block_icon_archive_filter_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @block-icon/archive-filter.svg */ "./resources/blocks-icon/archive-filter.svg");
+/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * Internal dependencies
  */
 
 
 
+
+
+
+
+/**
+ * External dependencies
+ */
 
 
 const exampleAttributes = {
@@ -1357,7 +1407,10 @@ const exampleAttributes = {
   Controls: _controls__WEBPACK_IMPORTED_MODULE_4__["default"],
   exampleAttributes,
   templateTypes: ['listings-archive'],
-  showWidthControls: false
+  showWidthControls: false,
+  icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    src: _block_icon_archive_filter_svg__WEBPACK_IMPORTED_MODULE_5__
+  })
 });
 
 /***/ }),
@@ -1371,6 +1424,16 @@ const exampleAttributes = {
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "./resources/images/blocks-preview/archive-filters.png":
+/*!*************************************************************!*\
+  !*** ./resources/images/blocks-preview/archive-filters.png ***!
+  \*************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "images/archive-filters.png";
 
 /***/ }),
 
@@ -1425,6 +1488,7 @@ function Block({
   attributes,
   setAttributes,
   Controls,
+  StylesControls,
   classNames = '',
   name,
   ...rest
@@ -1437,6 +1501,9 @@ function Block({
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: `directorist-gutenberg-listing-card-block ${customClasses} directorist-gutenberg-block-width-${Math.trunc(attributes.block_width)}`,
       children: [Controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Controls, {
+        attributes: attributes,
+        setAttributes: setAttributes
+      }), StylesControls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StylesControls, {
         attributes: attributes,
         setAttributes: setAttributes
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Edit, {
@@ -1452,14 +1519,24 @@ function Block({
   const {
     textAlign
   } = attributes || {};
+
+  // Apply drop shadow to parent for listings-archive-header block
+  const isArchiveHeaderBlock = name === 'directorist-gutenberg/listings-archive-header';
+  const shadowStyle = isArchiveHeaderBlock && attributes.drop_shadow ? {
+    boxShadow: attributes.drop_shadow
+  } : {};
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
     className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])('directorist-gutenberg-listing-card-block', customClasses, `directorist-gutenberg-block-width-${Math.trunc(attributes.block_width || 100)}`, {
       [`has-text-align-${textAlign}`]: textAlign
-    })
+    }),
+    style: shadowStyle
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     ...blockProps,
     children: [Controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Controls, {
+      attributes: attributes,
+      setAttributes: setAttributes
+    }), StylesControls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StylesControls, {
       attributes: attributes,
       setAttributes: setAttributes
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Edit, {
@@ -1468,6 +1545,37 @@ function Block({
       name: name,
       ...rest
     })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/gutenberg/components/block-preview.js":
+/*!************************************************************!*\
+  !*** ./resources/js/gutenberg/components/block-preview.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BlockPreview)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
+function BlockPreview({
+  image
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "directorist-gutenberg-block-preview",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+      src: image,
+      style: {
+        height: 'auto',
+        width: '100%',
+        textAlign: 'center'
+      }
+    })
   });
 }
 
@@ -1674,6 +1782,7 @@ function registerBlock({
   metadata,
   Edit,
   Controls,
+  StylesControls,
   icon = '',
   exampleAttributes = {},
   props = {},
@@ -1712,6 +1821,7 @@ function registerBlock({
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_block__WEBPACK_IMPORTED_MODULE_3__["default"], {
       Edit: Edit,
       Controls: Controls,
+      StylesControls: StylesControls,
       classNames: classNames,
       ...editProps
     })]

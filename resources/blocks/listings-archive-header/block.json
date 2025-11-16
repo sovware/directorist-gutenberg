@@ -37,12 +37,34 @@
 		"block_width": {
 			"type": "string",
 			"default": "100"
+		},
+		"is_preview": {
+			"type": "boolean",
+			"default": false
+		},
+		"drop_shadow": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"description": "Listings archive header block",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"color": {
+			"background": true,
+			"gradients": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		}
 	},
 	"textdomain": "directorist-gutenberg",
 	"editorScript": "file:./index.js",

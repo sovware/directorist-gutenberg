@@ -20,6 +20,7 @@ export default function registerBlock( {
 	metadata,
 	Edit,
 	Controls,
+	StylesControls,
 	icon = '',
 	exampleAttributes = {},
 	props = {},
@@ -61,6 +62,7 @@ export default function registerBlock( {
 			<Block
 				Edit={Edit}
 				Controls={Controls}
+				StylesControls={StylesControls}
 				classNames={classNames}
 				{...editProps}
 			/>

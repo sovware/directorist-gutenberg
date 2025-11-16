@@ -6,7 +6,6 @@
  */
 .directorist-gutenberg-listings-archive-header{
 	// flex: 0 0 100%;
-	margin-bottom: 30px;
 	.directorist-header-bar {
 		margin: 0;
 	}
@@ -53,6 +52,11 @@
 	.directorist-viewas__item{
 		border: 0 none;
 		outline: 0;
+	}
+	.directorist-listings-header{
+		.directorist-header-found-title{
+			color: inherit !important;
+		}
 	}
 }
 .directorist-gutenberg-listings-archive-contents,

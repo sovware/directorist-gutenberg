@@ -11,11 +11,18 @@ import ReactSVG from 'react-inlinesvg';
 /**
  * Internal dependencies
  */
+import BlockPreview from '@directorist-gutenberg/gutenberg/components/block-preview';
+import previewImg from '@image/blocks-preview/textarea.webp';
 import { getIconUrl } from '@directorist-gutenberg/gutenberg/utils/icon-url';
 import { useSubmissionFields } from '@directorist-gutenberg/gutenberg/hooks/useSubmissionFields';
 import './editor.scss';
 
 export default function Edit( { attributes } ) {
+	// Show block preview image
+	if ( attributes.is_preview ) {
+		return <BlockPreview image={ previewImg } />;
+	}
+
 	const iconUrl = getIconUrl(attributes.icon);
 	const { doesCustomFieldExist } = useSubmissionFields();
 	const fieldExist = doesCustomFieldExist( 'textarea', attributes.meta_key );

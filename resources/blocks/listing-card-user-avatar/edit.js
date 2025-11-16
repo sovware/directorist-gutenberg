@@ -7,10 +7,17 @@ import clsx from 'clsx';
 /**
  * Internal dependencies
  */
+import BlockPreview from '@directorist-gutenberg/gutenberg/components/block-preview';
+import previewImg from '@image/blocks-preview/user-avatar.webp';
 import userAvatarImage from '@image/default-avatar.jpg';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
+	// Show block preview image
+	if ( attributes.is_preview ) {
+		return <BlockPreview image={ previewImg } />;
+	}
+
 	return (
 		<div
 			className={clsx(
