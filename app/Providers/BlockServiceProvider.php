@@ -19,7 +19,7 @@ class BlockServiceProvider implements Provider {
     public function register_blocks() {
         foreach ( directorist_gutenberg_config( 'blocks' ) as $block_name => $block_data ) {
             $name = ltrim( $block_name, 'directorist-gutenberg' );
-            
+
             wp_enqueue_block_style(
                 $block_name, [
                     'handle' => 'directorist-gutenberg/blocks-frontend',
@@ -31,7 +31,7 @@ class BlockServiceProvider implements Provider {
 
             add_action( 'wp_enqueue_scripts', function() use ( $block_name ) {
                 // Check if we're on a page that uses listings
-                if ( 
+                if (
                     is_post_type_archive( 'at_biz_dir' ) ||
                     has_shortcode( get_post_field('post_content', get_the_ID()), 'directorist_all_listing' ) ||
                     has_shortcode( get_post_field('post_content', get_the_ID()), 'directorist_search_listing' ) ||
@@ -48,14 +48,14 @@ class BlockServiceProvider implements Provider {
     public function localize_block_editor_scripts() {
         // Get the first block to localize data for all blocks
         $blocks = directorist_gutenberg_config( 'blocks' );
-        
+
         if ( empty( $blocks ) ) {
             return;
         }
 
         // Get the first block name to attach the localized data
         $first_block = array_key_first( $blocks );
-        
+
         // Generate the editor script handle for the first block
         $script_handle = generate_block_asset_handle( $first_block, 'editorScript' );
 
@@ -66,7 +66,7 @@ class BlockServiceProvider implements Provider {
          */
         $template_repository = directorist_gutenberg_singleton( TemplateRepository::class );
 
-        $templates = $template_repository->get( 
+        $templates = $template_repository->get(
             ( new TemplateReadDTO )
                 ->set_directory_type( $directory_type_id )
                 ->set_page( 1 )
@@ -79,7 +79,7 @@ class BlockServiceProvider implements Provider {
                 'title'      => $template->post_title,
                 'is_current' => (int) $template->ID === (int) get_post()->ID,
                 'status'     => $template->post_status,
-                'url'        => get_edit_post_link( $template->ID ),
+                'url'        => get_edit_post_link( $template->ID, 'raw' ),
             ];
         }, $templates['items'] );
 

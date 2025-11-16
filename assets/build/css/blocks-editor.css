@@ -89,5 +89,49 @@
   position: relative;
   display: inline-block;
 }
+.directorist-gutenberg-toggle-views-dropdown .components-button {
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 2px;
+  border: 1px solid var(--directorist-color-border);
+  background: #fff;
+  color: var(--directorist-color-body);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.directorist-gutenberg-toggle-views-dropdown-content {
+  width: 180px;
+}
+.directorist-gutenberg-toggle-views-dropdown-content .components-popover__content {
+  width: 100%;
+  padding: 10px 0;
+}
+.directorist-gutenberg-toggle-views-dropdown-content .directorist-gutenberg-toggle-views-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 15px;
+  text-decoration: none;
+  color: var(--directorist-color-body);
+  font-size: 13px;
+  box-shadow: none;
+  outline: 0;
+}
+.directorist-gutenberg-toggle-views-dropdown-content .directorist-gutenberg-toggle-views-dropdown-item:hover {
+  background: #f0f0f0;
+}
+.directorist-gutenberg-toggle-views-dropdown-content .directorist-gutenberg-toggle-views-dropdown-item svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+.directorist-gutenberg-toggle-views-dropdown-content .directorist-gutenberg-toggle-views-dropdown-item-current {
+  background: #f0f0f0;
+}
 
 /*# sourceMappingURL=blocks-editor.css.map*/
