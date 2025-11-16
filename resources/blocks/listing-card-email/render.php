@@ -25,7 +25,7 @@ $default_icon = isset( $attributes['icon'] ) ? $attributes['icon'] : 'line-aweso
 $show_label   = isset( $attributes['show_label'] ) ? $attributes['show_label'] : false;
 
 // Get label text (default to "Email").
-$label = __( 'Email', 'directorist' );
+$label = __( 'Email', 'directorist-gutenberg' );
 
 // Build icon style from icon_color and icon_size attributes
 $icon_style = directorist_gutenberg_build_icon_style( $attributes );

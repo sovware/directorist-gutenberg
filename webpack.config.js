@@ -103,6 +103,12 @@ module.exports = [
 		module: moduleConfig,
 		entry: {
 			/**
+			 * Admin scripts
+			 */
+			'js/admin': './resources/js/admin/index.js',
+			'css/admin': './resources/sass/admin.scss',
+
+			/**
 			 * Block scripts
 			 */
 			'js/blocks-editor': './resources/js/block-sripts/editor.js',
