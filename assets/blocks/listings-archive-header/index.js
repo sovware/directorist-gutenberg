@@ -1373,20 +1373,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listings-archive-header/editor.scss");
-/* harmony import */ var _directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/localized-data */ "./resources/js/gutenberg/localized-data.js");
-/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useBlocksPreview */ "./resources/js/gutenberg/hooks/useBlocksPreview.js");
-/* harmony import */ var _directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/block-preview */ "./resources/js/gutenberg/components/block-preview.js");
-/* harmony import */ var _image_blocks_preview_archive_header_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @image/blocks-preview/archive-header.png */ "./resources/images/blocks-preview/archive-header.png");
-/* harmony import */ var _directorist_gutenberg_gutenberg_components_skeleton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/skeleton */ "./resources/js/gutenberg/components/skeleton.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listings-archive-header/editor.scss");
+/* harmony import */ var _directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/localized-data */ "./resources/js/gutenberg/localized-data.js");
+/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useBlocksPreview */ "./resources/js/gutenberg/hooks/useBlocksPreview.js");
+/* harmony import */ var _directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/block-preview */ "./resources/js/gutenberg/components/block-preview.js");
+/* harmony import */ var _image_blocks_preview_archive_header_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @image/blocks-preview/archive-header.png */ "./resources/images/blocks-preview/archive-header.png");
+/* harmony import */ var _directorist_gutenberg_gutenberg_components_skeleton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/skeleton */ "./resources/js/gutenberg/components/skeleton.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * WordPress dependencies
  */
-
 
 
 /**
@@ -1405,36 +1402,32 @@ function Edit({
 }) {
   // Show block preview image
   if (attributes.is_preview) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      image: _image_blocks_preview_archive_header_png__WEBPACK_IMPORTED_MODULE_6__
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      image: _image_blocks_preview_archive_header_png__WEBPACK_IMPORTED_MODULE_5__
     });
   }
-  const directoryId = (0,_directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_3__.getLocalizedBlockDataByKey)('directory_type_id', 0);
+  const directoryId = (0,_directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_2__.getLocalizedBlockDataByKey)('directory_type_id', 0);
   const {
     template,
-    isLoading,
-    refreshTemplate
-  } = (0,_directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_4__["default"])({
+    isLoading
+  } = (0,_directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_3__["default"])({
     directoryId,
     blockType: 'listings-archive/header'
   });
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    refreshTemplate(attributes);
-  }, [attributes]);
   if (isLoading) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
       style: {
         pointerEvents: 'none',
         padding: '20px'
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_directorist_gutenberg_gutenberg_components_skeleton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_directorist_gutenberg_gutenberg_components_skeleton__WEBPACK_IMPORTED_MODULE_6__["default"], {
         variant: "card",
         count: 3,
         width: "100%"
       })
     });
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
     style: {
       pointerEvents: 'none'
     },

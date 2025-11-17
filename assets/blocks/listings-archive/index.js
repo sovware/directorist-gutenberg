@@ -1414,7 +1414,7 @@ function Edit({
   });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     refreshTemplate(attributes);
-  }, [attributes]);
+  }, [attributes.listings_columns, attributes.listings_per_page, attributes.pagination_type, attributes.default_view]);
   if (isLoading) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       style: {

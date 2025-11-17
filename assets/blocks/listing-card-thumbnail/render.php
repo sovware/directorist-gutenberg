@@ -42,6 +42,25 @@
         $thumbnail_styles .= "height:{$attributes['height']};";
     }
 
+    // Get wrapper attributes (includes margin, padding, border, border-radius from block supports)
+    $wrapper_attributes = get_block_wrapper_attributes( [
+        'class' => 'directorist-gutenberg-listing-card-thumbnail',
+    ] );
+
+    // Merge custom thumbnail styles with wrapper attributes
+    if ( ! empty( $thumbnail_styles ) ) {
+        // Check if style attribute already exists in wrapper attributes
+        if ( preg_match( '/style="([^"]*)"/', $wrapper_attributes, $matches ) ) {
+            // Merge with existing style
+            $existing_style = $matches[1];
+            $new_style = $existing_style . ' ' . $thumbnail_styles;
+            $wrapper_attributes = str_replace( $matches[0], 'style="' . esc_attr( $new_style ) . '"', $wrapper_attributes );
+        } else {
+            // Add new style attribute before the closing >
+            $wrapper_attributes = rtrim( $wrapper_attributes, '>' ) . ' style="' . esc_attr( $thumbnail_styles ) . '">';
+        }
+    }
+
     // Get overlay markup
     $overlay_markup = '';
     $has_dim_background = isset( $attributes['dimRatio'] ) && $attributes['dimRatio'] > 0;
@@ -81,7 +100,7 @@
 ?>
 
 <div class="<?php echo esc_attr( $block_width_class ); ?>">
-    <div class="directorist-gutenberg-listing-card-thumbnail"<?php echo ! empty( $thumbnail_styles ) ? ' style="' . esc_attr( $thumbnail_styles ) . '"' : ''; ?>>
+    <div <?php echo $wrapper_attributes; ?>>
         <div class="directorist-gutenberg-listing-card-thumbnail-back">
             <img src="<?php echo wp_get_attachment_image_url( $listing_prv_img, 'full' ); ?>" alt="<?php the_title(); ?>"<?php echo ! empty( $extra_styles ) ? ' style="' . esc_attr( $extra_styles ) . '"' : ''; ?>>
             <?php echo $overlay_markup; ?>

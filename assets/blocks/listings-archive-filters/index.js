@@ -1326,7 +1326,7 @@ function Edit({
   const containerRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     refreshTemplate(attributes);
-  }, [attributes]);
+  }, [attributes.filters_text, attributes.reset_text]);
 
   // Add class to the element after template is loaded and DOM is updated
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {

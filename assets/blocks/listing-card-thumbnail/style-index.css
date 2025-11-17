@@ -8,6 +8,7 @@
   min-height: 300px;
   width: 100%;
   position: relative;
+  box-sizing: border-box;
 }
 .directorist-gutenberg-listing-card-thumbnail img {
   width: 100%;
