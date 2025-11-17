@@ -25,7 +25,12 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	useEffect( () => {
 		refreshTemplate( attributes );
-	}, [ attributes ] );
+	}, [
+		attributes.listings_columns,
+		attributes.listings_per_page,
+		attributes.pagination_type,
+		attributes.default_view,
+	] );
 
 	if ( isLoading ) {
 		return (

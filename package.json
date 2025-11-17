@@ -41,6 +41,7 @@
 		"webpack": "^5.102.1"
 	},
 	"dependencies": {
+		"@wordpress/dataviews": "^10.3.0",
 		"@wordpress/interactivity": "^6.34.0",
 		"clsx": "^2.1.1",
 		"react-inlinesvg": "^4.2.0",

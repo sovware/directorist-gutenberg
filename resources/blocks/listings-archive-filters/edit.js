@@ -26,7 +26,10 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	useEffect( () => {
 		refreshTemplate( attributes );
-	}, [ attributes ] );
+	}, [
+		attributes.filters_text,
+		attributes.reset_text,
+	] );
 
 	// Add class to the element after template is loaded and DOM is updated
 	useEffect( () => {
