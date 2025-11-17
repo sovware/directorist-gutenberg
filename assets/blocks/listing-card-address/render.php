@@ -1,4 +1,12 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+$address = directorist_gutenberg_get_block_post_meta( $attributes['meta_key'], get_the_ID() );
+
+if ( empty( $address ) ) {
+    return;
+}
+
 // Build icon style from icon_color and icon_size attributes
 $icon_style = directorist_gutenberg_build_icon_style( $attributes );
 // Get block width class
@@ -15,7 +23,7 @@ $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
                 <?php if ( $attributes['show_label'] ) : ?>
                     <span class="directorist-gutenberg-listing-card-element-label">Address:</span>
                 <?php endif; ?>
-                <span class="directorist-gutenberg-listing-card-element-value">New York, United States</span>
+                <span class="directorist-gutenberg-listing-card-element-value"><?php directorist_gutenberg_echo( $address ); ?></span>
             </div>
         </div>
     </div>

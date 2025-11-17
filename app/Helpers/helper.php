@@ -96,10 +96,10 @@ function directorist_gutenberg_get_block_post_meta( string $meta_key, int $post_
         return null;
     }
 
-    $meta_value = get_post_meta( $post_id, $meta_key, true );
-
+    $meta_value = get_post_meta( $post_id, '_' . $meta_key, true );
+    
     if ( empty( $meta_value ) ) {
-        $meta_value = get_post_meta( $post_id, '_' . $meta_key, true );
+        $meta_value = get_post_meta( $post_id, $meta_key, true );
     }
 
     if ( empty( $meta_value ) ) {
@@ -243,4 +243,9 @@ function directorist_gutenberg_get_text_align_class( array $attributes, string $
 		return '';
 	}
 	return 'has-text-align-' . esc_attr( $attributes[ $align_key ] );
+}
+
+function directorist_gutenberg_echo( string $content ) {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo $content;
 }
