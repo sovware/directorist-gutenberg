@@ -1,4 +1,13 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+$featured = directorist_gutenberg_get_block_post_meta( $attributes['meta_key'], get_the_ID() );
+
+if ( empty( $featured ) ) {
+    return;
+}
+
 // Get block width class
 $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
 

@@ -6,6 +6,10 @@
   "title": "Listing Address",
   "category": "directorist-listing-card-preset-fields",
   "attributes": {
+    "meta_key": {
+      "type": "string",
+      "default": "address"
+    },
     "icon": {
       "type": "string",
       "default": "line-awesome/address-card-solid.svg"
