@@ -1,1 +1,0 @@
-{"version":3,"file":"css/admin.css","mappings":";;;AAAA;EACI;AACJ,C","sources":["webpack://wpmvc/./resources/sass/admin.scss"],"sourcesContent":["body {\n    background-color: #f2f2f2;\n}"],"names":[],"sourceRoot":""}
