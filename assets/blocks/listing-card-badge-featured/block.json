@@ -24,6 +24,10 @@
     "background_color": {
       "type": "string",
       "default": "#f28100"
+    },
+    "is_preview": {
+      "type": "boolean",
+      "default": false
     }
   },
   "description": "Listing Badge Featured Block",

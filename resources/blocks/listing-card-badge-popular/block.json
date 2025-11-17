@@ -24,6 +24,10 @@
 		"background_color": {
 			"type": "string",
 			"default": "#444752"
+		},
+		"is_preview": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"description": "Listing Badge Popular Block",

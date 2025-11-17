@@ -64,9 +64,9 @@ $wrapper_classes = array_filter( [ $block_width_class, $avatar_overlap_class ] )
 <div <?php echo get_block_wrapper_attributes(['class' => implode( ' ', $wrapper_classes )]); ?>>
     <div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-user-avatar">
         <div class="directorist-gutenberg-listing-user-avatar directorist-gutenberg-listing-user-avatar-<?php echo esc_attr( $alignment ); ?>">
-            <a href="<?php echo esc_url( $author_link ); ?>" aria-label="<?php esc_attr_e( 'Author Image', 'directorist' ); ?>" class="<?php echo esc_attr( $author_link_class ); ?>">
+            <a href="<?php echo esc_url( $author_link ); ?>" aria-label="<?php esc_attr_e( 'Author Image', 'directorist-gutenberg' ); ?>" class="<?php echo esc_attr( $author_link_class ); ?>">
                 <?php if ( $pro_pic && isset( $pro_pic[0] ) ) : ?>
-                    <img src="<?php echo esc_url( $pro_pic[0] ); ?>" alt="<?php esc_attr_e( 'Author Image', 'directorist' ); ?>" width="<?php echo esc_attr( $pro_pic[1] ?? '' ); ?>" height="<?php echo esc_attr( $pro_pic[2] ?? '' ); ?>">
+                    <img src="<?php echo esc_url( $pro_pic[0] ); ?>" alt="<?php esc_attr_e( 'Author Image', 'directorist-gutenberg' ); ?>" width="<?php echo esc_attr( $pro_pic[1] ?? '' ); ?>" height="<?php echo esc_attr( $pro_pic[2] ?? '' ); ?>">
                 <?php else : ?>
                     <?php echo wp_kses_post( $avatar_img ); ?>
                 <?php endif; ?>

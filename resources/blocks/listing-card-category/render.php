@@ -75,7 +75,7 @@ $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
 					} else { ?>
 					<a href="#">
 						<span class="directorist-gutenberg-listing-card-element-icon" style="<?php echo $icon_style; ?>"><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $default_icon ); ?></span>
-						<?php esc_html_e( 'Uncategorized', 'directorist' ); ?>
+						<?php esc_html_e( 'Uncategorized', 'directorist-gutenberg' ); ?>
 					</a>
 					<?php
 				}

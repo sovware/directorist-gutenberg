@@ -1,8 +1,47 @@
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.2_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./resources/blocks/listings-archive-search/editor.scss ***!
+  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./resources/blocks/listings-archive-search/editor.scss ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .wp-block-directorist-gutenberg-listings-archive-search .directorist-gutenberg-listings-archive-search-nav {
   margin-bottom: 20px;
+}
+.wp-block-directorist-gutenberg-listings-archive-search .directorist-type-nav__list {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.wp-block-directorist-gutenberg-listings-archive-search .directorist-type-nav__list li {
+  flex: none;
+  margin: 0;
+  list-style: none;
+  line-height: 1;
+}
+.wp-block-directorist-gutenberg-listings-archive-search .directorist-type-nav__list .directorist-type-nav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0 0 8px;
+  border-bottom: 2px solid transparent;
+  color: var(--directorist-color-body);
+}
+.wp-block-directorist-gutenberg-listings-archive-search .directorist-type-nav__list .directorist-icon-mask {
+  display: inline-block;
+  margin: 0 0 10px;
+}
+.wp-block-directorist-gutenberg-listings-archive-search .directorist-type-nav__list .directorist-type-nav__list__current .directorist-type-nav__link {
+  border-bottom-color: var(--directorist-color-primary);
 }
 
 /*# sourceMappingURL=index.css.map*/

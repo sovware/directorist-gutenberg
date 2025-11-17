@@ -63,6 +63,7 @@ const tokensToValues = ( tokens, labelToValueMap, validValues ) => {
  * Internal dependencies
  */
 import useArchiveBlockCommonTask from '@directorist-gutenberg/gutenberg/hooks/useArchiveBlockCommonTask';
+import ShadowControl from '@directorist-gutenberg/gutenberg/components/controls/shadow-control';
 
 export default function Controls( { attributes, setAttributes } ) {
 
@@ -125,4 +126,18 @@ export default function Controls( { attributes, setAttributes } ) {
             </PanelBody>
         </InspectorControls>
     );
+}
+
+export function StylesControls( { attributes, setAttributes } ) {
+	return (
+		<InspectorControls group="styles">
+			<ShadowControl
+				attributes={attributes}
+				setAttributes={setAttributes}
+				attrName="drop_shadow"
+				label={__( 'Drop Shadow', 'directorist-gutenberg' )}
+				initialOpen={false}
+			/>
+		</InspectorControls>
+	);
 }

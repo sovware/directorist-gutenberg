@@ -104,7 +104,7 @@ class TemplateController extends Controller {
         return Response::send(
             [
                 'post_id' => $post_id,
-                'message' => __( 'The template was created successfully.' )
+                'message' => __( 'The template was created successfully.', 'directorist-gutenberg' )
             ]
         );
     }
@@ -154,7 +154,7 @@ class TemplateController extends Controller {
         return Response::send(
             [
                 'created_ids' => $created_ids,
-                'message'     => __( 'The templates were created successfully.' )
+                'message'     => __( 'The templates were created successfully.', 'directorist-gutenberg' )
             ]
         );
     }
@@ -197,7 +197,7 @@ class TemplateController extends Controller {
 
         return Response::send(
             [
-                'message' => __( 'The template was deleted successfully.' )
+                'message' => __( 'The template was deleted successfully.', 'directorist-gutenberg' )
             ]
         );
     }
@@ -219,7 +219,7 @@ class TemplateController extends Controller {
         return Response::send(
             [
                 'total_deleted' => $this->repository->delete_by( $delete_dto ),
-                'message'       => __( 'The templates was deleted successfully.' )
+                'message'       => __( 'The templates was deleted successfully.', 'directorist-gutenberg' )
             ]
         );
     }

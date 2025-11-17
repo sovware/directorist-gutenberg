@@ -6,6 +6,12 @@ import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
 import Controls from './controls';
+import archiveFiltersIcon from '@block-icon/archive-filter.svg';
+
+/**
+ * External dependencies
+ */
+import ReactSVG from 'react-inlinesvg';
 
 const exampleAttributes = {
 	is_preview: true,
@@ -18,4 +24,5 @@ registerBlock( {
 	exampleAttributes,
 	templateTypes: [ 'listings-archive' ],
 	showWidthControls: false,
+	icon: <ReactSVG src={archiveFiltersIcon} />,
 } );

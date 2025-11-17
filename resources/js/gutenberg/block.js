@@ -34,6 +34,7 @@ export default function Block( {
 	attributes,
 	setAttributes,
     Controls,
+	StylesControls,
 	classNames = '',
 	name,
 	...rest
@@ -47,6 +48,7 @@ export default function Block( {
 		return (
 			<div className={`directorist-gutenberg-listing-card-block ${customClasses} directorist-gutenberg-block-width-${Math.trunc(attributes.block_width)}`}>
 				{ Controls && <Controls attributes={attributes} setAttributes={setAttributes} /> }
+				{ StylesControls && <StylesControls attributes={attributes} setAttributes={setAttributes} /> }
 				<Edit attributes={attributes} setAttributes={setAttributes} name={name} {...rest} />
 			</div>
 		);
@@ -54,6 +56,13 @@ export default function Block( {
 
 	// Block props with textAlign support
 	const { textAlign } = attributes || {};
+
+	// Apply drop shadow to parent for listings-archive-header block
+	const isArchiveHeaderBlock = name === 'directorist-gutenberg/listings-archive-header';
+	const shadowStyle = isArchiveHeaderBlock && attributes.drop_shadow
+		? { boxShadow: attributes.drop_shadow }
+		: {};
+
 	const blockProps = useBlockProps({
 		className: clsx(
 			'directorist-gutenberg-listing-card-block',
@@ -63,11 +72,13 @@ export default function Block( {
 				[ `has-text-align-${ textAlign }` ]: textAlign,
 			}
 		),
+		style: shadowStyle,
 	});
 
 	return (
         <div {...blockProps}>
             { Controls && <Controls attributes={attributes} setAttributes={setAttributes} /> }
+            { StylesControls && <StylesControls attributes={attributes} setAttributes={setAttributes} /> }
             <Edit attributes={attributes} setAttributes={setAttributes} name={name} {...rest} />
         </div>
     );

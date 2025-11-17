@@ -1,5 +1,5 @@
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.2_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./resources/sass/blocks/frontend.scss ***!
+  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./resources/sass/blocks/frontend.scss ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .directorist-gutenberg-listing-card-element-content {
   display: flex;
@@ -85,6 +85,14 @@
   text-decoration: none;
   color: var(--directorist-color-dark);
 }
+.directorist-gutenberg-listing-card-title a {
+  color: inherit !important;
+  text-decoration: inherit !important;
+  font-weight: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
 .directorist-gutenberg-toolbar {
   gap: 6px;
   padding: 0px 6px;
@@ -123,7 +131,57 @@ body.directorist-gutenberg-listings-archive-grid-view .block-editor-block-list__
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  gap: 0 12px;
+  gap: 12px;
+}
+.post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid).is-vertical,
+.directorist-gutenberg-blocks-wrap.is-vertical,
+.directorist-gutenberg-blocks-wrap .wp-block-group:not(.is-layout-grid).is-vertical {
+  flex-direction: column;
+}
+.post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid).is-horizontal,
+.directorist-gutenberg-blocks-wrap.is-horizontal,
+.directorist-gutenberg-blocks-wrap .wp-block-group:not(.is-layout-grid).is-horizontal {
+  flex-direction: row;
+}
+.post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid).is-vertical.is-content-justification-left,
+.directorist-gutenberg-blocks-wrap.is-vertical.is-content-justification-left,
+.directorist-gutenberg-blocks-wrap .wp-block-group:not(.is-layout-grid).is-vertical.is-content-justification-left {
+  align-items: flex-start;
+}
+.post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid).is-vertical.is-content-justification-center,
+.directorist-gutenberg-blocks-wrap.is-vertical.is-content-justification-center,
+.directorist-gutenberg-blocks-wrap .wp-block-group:not(.is-layout-grid).is-vertical.is-content-justification-center {
+  align-items: center;
+}
+.post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid).is-vertical.is-content-justification-right,
+.directorist-gutenberg-blocks-wrap.is-vertical.is-content-justification-right,
+.directorist-gutenberg-blocks-wrap .wp-block-group:not(.is-layout-grid).is-vertical.is-content-justification-right {
+  align-items: flex-end;
+}
+.post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid).is-vertical.is-content-justification-stretch,
+.directorist-gutenberg-blocks-wrap.is-vertical.is-content-justification-stretch,
+.directorist-gutenberg-blocks-wrap .wp-block-group:not(.is-layout-grid).is-vertical.is-content-justification-stretch {
+  align-items: stretch;
+}
+.post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid).is-horizontal.is-content-justification-left,
+.directorist-gutenberg-blocks-wrap.is-horizontal.is-content-justification-left,
+.directorist-gutenberg-blocks-wrap .wp-block-group:not(.is-layout-grid).is-horizontal.is-content-justification-left {
+  justify-content: flex-start;
+}
+.post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid).is-horizontal.is-content-justification-center,
+.directorist-gutenberg-blocks-wrap.is-horizontal.is-content-justification-center,
+.directorist-gutenberg-blocks-wrap .wp-block-group:not(.is-layout-grid).is-horizontal.is-content-justification-center {
+  justify-content: center;
+}
+.post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid).is-horizontal.is-content-justification-right,
+.directorist-gutenberg-blocks-wrap.is-horizontal.is-content-justification-right,
+.directorist-gutenberg-blocks-wrap .wp-block-group:not(.is-layout-grid).is-horizontal.is-content-justification-right {
+  justify-content: flex-end;
+}
+.post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid).is-horizontal.is-content-justification-space-between,
+.directorist-gutenberg-blocks-wrap.is-horizontal.is-content-justification-space-between,
+.directorist-gutenberg-blocks-wrap .wp-block-group:not(.is-layout-grid).is-horizontal.is-content-justification-space-between {
+  justify-content: space-between;
 }
 .post-type-directorist_gbt .block-editor-block-list__layout:not(.is-layout-grid) .directorist-gutenberg-block-width-100,
 .directorist-gutenberg-blocks-wrap .directorist-gutenberg-block-width-100,
@@ -210,6 +268,93 @@ body.directorist-gutenberg-listings-archive-grid-view .block-editor-block-list__
 .directorist-gutenberg-blocks-wrap .wp-block-group,
 .directorist-gutenberg-blocks-wrap .wp-block-columns {
   width: 100%;
+}
+/**
+ * Skeleton Loading Component Styles
+ */
+.directorist-gutenberg-skeleton {
+  display: inline-block;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+.directorist-gutenberg-skeleton--text {
+  width: 100%;
+  height: 12px;
+  border-radius: 4px;
+}
+.directorist-gutenberg-skeleton--circular {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.directorist-gutenberg-skeleton--rectangular {
+  width: 100%;
+  height: 200px;
+  border-radius: 4px;
+}
+.directorist-gutenberg-skeleton--card {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 20px;
+}
+.directorist-gutenberg-skeleton--list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 4px;
+}
+.directorist-gutenberg-skeleton--animated {
+  animation: directorist-skeleton-shimmer 1.5s ease-in-out infinite;
+}
+.directorist-gutenberg-skeleton__line {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  display: block;
+}
+.directorist-gutenberg-skeleton--animated .directorist-gutenberg-skeleton__line {
+  animation: directorist-skeleton-shimmer 1.5s ease-in-out infinite;
+}
+.directorist-gutenberg-skeleton-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.directorist-gutenberg-skeleton-card {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+.directorist-gutenberg-skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.directorist-gutenberg-skeleton-list__item {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  padding: 12px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+@keyframes directorist-skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 /*# sourceMappingURL=blocks-frontend.css.map*/

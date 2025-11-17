@@ -1174,6 +1174,16 @@ function InlineSVG(props) {
 
 /***/ }),
 
+/***/ "./resources/blocks-icon/archive-filter.svg":
+/*!**************************************************!*\
+  !*** ./resources/blocks-icon/archive-filter.svg ***!
+  \**************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "icons/archive-filter.svg";
+
+/***/ }),
+
 /***/ "./resources/blocks-icon/directorist-logo.svg":
 /*!****************************************************!*\
   !*** ./resources/blocks-icon/directorist-logo.svg ***!
@@ -1190,7 +1200,7 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
   \**************************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive-filters","version":"0.1.0","title":"Listings Archive Filters","category":"directorist-listings-archive","attributes":{"directory_type_id":{"type":"number","default":0},"filters_text":{"type":"string","default":"Filters"},"reset_text":{"type":"string","default":"Clear All"},"block_width":{"type":"string","default":"100"}},"description":"Listings archive filters block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive-filters","version":"0.1.0","title":"Listings Archive Filters","category":"directorist-listings-archive","attributes":{"directory_type_id":{"type":"number","default":0},"filters_text":{"type":"string","default":"Filters"},"reset_text":{"type":"string","default":"Clear All"},"block_width":{"type":"string","default":"100"},"is_preview":{"type":"boolean","default":false}},"description":"Listings archive filters block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -1268,16 +1278,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listings-archive-filters/editor.scss");
-/* harmony import */ var _directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/localized-data */ "./resources/js/gutenberg/localized-data.js");
-/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useBlocksPreview */ "./resources/js/gutenberg/hooks/useBlocksPreview.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listings-archive-filters/editor.scss");
+/* harmony import */ var _directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/localized-data */ "./resources/js/gutenberg/localized-data.js");
+/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useBlocksPreview */ "./resources/js/gutenberg/hooks/useBlocksPreview.js");
+/* harmony import */ var _directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/block-preview */ "./resources/js/gutenberg/components/block-preview.js");
+/* harmony import */ var _image_blocks_preview_archive_filters_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @image/blocks-preview/archive-filters.png */ "./resources/images/blocks-preview/archive-filters.png");
+/* harmony import */ var _directorist_gutenberg_gutenberg_components_skeleton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/skeleton */ "./resources/js/gutenberg/components/skeleton.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
 /**
  * WordPress dependencies
  */
 
-// import { useEffect } from '@wordpress/element';
+
 
 /**
  * Internal dependencies
@@ -1286,30 +1301,68 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 function Edit({
   attributes,
   setAttributes
 }) {
-  const directoryId = (0,_directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_2__.getLocalizedBlockDataByKey)('directory_type_id', 0);
+  // Show block preview image
+  if (attributes.is_preview) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      image: _image_blocks_preview_archive_filters_png__WEBPACK_IMPORTED_MODULE_6__
+    });
+  }
+  const directoryId = (0,_directorist_gutenberg_gutenberg_localized_data__WEBPACK_IMPORTED_MODULE_3__.getLocalizedBlockDataByKey)('directory_type_id', 0);
   const {
     template,
     isLoading,
     refreshTemplate
-  } = (0,_directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_3__["default"])({
+  } = (0,_directorist_gutenberg_gutenberg_hooks_useBlocksPreview__WEBPACK_IMPORTED_MODULE_4__["default"])({
     directoryId,
     blockType: 'listings-archive/filter'
   });
+  const containerRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    refreshTemplate(attributes);
+  }, [attributes]);
 
-  // useEffect( () => {
-  // 	refreshTemplate( attributes );
-  // }, [ attributes ] );
+  // Add class to the element after template is loaded and DOM is updated
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (isLoading || !template || !containerRef.current) {
+      return;
+    }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    // Wait for DOM to update after dangerouslySetInnerHTML
+    const timeoutId = setTimeout(() => {
+      const searchWrapper = containerRef.current?.querySelector('.directorist-gutenberg-listings-archive-filter');
+      if (searchWrapper) {
+        searchWrapper.classList.add('directorist-gutenberg-listings-archive-filters');
+      }
+    }, 0);
+    return () => clearTimeout(timeoutId);
+  }, [template, isLoading]);
+  if (isLoading) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+      style: {
+        pointerEvents: 'none',
+        padding: '20px'
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_directorist_gutenberg_gutenberg_components_skeleton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        variant: "card",
+        count: 3,
+        width: "100%"
+      })
+    });
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+    ref: containerRef,
     style: {
       pointerEvents: 'none'
     },
     dangerouslySetInnerHTML: {
-      __html: isLoading ? 'Loading...' : template
+      __html: template
     }
   });
 }
@@ -1340,12 +1393,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./resources/blocks/listings-archive-filters/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./resources/blocks/listings-archive-filters/block.json");
 /* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls */ "./resources/blocks/listings-archive-filters/controls.js");
+/* harmony import */ var _block_icon_archive_filter_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @block-icon/archive-filter.svg */ "./resources/blocks-icon/archive-filter.svg");
+/* harmony import */ var react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-inlinesvg */ "./node_modules/.pnpm/react-inlinesvg@4.2.0_react@18.3.1/node_modules/react-inlinesvg/dist/index.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * Internal dependencies
  */
 
 
 
+
+
+
+
+/**
+ * External dependencies
+ */
 
 
 const exampleAttributes = {
@@ -1357,7 +1421,10 @@ const exampleAttributes = {
   Controls: _controls__WEBPACK_IMPORTED_MODULE_4__["default"],
   exampleAttributes,
   templateTypes: ['listings-archive'],
-  showWidthControls: false
+  showWidthControls: false,
+  icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    src: _block_icon_archive_filter_svg__WEBPACK_IMPORTED_MODULE_5__
+  })
 });
 
 /***/ }),
@@ -1371,6 +1438,16 @@ const exampleAttributes = {
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "./resources/images/blocks-preview/archive-filters.png":
+/*!*************************************************************!*\
+  !*** ./resources/images/blocks-preview/archive-filters.png ***!
+  \*************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "images/archive-filters.png";
 
 /***/ }),
 
@@ -1425,6 +1502,7 @@ function Block({
   attributes,
   setAttributes,
   Controls,
+  StylesControls,
   classNames = '',
   name,
   ...rest
@@ -1437,6 +1515,9 @@ function Block({
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: `directorist-gutenberg-listing-card-block ${customClasses} directorist-gutenberg-block-width-${Math.trunc(attributes.block_width)}`,
       children: [Controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Controls, {
+        attributes: attributes,
+        setAttributes: setAttributes
+      }), StylesControls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StylesControls, {
         attributes: attributes,
         setAttributes: setAttributes
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Edit, {
@@ -1452,14 +1533,24 @@ function Block({
   const {
     textAlign
   } = attributes || {};
+
+  // Apply drop shadow to parent for listings-archive-header block
+  const isArchiveHeaderBlock = name === 'directorist-gutenberg/listings-archive-header';
+  const shadowStyle = isArchiveHeaderBlock && attributes.drop_shadow ? {
+    boxShadow: attributes.drop_shadow
+  } : {};
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
     className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])('directorist-gutenberg-listing-card-block', customClasses, `directorist-gutenberg-block-width-${Math.trunc(attributes.block_width || 100)}`, {
       [`has-text-align-${textAlign}`]: textAlign
-    })
+    }),
+    style: shadowStyle
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     ...blockProps,
     children: [Controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Controls, {
+      attributes: attributes,
+      setAttributes: setAttributes
+    }), StylesControls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StylesControls, {
       attributes: attributes,
       setAttributes: setAttributes
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Edit, {
@@ -1468,6 +1559,293 @@ function Block({
       name: name,
       ...rest
     })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/gutenberg/components/block-preview.js":
+/*!************************************************************!*\
+  !*** ./resources/js/gutenberg/components/block-preview.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BlockPreview)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+
+function BlockPreview({
+  image
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "directorist-gutenberg-block-preview",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+      src: image,
+      style: {
+        height: 'auto',
+        width: '100%',
+        textAlign: 'center'
+      }
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/gutenberg/components/skeleton.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/gutenberg/components/skeleton.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SkeletonCard: () => (/* binding */ SkeletonCard),
+/* harmony export */   SkeletonList: () => (/* binding */ SkeletonList),
+/* harmony export */   SkeletonText: () => (/* binding */ SkeletonText),
+/* harmony export */   "default": () => (/* binding */ Skeleton)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Skeleton Loading Component
+ *
+ * A reusable animated skeleton loading component that provides a placeholder
+ * while waiting for content to load.
+ *
+ * Use Cases:
+ * - When a resource needs long time to load
+ * - When the component contains lots of information, such as List or Card
+ * - Only works when loading data for the first time
+ * - Could be replaced by Spin in any situation, but can provide a better user experience
+ *
+ * Usage Examples:
+ *
+ * // Basic text skeleton
+ * <Skeleton variant="text" width="100%" />
+ *
+ * // Circular avatar skeleton
+ * <Skeleton variant="circular" width={40} height={40} />
+ *
+ * // Rectangular image skeleton
+ * <Skeleton variant="rectangular" width="100%" height={200} />
+ *
+ * // Multiple card skeletons
+ * <Skeleton variant="card" count={3} width="100%" />
+ *
+ * // Custom lines layout
+ * <Skeleton
+ *   lines={[
+ *     { width: '100%', height: '16px' },
+ *     { width: '80%', height: '16px' },
+ *     { width: '60%', height: '16px' }
+ *   ]}
+ * />
+ *
+ * // Using convenience components
+ * import { SkeletonText, SkeletonCard, SkeletonList } from '@directorist-gutenberg/gutenberg/components/skeleton';
+ * <SkeletonText lines={4} />
+ * <SkeletonCard />
+ * <SkeletonList items={5} />
+ *
+ * @param {Object} props - Component props
+ * @param {string} props.variant - Variant type: 'text', 'circular', 'rectangular', 'card', 'list'
+ * @param {number|string} props.width - Width of the skeleton (e.g., '100%', 200, '50px')
+ * @param {number|string} props.height - Height of the skeleton (e.g., '100%', 20, '40px')
+ * @param {number} props.count - Number of skeleton items to render (for list/card variants)
+ * @param {boolean} props.animated - Whether to show animation (default: true)
+ * @param {string} props.className - Additional CSS classes
+ * @param {Object} props.style - Additional inline styles
+ * @param {Array} props.lines - Array of line configurations for custom layouts
+ *
+ * @returns {JSX.Element} Skeleton component
+ */
+
+function Skeleton({
+  variant = 'text',
+  width,
+  height,
+  count = 1,
+  animated = true,
+  className = '',
+  style = {},
+  lines = []
+}) {
+  const baseClassName = 'directorist-gutenberg-skeleton';
+  const variantClassName = `${baseClassName}--${variant}`;
+  const animationClassName = animated ? `${baseClassName}--animated` : '';
+  const combinedClassName = [baseClassName, variantClassName, animationClassName, className].filter(Boolean).join(' ');
+
+  // Custom inline styles
+  const customStyle = {
+    ...(width && {
+      width: typeof width === 'number' ? `${width}px` : width
+    }),
+    ...(height && {
+      height: typeof height === 'number' ? `${height}px` : height
+    }),
+    ...style
+  };
+
+  // Render multiple items for list/card variants
+  if ((variant === 'list' || variant === 'card') && count > 1) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: `${baseClassName}-container`,
+      children: Array.from({
+        length: count
+      }).map((_, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Skeleton, {
+        variant: variant,
+        width: width,
+        height: height,
+        animated: animated,
+        className: className,
+        style: style
+      }, index))
+    });
+  }
+
+  // Custom lines layout
+  if (lines.length > 0) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: combinedClassName,
+      style: customStyle,
+      children: lines.map((line, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: `${baseClassName}__line`,
+        style: {
+          width: line.width || '100%',
+          height: line.height || '12px',
+          marginBottom: line.marginBottom || '8px'
+        }
+      }, index))
+    });
+  }
+
+  // Single skeleton item
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: combinedClassName,
+    style: customStyle,
+    "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Loading content', 'directorist-gutenberg'),
+    role: "status"
+  });
+}
+
+/**
+ * Skeleton Text Component
+ * Convenience component for text skeleton
+ */
+function SkeletonText({
+  lines = 3,
+  ...props
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Skeleton, {
+    variant: "text",
+    lines: Array.from({
+      length: lines
+    }).map((_, index) => ({
+      width: index === lines - 1 ? '60%' : '100%',
+      height: '12px',
+      marginBottom: '8px'
+    })),
+    ...props
+  });
+}
+
+/**
+ * Skeleton Card Component
+ * Convenience component for card skeleton
+ */
+function SkeletonCard({
+  ...props
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "directorist-gutenberg-skeleton-card",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Skeleton, {
+      variant: "rectangular",
+      width: "100%",
+      height: 200,
+      ...props
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      style: {
+        padding: '16px'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Skeleton, {
+        variant: "text",
+        width: "80%",
+        height: 20,
+        style: {
+          marginBottom: '12px'
+        },
+        ...props
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Skeleton, {
+        variant: "text",
+        width: "100%",
+        height: 16,
+        style: {
+          marginBottom: '8px'
+        },
+        ...props
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Skeleton, {
+        variant: "text",
+        width: "60%",
+        height: 16,
+        ...props
+      })]
+    })]
+  });
+}
+
+/**
+ * Skeleton List Component
+ * Convenience component for list skeleton
+ */
+function SkeletonList({
+  items = 5,
+  ...props
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "directorist-gutenberg-skeleton-list",
+    children: Array.from({
+      length: items
+    }).map((_, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "directorist-gutenberg-skeleton-list__item",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Skeleton, {
+        variant: "circular",
+        width: 40,
+        height: 40,
+        style: {
+          marginRight: '12px'
+        },
+        ...props
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        style: {
+          flex: 1
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Skeleton, {
+          variant: "text",
+          width: "80%",
+          height: 16,
+          style: {
+            marginBottom: '8px'
+          },
+          ...props
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Skeleton, {
+          variant: "text",
+          width: "60%",
+          height: 14,
+          ...props
+        })]
+      })]
+    }, index))
   });
 }
 
@@ -1674,6 +2052,7 @@ function registerBlock({
   metadata,
   Edit,
   Controls,
+  StylesControls,
   icon = '',
   exampleAttributes = {},
   props = {},
@@ -1712,6 +2091,7 @@ function registerBlock({
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_block__WEBPACK_IMPORTED_MODULE_3__["default"], {
       Edit: Edit,
       Controls: Controls,
+      StylesControls: StylesControls,
       classNames: classNames,
       ...editProps
     })]

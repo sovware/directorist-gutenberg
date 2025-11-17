@@ -86,6 +86,13 @@ export default function ShadowControl({
 		});
 	};
 
+	// Reset shadow to default values
+	const resetShadow = () => {
+		setAttributes({
+			[attrName]: '',
+		});
+	};
+
 	return (
 		<PanelBody
 			title={label}
@@ -130,6 +137,17 @@ export default function ShadowControl({
 				min={-100}
 				max={100}
 			/>
+
+			{dropShadow && (
+				<Button
+					variant="secondary"
+					size="small"
+					onClick={resetShadow}
+					style={{ marginTop: '12px' }}
+				>
+					{__( 'Reset Shadow', 'directorist-gutenberg' )}
+				</Button>
+			)}
 		</PanelBody>
 	);
 }

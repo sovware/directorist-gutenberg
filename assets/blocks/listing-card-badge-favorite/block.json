@@ -12,6 +12,10 @@
     },
     "textAlign": {
       "type": "string"
+    },
+    "is_preview": {
+      "type": "boolean",
+      "default": false
     }
   },
   "description": "Listing Badge Favorite Block",

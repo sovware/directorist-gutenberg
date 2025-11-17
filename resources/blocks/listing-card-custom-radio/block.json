@@ -29,6 +29,10 @@
 		"block_width": {
 			"type": "string",
 			"default": "100"
+		},
+		"is_preview": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"description": "Listing custom radio block",
