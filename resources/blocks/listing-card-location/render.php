@@ -1,4 +1,14 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+$location = get_the_terms( get_the_id(), ATBDP_LOCATION );
+
+if ( empty( $location ) ) {
+    return;
+}
+
+$location = $location[0]->name;
+
 // Build icon style from icon_color and icon_size attributes
 $icon_style = directorist_gutenberg_build_icon_style( $attributes );
 // Get block width class
@@ -13,9 +23,9 @@ $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
             <?php endif; ?>
             <div class="directorist-gutenberg-listing-card-element-details">
                 <?php if ( $attributes['show_label'] ) : ?>
-                    <span class="directorist-gutenberg-listing-card-element-label">Location:</span>
+                    <span class="directorist-gutenberg-listing-card-element-label"><?php echo esc_html__( 'Location:', 'directorist-gutenberg' ); ?></span>
                 <?php endif; ?>
-                <span class="directorist-gutenberg-listing-card-element-value">Dubai</span>
+                <span class="directorist-gutenberg-listing-card-element-value"><?php echo esc_html( $location ); ?></span>
             </div>
         </div>
     </div>

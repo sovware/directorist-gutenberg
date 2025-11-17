@@ -1,4 +1,12 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+$fax = directorist_gutenberg_get_block_post_meta( $attributes['meta_key'], get_the_ID() );
+
+if ( empty( $fax ) ) {
+    return;
+}
+
 // Build icon style from icon_color and icon_size attributes
 $icon_style = directorist_gutenberg_build_icon_style( $attributes );
 // Get block width class
@@ -14,9 +22,9 @@ $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
 
             <div class="directorist-gutenberg-listing-card-element-details">
                 <?php if ( $attributes['show_label'] ) : ?>
-                    <span class="directorist-gutenberg-listing-card-element-label">Fax:</span>
+                    <span class="directorist-gutenberg-listing-card-element-label"><?php echo esc_html__( 'Fax:', 'directorist-gutenberg' ); ?></span>
                 <?php endif; ?>
-                <span class="directorist-gutenberg-listing-card-element-value">(123) 456-7890</span>
+                <span class="directorist-gutenberg-listing-card-element-value"><?php echo esc_html( $fax ); ?></span>
             </div>
         </div>
     </div>

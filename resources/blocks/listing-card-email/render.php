@@ -7,14 +7,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$listing_id = get_the_ID();
-
-if ( ! $listing_id ) {
-	return;
-}
-
 // Get email value from post meta.
-$email = get_post_meta( $listing_id, '_email', true );
+$email = directorist_gutenberg_get_block_post_meta( $attributes['meta_key'], get_the_ID() );
 
 if ( ! $email ) {
 	return;
@@ -41,7 +35,7 @@ $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
 			<?php endif; ?>
 			<div class="directorist-gutenberg-listing-card-element-details">
 				<?php if ( $show_label ) : ?>
-					<span class="directorist-gutenberg-listing-card-element-label"><?php echo esc_html( $label . ' : ' ); ?></span>
+					<span class="directorist-gutenberg-listing-card-element-label"><?php echo esc_html( $label . ': ' ); ?></span>
 				<?php endif; ?>
 				<a target="_top" href="mailto:<?php echo esc_attr( $email ); ?>" class="directorist-gutenberg-listing-card-element-value">
 					<?php echo esc_html( $email ); ?>

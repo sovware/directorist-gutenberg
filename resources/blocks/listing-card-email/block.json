@@ -6,6 +6,10 @@
 	"title": "Listing Email",
 	"category": "directorist-listing-card-preset-fields",
 	"attributes": {
+		"meta_key": {
+			"type": "string",
+			"default": "email"
+		},
 		"icon": {
 			"type": "string",
 			"default": "line-awesome/envelope-solid.svg"

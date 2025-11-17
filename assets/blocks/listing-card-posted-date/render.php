@@ -1,4 +1,14 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+$publish_date_format = $attributes['date_type'];
+
+if ( 'days_ago' === $attributes['date_type'] ) {
+    $text = sprintf( __( 'Posted %s ago', 'directorist' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
+} else {
+    $text = get_the_date();
+}
+
 // Build icon style from icon_color and icon_size attributes
 $icon_style = directorist_gutenberg_build_icon_style( $attributes );
 // Get block width class
@@ -12,7 +22,7 @@ $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
                 <span class="directorist-gutenberg-listing-card-element-icon" style="<?php echo $icon_style; ?>"><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $attributes['icon'] ); ?></span>
             <?php endif; ?>
             <div class="directorist-gutenberg-listing-card-element-details">
-                <span class="directorist-gutenberg-listing-card-element-value"><?php echo $attributes['date_type'] === 'posted_date' ? __( '03 November, 2025', 'directorist-gutenberg' ) : __( 'Posted 10 days ago', 'directorist-gutenberg' ); ?></span>
+                <span class="directorist-gutenberg-listing-card-element-value"><?php echo esc_html( $text ); ?></span>
             </div>
         </div>
     </div>
