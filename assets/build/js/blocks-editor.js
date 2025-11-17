@@ -2266,8 +2266,8 @@ var __webpack_exports__ = {};
   \*********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./settings */ "./resources/js/block-sripts/settings.js");
-/* harmony import */ var _directorist_gutenberg_gutenberg_extend_native_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/extend-native-blocks */ "./resources/js/gutenberg/extend-native-blocks.js");
-/* harmony import */ var _toggle_views__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./toggle-views */ "./resources/js/block-sripts/toggle-views.js");
+/* harmony import */ var _toggle_views__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toggle-views */ "./resources/js/block-sripts/toggle-views.js");
+/* harmony import */ var _directorist_gutenberg_gutenberg_extend_native_blocks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/extend-native-blocks */ "./resources/js/gutenberg/extend-native-blocks.js");
 
 
 
