@@ -8,12 +8,15 @@ import domReady from '@wordpress/dom-ready';
  * Internal dependencies
  */
 import Header from './components/Header';
+import Table from './components/Table';
+import { StyledTemplates } from './style';
 
 function AllTemplates() {
     return (
-        <div className="directorist-gutenberg-templates-admin">
+        <StyledTemplates className="directorist-gutenberg-templates-main">
             <Header />
-        </div>
+            <Table />
+        </StyledTemplates>
     );
 }
 

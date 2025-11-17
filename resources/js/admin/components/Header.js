@@ -1,4 +1,9 @@
 /**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+
+/**
  * External dependencies
  */
 import ReactSVG from 'react-inlinesvg';
@@ -16,7 +21,7 @@ export default function Header() {
                 <ReactSVG src={ Logo } />
             </div>
             <div className="directorist-gutenberg-templates-header-title">
-                <h1>Directorist Templates</h1>
+                <h1>{ __( 'AI Template Builder', 'directorist-gutenberg' ) }</h1>
             </div>
         </StyledHeader>
     );
