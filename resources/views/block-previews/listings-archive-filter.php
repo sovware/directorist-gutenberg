@@ -8,7 +8,7 @@ use Directorist\Directorist_Listing_Search_Form;
 
 $listings = new Directorist_Listings();
 
-$listings->directory_type_id              = $directory_type_id;
+$listings->directory_type_id              = $attributes['directory_type_id'];
 $listings->options['sidebar_filter_text'] = $attributes['filters_text'];
 
 $search_field_atts = $listings->get_search_field_atts();

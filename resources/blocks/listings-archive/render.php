@@ -6,6 +6,11 @@ use Directorist\Directorist_Listings;
 
 $listings = new Directorist_Listings();
 
+$listings->directory_type_id = $attributes['directory_type_id'];
+
+$listings->view    = $attributes['default_view'];
+$listings->columns = round(  12 / (int) $attributes['listings_columns'] );
+
 // Get block width class
 $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
 ?>
