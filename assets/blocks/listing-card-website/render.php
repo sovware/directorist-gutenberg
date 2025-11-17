@@ -1,4 +1,12 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+$website = directorist_gutenberg_get_block_post_meta( $attributes['meta_key'], get_the_ID() );
+
+if ( empty( $website ) ) {
+    return;
+}
+
 // Build icon style from icon_color and icon_size attributes
 $icon_style = directorist_gutenberg_build_icon_style( $attributes );
 // Get block width class
@@ -13,9 +21,9 @@ $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
             <?php endif; ?>
             <div class="directorist-gutenberg-listing-card-element-details">
                 <?php if ( $attributes['show_label'] ) : ?>
-                    <span class="directorist-gutenberg-listing-card-element-label">Website:</span>
+                    <span class="directorist-gutenberg-listing-card-element-label"><?php echo esc_html__( 'Website:', 'directorist-gutenberg' ); ?></span>
                 <?php endif; ?>
-                <span class="directorist-gutenberg-listing-card-element-value">https://www.example.com</span>
+                <span class="directorist-gutenberg-listing-card-element-value"><?php echo esc_html( $website ); ?></span>
             </div>
         </div>
     </div>
