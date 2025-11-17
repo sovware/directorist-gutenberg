@@ -1,4 +1,14 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+use Directorist\Helper;
+
+$is_popular = Helper::is_popular( get_the_ID() );
+
+if ( ! $is_popular ) {
+    return;
+}
+
 // Get block width class
 $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
 
