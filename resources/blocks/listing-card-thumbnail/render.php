@@ -1,5 +1,29 @@
 <?php
+    if ( ! defined( 'ABSPATH' ) ) exit;
+
+    use Directorist\Helper;
+
     $listing_prv_img = directorist_get_listing_preview_image( get_the_ID() );
+
+    if ( empty( $listing_prv_img ) ) {
+        $listing_prv_imgs = directorist_get_listing_gallery_images( get_the_ID() );
+
+        if ( ! empty( $listing_prv_imgs ) ) {
+            $listing_prv_img = $listing_prv_imgs[0];
+        }
+    }
+
+    if ( empty( $listing_prv_img ) ) {
+        $listing_prv_img = get_post_thumbnail_id( get_the_ID() );
+    }
+
+    if ( empty( $listing_prv_img ) ) {
+        $directory_id        = get_post_meta( get_the_ID(), '_directory_type', true );
+        $directory_id        = is_array( $directory_id ) && ! empty( $directory_id ) ? $directory_id[0] : $directory_id;
+        $listing_prv_img_src = Helper::default_preview_image_src( $directory_id );
+    } else {
+        $listing_prv_img_src = wp_get_attachment_image_url( $listing_prv_img, 'full' );
+    }
 
     // Extract inner blocks content if the saved structure contains it
     $inner_content = $content;
@@ -83,8 +107,10 @@
 <div class="<?php echo esc_attr( $block_width_class ); ?>">
     <div class="directorist-gutenberg-listing-card-thumbnail"<?php echo ! empty( $thumbnail_styles ) ? ' style="' . esc_attr( $thumbnail_styles ) . '"' : ''; ?>>
         <div class="directorist-gutenberg-listing-card-thumbnail-back">
-            <img src="<?php echo wp_get_attachment_image_url( $listing_prv_img, 'full' ); ?>" alt="<?php the_title(); ?>"<?php echo ! empty( $extra_styles ) ? ' style="' . esc_attr( $extra_styles ) . '"' : ''; ?>>
-            <?php echo $overlay_markup; ?>
+            <a href="<?php the_permalink(); ?>">
+                <img src="<?php echo $listing_prv_img_src; ?>" alt="<?php the_title(); ?>"<?php echo ! empty( $extra_styles ) ? ' style="' . esc_attr( $extra_styles ) . '"' : ''; ?>>
+                <?php echo $overlay_markup; ?>
+            </a>
         </div>
         <div class="directorist-gutenberg-listing-card-thumbnail-front">
             <?php
@@ -94,3 +120,4 @@
         </div>
     </div>
 </div>
+
