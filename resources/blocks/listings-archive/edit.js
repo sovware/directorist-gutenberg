@@ -21,7 +21,11 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	const directoryId = getLocalizedBlockDataByKey( 'directory_type_id', 0 );
-	const { template, isLoading, refreshTemplate } = useBlocksPreview( { directoryId, blockType: 'listings-archive/archive' } );
+	const { template, isLoading, refreshTemplate } = useBlocksPreview( { 
+		directoryId, 
+		blockType: 'listings-archive/archive',
+		blockAttributes: attributes,
+	} );
 
 	useEffect( () => {
 		refreshTemplate( attributes );

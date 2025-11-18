@@ -6,7 +6,7 @@ export default function useBlocksPreview( { directoryId, blockType, blockAttribu
     const [ args, setArgs ] = useState( blockAttributes );
     const [ appliedArgs, setAppliedArgs ] = useState( null );
     const [ template, setTemplate ] = useState( '' );
-    const [ isLoading, setIsLoading ] = useState( true );
+    const [ isLoading, setIsLoading ] = useState( false );
 
     useEffect( () => {
         if ( appliedArgs && JSON.stringify( args ) === JSON.stringify( appliedArgs ) ) {
@@ -21,6 +21,10 @@ export default function useBlocksPreview( { directoryId, blockType, blockAttribu
     }
 
     function fetchTemplate() {
+        if ( isLoading ) {
+            return;
+        }
+
 		const url = addQueryArgs( `/directorist-gutenberg/blocks-preview/${blockType}`, {
 			directory_id: directoryId,
             ...args,

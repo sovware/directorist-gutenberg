@@ -31,8 +31,6 @@ $listings->display_sortby_dropdown = strval( $attributes['enable_sorting'] ) ===
 $listings->sort_by_text  = $attributes['sort_by_label'];
 $listings->sort_by_items = $attributes['sort_by'];
 
-$listings->listing_filters_button = $attributes['sort_by'];
-
 ?>
 <div <?php $listings->data_atts() ?>>
     <?php

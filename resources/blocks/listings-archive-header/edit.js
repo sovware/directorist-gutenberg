@@ -21,7 +21,11 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	const directoryId = getLocalizedBlockDataByKey( 'directory_type_id', 0 );
-	const { template, isLoading, refreshTemplate } = useBlocksPreview( { directoryId, blockType: 'listings-archive/header' } );
+	const { template, isLoading, refreshTemplate } = useBlocksPreview( { 
+		directoryId, 
+		blockType: 'listings-archive/header',
+		blockAttributes: attributes,
+	} );
 
 	useEffect( () => {
 		refreshTemplate( attributes );
@@ -44,6 +48,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			</div>
 		);
 	}
+
 	return (
 		<div
 			style={{
