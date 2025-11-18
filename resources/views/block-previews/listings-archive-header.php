@@ -3,22 +3,17 @@
 defined( 'ABSPATH' ) || exit;
 
 use Directorist\Directorist_Listings;
+use Directorist\Helper;
 
 $listings = new Directorist_Listings();
+
+$listings->directory_type_id = $attributes['directory_type_id'];
 
 ?>
 <div <?php $listings->data_atts() ?>>
     <?php
-    ob_start();
-    $listings->header_bar_template();
-
-    $header_bar = ob_get_clean();
-
-    if ( $header_bar ) :
         echo '<div class="directorist-gutenberg-listings-archive-header">';
-        echo $header_bar;
-        echo '</div>';
-    endif;
-
+		Helper::get_template( 'archive/header-bar', [ 'listings' => $listings ] );
+		echo '</div>';
     ?>
 </div>
