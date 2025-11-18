@@ -30,25 +30,14 @@ import {
 const PROGRESS_DURATION = 1000; // 1 seconds
 const DELAY_DURATION = 1000; // 1 seconds
 
-export default function CreateTemplate( { createType, onClose } ) {
-	const [ directoryTypes, setDirectoryTypes ] = useState( [] );
+export default function CreateTemplate( { createType, onClose, directoryTypes } ) {
 	const [ directoryType, setDirectoryType ] = useState( '' );
 	const [ isCreatingTemplate, setIsCreatingTemplate ] = useState( false );
 	const [ loadingProgress, setLoadingProgress ] = useState( 0 );
 
-	useEffect( () => {
-		const getDirectoryTypes = async () => {
-			const response = await fetchData( 'admin/templates/directories' );
-			setDirectoryTypes( response.directories );
-
-			// Set the first directory type as selected after fetching
-			if ( response.directories && response.directories.length > 0 ) {
-				setDirectoryType( response.directories[ 0 ].value );
-			}
-		};
-
-		getDirectoryTypes();
-	}, [] );
+    useEffect( () => {
+        setDirectoryType( directoryTypes[ 0 ].value );
+    }, [ directoryTypes ] );
 
 	// Handle directory type change
 	const handleDirectoryTypeChange = ( value ) => {
@@ -100,7 +89,16 @@ export default function CreateTemplate( { createType, onClose } ) {
 			await Promise.all( [ delay2Promise, progress2Promise ] );
 
 			setLoadingProgress( 100 );
-			onClose();
+
+			// Redirect to listings-archive edit URL
+			if (
+				response?.created_items?.[ 'listings-archive' ]?.edit_url
+			) {
+				window.location.href =
+					response.created_items[ 'listings-archive' ].edit_url;
+			} else {
+				onClose();
+			}
 		} catch ( error ) {
 			console.error( 'Error creating template:', error );
 			setIsCreatingTemplate( false );
@@ -177,7 +175,7 @@ export default function CreateTemplate( { createType, onClose } ) {
 				</Button>
 				<span>
 					{ __(
-						'Each template (Grid, List, and Archive) can be edited in Gutenberg and enhanced using AI-assisted design conversation.',
+						'Each template can be edited in Gutenberg and enhanced using AI-assisted design conversation.',
 						'directorist-gutenberg'
 					) }
 				</span>

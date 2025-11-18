@@ -1,41 +1,41 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 3,
-	"name": "directorist-gutenberg/listings-archive-filters",
-	"version": "0.1.0",
-	"title": "Listings Archive Filters",
-	"category": "directorist-listings-archive",
-	"attributes": {
-		"directory_type_id": {
-			"type": "number",
-			"default": 0
-		},
-		"filters_text": {
-			"type": "string",
-			"default": "Filters"
-		},
-		"reset_text": {
-			"type": "string",
-			"default": "Clear All"
-		},
-		"block_width": {
-			"type": "string",
-			"default": "100"
-		},
-		"is_preview": {
-			"type": "boolean",
-			"default": false
-		}
-	},
-	"description": "Listings archive filters block",
-	"example": {},
-	"supports": {
-		"html": false
-	},
-	"textdomain": "directorist-gutenberg",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"render": "file:./render.php",
-	"viewScript": "file:./view.js"
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "directorist-gutenberg/listings-archive-filters",
+  "version": "0.1.0",
+  "title": "Listings Archive Filters",
+  "category": "directorist-listings-archive",
+  "attributes": {
+    "directory_type_id": {
+      "type": "number",
+      "default": 0
+    },
+    "filters_text": {
+      "type": "string",
+      "default": "Filters"
+    },
+    "reset_text": {
+      "type": "string",
+      "default": "Clear All"
+    },
+    "block_width": {
+      "type": "string",
+      "default": "100"
+    },
+    "is_preview": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "description": "Listings archive filters block",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "directorist-gutenberg",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
 }

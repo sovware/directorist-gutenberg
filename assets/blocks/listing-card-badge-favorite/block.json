@@ -1,32 +1,32 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 3,
-	"name": "directorist-gutenberg/listing-card-badge-favorite",
-	"version": "0.1.0",
-	"title": "Listing Badge Favorite",
-	"category": "directorist-listing-card-preset-fields",
-	"attributes": {
-		"block_width": {
-			"type": "string",
-			"default": "100"
-		},
-		"textAlign": {
-			"type": "string"
-		},
-		"is_preview": {
-			"type": "boolean",
-			"default": false
-		}
-	},
-	"description": "Listing Badge Favorite Block",
-	"example": {},
-	"supports": {
-		"html": false,
-		"interactivity": true
-	},
-	"textdomain": "directorist-gutenberg",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"render": "file:./render.php"
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "directorist-gutenberg/listing-card-badge-favorite",
+  "version": "0.1.0",
+  "title": "Listing Badge Favorite",
+  "category": "directorist-listing-card-preset-fields",
+  "attributes": {
+    "block_width": {
+      "type": "string",
+      "default": "100"
+    },
+    "textAlign": {
+      "type": "string"
+    },
+    "is_preview": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "description": "Listing Badge Favorite Block",
+  "example": {},
+  "supports": {
+    "html": false,
+    "interactivity": true
+  },
+  "textdomain": "directorist-gutenberg",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
 }

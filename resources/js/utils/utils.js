@@ -38,3 +38,24 @@ export function animateProgress( setProgress, start, end, duration ) {
 export function createDelay( duration ) {
 	return new Promise( ( resolve ) => setTimeout( resolve, duration ) );
 }
+
+
+/**
+ * Helper date formater. i.e: 23 Jan, 2025
+ * @param {string} date - The date to format
+ * @param {string} format - The format to use
+ * @example
+ * formatDate( '2025-01-23', 'en-UK' ) // 23 Jan, 2025
+ * formatDate( '2025-01-23', 'en-US' ) // Jan 23, 2025
+ * formatDate( '2025-01-23', 'en-GB' ) // 23 Jan, 2025
+ * formatDate( '2025-01-23', 'en-AU' ) // 23 Jan, 2025
+ * formatDate( '2025-01-23', 'en-CA' ) // 23 Jan, 2025
+ */
+export function formatDate(date, format = 'en-GB') {
+    const d = new Date(date);
+    const day = d.getDate();
+    const month = d.toLocaleString(format, { month: 'short' });
+    const year = d.getFullYear();
+
+    return `${day} ${month}, ${year}`;
+}

@@ -66,6 +66,40 @@ const StyledTable = Styled.div`
             font-weight: 600;
             line-height: 28px;
         }
+        button{
+            border-radius: 2px;
+            gap: 4px;
+            svg{
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+    .dataviews-view-table{
+        .dataviews-view-table__col-checkbox{
+            width: 0.05% !important;
+        }
+        .dataviews-view-table__row{
+            .dataviews-view-table__checkbox-column{
+                padding-left: 15px;
+            }
+        }
+        .dataviews-item-actions{
+            .components-button{
+                opacity: 1 !important;
+                color: #747C89;
+                transition: 0.3s ease;
+                &:hover{
+                    color: #DA3949;
+                }
+            }
+        }
+        .components-checkbox-control__input[type=checkbox]{
+            border: 1px solid #E0E0E0;
+        }
+    }
+    .dataviews-bulk-actions-footer__container{
+        padding: 15px 15px 0 15px ;
     }
 `;
 
@@ -131,6 +165,7 @@ const StyledModalContents = Styled.div`
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        width: 100%;
         button{
             margin-bottom: 10px;
             display: flex;
@@ -187,4 +222,103 @@ const StyledModalContents = Styled.div`
     }
 `;
 
-export { StyledHeader, StyledTable, StyledTemplates, StyledModalContents };
+const StyledDeleteModal = Styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .directorist-gutenberg-delete-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+    .directorist-gutenberg-delete-modal-header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .directorist-gutenberg-delete-modal-icon {
+            width: 24px;
+            height: 24px;
+            color: #DA3949;
+            flex-shrink: 0;
+
+            svg {
+                width: 100%;
+                height: 100%;
+                fill: #DA3949;
+            }
+        }
+
+        h1 {
+            margin: 0;
+            padding: 0;
+            color: #1E1E1E;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+    }
+
+    .directorist-gutenberg-delete-modal-close {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: #f0f0f0;
+        }
+
+        svg {
+            width: 18px;
+            height: 18px;
+            color: #757575;
+        }
+    }
+
+    .directorist-gutenberg-delete-modal-content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        p {
+            margin: 0;
+            padding: 0;
+            color: #757575;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+
+            strong {
+                color: #1E1E1E;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .directorist-gutenberg-delete-modal-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid #E0E0E0;
+
+        .components-button {
+            padding: 8px 20px;
+            border-radius: 4px;
+        }
+    }
+`;
+
+export { StyledHeader, StyledTable, StyledTemplates, StyledModalContents, StyledDeleteModal };
