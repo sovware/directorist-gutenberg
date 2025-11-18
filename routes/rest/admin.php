@@ -11,6 +11,7 @@ Route::group( 'admin', function() {
         Route::get( '/directories', [ TemplateController::class, 'directories' ] );
         Route::post( '/create-single', [ TemplateController::class, 'create_single_template' ] );
         Route::post( '/create-all', [ TemplateController::class, 'create_all_templates' ] );
+        Route::delete( '/bulk-delete', [ TemplateController::class, 'bulk_delete' ] );
         Route::delete( '/delete-by', [ TemplateController::class, 'delete_by' ] );
         Route::delete( '/{id}', [ TemplateController::class, 'delete' ] );
     } );

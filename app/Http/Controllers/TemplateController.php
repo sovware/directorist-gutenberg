@@ -207,6 +207,26 @@ class TemplateController extends Controller {
         );
     }
 
+    public function bulk_delete( Validator $validator, WP_REST_Request $request ): array {
+        $validator->validate(
+            [
+                "ids" => "required|array"
+            ]
+        );
+        
+        $delete_status = $this->repository->delete_by_ids( $request->get_param( 'ids' ) );
+        
+        if ( false === $delete_status ) {
+            throw new Exception( esc_html__( 'Failed to delete the templates.', 'directorist-gutenberg' ), 500 );
+        }
+
+        return Response::send(
+            [
+                'message' => __( 'The templates were deleted successfully.', 'directorist-gutenberg' )
+            ]
+        );
+    }
+
     public function delete_by( Validator $validator, WP_REST_Request $request ): array {
         $validator->validate(
             [
