@@ -4,6 +4,8 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl, ToggleControl, FormTokenField } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useSelect } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 
 // View Type mappings
 const VIEW_TYPE_MAP = {
@@ -68,6 +70,15 @@ import ShadowControl from '@directorist-gutenberg/gutenberg/components/controls/
 export default function Controls( { attributes, setAttributes } ) {
 
 	useArchiveBlockCommonTask( { setAttributes } );
+
+	// Inside your component
+	const templateID = useSelect( ( select ) => {
+		return select( 'core/editor' ).getCurrentPostId();
+	}, [] );
+
+	useEffect( () => {
+		setAttributes( { template_id: templateID } );
+	}, [ templateID ] );
 
     return (
         <InspectorControls>

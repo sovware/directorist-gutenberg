@@ -9,6 +9,10 @@ $listings = new Directorist_Listings();
 
 $listings->directory_type_id = $attributes['directory_type_id'];
 
+$default_view = get_post_meta( $attributes['template_id'], 'default_view', true );
+
+$listings->view = ! empty( $default_view ) ? $default_view : 'grid';
+
 $listings->header_title = $attributes['listings_count_text'];
 
 if ( strval( $attributes['show_listings_count'] ) !== '1' ) {

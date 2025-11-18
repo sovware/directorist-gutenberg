@@ -7,6 +7,10 @@ use Directorist\Helper;
 
 $listings = new Directorist_Listings();
 
+$default_view = get_post_meta( $attributes['template_id'], 'default_view', true );
+
+$listings->view = ! empty( $default_view ) ? $default_view : 'grid';
+
 $listings->directory_type_id = $attributes['directory_type_id'];
 
 $listings->header_title = $attributes['listings_count_text'];
