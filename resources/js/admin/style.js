@@ -94,12 +94,17 @@ const StyledTable = Styled.div`
                 }
             }
         }
-        .components-checkbox-control__input[type=checkbox]{
-            border: 1px solid #E0E0E0;
-        }
     }
     .dataviews-bulk-actions-footer__container{
         padding: 15px 15px 0 15px ;
+    }
+    .components-checkbox-control__input[type=checkbox]{
+        border: 1px solid #c6c6c6;
+        border-radius: 2px;
+        &:checked{
+            background: var(--wp-admin-theme-color, #3858e9);
+            border-color: var(--wp-admin-theme-color, #3858e9);
+        }
     }
 `;
 
