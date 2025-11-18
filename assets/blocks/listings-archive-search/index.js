@@ -1891,6 +1891,23 @@ function useBlocksPreview({
       setIsLoading(false);
     });
   }
+  function fetchTemplate() {
+    const url = (0,_wordpress_url__WEBPACK_IMPORTED_MODULE_1__.addQueryArgs)(`/directorist-gutenberg/blocks-preview/${blockType}`, {
+      directory_id: directoryId,
+      ...args
+    });
+    setIsLoading(true);
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+      path: url
+    }).then(response => {
+      setTemplate(response.template);
+      setIsLoading(false);
+      setAppliedArgs(args);
+    }).catch(error => {
+      console.error('error', error);
+      setIsLoading(false);
+    });
+  }
   return {
     template,
     isLoading,
