@@ -38,7 +38,10 @@ registerBlock( {
 					type: 'block',
 					blocks: [ 'core/post-featured-image' ],
 					transform: ( attributes ) => {
-						return createBlock( 'directorist-gutenberg/listing-card-thumbnail', attributes );
+						return createBlock(
+							'directorist-gutenberg/listing-card-thumbnail',
+							attributes
+						);
 					},
 				},
 			],
@@ -47,14 +50,17 @@ registerBlock( {
 					type: 'block',
 					blocks: [ 'core/post-featured-image' ],
 					transform: ( attributes ) => {
-						return createBlock( 'core/post-featured-image', attributes );
+						return createBlock(
+							'core/post-featured-image',
+							attributes
+						);
 					},
 				},
 			],
 		},
 	},
 	exampleAttributes,
-	icon: <ReactSVG src={thumbnailIcon} />,
+	icon: <ReactSVG src={ thumbnailIcon } />,
 	templateTypes: [
 		'listings-archive-grid-view',
 		'listings-archive-list-view',
@@ -82,9 +88,14 @@ addFilter(
 			try {
 				const blockEditor = select( 'core/block-editor' );
 				if ( blockEditor ) {
-					const parents = blockEditor.getBlockParents( clientId, true );
+					const parents = blockEditor.getBlockParents(
+						clientId,
+						true
+					);
 					const hasThumbnailParent = parents.some(
-						( parentId ) => blockEditor.getBlockName( parentId ) === 'directorist-gutenberg/listing-card-thumbnail'
+						( parentId ) =>
+							blockEditor.getBlockName( parentId ) ===
+							'directorist-gutenberg/listing-card-thumbnail'
 					);
 
 					if ( hasThumbnailParent ) {
@@ -121,16 +132,24 @@ addFilter(
 				try {
 					const blockEditor = select( 'core/block-editor' );
 					if ( blockEditor ) {
-						const parents = blockEditor.getBlockParents( clientId, true );
+						const parents = blockEditor.getBlockParents(
+							clientId,
+							true
+						);
 						const hasThumbnailParent = parents.some(
-							( parentId ) => blockEditor.getBlockName( parentId ) === 'directorist-gutenberg/listing-card-thumbnail'
+							( parentId ) =>
+								blockEditor.getBlockName( parentId ) ===
+								'directorist-gutenberg/listing-card-thumbnail'
 						);
 
 						if ( hasThumbnailParent ) {
 							// Don't render if nested inside thumbnail
 							// Also remove it from the editor
 							setTimeout( () => {
-								dispatch( 'core/block-editor' ).removeBlocks( [ clientId ], false );
+								dispatch( 'core/block-editor' ).removeBlocks(
+									[ clientId ],
+									false
+								);
 							}, 0 );
 							return null;
 						}

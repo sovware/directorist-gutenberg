@@ -2,7 +2,14 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, PanelBody, Button, Popover, ColorPicker, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import {
+	ToggleControl,
+	PanelBody,
+	Button,
+	Popover,
+	ColorPicker,
+	__experimentalUnitControl as UnitControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 
@@ -13,12 +20,16 @@ import IconPicker from '@directorist-gutenberg/gutenberg/components/controls/ico
 import ColorPickerControl from '@directorist-gutenberg/gutenberg/components/controls/color-picker-control';
 
 export default function Controls( { attributes, setAttributes } ) {
-	const [isIconColorPickerOpen, setIsIconColorPickerOpen] = useState(false);
+	const [ isIconColorPickerOpen, setIsIconColorPickerOpen ] =
+		useState( false );
 
 	return (
 		<InspectorControls>
 			<PanelBody
-				title={ __( 'Listings Address Settings', 'directorist-gutenberg' ) }
+				title={ __(
+					'Listings Address Settings',
+					'directorist-gutenberg'
+				) }
 				initialOpen={ true }
 			>
 				<IconPicker
@@ -31,18 +42,29 @@ export default function Controls( { attributes, setAttributes } ) {
 				{ attributes?.icon && (
 					<>
 						<ColorPickerControl
-							label={__( 'Icon Color', 'directorist-gutenberg' )}
-							color={attributes.icon_color}
-							defaultColor={attributes.icon_color || '#808080'}
-							onChange={(color) => setAttributes({ icon_color: color })}
-							isOpen={isIconColorPickerOpen}
-							onToggle={() => setIsIconColorPickerOpen(!isIconColorPickerOpen)}
+							label={ __(
+								'Icon Color',
+								'directorist-gutenberg'
+							) }
+							color={ attributes.icon_color }
+							defaultColor={ attributes.icon_color || '#808080' }
+							onChange={ ( color ) =>
+								setAttributes( { icon_color: color } )
+							}
+							isOpen={ isIconColorPickerOpen }
+							onToggle={ () =>
+								setIsIconColorPickerOpen(
+									! isIconColorPickerOpen
+								)
+							}
 						/>
 
 						<UnitControl
 							label={ __( 'Icon Size', 'directorist-gutenberg' ) }
 							value={ attributes.icon_size || '16px' }
-							onChange={ ( value ) => setAttributes( { icon_size: value || '16px' } ) }
+							onChange={ ( value ) =>
+								setAttributes( { icon_size: value || '16px' } )
+							}
 							units={ [
 								{ value: 'px', label: 'px' },
 								{ value: 'em', label: 'em' },
@@ -57,7 +79,9 @@ export default function Controls( { attributes, setAttributes } ) {
 				<ToggleControl
 					label={ __( 'Show Label', 'directorist-gutenberg' ) }
 					checked={ attributes.show_label }
-					onChange={ ( value ) => setAttributes( { show_label: value } ) }
+					onChange={ ( value ) =>
+						setAttributes( { show_label: value } )
+					}
 				/>
 			</PanelBody>
 		</InspectorControls>

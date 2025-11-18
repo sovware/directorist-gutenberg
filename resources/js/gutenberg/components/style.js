@@ -84,6 +84,4 @@ const IconPickerStyle = Styled.div`
     }
 `;
 
-export {
-    IconPickerStyle,
-}
+export { IconPickerStyle };

@@ -1,44 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "directorist-gutenberg/listing-card-badge-popular",
-  "version": "0.1.0",
-  "title": "Listing Badge Popular",
-  "category": "directorist-listing-card-preset-fields",
-  "attributes": {
-    "block_width": {
-      "type": "string",
-      "default": "100"
-    },
-    "textAlign": {
-      "type": "string"
-    },
-    "text": {
-      "type": "string",
-      "default": "Popular"
-    },
-    "text_color": {
-      "type": "string",
-      "default": "#ffffff"
-    },
-    "background_color": {
-      "type": "string",
-      "default": "#444752"
-    },
-    "is_preview": {
-      "type": "boolean",
-      "default": false
-    }
-  },
-  "description": "Listing Badge Popular Block",
-  "example": {},
-  "supports": {
-    "html": false
-  },
-  "textdomain": "directorist-gutenberg",
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "render": "file:./render.php",
-  "viewScript": "file:./view.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "directorist-gutenberg/listing-card-badge-popular",
+	"version": "0.1.0",
+	"title": "Listing Badge Popular",
+	"category": "directorist-listing-card-preset-fields",
+	"attributes": {
+		"block_width": {
+			"type": "string",
+			"default": "100"
+		},
+		"textAlign": {
+			"type": "string"
+		},
+		"text": {
+			"type": "string",
+			"default": "Popular"
+		},
+		"text_color": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"background_color": {
+			"type": "string",
+			"default": "#444752"
+		},
+		"is_preview": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"description": "Listing Badge Popular Block",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "directorist-gutenberg",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
 }

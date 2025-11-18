@@ -21,15 +21,15 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	const directoryId = getLocalizedBlockDataByKey( 'directory_type_id', 0 );
-	const { template, isLoading, refreshTemplate } = useBlocksPreview( { directoryId, blockType: 'listings-archive/filter' } );
+	const { template, isLoading, refreshTemplate } = useBlocksPreview( {
+		directoryId,
+		blockType: 'listings-archive/filter',
+	} );
 	const containerRef = useRef( null );
 
 	useEffect( () => {
 		refreshTemplate( attributes );
-	}, [
-		attributes.filters_text,
-		attributes.reset_text,
-	] );
+	}, [ attributes.filters_text, attributes.reset_text ] );
 
 	// Add class to the element after template is loaded and DOM is updated
 	useEffect( () => {
@@ -39,9 +39,13 @@ export default function Edit( { attributes, setAttributes } ) {
 
 		// Wait for DOM to update after dangerouslySetInnerHTML
 		const timeoutId = setTimeout( () => {
-			const searchWrapper = containerRef.current?.querySelector('.directorist-gutenberg-listings-archive-filter');
+			const searchWrapper = containerRef.current?.querySelector(
+				'.directorist-gutenberg-listings-archive-filter'
+			);
 			if ( searchWrapper ) {
-				searchWrapper.classList.add('directorist-gutenberg-listings-archive-filters');
+				searchWrapper.classList.add(
+					'directorist-gutenberg-listings-archive-filters'
+				);
 			}
 		}, 0 );
 
@@ -51,18 +55,14 @@ export default function Edit( { attributes, setAttributes } ) {
 	if ( isLoading ) {
 		return (
 			<div style={ { pointerEvents: 'none', padding: '20px' } }>
-				<Skeleton
-					variant="card"
-					count={ 3 }
-					width="100%"
-				/>
+				<Skeleton variant="card" count={ 3 } width="100%" />
 			</div>
 		);
 	}
 
 	return (
 		<div
-			ref={containerRef}
+			ref={ containerRef }
 			style={ { pointerEvents: 'none' } }
 			dangerouslySetInnerHTML={ { __html: template } }
 		/>

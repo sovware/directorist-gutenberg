@@ -17,9 +17,9 @@ const BLOCKS_TO_EXTEND = [
 	'core/group',
 	'core/column',
 	'core/columns',
-    'core/row',
-    'core/stack',
-    'core/grid',
+	'core/row',
+	'core/stack',
+	'core/grid',
 ];
 
 /**
@@ -30,21 +30,21 @@ const DEFAULT_SHADOW = '0px 0px 0px 0px rgba(0, 0, 0, 0)';
 /**
  * Check if shadow value is meaningful (not default/no shadow)
  */
-const isMeaningfulShadow = (shadowValue) => {
-	if (!shadowValue || shadowValue === DEFAULT_SHADOW) {
+const isMeaningfulShadow = ( shadowValue ) => {
+	if ( ! shadowValue || shadowValue === DEFAULT_SHADOW ) {
 		return false;
 	}
 	// Check if all offset/blur/spread values are 0
 	const shadowRegex = /^(\d+px|0)\s+(\d+px|0)\s+(\d+px|0)\s+(\d+px|0)/;
-	const match = shadowValue.match(shadowRegex);
-	if (match) {
-		const [, x, y, blur, spread] = match;
+	const match = shadowValue.match( shadowRegex );
+	if ( match ) {
+		const [ , x, y, blur, spread ] = match;
 		// If all values are 0 or 0px, it's not meaningful
 		if (
-			(x === '0' || x === '0px') &&
-			(y === '0' || y === '0px') &&
-			(blur === '0' || blur === '0px') &&
-			(spread === '0' || spread === '0px')
+			( x === '0' || x === '0px' ) &&
+			( y === '0' || y === '0px' ) &&
+			( blur === '0' || blur === '0px' ) &&
+			( spread === '0' || spread === '0px' )
 		) {
 			return false;
 		}
@@ -58,9 +58,9 @@ const isMeaningfulShadow = (shadowValue) => {
 addFilter(
 	'blocks.registerBlockType',
 	'directorist-gutenberg/add-drop-shadow-attribute',
-	(settings, name) => {
+	( settings, name ) => {
 		// Only add attribute to specified blocks
-		if (!BLOCKS_TO_EXTEND.includes(name)) {
+		if ( ! BLOCKS_TO_EXTEND.includes( name ) ) {
 			return settings;
 		}
 
@@ -81,24 +81,24 @@ addFilter(
  * Add shadow control to InspectorControls
  */
 const withShadowControl = createHigherOrderComponent(
-	(BlockEdit) => (props) => {
+	( BlockEdit ) => ( props ) => {
 		const { name, attributes, setAttributes } = props;
 
 		// Only add control to specified blocks
-		if (!BLOCKS_TO_EXTEND.includes(name)) {
-			return <BlockEdit {...props} />;
+		if ( ! BLOCKS_TO_EXTEND.includes( name ) ) {
+			return <BlockEdit { ...props } />;
 		}
 
 		return (
 			<>
-				<BlockEdit {...props} />
+				<BlockEdit { ...props } />
 				<InspectorControls>
 					<ShadowControl
-						attributes={attributes}
-						setAttributes={setAttributes}
+						attributes={ attributes }
+						setAttributes={ setAttributes }
 						attrName="drop_shadow"
 						label="Custom Drop Shadow"
-						initialOpen={false}
+						initialOpen={ false }
 					/>
 				</InspectorControls>
 			</>
@@ -119,14 +119,17 @@ addFilter(
 addFilter(
 	'blocks.getSaveContent.extraProps',
 	'directorist-gutenberg/apply-shadow-styles',
-	(props, blockType, attributes) => {
+	( props, blockType, attributes ) => {
 		// Only apply to specified blocks
-		if (!BLOCKS_TO_EXTEND.includes(blockType.name)) {
+		if ( ! BLOCKS_TO_EXTEND.includes( blockType.name ) ) {
 			return props;
 		}
 
 		// Apply shadow style only if drop_shadow is meaningful (not default/no shadow)
-		if (attributes.drop_shadow && isMeaningfulShadow(attributes.drop_shadow)) {
+		if (
+			attributes.drop_shadow &&
+			isMeaningfulShadow( attributes.drop_shadow )
+		) {
 			const existingStyle = props.style || {};
 			return {
 				...props,
@@ -148,12 +151,16 @@ addFilter(
 addFilter(
 	'editor.BlockListBlock',
 	'directorist-gutenberg/apply-shadow-styles-editor',
-	(BlockListBlock) => (props) => {
+	( BlockListBlock ) => ( props ) => {
 		const { name, attributes } = props;
 
 		// Only apply to specified blocks and if shadow is meaningful
-		if (!BLOCKS_TO_EXTEND.includes(name) || !attributes.drop_shadow || !isMeaningfulShadow(attributes.drop_shadow)) {
-			return <BlockListBlock {...props} />;
+		if (
+			! BLOCKS_TO_EXTEND.includes( name ) ||
+			! attributes.drop_shadow ||
+			! isMeaningfulShadow( attributes.drop_shadow )
+		) {
+			return <BlockListBlock { ...props } />;
 		}
 
 		// Get wrapper props and add shadow style
@@ -168,7 +175,6 @@ addFilter(
 			},
 		};
 
-		return <BlockListBlock {...props} wrapperProps={newWrapperProps} />;
+		return <BlockListBlock { ...props } wrapperProps={ newWrapperProps } />;
 	}
 );
-

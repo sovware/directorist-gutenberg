@@ -2,10 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import {
-	AlignmentControl,
-	BlockControls,
-} from '@wordpress/block-editor';
+import { AlignmentControl, BlockControls } from '@wordpress/block-editor';
 
 /**
  * External dependencies
@@ -20,7 +17,7 @@ import previewImg from '@image/blocks-preview/badge-favorite.webp';
 import favoriteIcon from '@icon/heart.svg';
 import './editor.scss';
 
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit( { attributes, setAttributes } ) {
 	// Show block preview image
 	if ( attributes.is_preview ) {
 		return <BlockPreview image={ previewImg } />;
@@ -38,13 +35,15 @@ export default function Edit({ attributes, setAttributes }) {
 					} }
 				/>
 			</BlockControls>
-			<div
-				className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-badge"
-			>
-				<div className={ `directorist-gutenberg-listing-favorite-button ${ isActive ? 'active' : '' }` }>
+			<div className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-badge">
+				<div
+					className={ `directorist-gutenberg-listing-favorite-button ${
+						isActive ? 'active' : ''
+					}` }
+				>
 					<ReactSVG src={ favoriteIcon } />
 				</div>
 			</div>
 		</>
-	)
+	);
 }

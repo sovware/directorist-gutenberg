@@ -10,14 +10,14 @@ import { addFilter } from '@wordpress/hooks';
 addFilter(
 	'blocks.registerBlockType',
 	'directorist-gutenberg/enable-overlay-support',
-	(settings, name) => {
+	( settings, name ) => {
 		// Only enable for thumbnail block
-		if (name !== 'directorist-gutenberg/listing-card-thumbnail') {
+		if ( name !== 'directorist-gutenberg/listing-card-thumbnail' ) {
 			return settings;
 		}
 
 		// Ensure color supports include overlay
-		if (settings.supports?.color) {
+		if ( settings.supports?.color ) {
 			return {
 				...settings,
 				supports: {
@@ -34,4 +34,3 @@ addFilter(
 		return settings;
 	}
 );
-

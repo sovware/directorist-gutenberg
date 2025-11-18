@@ -13,7 +13,6 @@ import { __ } from '@wordpress/i18n';
 import useArchiveBlockCommonTask from '@directorist-gutenberg/gutenberg/hooks/useArchiveBlockCommonTask';
 
 export default function Controls( { attributes, setAttributes } ) {
-
 	useArchiveBlockCommonTask( { setAttributes } );
 
 	const defaultViewOptions = [
@@ -23,19 +22,23 @@ export default function Controls( { attributes, setAttributes } ) {
 	];
 
 	// Get default_view from block attributes (preferred) or post meta (fallback)
-	const { defaultView } = useSelect( ( select ) => {
-		// First try to get from block attributes
-		if ( attributes?.default_view ) {
+	const { defaultView } = useSelect(
+		( select ) => {
+			// First try to get from block attributes
+			if ( attributes?.default_view ) {
+				return {
+					defaultView: attributes.default_view,
+				};
+			}
+			// Fallback to post meta
+			const meta =
+				select( 'core/editor' ).getEditedPostAttribute( 'meta' ) || {};
 			return {
-				defaultView: attributes.default_view,
+				defaultView: meta.default_view || 'grid',
 			};
-		}
-		// Fallback to post meta
-		const meta = select( 'core/editor' ).getEditedPostAttribute( 'meta' ) || {};
-		return {
-			defaultView: meta.default_view || 'grid',
-		};
-	}, [ attributes?.default_view ] );
+		},
+		[ attributes?.default_view ]
+	);
 
 	const { editPost } = useDispatch( 'core/editor' );
 
@@ -56,22 +59,26 @@ export default function Controls( { attributes, setAttributes } ) {
 		{ label: __( '2', 'directorist-gutenberg' ), value: 2 },
 		{ label: __( '3', 'directorist-gutenberg' ), value: 3 },
 		{ label: __( '4', 'directorist-gutenberg' ), value: 4 },
-		{ label: __( '5', 'directorist-gutenberg' ), value: 5 },
 		{ label: __( '6', 'directorist-gutenberg' ), value: 6 },
 	];
 
 	const paginationTypeOptions = [
 		{ label: __( 'Numbered', 'directorist-gutenberg' ), value: 'numbered' },
-		{ label: __( 'Infinite Scroll', 'directorist-gutenberg' ), value: 'infinite-scroll' },
+		{
+			label: __( 'Infinite Scroll', 'directorist-gutenberg' ),
+			value: 'infinite_scroll',
+		},
 	];
 
-    return (
-        <InspectorControls>
-            <PanelBody
-                title={ __( 'Listings Archive Settings', 'directorist-gutenberg' ) }
-                initialOpen={ true }
-            >
-
+	return (
+		<InspectorControls>
+			<PanelBody
+				title={ __(
+					'Listings Archive Settings',
+					'directorist-gutenberg'
+				) }
+				initialOpen={ true }
+			>
 				<SelectControl
 					label={ __( 'Default View', 'directorist-gutenberg' ) }
 					value={ defaultView }
@@ -83,13 +90,21 @@ export default function Controls( { attributes, setAttributes } ) {
 					label={ __( 'Listings Columns', 'directorist-gutenberg' ) }
 					value={ attributes.listings_columns }
 					options={ listingsColumnsOptions }
-					onChange={ ( value ) => setAttributes( { listings_columns: parseInt( value, 10 ) } ) }
+					onChange={ ( value ) =>
+						setAttributes( {
+							listings_columns: parseInt( value, 10 ),
+						} )
+					}
 				/>
 
 				<TextControl
 					label={ __( 'Listings Per Page', 'directorist-gutenberg' ) }
 					value={ attributes.listings_per_page }
-					onChange={ ( value ) => setAttributes( { listings_per_page: parseInt( value, 10 ) } ) }
+					onChange={ ( value ) =>
+						setAttributes( {
+							listings_per_page: parseInt( value, 10 ),
+						} )
+					}
 					type="number"
 					min={ 1 }
 					max={ 100 }
@@ -100,9 +115,11 @@ export default function Controls( { attributes, setAttributes } ) {
 					label={ __( 'Pagination Type', 'directorist-gutenberg' ) }
 					value={ attributes.pagination_type }
 					options={ paginationTypeOptions }
-					onChange={ ( value ) => setAttributes( { pagination_type: value } ) }
+					onChange={ ( value ) =>
+						setAttributes( { pagination_type: value } )
+					}
 				/>
-            </PanelBody>
-        </InspectorControls>
-    );
+			</PanelBody>
+		</InspectorControls>
+	);
 }

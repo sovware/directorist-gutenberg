@@ -9,9 +9,9 @@ import { Button, Popover, ColorPicker } from '@wordpress/components';
  * @param {Object} colorValue - Color value from ColorPicker
  * @returns {string} Color string (rgba or hex)
  */
-export const getColorString = (colorValue) => {
+export const getColorString = ( colorValue ) => {
 	return colorValue.rgb
-		? `rgba(${colorValue.rgb.r}, ${colorValue.rgb.g}, ${colorValue.rgb.b}, ${colorValue.rgb.a})`
+		? `rgba(${ colorValue.rgb.r }, ${ colorValue.rgb.g }, ${ colorValue.rgb.b }, ${ colorValue.rgb.a })`
 		: colorValue.hex || '';
 };
 
@@ -26,36 +26,42 @@ export const getColorString = (colorValue) => {
  * @param {boolean} props.isOpen - Whether the picker is open
  * @param {Function} props.onToggle - Toggle function for picker open state
  */
-export default function ColorPickerControl({ label, color, defaultColor, onChange, isOpen, onToggle }) {
+export default function ColorPickerControl( {
+	label,
+	color,
+	defaultColor,
+	onChange,
+	isOpen,
+	onToggle,
+} ) {
 	return (
 		<div className="directorist-gutenberg-color-picker-container">
 			<label className="directorist-gutenberg-color-picker-label">
-				{label}
+				{ label }
 			</label>
 			<div className="directorist-gutenberg-color-picker-wrapper">
 				<Button
-					onClick={onToggle}
-					style={{
+					onClick={ onToggle }
+					style={ {
 						backgroundColor: color || defaultColor,
-					}}
+					} }
 				/>
-				{isOpen && (
+				{ isOpen && (
 					<Popover
-						onClose={onToggle}
+						onClose={ onToggle }
 						placement="left-start"
-						offset={20}
+						offset={ 20 }
 					>
 						<ColorPicker
-							color={color || defaultColor}
-							onChangeComplete={(colorValue) => {
-								onChange(getColorString(colorValue));
-							}}
+							color={ color || defaultColor }
+							onChangeComplete={ ( colorValue ) => {
+								onChange( getColorString( colorValue ) );
+							} }
 							enableAlpha
 						/>
 					</Popover>
-				)}
+				) }
 			</div>
 		</div>
 	);
 }
-

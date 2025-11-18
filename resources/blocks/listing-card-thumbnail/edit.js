@@ -41,7 +41,10 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	} );
 
 	// Get all block types and filter out the thumbnail block to prevent nesting
-	const notAllowedBlocks = ['directorist-gutenberg/listing-card-thumbnail', 'core/post-featured-image'];
+	const notAllowedBlocks = [
+		'directorist-gutenberg/listing-card-thumbnail',
+		'core/post-featured-image',
+	];
 	const allowedBlocks = getBlockTypes()
 		.filter( ( block ) => ! notAllowedBlocks.includes( block.name ) )
 		.map( ( block ) => block.name );
@@ -56,13 +59,14 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	);
 
 	// Get inner blocks and remove any nested thumbnail blocks recursively
-	const { getBlocks, getBlockCount } = useSelect( ( select ) => {
-		const blockEditor = select( 'core/block-editor' );
-		return {
-			getBlocks: blockEditor?.getBlocks,
-			getBlockCount: blockEditor?.getBlockCount,
-		};
-	}, [] ) || {};
+	const { getBlocks, getBlockCount } =
+		useSelect( ( select ) => {
+			const blockEditor = select( 'core/block-editor' );
+			return {
+				getBlocks: blockEditor?.getBlocks,
+				getBlockCount: blockEditor?.getBlockCount,
+			};
+		}, [] ) || {};
 	const { removeBlocks } = useDispatch( 'core/block-editor' ) || {};
 
 	// Recursively find all nested thumbnail blocks and post-featured-image blocks
@@ -105,7 +109,6 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 		return () => clearTimeout( timeoutId );
 	}, [ clientId, getBlockCount, getBlocks, removeBlocks ] );
-
 
 	const imageStyles = {
 		height: aspectRatio ? '100%' : height,

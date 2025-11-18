@@ -1,14 +1,14 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@directorist-gutenberg/*": ["./resources/js/*"],
-      "@blocks/*": ["./resources/blocks/*"],
-      "@icon/*": ["./resources/svg/icon/*"],
-      "@block-icon/*": ["./resources/blocks-icon/*"],
-      "@assets/*": ["./assets/*"],
-      "@image/*": ["./resources/images/*"]
-    }
-  },
-  "exclude": [".git", "app", "node_modules", "vendor", "vendor-src"]
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@directorist-gutenberg/*": [ "./resources/js/*" ],
+			"@blocks/*": [ "./resources/blocks/*" ],
+			"@icon/*": [ "./resources/svg/icon/*" ],
+			"@block-icon/*": [ "./resources/blocks-icon/*" ],
+			"@assets/*": [ "./assets/*" ],
+			"@image/*": [ "./resources/images/*" ]
+		}
+	},
+	"exclude": [ ".git", "app", "node_modules", "vendor", "vendor-src" ]
 }

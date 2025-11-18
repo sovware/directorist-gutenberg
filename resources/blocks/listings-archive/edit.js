@@ -21,7 +21,10 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	const directoryId = getLocalizedBlockDataByKey( 'directory_type_id', 0 );
-	const { template, isLoading, refreshTemplate } = useBlocksPreview( { directoryId, blockType: 'listings-archive/archive' } );
+	const { template, isLoading, refreshTemplate } = useBlocksPreview( {
+		directoryId,
+		blockType: 'listings-archive/archive',
+	} );
 
 	useEffect( () => {
 		refreshTemplate( attributes );
@@ -35,16 +38,15 @@ export default function Edit( { attributes, setAttributes } ) {
 	if ( isLoading ) {
 		return (
 			<div style={ { pointerEvents: 'none', padding: '20px' } }>
-				<Skeleton
-					variant="card"
-					count={ 3 }
-					width="100%"
-				/>
+				<Skeleton variant="card" count={ 3 } width="100%" />
 			</div>
 		);
 	}
 
 	return (
-		<div style={ { pointerEvents: 'none' } } dangerouslySetInnerHTML={ { __html: template } } />
+		<div
+			style={ { pointerEvents: 'none' } }
+			dangerouslySetInnerHTML={ { __html: template } }
+		/>
 	);
 }

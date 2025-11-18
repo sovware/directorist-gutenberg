@@ -26,7 +26,8 @@ module.exports = ( grunt ) => {
 		addtextdomain: {
 			options: {
 				updateDomains: true,
-				textdomain: '<%= grunt.config.get("screen.begin.options.data.textDomain") %>'
+				textdomain:
+					'<%= grunt.config.get("screen.begin.options.data.textDomain") %>',
 			},
 			target: {
 				files: {
@@ -80,7 +81,8 @@ module.exports = ( grunt ) => {
 				options: {
 					data: {
 						version: '1.0.0',
-						textDomain: '<%= grunt.config.get("screen.begin.options.data.textDomain") %>',
+						textDomain:
+							'<%= grunt.config.get("screen.begin.options.data.textDomain") %>',
 					},
 				},
 				template: `
@@ -126,7 +128,7 @@ module.exports = ( grunt ) => {
 		'clean',
 		'screen:textdomainchecking',
 		'addtextdomain',
-		'checktextdomain'
+		'checktextdomain',
 	] );
 
 	grunt.registerTask( 'screen:textdomainchecking', function () {

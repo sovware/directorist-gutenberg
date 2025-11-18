@@ -16,7 +16,11 @@ const SCALE_OPTIONS = (
 	<>
 		<ToggleGroupControlOption
 			value="cover"
-			label={ _x( 'Cover', 'Scale option for Image dimension control', 'directorist-gutenberg' ) }
+			label={ _x(
+				'Cover',
+				'Scale option for Image dimension control',
+				'directorist-gutenberg'
+			) }
 		/>
 		<ToggleGroupControlOption
 			value="contain"
@@ -28,7 +32,11 @@ const SCALE_OPTIONS = (
 		/>
 		<ToggleGroupControlOption
 			value="fill"
-			label={ _x( 'Fill', 'Scale option for Image dimension control', 'directorist-gutenberg' ) }
+			label={ _x(
+				'Fill',
+				'Scale option for Image dimension control',
+				'directorist-gutenberg'
+			) }
 		/>
 	</>
 );
@@ -67,9 +75,10 @@ const DimensionControls = ( {
 		? availableUnits
 		: [ 'px', '%', 'vw', 'em', 'rem' ];
 
-	const units = useCustomUnits( {
-		availableUnits: safeAvailableUnits,
-	} ) || safeAvailableUnits;
+	const units =
+		useCustomUnits( {
+			availableUnits: safeAvailableUnits,
+		} ) || safeAvailableUnits;
 
 	const onDimensionChange = ( dimension, nextValue ) => {
 		const parsedValue = parseFloat( nextValue );
@@ -85,7 +94,11 @@ const DimensionControls = ( {
 			[ dimension ]: parsedValue < 0 ? '0' : nextValue,
 		} );
 	};
-	const scaleLabel = _x( 'Scale', 'Image scaling options', 'directorist-gutenberg' );
+	const scaleLabel = _x(
+		'Scale',
+		'Image scaling options',
+		'directorist-gutenberg'
+	);
 
 	const showScaleControl =
 		height || ( aspectRatio && aspectRatio !== 'auto' );
@@ -160,7 +173,9 @@ const DimensionControls = ( {
 					onChange={ ( nextHeight ) =>
 						onDimensionChange( 'height', nextHeight )
 					}
-					units={ Array.isArray( units ) ? units : safeAvailableUnits }
+					units={
+						Array.isArray( units ) ? units : safeAvailableUnits
+					}
 				/>
 			</ToolsPanelItem>
 			<ToolsPanelItem
@@ -183,7 +198,9 @@ const DimensionControls = ( {
 					onChange={ ( nextWidth ) =>
 						onDimensionChange( 'width', nextWidth )
 					}
-					units={ Array.isArray( units ) ? units : safeAvailableUnits }
+					units={
+						Array.isArray( units ) ? units : safeAvailableUnits
+					}
 				/>
 			</ToolsPanelItem>
 			{ showScaleControl && (
@@ -223,4 +240,3 @@ const DimensionControls = ( {
 };
 
 export default DimensionControls;
-

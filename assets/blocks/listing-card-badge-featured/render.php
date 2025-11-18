@@ -2,9 +2,11 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$featured = directorist_gutenberg_get_block_post_meta( $attributes['meta_key'], get_the_ID() );
+use Directorist\Helper;
 
-if ( empty( $featured ) ) {
+$is_featured = Helper::is_featured( get_the_ID() );
+
+if ( ! $is_featured ) {
     return;
 }
 

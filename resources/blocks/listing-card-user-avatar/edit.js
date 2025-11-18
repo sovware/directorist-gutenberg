@@ -12,7 +12,7 @@ import previewImg from '@image/blocks-preview/user-avatar.webp';
 import userAvatarImage from '@image/default-avatar.jpg';
 import './editor.scss';
 
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit( { attributes, setAttributes } ) {
 	// Show block preview image
 	if ( attributes.is_preview ) {
 		return <BlockPreview image={ previewImg } />;
@@ -20,17 +20,20 @@ export default function Edit({ attributes, setAttributes }) {
 
 	return (
 		<div
-			className={clsx(
+			className={ clsx(
 				'directorist-gutenberg-listing-card-element',
 				'directorist-gutenberg-listing-card-element-user-avatar',
 				{
-					'directorist-gutenberg-listing-card-element-avatar-overlap': attributes.avatar_overlap,
+					'directorist-gutenberg-listing-card-element-avatar-overlap':
+						attributes.avatar_overlap,
 				}
-			)}
+			) }
 		>
-			<div className={`directorist-gutenberg-listing-card-element-content directorist-gutenberg-listing-card-element-content-${attributes.alignment}`}>
+			<div
+				className={ `directorist-gutenberg-listing-card-element-content directorist-gutenberg-listing-card-element-content-${ attributes.alignment }` }
+			>
 				<div className="directorist-gutenberg-listing-user-avatar">
-					<img src={userAvatarImage} alt="User Avatar" />
+					<img src={ userAvatarImage } alt="User Avatar" />
 				</div>
 			</div>
 		</div>

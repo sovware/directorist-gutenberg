@@ -6,7 +6,7 @@ use Exception;
 defined( "ABSPATH" ) || exit;
 
 class BlocksPreviewTemplateRepository {
-    public function get_listings_archive_block_preview_template( int $directorist_id, string $block_type, array $args = [] ): string {
+    public function get_listings_archive_block_preview_template( int $directorist_id, string $block_type, array $attributes = [] ): string {
         $templates = [
             'search'  => 'block-previews/listings-archive-search',
             'header'  => 'block-previews/listings-archive-header',
@@ -18,6 +18,6 @@ class BlocksPreviewTemplateRepository {
             throw new Exception( 'Invalid template type' );
         }
 
-        return directorist_gutenberg_get_view( $templates[ $block_type ] );
+        return directorist_gutenberg_get_view( $templates[ $block_type ], [ 'directory_type_id' => $directorist_id, 'attributes' => $attributes ] );
     }
 }

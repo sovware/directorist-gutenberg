@@ -2,7 +2,13 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { PanelBody, Button, Popover, ColorPicker, RangeControl } from '@wordpress/components';
+import {
+	PanelBody,
+	Button,
+	Popover,
+	ColorPicker,
+	RangeControl,
+} from '@wordpress/components';
 import { useState, useMemo } from '@wordpress/element';
 
 /**
@@ -15,8 +21,8 @@ import ColorPickerControl from './color-picker-control';
  * Format: "offset-x offset-y blur spread color"
  * Example: "10px 12px 15px 17px rgba(188, 2, 2, 0.3)"
  */
-function parseDropShadow(shadowString) {
-	if (!shadowString || typeof shadowString !== 'string') {
+function parseDropShadow( shadowString ) {
+	if ( ! shadowString || typeof shadowString !== 'string' ) {
 		return {
 			x: 0,
 			y: 0,
@@ -27,17 +33,19 @@ function parseDropShadow(shadowString) {
 	}
 
 	// Remove trailing semicolon if present
-	const cleaned = shadowString.trim().replace(/;\s*$/, '');
-	const parts = cleaned.split(/\s+/);
+	const cleaned = shadowString.trim().replace( /;\s*$/, '' );
+	const parts = cleaned.split( /\s+/ );
 
 	// Extract numeric values (remove 'px' unit)
-	const x = parseInt(parts[0]?.replace('px', '') || '0', 10);
-	const y = parseInt(parts[1]?.replace('px', '') || '0', 10);
-	const blur = parseInt(parts[2]?.replace('px', '') || '0', 10);
-	const spread = parseInt(parts[3]?.replace('px', '') || '0', 10);
+	const x = parseInt( parts[ 0 ]?.replace( 'px', '' ) || '0', 10 );
+	const y = parseInt( parts[ 1 ]?.replace( 'px', '' ) || '0', 10 );
+	const blur = parseInt( parts[ 2 ]?.replace( 'px', '' ) || '0', 10 );
+	const spread = parseInt( parts[ 3 ]?.replace( 'px', '' ) || '0', 10 );
 
 	// Color is everything after the 4th space-separated part
-	const color = parts.slice(4).join(' ').replace(/;\s*$/, '') || 'rgba(0, 0, 0, 0.3)';
+	const color =
+		parts.slice( 4 ).join( ' ' ).replace( /;\s*$/, '' ) ||
+		'rgba(0, 0, 0, 0.3)';
 
 	return { x, y, blur, spread, color };
 }
@@ -45,8 +53,8 @@ function parseDropShadow(shadowString) {
 /**
  * Reconstruct drop shadow string from values
  */
-function buildDropShadow({ x, y, blur, spread, color }) {
-	return `${x}px ${y}px ${blur}px ${spread}px ${color}`;
+function buildDropShadow( { x, y, blur, spread, color } ) {
+	return `${ x }px ${ y }px ${ blur }px ${ spread }px ${ color }`;
 }
 
 /**
@@ -59,95 +67,92 @@ function buildDropShadow({ x, y, blur, spread, color }) {
  * @param {string} props.label - Label for the panel
  * @param {boolean} props.initialOpen - Whether panel should be open initially
  */
-export default function ShadowControl({
+export default function ShadowControl( {
 	attributes,
 	setAttributes,
 	attrName = 'drop_shadow',
 	label = __( 'Custom Drop Shadow', 'directorist-gutenberg' ),
-	initialOpen = false
-}) {
-	const dropShadow = attributes[attrName] || '';
-	const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
+	initialOpen = false,
+} ) {
+	const dropShadow = attributes[ attrName ] || '';
+	const [ isColorPickerOpen, setIsColorPickerOpen ] = useState( false );
 
 	// Parse the drop shadow string
-	const shadowValues = useMemo(() => {
-		return parseDropShadow(dropShadow);
-	}, [dropShadow]);
+	const shadowValues = useMemo( () => {
+		return parseDropShadow( dropShadow );
+	}, [ dropShadow ] );
 
 	// Update a specific shadow property
-	const updateShadow = (property, value) => {
+	const updateShadow = ( property, value ) => {
 		const updated = {
 			...shadowValues,
-			[property]: value,
+			[ property ]: value,
 		};
-		const newShadowString = buildDropShadow(updated);
-		setAttributes({
-			[attrName]: newShadowString,
-		});
+		const newShadowString = buildDropShadow( updated );
+		setAttributes( {
+			[ attrName ]: newShadowString,
+		} );
 	};
 
 	// Reset shadow to default values
 	const resetShadow = () => {
-		setAttributes({
-			[attrName]: '',
-		});
+		setAttributes( {
+			[ attrName ]: '',
+		} );
 	};
 
 	return (
-		<PanelBody
-			title={label}
-			initialOpen={initialOpen}
-		>
+		<PanelBody title={ label } initialOpen={ initialOpen }>
 			<ColorPickerControl
-				label={__( 'Shadow Color', 'directorist-gutenberg' )}
-				color={shadowValues.color}
-				onChange={(color) => updateShadow('color', color)}
-				isOpen={isColorPickerOpen}
-				onToggle={() => setIsColorPickerOpen(!isColorPickerOpen)}
+				label={ __( 'Shadow Color', 'directorist-gutenberg' ) }
+				color={ shadowValues.color }
+				onChange={ ( color ) => updateShadow( 'color', color ) }
+				isOpen={ isColorPickerOpen }
+				onToggle={ () => setIsColorPickerOpen( ! isColorPickerOpen ) }
 			/>
 
 			<RangeControl
-				label={__( 'Horizontal Offset (X)', 'directorist-gutenberg' )}
-				value={shadowValues.x}
-				onChange={(value) => updateShadow('x', value || 0)}
-				min={-100}
-				max={100}
+				label={ __( 'Horizontal Offset (X)', 'directorist-gutenberg' ) }
+				value={ shadowValues.x }
+				onChange={ ( value ) => updateShadow( 'x', value || 0 ) }
+				min={ -100 }
+				max={ 100 }
 			/>
 
 			<RangeControl
-				label={__( 'Vertical Offset (Y)', 'directorist-gutenberg' )}
-				value={shadowValues.y}
-				onChange={(value) => updateShadow('y', value || 0)}
-				min={-100}
-				max={100}
+				label={ __( 'Vertical Offset (Y)', 'directorist-gutenberg' ) }
+				value={ shadowValues.y }
+				onChange={ ( value ) => updateShadow( 'y', value || 0 ) }
+				min={ -100 }
+				max={ 100 }
 			/>
 
 			<RangeControl
-				label={__( 'Blur Radius', 'directorist-gutenberg' )}
-				value={shadowValues.blur}
-				onChange={(value) => updateShadow('blur', value || 0)}
-				min={0}
-				max={100}
+				label={ __( 'Blur Radius', 'directorist-gutenberg' ) }
+				value={ shadowValues.blur }
+				onChange={ ( value ) => updateShadow( 'blur', value || 0 ) }
+				min={ 0 }
+				max={ 100 }
 			/>
 
 			<RangeControl
-				label={__( 'Spread Radius', 'directorist-gutenberg' )}
-				value={shadowValues.spread}
-				onChange={(value) => updateShadow('spread', value || 0)}
-				min={-100}
-				max={100}
+				label={ __( 'Spread Radius', 'directorist-gutenberg' ) }
+				value={ shadowValues.spread }
+				onChange={ ( value ) => updateShadow( 'spread', value || 0 ) }
+				min={ -100 }
+				max={ 100 }
 			/>
 
-			{dropShadow && (
+			{ dropShadow && (
 				<Button
 					variant="secondary"
 					size="small"
-					onClick={resetShadow}
-					style={{ marginTop: '12px' }}
+					onClick={ resetShadow }
+					style={ { marginTop: '12px' } }
 				>
-					{__( 'Reset Shadow', 'directorist-gutenberg' )}
+					{ __( 'Reset Shadow', 'directorist-gutenberg' ) }
 				</Button>
-			)}
+			) }
 		</PanelBody>
 	);
 }

@@ -11,7 +11,8 @@ const TemplateSettingsPanel = () => {
 	const [ isLoading, setIsLoading ] = useState( true );
 
 	const { directoryTypeId, templateType } = useSelect( ( select ) => {
-		const meta = select( 'core/editor' ).getEditedPostAttribute( 'meta' ) || {};
+		const meta =
+			select( 'core/editor' ).getEditedPostAttribute( 'meta' ) || {};
 		return {
 			directoryTypeId: meta.directory_type_id || 0,
 			templateType: meta.template_type || '',
@@ -41,7 +42,8 @@ const TemplateSettingsPanel = () => {
 				return false;
 			}
 
-			const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+			const iframeDoc =
+				iframe.contentDocument || iframe.contentWindow?.document;
 			if ( ! iframeDoc || ! iframeDoc.body ) {
 				return false;
 			}
@@ -49,8 +51,9 @@ const TemplateSettingsPanel = () => {
 			const iframeBody = iframeDoc.body;
 
 			// Remove all existing directorist-gutenberg-* classes
-			const classesToRemove = Array.from( iframeBody.classList ).filter( ( className ) =>
-				className.startsWith( 'directorist-gutenberg-' )
+			const classesToRemove = Array.from( iframeBody.classList ).filter(
+				( className ) =>
+					className.startsWith( 'directorist-gutenberg-' )
 			);
 			classesToRemove.forEach( ( className ) => {
 				iframeBody.classList.remove( className );
@@ -59,7 +62,9 @@ const TemplateSettingsPanel = () => {
 			// Add the new class if templateType exists
 			if ( templateType ) {
 				// Sanitize the template type to match PHP's sanitize_html_class behavior
-				const sanitizedType = templateType.toLowerCase().replace( /[^a-z0-9-]/g, '-' );
+				const sanitizedType = templateType
+					.toLowerCase()
+					.replace( /[^a-z0-9-]/g, '-' );
 				const className = 'directorist-gutenberg-' + sanitizedType;
 				iframeBody.classList.add( className );
 			}
@@ -123,10 +128,28 @@ const TemplateSettingsPanel = () => {
 
 	// Define template type options
 	const templateTypeOptions = [
-		{ label: __( 'Select Template Type', 'directorist-gutenberg' ), value: '' },
-		{ label: __( 'Listings Archive', 'directorist-gutenberg' ), value: 'listings-archive' },
-		{ label: __( 'Listings Archive - Grid View Item', 'directorist-gutenberg' ), value: 'listings-archive-grid-view' },
-		{ label: __( 'Listings Archive - List View Item', 'directorist-gutenberg' ), value: 'listings-archive-list-view' },
+		{
+			label: __( 'Select Template Type', 'directorist-gutenberg' ),
+			value: '',
+		},
+		{
+			label: __( 'Listings Archive', 'directorist-gutenberg' ),
+			value: 'listings-archive',
+		},
+		{
+			label: __(
+				'Listings Archive - Grid View Item',
+				'directorist-gutenberg'
+			),
+			value: 'listings-archive-grid-view',
+		},
+		{
+			label: __(
+				'Listings Archive - List View Item',
+				'directorist-gutenberg'
+			),
+			value: 'listings-archive-list-view',
+		},
 	];
 
 	// Fetch directory types from the taxonomy
@@ -139,7 +162,13 @@ const TemplateSettingsPanel = () => {
 		} )
 			.then( ( terms ) => {
 				const options = [
-					{ label: __( 'Select Directory Type', 'directorist-gutenberg' ), value: 0 },
+					{
+						label: __(
+							'Select Directory Type',
+							'directorist-gutenberg'
+						),
+						value: 0,
+					},
 					...terms.map( ( term ) => ( {
 						label: term.name,
 						value: term.id,
@@ -151,7 +180,13 @@ const TemplateSettingsPanel = () => {
 			.catch( ( error ) => {
 				console.error( 'Error fetching directory types:', error );
 				setDirectoryTypes( [
-					{ label: __( 'Error loading directory types', 'directorist-gutenberg' ), value: 0 },
+					{
+						label: __(
+							'Error loading directory types',
+							'directorist-gutenberg'
+						),
+						value: 0,
+					},
 				] );
 				setIsLoading( false );
 			} );
@@ -179,26 +214,26 @@ const TemplateSettingsPanel = () => {
 			title={ __( 'Template Settings', 'directorist-gutenberg' ) }
 			className="template-settings-panel"
 		>
-		{ isLoading ? (
-			<Spinner />
-		) : (
+			{ isLoading ? (
+				<Spinner />
+			) : (
+				<SelectControl
+					label={ __( 'Directory Type', 'directorist-gutenberg' ) }
+					value={ directoryTypeId }
+					options={ directoryTypes }
+					onChange={ handleDirectoryTypeChange }
+					disabled={ directoryTypeId ? true : false }
+				/>
+			) }
+
+			<div style={ { marginTop: '16px' } } />
+
 			<SelectControl
-				label={ __( 'Directory Type', 'directorist-gutenberg' ) }
-				value={ directoryTypeId }
-				options={ directoryTypes }
-				onChange={ handleDirectoryTypeChange }
-				disabled={ directoryTypeId ? true : false }
+				label={ __( 'Template Type', 'directorist-gutenberg' ) }
+				value={ templateType }
+				options={ templateTypeOptions }
+				onChange={ handleTemplateTypeChange }
 			/>
-		) }
-
-		<div style={ { marginTop: '16px' } } />
-
-		<SelectControl
-			label={ __( 'Template Type', 'directorist-gutenberg' ) }
-			value={ templateType }
-			options={ templateTypeOptions }
-			onChange={ handleTemplateTypeChange }
-		/>
 		</PluginDocumentSettingPanel>
 	);
 };
@@ -206,4 +241,3 @@ const TemplateSettingsPanel = () => {
 registerPlugin( 'directorist-gutenberg-template-settings', {
 	render: TemplateSettingsPanel,
 } );
-

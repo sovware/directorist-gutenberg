@@ -49,11 +49,23 @@ const StyledTable = Styled.div`
     background: #fff;
     margin: 24px;
     padding: 24px 32px;
+    border-radius: 4px;
     .directorist-gutenberg-templates-table-top{
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 15px;
+    }
+    .directorist-gutenberg-templates-table-create-action{
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        h2{
+            color: #2C3239;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 28px;
+        }
     }
 `;
 
@@ -175,9 +187,4 @@ const StyledModalContents = Styled.div`
     }
 `;
 
-export {
-    StyledHeader,
-    StyledTable,
-    StyledTemplates,
-    StyledModalContents,
-}
+export { StyledHeader, StyledTable, StyledTemplates, StyledModalContents };

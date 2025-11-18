@@ -16,28 +16,38 @@ import previewImg from '@image/blocks-preview/listing-location.webp';
 import { getIconUrl } from '@directorist-gutenberg/gutenberg/utils/icon-url';
 import './editor.scss';
 
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit( { attributes, setAttributes } ) {
 	// Show block preview image
 	if ( attributes.is_preview ) {
 		return <BlockPreview image={ previewImg } />;
 	}
 
-	const iconUrl = getIconUrl(attributes.icon);
+	const iconUrl = getIconUrl( attributes.icon );
 
 	return (
-		<div
-			className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-location"
-		>
+		<div className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-location">
 			<div className="directorist-gutenberg-listing-card-element-content">
-				{iconUrl && (
-					<span className="directorist-gutenberg-listing-card-element-icon" style={{ '--directorist-gutenberg-icon-color': attributes.icon_color }}>
-						<ReactSVG src={iconUrl} width={attributes.icon_size} height={attributes.icon_size} />
+				{ iconUrl && (
+					<span
+						className="directorist-gutenberg-listing-card-element-icon"
+						style={ {
+							'--directorist-gutenberg-icon-color':
+								attributes.icon_color,
+						} }
+					>
+						<ReactSVG
+							src={ iconUrl }
+							width={ attributes.icon_size }
+							height={ attributes.icon_size }
+						/>
 					</span>
-				)}
+				) }
 				<div className="directorist-gutenberg-listing-card-element-details">
 					{ attributes.show_label && (
-						<span className="directorist-gutenberg-listing-card-element-label">Location:</span>
-					)}
+						<span className="directorist-gutenberg-listing-card-element-label">
+							Location:
+						</span>
+					) }
 					<span className="directorist-gutenberg-listing-card-element-value">
 						Dubai
 					</span>

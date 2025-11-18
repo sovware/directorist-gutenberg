@@ -2,7 +2,12 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ToggleControl, FormTokenField } from '@wordpress/components';
+import {
+	PanelBody,
+	TextControl,
+	ToggleControl,
+	FormTokenField,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 // View Type mappings
@@ -40,7 +45,9 @@ const SORT_BY_LABEL_TO_VALUE = Object.fromEntries(
 
 // Helper function to convert values to labels
 const valuesToLabels = ( values, valueToLabelMap ) => {
-	return ( values || [] ).map( ( value ) => valueToLabelMap[ value ] || value );
+	return ( values || [] ).map(
+		( value ) => valueToLabelMap[ value ] || value
+	);
 };
 
 // Helper function to convert tokens to values
@@ -66,34 +73,53 @@ import useArchiveBlockCommonTask from '@directorist-gutenberg/gutenberg/hooks/us
 import ShadowControl from '@directorist-gutenberg/gutenberg/components/controls/shadow-control';
 
 export default function Controls( { attributes, setAttributes } ) {
-
 	useArchiveBlockCommonTask( { setAttributes } );
 
-    return (
-        <InspectorControls>
-            <PanelBody
-                title={ __( 'Listings Archive Header Settings', 'directorist-gutenberg' ) }
-                initialOpen={ true }
-            >
+	return (
+		<InspectorControls>
+			<PanelBody
+				title={ __(
+					'Listings Archive Header Settings',
+					'directorist-gutenberg'
+				) }
+				initialOpen={ true }
+			>
 				<ToggleControl
-					label={ __( 'Show Listings Count', 'directorist-gutenberg' ) }
+					label={ __(
+						'Show Listings Count',
+						'directorist-gutenberg'
+					) }
 					checked={ attributes.show_listings_count }
-					onChange={ ( value ) => setAttributes( { show_listings_count: value } ) }
+					onChange={ ( value ) =>
+						setAttributes( { show_listings_count: value } )
+					}
 				/>
 
 				<TextControl
-					label={ __( 'Listings Count Text', 'directorist-gutenberg' ) }
+					label={ __(
+						'Listings Count Text',
+						'directorist-gutenberg'
+					) }
 					value={ attributes.listings_count_text }
-					onChange={ ( value ) => setAttributes( { listings_count_text: value } ) }
+					onChange={ ( value ) =>
+						setAttributes( { listings_count_text: value } )
+					}
 				/>
 
 				<FormTokenField
 					label={ __( 'View Type', 'directorist-gutenberg' ) }
-					value={ valuesToLabels( attributes.view_type, VIEW_TYPE_MAP ) }
+					value={ valuesToLabels(
+						attributes.view_type,
+						VIEW_TYPE_MAP
+					) }
 					suggestions={ VIEW_TYPE_SUGGESTIONS }
 					onChange={ ( tokens ) => {
 						setAttributes( {
-							view_type: tokensToValues( tokens, VIEW_TYPE_LABEL_TO_VALUE, VIEW_TYPE_VALUES ),
+							view_type: tokensToValues(
+								tokens,
+								VIEW_TYPE_LABEL_TO_VALUE,
+								VIEW_TYPE_VALUES
+							),
 						} );
 					} }
 					__experimentalExpandOnFocus
@@ -102,13 +128,17 @@ export default function Controls( { attributes, setAttributes } ) {
 				<ToggleControl
 					label={ __( 'Enable Sorting', 'directorist-gutenberg' ) }
 					checked={ attributes.enable_sorting }
-					onChange={ ( value ) => setAttributes( { enable_sorting: value } ) }
+					onChange={ ( value ) =>
+						setAttributes( { enable_sorting: value } )
+					}
 				/>
 
 				<TextControl
 					label={ __( 'Sort By Label', 'directorist-gutenberg' ) }
 					value={ attributes.sort_by_label }
-					onChange={ ( value ) => setAttributes( { sort_by_label: value } ) }
+					onChange={ ( value ) =>
+						setAttributes( { sort_by_label: value } )
+					}
 				/>
 
 				<FormTokenField
@@ -117,26 +147,29 @@ export default function Controls( { attributes, setAttributes } ) {
 					suggestions={ SORT_BY_SUGGESTIONS }
 					onChange={ ( tokens ) => {
 						setAttributes( {
-							sort_by: tokensToValues( tokens, SORT_BY_LABEL_TO_VALUE, SORT_BY_VALUES ),
+							sort_by: tokensToValues(
+								tokens,
+								SORT_BY_LABEL_TO_VALUE,
+								SORT_BY_VALUES
+							),
 						} );
 					} }
 					__experimentalExpandOnFocus
 				/>
-
-            </PanelBody>
-        </InspectorControls>
-    );
+			</PanelBody>
+		</InspectorControls>
+	);
 }
 
 export function StylesControls( { attributes, setAttributes } ) {
 	return (
 		<InspectorControls group="styles">
 			<ShadowControl
-				attributes={attributes}
-				setAttributes={setAttributes}
+				attributes={ attributes }
+				setAttributes={ setAttributes }
 				attrName="drop_shadow"
-				label={__( 'Drop Shadow', 'directorist-gutenberg' )}
-				initialOpen={false}
+				label={ __( 'Drop Shadow', 'directorist-gutenberg' ) }
+				initialOpen={ false }
 			/>
 		</InspectorControls>
 	);

@@ -12,9 +12,12 @@ import ToggleViewsDropdown from '../gutenberg/components/EditorToggleViews';
 domReady( () => {
 	const findAndInject = () => {
 		// Try multiple selectors for the header settings
-		let headerSettings = document.querySelector( '.editor-header__settings' ) ||
+		let headerSettings =
+			document.querySelector( '.editor-header__settings' ) ||
 			document.querySelector( '.edit-post-header__settings' ) ||
-			document.querySelector( '.interface-complementary-area-header__actions' ) ||
+			document.querySelector(
+				'.interface-complementary-area-header__actions'
+			) ||
 			document.querySelector( '[class*="header"][class*="settings"]' );
 
 		if ( ! headerSettings ) {

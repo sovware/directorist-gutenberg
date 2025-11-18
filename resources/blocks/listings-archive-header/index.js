@@ -25,5 +25,5 @@ registerBlock( {
 	exampleAttributes,
 	templateTypes: [ 'listings-archive' ],
 	showWidthControls: false,
-	icon: <ReactSVG src={archiveHeaderIcon} />,
+	icon: <ReactSVG src={ archiveHeaderIcon } />,
 } );

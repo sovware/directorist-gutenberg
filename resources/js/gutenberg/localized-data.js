@@ -10,7 +10,11 @@ export const getLocalizedBlockDataByKey = ( key, defaultValue = null ) => {
 export const getSubmissionFormFields = () => {
 	const data = getLocalizedBlockData();
 
-	if ( data && data.submission_form_fields && data.submission_form_fields.fields ) {
+	if (
+		data &&
+		data.submission_form_fields &&
+		data.submission_form_fields.fields
+	) {
 		return data.submission_form_fields.fields;
 	}
 
@@ -22,4 +26,3 @@ export default {
 	getLocalizedBlockDataByKey,
 	getSubmissionFormFields,
 };
-

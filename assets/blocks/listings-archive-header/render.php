@@ -3,6 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 use Directorist\Directorist_Listings;
+use Directorist\Helper;
 
 $listings = new Directorist_Listings();
 
@@ -30,15 +31,8 @@ if ( ! empty( $attributes['drop_shadow'] ) ) {
 ?>
 <div <?php echo $wrapper_attributes; $listings->data_atts() ?>>
     <?php
-        ob_start();
-        $listings->header_bar_template();
-
-        $header_bar = ob_get_clean();
-
-        if ( $header_bar ) :
-            echo '<div class="directorist-gutenberg-listings-archive-header">';
-            echo $header_bar;
-            echo '</div>';
-        endif;
+        echo '<div class="directorist-gutenberg-listings-archive-header">';
+		Helper::get_template( 'archive/header-bar', [ 'listings' => $listings ] );
+		echo '</div>';
     ?>
 </div>

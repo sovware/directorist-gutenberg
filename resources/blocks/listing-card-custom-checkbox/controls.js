@@ -3,7 +3,13 @@
  */
 import { InspectorControls } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
-import { PanelBody, Button, Popover, ColorPicker, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import {
+	PanelBody,
+	Button,
+	Popover,
+	ColorPicker,
+	__experimentalUnitControl as UnitControl,
+} from '@wordpress/components';
 import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -15,42 +21,54 @@ import { useSubmissionFields } from '@directorist-gutenberg/gutenberg/hooks/useS
 import ColorPickerControl from '@directorist-gutenberg/gutenberg/components/controls/color-picker-control';
 
 export default function Controls( { attributes, setAttributes } ) {
-	const [isIconColorPickerOpen, setIsIconColorPickerOpen] = useState(false);
+	const [ isIconColorPickerOpen, setIsIconColorPickerOpen ] =
+		useState( false );
 	const iconColor = attributes.icon_color || '';
-    const { directoryTypeId, getFieldsOptions } = useSubmissionFields();
+	const { directoryTypeId, getFieldsOptions } = useSubmissionFields();
 
-    useEffect( () => {
-        setAttributes( { directory_type_id: directoryTypeId } );
-    }, [ directoryTypeId ] );
+	useEffect( () => {
+		setAttributes( { directory_type_id: directoryTypeId } );
+	}, [ directoryTypeId ] );
 
-    return (
-        <InspectorControls>
-            <PanelBody
-                title={ __( 'General Settings', 'directorist-gutenberg' ) }
-                initialOpen={ true }
-            >
-                <IconPicker
-                    attr_key="icon"
-                    attributes={ attributes }
-                    setAttributes={ setAttributes }
-                    label={ __( 'Icon', 'directorist-gutenberg' ) }
-                />
+	return (
+		<InspectorControls>
+			<PanelBody
+				title={ __( 'General Settings', 'directorist-gutenberg' ) }
+				initialOpen={ true }
+			>
+				<IconPicker
+					attr_key="icon"
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					label={ __( 'Icon', 'directorist-gutenberg' ) }
+				/>
 
 				{ attributes?.icon && (
 					<>
 						<ColorPickerControl
-							label={__( 'Icon Color', 'directorist-gutenberg' )}
-							color={attributes.icon_color}
-							defaultColor={attributes.icon_color || '#808080'}
-							onChange={(color) => setAttributes({ icon_color: color })}
-							isOpen={isIconColorPickerOpen}
-							onToggle={() => setIsIconColorPickerOpen(!isIconColorPickerOpen)}
+							label={ __(
+								'Icon Color',
+								'directorist-gutenberg'
+							) }
+							color={ attributes.icon_color }
+							defaultColor={ attributes.icon_color || '#808080' }
+							onChange={ ( color ) =>
+								setAttributes( { icon_color: color } )
+							}
+							isOpen={ isIconColorPickerOpen }
+							onToggle={ () =>
+								setIsIconColorPickerOpen(
+									! isIconColorPickerOpen
+								)
+							}
 						/>
 
 						<UnitControl
 							label={ __( 'Icon Size', 'directorist-gutenberg' ) }
 							value={ attributes.icon_size || '16px' }
-							onChange={ ( value ) => setAttributes( { icon_size: value || '16px' } ) }
+							onChange={ ( value ) =>
+								setAttributes( { icon_size: value || '16px' } )
+							}
 							units={ [
 								{ value: 'px', label: 'px' },
 								{ value: 'em', label: 'em' },
@@ -62,15 +80,17 @@ export default function Controls( { attributes, setAttributes } ) {
 					</>
 				) }
 
-                <div style={{ height: '16px' }}></div>
+				<div style={ { height: '16px' } }></div>
 
-                <SelectControl
-                    label={ __( 'Select Field', 'directorist-gutenberg' ) }
-                    value={ attributes.meta_key }
-                    options={ getFieldsOptions( 'custom', 'checkbox' ) }
-                    onChange={ ( value ) => setAttributes( { meta_key: value } ) }
-                />
-            </PanelBody>
-        </InspectorControls>
-    );
+				<SelectControl
+					label={ __( 'Select Field', 'directorist-gutenberg' ) }
+					value={ attributes.meta_key }
+					options={ getFieldsOptions( 'custom', 'checkbox' ) }
+					onChange={ ( value ) =>
+						setAttributes( { meta_key: value } )
+					}
+				/>
+			</PanelBody>
+		</InspectorControls>
+	);
 }

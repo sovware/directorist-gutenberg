@@ -1,44 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "directorist-gutenberg/listing-card-badge-new",
-  "version": "0.1.0",
-  "title": "Listing Badge New",
-  "category": "directorist-listing-card-preset-fields",
-  "attributes": {
-    "block_width": {
-      "type": "string",
-      "default": "100"
-    },
-    "textAlign": {
-      "type": "string"
-    },
-    "text": {
-      "type": "string",
-      "default": "New"
-    },
-    "text_color": {
-      "type": "string",
-      "default": "#ffffff"
-    },
-    "background_color": {
-      "type": "string",
-      "default": "#2C99FF"
-    },
-    "is_preview": {
-      "type": "boolean",
-      "default": false
-    }
-  },
-  "description": "Listing Badge New Block",
-  "example": {},
-  "supports": {
-    "html": false
-  },
-  "textdomain": "directorist-gutenberg",
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "render": "file:./render.php",
-  "viewScript": "file:./view.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "directorist-gutenberg/listing-card-badge-new",
+	"version": "0.1.0",
+	"title": "Listing Badge New",
+	"category": "directorist-listing-card-preset-fields",
+	"attributes": {
+		"block_width": {
+			"type": "string",
+			"default": "100"
+		},
+		"textAlign": {
+			"type": "string"
+		},
+		"text": {
+			"type": "string",
+			"default": "New"
+		},
+		"text_color": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"background_color": {
+			"type": "string",
+			"default": "#2C99FF"
+		},
+		"is_preview": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"description": "Listing Badge New Block",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "directorist-gutenberg",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
 }

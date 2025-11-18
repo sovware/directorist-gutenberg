@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -20,25 +21,34 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	const directoryId = getLocalizedBlockDataByKey( 'directory_type_id', 0 );
-	const { template, isLoading } = useBlocksPreview( { directoryId, blockType: 'listings-archive/header' } );
+	const { template, isLoading, refreshTemplate } = useBlocksPreview( {
+		directoryId,
+		blockType: 'listings-archive/header',
+	} );
+
+	useEffect( () => {
+		refreshTemplate( attributes );
+	}, [
+		attributes.show_listings_count,
+		attributes.listings_count_text,
+		attributes.view_type,
+		attributes.enable_sorting,
+		attributes.sort_by_label,
+	] );
 
 	if ( isLoading ) {
 		return (
 			<div style={ { pointerEvents: 'none', padding: '20px' } }>
-				<Skeleton
-					variant="card"
-					count={ 3 }
-					width="100%"
-				/>
+				<Skeleton variant="card" count={ 3 } width="100%" />
 			</div>
 		);
 	}
 	return (
 		<div
-			style={{
+			style={ {
 				pointerEvents: 'none',
-			}}
-			dangerouslySetInnerHTML={{ __html: template }}
+			} }
+			dangerouslySetInnerHTML={ { __html: template } }
 		/>
 	);
 }

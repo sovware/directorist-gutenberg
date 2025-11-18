@@ -25,14 +25,12 @@ registerBlock( {
 	metadata,
 	Edit,
 	exampleAttributes,
-	icon: <ReactSVG src={titleIcon} />,
+	icon: <ReactSVG src={ titleIcon } />,
 	templateTypes: [
 		'listings-archive-grid-view',
 		'listings-archive-list-view',
 	],
-	classNames: [
-		'directorist-gutenberg-listing-card-title',
-	],
+	classNames: [ 'directorist-gutenberg-listing-card-title' ],
 	props: {
 		transforms: {
 			from: [
@@ -40,7 +38,10 @@ registerBlock( {
 					type: 'block',
 					blocks: [ 'core/post-title' ],
 					transform: ( attributes ) => {
-						return createBlock( 'directorist-gutenberg/listing-card-title', attributes );
+						return createBlock(
+							'directorist-gutenberg/listing-card-title',
+							attributes
+						);
 					},
 				},
 			],

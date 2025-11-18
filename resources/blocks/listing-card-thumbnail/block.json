@@ -62,7 +62,6 @@
 			"style": true,
 			"width": true
 		}
-
 	},
 	"textdomain": "directorist-gutenberg",
 	"editorScript": "file:./index.js",

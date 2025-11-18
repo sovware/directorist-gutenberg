@@ -43,9 +43,10 @@ export default function registerBlock( {
 	if ( ! icon ) {
 		// Ensure directoristLogo is a valid URL string for ReactSVG
 		// webpack asset/resource returns a URL string, but sometimes it's wrapped
-		const logoUrl = typeof directoristLogo === 'string'
-			? directoristLogo
-			: (directoristLogo?.default || directoristLogo);
+		const logoUrl =
+			typeof directoristLogo === 'string'
+				? directoristLogo
+				: directoristLogo?.default || directoristLogo;
 
 		if ( logoUrl ) {
 			icon = <ReactSVG src={ logoUrl } />;
@@ -58,13 +59,18 @@ export default function registerBlock( {
 	// Wrap Edit component with Block wrapper that handles useBlockProps
 	const WrappedEdit = ( editProps ) => (
 		<>
-			{ showWidthControls && <WidthControls attributes={editProps.attributes} setAttributes={editProps.setAttributes} /> }
+			{ showWidthControls && (
+				<WidthControls
+					attributes={ editProps.attributes }
+					setAttributes={ editProps.setAttributes }
+				/>
+			) }
 			<Block
-				Edit={Edit}
-				Controls={Controls}
-				StylesControls={StylesControls}
-				classNames={classNames}
-				{...editProps}
+				Edit={ Edit }
+				Controls={ Controls }
+				StylesControls={ StylesControls }
+				classNames={ classNames }
+				{ ...editProps }
 			/>
 		</>
 	);

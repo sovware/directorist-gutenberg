@@ -3,7 +3,6 @@
  */
 import { __ } from '@wordpress/i18n';
 
-
 /**
  * Skeleton Loading Component
  *
@@ -70,14 +69,23 @@ export default function Skeleton( {
 	const baseClassName = 'directorist-gutenberg-skeleton';
 	const variantClassName = `${ baseClassName }--${ variant }`;
 	const animationClassName = animated ? `${ baseClassName }--animated` : '';
-	const combinedClassName = [ baseClassName, variantClassName, animationClassName, className ]
+	const combinedClassName = [
+		baseClassName,
+		variantClassName,
+		animationClassName,
+		className,
+	]
 		.filter( Boolean )
 		.join( ' ' );
 
 	// Custom inline styles
 	const customStyle = {
-		...( width && { width: typeof width === 'number' ? `${ width }px` : width } ),
-		...( height && { height: typeof height === 'number' ? `${ height }px` : height } ),
+		...( width && {
+			width: typeof width === 'number' ? `${ width }px` : width,
+		} ),
+		...( height && {
+			height: typeof height === 'number' ? `${ height }px` : height,
+		} ),
 		...style,
 	};
 
@@ -155,11 +163,33 @@ export function SkeletonText( { lines = 3, ...props } ) {
 export function SkeletonCard( { ...props } ) {
 	return (
 		<div className="directorist-gutenberg-skeleton-card">
-			<Skeleton variant="rectangular" width="100%" height={ 200 } { ...props } />
+			<Skeleton
+				variant="rectangular"
+				width="100%"
+				height={ 200 }
+				{ ...props }
+			/>
 			<div style={ { padding: '16px' } }>
-				<Skeleton variant="text" width="80%" height={ 20 } style={ { marginBottom: '12px' } } { ...props } />
-				<Skeleton variant="text" width="100%" height={ 16 } style={ { marginBottom: '8px' } } { ...props } />
-				<Skeleton variant="text" width="60%" height={ 16 } { ...props } />
+				<Skeleton
+					variant="text"
+					width="80%"
+					height={ 20 }
+					style={ { marginBottom: '12px' } }
+					{ ...props }
+				/>
+				<Skeleton
+					variant="text"
+					width="100%"
+					height={ 16 }
+					style={ { marginBottom: '8px' } }
+					{ ...props }
+				/>
+				<Skeleton
+					variant="text"
+					width="60%"
+					height={ 16 }
+					{ ...props }
+				/>
 			</div>
 		</div>
 	);
@@ -173,15 +203,34 @@ export function SkeletonList( { items = 5, ...props } ) {
 	return (
 		<div className="directorist-gutenberg-skeleton-list">
 			{ Array.from( { length: items } ).map( ( _, index ) => (
-				<div key={ index } className="directorist-gutenberg-skeleton-list__item">
-					<Skeleton variant="circular" width={ 40 } height={ 40 } style={ { marginRight: '12px' } } { ...props } />
+				<div
+					key={ index }
+					className="directorist-gutenberg-skeleton-list__item"
+				>
+					<Skeleton
+						variant="circular"
+						width={ 40 }
+						height={ 40 }
+						style={ { marginRight: '12px' } }
+						{ ...props }
+					/>
 					<div style={ { flex: 1 } }>
-						<Skeleton variant="text" width="80%" height={ 16 } style={ { marginBottom: '8px' } } { ...props } />
-						<Skeleton variant="text" width="60%" height={ 14 } { ...props } />
+						<Skeleton
+							variant="text"
+							width="80%"
+							height={ 16 }
+							style={ { marginBottom: '8px' } }
+							{ ...props }
+						/>
+						<Skeleton
+							variant="text"
+							width="60%"
+							height={ 14 }
+							{ ...props }
+						/>
 					</div>
 				</div>
 			) ) }
 		</div>
 	);
 }
-

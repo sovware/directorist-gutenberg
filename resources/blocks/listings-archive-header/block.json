@@ -32,7 +32,16 @@
 		},
 		"sort_by": {
 			"type": "array",
-			"default": [ "a_z", "z_a", "latest", "oldest", "popular", "price_low_to_high", "price_high_to_low", "random" ]
+			"default": [
+				"a_z",
+				"z_a",
+				"latest",
+				"oldest",
+				"popular",
+				"price_low_to_high",
+				"price_high_to_low",
+				"random"
+			]
 		},
 		"block_width": {
 			"type": "string",

@@ -6,10 +6,6 @@
 	"title": "Listing Badge Featured",
 	"category": "directorist-listing-card-preset-fields",
 	"attributes": {
-		"meta_key": {
-			"type": "string",
-			"default": "featured"
-		},
 		"block_width": {
 			"type": "string",
 			"default": "100"

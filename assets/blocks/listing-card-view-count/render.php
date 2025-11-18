@@ -11,7 +11,7 @@ $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
                 <span class="directorist-gutenberg-listing-card-element-icon" style="<?php echo $icon_style; ?>"><?php echo directorist_gutenberg_get_icon( 'icons/icon-library/' . $attributes['icon'] ); ?></span>
             <?php endif; ?>
             <span class="directorist-gutenberg-listing-card-view-count-value">
-                <?php echo esc_html( $listings->loop['post_view'] ?? 0 ); ?>
+                <?php echo esc_html( directorist_get_listing_views_count( get_the_ID() ) ); ?>
             </span>
         </span>
     </div>
