@@ -62,7 +62,7 @@ export default function Controls( { attributes, setAttributes } ) {
 
 	const paginationTypeOptions = [
 		{ label: __( 'Numbered', 'directorist-gutenberg' ), value: 'numbered' },
-		{ label: __( 'Infinite Scroll', 'directorist-gutenberg' ), value: 'infinite-scroll' },
+		{ label: __( 'Infinite Scroll', 'directorist-gutenberg' ), value: 'infinite_scroll' },
 	];
 
     return (
