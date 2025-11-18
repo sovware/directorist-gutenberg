@@ -22,8 +22,8 @@ const SORT_BY_MAP = {
 	latest: __( 'Latest Listings', 'directorist-gutenberg' ),
 	oldest: __( 'Oldest Listings', 'directorist-gutenberg' ),
 	popular: __( 'Popular Listings', 'directorist-gutenberg' ),
-	price_low_to_high: __( 'Price: Low to High', 'directorist-gutenberg' ),
-	price_high_to_low: __( 'Price: High to Low', 'directorist-gutenberg' ),
+	price_low_high: __( 'Price: Low to High', 'directorist-gutenberg' ),
+	price_high_low: __( 'Price: High to Low', 'directorist-gutenberg' ),
 	random: __( 'Random Listings', 'directorist-gutenberg' ),
 };
 
@@ -77,8 +77,8 @@ export default function Controls( { attributes, setAttributes } ) {
             >
 				<ToggleControl
 					label={ __( 'Show Listings Count', 'directorist-gutenberg' ) }
-					checked={ attributes.show_listings_count }
-					onChange={ ( value ) => setAttributes( { show_listings_count: value } ) }
+					checked={ attributes.show_listings_count === 1 }
+					onChange={ ( value ) => setAttributes( { show_listings_count: value ? 1 : 0 } ) }
 				/>
 
 				<TextControl
@@ -101,8 +101,8 @@ export default function Controls( { attributes, setAttributes } ) {
 
 				<ToggleControl
 					label={ __( 'Enable Sorting', 'directorist-gutenberg' ) }
-					checked={ attributes.enable_sorting }
-					onChange={ ( value ) => setAttributes( { enable_sorting: value } ) }
+					checked={ attributes.enable_sorting === 1 }
+					onChange={ ( value ) => setAttributes( { enable_sorting: value ? 1 : 0} ) }
 				/>
 
 				<TextControl
