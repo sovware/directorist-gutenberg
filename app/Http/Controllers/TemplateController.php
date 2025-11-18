@@ -97,14 +97,15 @@ class TemplateController extends Controller {
         wp_update_post(
             [
                 'ID'         => $post_id,
-                'post_title' => $title . ' #' . $post_id,
+                'post_title' => "{$title} #{$post_id}",
             ] 
         );
 
         return Response::send(
             [
-                'post_id' => $post_id,
-                'message' => __( 'The template was created successfully.', 'directorist-gutenberg' )
+                'post_id'  => $post_id,
+                'edit_url' => get_edit_post_link( $post_id, 'raw' ),
+                'message'  => __( 'The template was created successfully.', 'directorist-gutenberg' )
             ]
         );
     }
@@ -123,7 +124,7 @@ class TemplateController extends Controller {
             'listings-archive-list-view',
         ];
 
-        $created_ids = [];
+        $created_items = [];
         $has_error   = false;
 
         foreach ( $all_templates as $template_type ) {
@@ -143,18 +144,22 @@ class TemplateController extends Controller {
                 break;
             }
 
-            $created_ids[] = $post_id;
+            $created_items[ $template_type ] = [
+                'id'       => $post_id,
+                'edit_url' => get_edit_post_link( $post_id, 'raw' ),
+            ];
         }
 
         if ( $has_error ) {
-            $this->repository->delete_by_ids( $created_ids );
+            $created_items_ids = array_column( $created_items, 'id' );
+            $this->repository->delete_by_ids( $created_items_ids );
             throw new Exception( esc_html__( 'Failed to create some of the templates.', 'directorist-gutenberg' ), 500 );
         }
 
         return Response::send(
             [
-                'created_ids' => $created_ids,
-                'message'     => __( 'The templates were created successfully.', 'directorist-gutenberg' )
+                'created_items' => $created_items,
+                'message'       => __( 'The templates were created successfully.', 'directorist-gutenberg' )
             ]
         );
     }
