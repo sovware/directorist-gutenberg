@@ -94,6 +94,20 @@ const StyledTable = Styled.div`
                 }
             }
         }
+        .dataviews-view-table__cell-content-wrapper{
+            a{
+                color: #2C3239;
+                font-size: 15px;
+                font-weight: 500;
+                line-height: 1.06;
+                text-decoration: none;
+                padding: 8px 0;
+                transition: 0.3s ease;
+                &:hover{
+                    color: var(--wp-admin-theme-color, #3858e9);
+                }
+            }
+        }
     }
     .dataviews-bulk-actions-footer__container{
         padding: 15px 15px 0 15px ;

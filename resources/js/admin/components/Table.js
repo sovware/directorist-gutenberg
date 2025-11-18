@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { DataViews } from '@wordpress/dataviews/wp';
-import { useState, useMemo, useEffect } from '@wordpress/element';
+import { useState, useMemo, useEffect, useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Modal, SelectControl, Button } from '@wordpress/components';
 
@@ -39,82 +39,140 @@ export default function Table() {
 	const [ directoryTypes, setDirectoryTypes ] = useState( [] );
 	const [ directoryType, setDirectoryType ] = useState( '' );
 
-	const openCreateModal = () => {
-		setIsCreateModalOpen( true );
-	};
-	const closeCreateModal = () => {
-		setIsCreateModalOpen( false );
+	// Helper: Map API response to table format
+	const mapItemsToTableFormat = ( apiItems ) => {
+		return apiItems.map( ( item ) => ( {
+			id: item.ID,
+			title: item.post_title,
+			status: item.post_status,
+			type: item.template_type || '',
+			date: new Date( item.post_date ).toLocaleDateString(),
+		} ) );
 	};
 
-	// Get unique values for filter options
+	// Helper: Create filter elements from values
+	const createFilterElements = ( values ) => {
+		return values.map( ( value ) => ( {
+			value,
+			label: value,
+		} ) );
+	};
+
+	// Helper: Get unique values for filter options
 	const getUniqueValues = ( fieldId ) => {
 		const values = items.map( ( item ) => item[ fieldId ] ).filter( Boolean );
 		return [ ...new Set( values ) ].sort();
 	};
 
-	// Define fields
-	const fields = useMemo(
-		() => {
-			const statusValues = getUniqueValues( 'status' );
-			const typeValues = getUniqueValues( 'type' );
+	// Helper: Update URL query params
+	const updateQueryParams = ( label ) => {
+		if ( ! label ) return;
 
-			return [
-				{
-					id: 'title',
-					type: 'text',
-					label: __( 'Template Name', 'directorist-gutenberg' ),
-					getValue: ( { item } ) => item?.title || '',
-					render: ( { item } ) => <strong>{ item?.title || '' }</strong>,
-                    filterBy: false,
+		const queryParams = new URLSearchParams( window.location.search );
+		queryParams.set( 'directory_type', label );
+		window.history.pushState(
+			{},
+			'',
+			window.location.pathname + '?' + queryParams.toString()
+		);
+	};
+
+	// Fetch templates function (memoized)
+	const fetchTemplates = useCallback( async () => {
+		if ( ! directoryType ) return;
+
+		setIsLoading( true );
+		try {
+			const response = await fetchData(
+				`admin/templates?directory_type=${ directoryType }`
+			);
+
+			if ( response?.items ) {
+				const mappedItems = mapItemsToTableFormat( response.items );
+				setItems( mappedItems );
+				setTotal( response.total || mappedItems.length );
+			}
+
+			// Update URL query params
+			const currentDirectoryLabel = directoryTypes.find(
+				( type ) => type?.value === directoryType
+			)?.label || '';
+			updateQueryParams( currentDirectoryLabel );
+		} catch ( error ) {
+			console.error( 'Error fetching templates:', error );
+		} finally {
+			setIsLoading( false );
+		}
+	}, [ directoryType, directoryTypes ] );
+
+	// Modal handlers
+	const openCreateModal = () => setIsCreateModalOpen( true );
+	const closeCreateModal = () => setIsCreateModalOpen( false );
+
+	// Define fields
+	const fields = useMemo( () => {
+		const statusValues = getUniqueValues( 'status' );
+		const typeValues = getUniqueValues( 'type' );
+		const statusElements = createFilterElements( statusValues );
+		const typeElements = createFilterElements( typeValues );
+
+		return [
+			{
+				id: 'title',
+				type: 'text',
+				label: __( 'Template Name', 'directorist-gutenberg' ),
+				getValue: ( { item } ) => item?.title || '',
+				render: ( { item } ) => {
+					const editUrl = `/wp-admin/post.php?post=${ item?.id }&action=edit`;
+					return (
+                        <a
+                            href={ editUrl }
+                            onClick={ ( e ) => {
+                                e.stopPropagation();
+                            } }
+                        >
+                            { item?.title || '' }
+                        </a>
+					);
 				},
-				{
-					id: 'status',
-					type: 'text',
-					label: __( 'Status', 'directorist-gutenberg' ),
-					getValue: ( { item } ) => item?.status || '',
-					render: ( { item } ) => <span>{ item?.status || '' }</span>,
-					elements: statusValues.map( ( value ) => ( {
-						value,
-						label: value,
-					} ) ),
-					filterBy: {
-						operators: [ 'is', 'isNot', 'isAny', 'isNone' ],
-						elements: statusValues.map( ( value ) => ( {
-							value,
-							label: value,
-						} ) ),
-					},
+				filterBy: false,
+			},
+			{
+				id: 'status',
+				type: 'text',
+				label: __( 'Status', 'directorist-gutenberg' ),
+				getValue: ( { item } ) => item?.status || '',
+				render: ( { item } ) => <span>{ item?.status || '' }</span>,
+				elements: statusElements,
+				filterBy: {
+					operators: [ 'is', 'isNot', 'isAny', 'isNone' ],
+					elements: statusElements,
 				},
-				{
-					id: 'type',
-					type: 'text',
-					label: __( 'Type', 'directorist-gutenberg' ),
-					getValue: ( { item } ) => item?.type || '',
-					render: ( { item } ) => <span>{ item?.type || '' }</span>,
-					elements: typeValues.map( ( value ) => ( {
-						value,
-						label: value,
-					} ) ),
-					filterBy: {
-						operators: [ 'is', 'isNot', 'isAny', 'isNone' ],
-						elements: typeValues.map( ( value ) => ( {
-							value,
-							label: value,
-						} ) ),
-					},
+			},
+			{
+				id: 'type',
+				type: 'text',
+				label: __( 'Type', 'directorist-gutenberg' ),
+				getValue: ( { item } ) => item?.type || '',
+				render: ( { item } ) => <span>{ item?.type || '' }</span>,
+				elements: typeElements,
+				filterBy: {
+					operators: [ 'is', 'isNot', 'isAny', 'isNone' ],
+					elements: typeElements,
 				},
-				{
-					id: 'date',
-					type: 'date',
-					label: __( 'Created At', 'directorist-gutenberg' ),
-					getValue: ( { item } ) => item?.date || '',
-					render: ( { item } ) => <span>{ formatDate(item?.date) || '' }</span>,
-                    filterBy: false,
-				},
-			];
-		},
-		[ items ]
-	);
+			},
+			{
+				id: 'date',
+				type: 'date',
+				label: __( 'Created At', 'directorist-gutenberg' ),
+				getValue: ( { item } ) => item?.date || '',
+				render: ( { item } ) => (
+					<span>{ formatDate( item?.date ) || '' }</span>
+				),
+				filterBy: false,
+			},
+		];
+	}, [ items ] );
 
 	// Initial view state
 	const initialView = useMemo(
@@ -136,70 +194,31 @@ export default function Table() {
 
 	const [ view, setView ] = useState( initialView );
 
-	// Fetch templates
-	useEffect( () => {
-		const getTemplates = async () => {
-			setIsLoading( true );
-			try {
-				const response = await fetchData(
-					'admin/templates?directory_type=' + directoryType
-				);
-				if ( response?.items ) {
-					// Map API response to table format
-					const mappedItems = response.items.map( ( item ) => ( {
-						id: item.ID,
-						title: item.post_title,
-						status: item.post_status,
-						type: item.template_type || '',
-						date: new Date( item.post_date ).toLocaleDateString(),
-					} ) );
-					setItems( mappedItems );
-					setTotal( response.total || mappedItems.length );
-				}
-
-				// Add directory type in query params
-				// Find the label for the current directoryType value
-				const currentDirectoryLabel = directoryTypes.find(
-					( type ) => type?.value == directoryType
-				)?.label || '';
-
-				if ( currentDirectoryLabel ) {
-					const queryParams = new URLSearchParams(
-						window.location.search
-					);
-					queryParams.set( 'directory_type', currentDirectoryLabel );
-					window.history.pushState(
-						{},
-						'',
-						window.location.pathname + '?' + queryParams.toString()
-					);
-				}
-			} catch ( error ) {
-				console.error( 'Error fetching templates:', error );
-			} finally {
-				setIsLoading( false );
-			}
-		};
-
-		if ( directoryType ) {
-			getTemplates();
-		}
-	}, [ directoryType, directoryTypes ] );
-
+	// Fetch directory types on mount
 	useEffect( () => {
 		const getDirectoryTypes = async () => {
-			const response = await fetchData( 'admin/templates/directories' );
-			setDirectoryTypes( response.directories );
+			try {
+				const response = await fetchData( 'admin/templates/directories' );
+				setDirectoryTypes( response.directories );
 
-			// Set the first directory type as selected after fetching
-			if ( response.directories && response.directories.length > 0 ) {
-				setDirectoryType( response.directories[ 0 ].value );
+				// Set the first directory type as selected after fetching
+				if ( response.directories?.length > 0 ) {
+					setDirectoryType( response.directories[ 0 ].value );
+				}
+			} catch ( error ) {
+				console.error( 'Error fetching directory types:', error );
 			}
 		};
 
 		getDirectoryTypes();
 	}, [] );
 
+	// Fetch templates when directory type changes
+	useEffect( () => {
+		fetchTemplates();
+	}, [ fetchTemplates ] );
+
+	// Handlers
 	const handleChangeView = ( newView ) => {
 		setView( ( prev ) => ( {
 			...prev,
@@ -209,36 +228,6 @@ export default function Table() {
 
 	const handleDirectoryTypeChange = ( value ) => {
 		setDirectoryType( value );
-	};
-
-	const handleRefreshTemplates = () => {
-		// Refresh templates after deletion
-		if ( directoryType ) {
-			const getTemplates = async () => {
-				setIsLoading( true );
-				try {
-					const response = await fetchData(
-						'admin/templates?directory_type=' + directoryType
-					);
-					if ( response?.items ) {
-						const mappedItems = response.items.map( ( item ) => ( {
-							id: item.ID,
-							title: item.post_title,
-							status: item.post_status,
-							type: item.template_type || '',
-							date: new Date( item.post_date ).toLocaleDateString(),
-						} ) );
-						setItems( mappedItems );
-						setTotal( response.total || mappedItems.length );
-					}
-				} catch ( error ) {
-					console.error( 'Error fetching templates:', error );
-				} finally {
-					setIsLoading( false );
-				}
-			};
-			getTemplates();
-		}
 	};
 
 	return (
@@ -261,7 +250,7 @@ export default function Table() {
 								<DeleteItemModal
 									items={ selectedItems }
 									onClose={ closeModal }
-									onDeleteSuccess={ handleRefreshTemplates }
+									onDeleteSuccess={ fetchTemplates }
 								/>
 							),
 							hideModalHeader: true,
