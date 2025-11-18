@@ -1861,7 +1861,7 @@ function useBlocksPreview({
   const [args, setArgs] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(blockAttributes);
   const [appliedArgs, setAppliedArgs] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
   const [template, setTemplate] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)('');
-  const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(true);
+  const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
     if (appliedArgs && JSON.stringify(args) === JSON.stringify(appliedArgs)) {
       return;
@@ -1872,6 +1872,9 @@ function useBlocksPreview({
     setArgs(newBlockAttributes);
   }
   function fetchTemplate() {
+    if (isLoading) {
+      return;
+    }
     const url = (0,_wordpress_url__WEBPACK_IMPORTED_MODULE_1__.addQueryArgs)(`/directorist-gutenberg/blocks-preview/${blockType}`, {
       directory_id: directoryId,
       ...args

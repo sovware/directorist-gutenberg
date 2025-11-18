@@ -10,9 +10,13 @@
 			"type": "number",
 			"default": 0
 		},
+		"template_id": {
+			"type": "number",
+			"default": 0
+		},
 		"show_listings_count": {
-			"type": "boolean",
-			"default": true
+			"type": "number",
+			"default": 1
 		},
 		"listings_count_text": {
 			"type": "string",
@@ -23,8 +27,8 @@
 			"default": [ "grid", "list", "map" ]
 		},
 		"enable_sorting": {
-			"type": "boolean",
-			"default": true
+			"type": "number",
+			"default": 1
 		},
 		"sort_by_label": {
 			"type": "string",
@@ -32,16 +36,7 @@
 		},
 		"sort_by": {
 			"type": "array",
-			"default": [
-				"a_z",
-				"z_a",
-				"latest",
-				"oldest",
-				"popular",
-				"price_low_to_high",
-				"price_high_to_low",
-				"random"
-			]
+			"default": [ "a_z", "z_a", "latest", "oldest", "popular", "price_low_high", "price_high_low", "random" ]
 		},
 		"block_width": {
 			"type": "string",

@@ -1312,13 +1312,13 @@ const TemplateSettingsPanel = () => {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Select Template Type', 'directorist-gutenberg'),
     value: ''
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Listings Archive', 'directorist-gutenberg'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Archive', 'directorist-gutenberg'),
     value: 'listings-archive'
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Listings Archive - Grid View Item', 'directorist-gutenberg'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Archive - Grid View', 'directorist-gutenberg'),
     value: 'listings-archive-grid-view'
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Listings Archive - List View Item', 'directorist-gutenberg'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Archive - List View', 'directorist-gutenberg'),
     value: 'listings-archive-list-view'
   }];
 

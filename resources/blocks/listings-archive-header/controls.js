@@ -9,6 +9,8 @@ import {
 	FormTokenField,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useSelect } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 
 // View Type mappings
 const VIEW_TYPE_MAP = {
@@ -27,8 +29,8 @@ const SORT_BY_MAP = {
 	latest: __( 'Latest Listings', 'directorist-gutenberg' ),
 	oldest: __( 'Oldest Listings', 'directorist-gutenberg' ),
 	popular: __( 'Popular Listings', 'directorist-gutenberg' ),
-	price_low_to_high: __( 'Price: Low to High', 'directorist-gutenberg' ),
-	price_high_to_low: __( 'Price: High to Low', 'directorist-gutenberg' ),
+	price_low_high: __( 'Price: Low to High', 'directorist-gutenberg' ),
+	price_high_low: __( 'Price: High to Low', 'directorist-gutenberg' ),
 	random: __( 'Random Listings', 'directorist-gutenberg' ),
 };
 
@@ -75,24 +77,25 @@ import ShadowControl from '@directorist-gutenberg/gutenberg/components/controls/
 export default function Controls( { attributes, setAttributes } ) {
 	useArchiveBlockCommonTask( { setAttributes } );
 
-	return (
-		<InspectorControls>
-			<PanelBody
-				title={ __(
-					'Listings Archive Header Settings',
-					'directorist-gutenberg'
-				) }
-				initialOpen={ true }
-			>
+	// Inside your component
+	const templateID = useSelect( ( select ) => {
+		return select( 'core/editor' ).getCurrentPostId();
+	}, [] );
+
+	useEffect( () => {
+		setAttributes( { template_id: templateID } );
+	}, [ templateID ] );
+
+    return (
+        <InspectorControls>
+            <PanelBody
+                title={ __( 'Listings Archive Header Settings', 'directorist-gutenberg' ) }
+                initialOpen={ true }
+            >
 				<ToggleControl
-					label={ __(
-						'Show Listings Count',
-						'directorist-gutenberg'
-					) }
-					checked={ attributes.show_listings_count }
-					onChange={ ( value ) =>
-						setAttributes( { show_listings_count: value } )
-					}
+					label={ __( 'Show Listings Count', 'directorist-gutenberg' ) }
+					checked={ attributes.show_listings_count === 1 }
+					onChange={ ( value ) => setAttributes( { show_listings_count: value ? 1 : 0 } ) }
 				/>
 
 				<TextControl
@@ -127,10 +130,8 @@ export default function Controls( { attributes, setAttributes } ) {
 
 				<ToggleControl
 					label={ __( 'Enable Sorting', 'directorist-gutenberg' ) }
-					checked={ attributes.enable_sorting }
-					onChange={ ( value ) =>
-						setAttributes( { enable_sorting: value } )
-					}
+					checked={ attributes.enable_sorting === 1 }
+					onChange={ ( value ) => setAttributes( { enable_sorting: value ? 1 : 0} ) }
 				/>
 
 				<TextControl

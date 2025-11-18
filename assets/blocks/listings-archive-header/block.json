@@ -10,9 +10,13 @@
       "type": "number",
       "default": 0
     },
+    "template_id": {
+      "type": "number",
+      "default": 0
+    },
     "show_listings_count": {
-      "type": "boolean",
-      "default": true
+      "type": "number",
+      "default": 1
     },
     "listings_count_text": {
       "type": "string",
@@ -27,8 +31,8 @@
       ]
     },
     "enable_sorting": {
-      "type": "boolean",
-      "default": true
+      "type": "number",
+      "default": 1
     },
     "sort_by_label": {
       "type": "string",
@@ -42,8 +46,8 @@
         "latest",
         "oldest",
         "popular",
-        "price_low_to_high",
-        "price_high_to_low",
+        "price_low_high",
+        "price_high_low",
         "random"
       ]
     },

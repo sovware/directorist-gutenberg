@@ -24,6 +24,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	const { template, isLoading, refreshTemplate } = useBlocksPreview( {
 		directoryId,
 		blockType: 'listings-archive/archive',
+		blockAttributes: attributes,
 	} );
 
 	useEffect( () => {

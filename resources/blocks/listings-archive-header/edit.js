@@ -24,6 +24,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	const { template, isLoading, refreshTemplate } = useBlocksPreview( {
 		directoryId,
 		blockType: 'listings-archive/header',
+		blockAttributes: attributes,
 	} );
 
 	useEffect( () => {
@@ -43,6 +44,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			</div>
 		);
 	}
+
 	return (
 		<div
 			style={ {
