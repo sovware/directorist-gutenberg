@@ -4,12 +4,14 @@
 import { DataViews } from '@wordpress/dataviews/wp';
 import { useState, useMemo, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { Modal } from '@wordpress/components';
 
 /**
  * Internal dependencies
  */
 import fetchData from '../../helper/fetchData';
 import { StyledTable } from '../style';
+import CreateTemplate from './CreateTemplate';
 
 const defaultLayouts = {
     table: {
@@ -24,6 +26,14 @@ export default function Table() {
     const [items, setItems] = useState([]);
     const [total, setTotal] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+
+    const openCreateModal = () => {
+        setIsCreateModalOpen(true);
+    };
+    const closeCreateModal = () => {
+        setIsCreateModalOpen(false);
+    };
 
     // Define fields
     const fields = useMemo(() => [
@@ -115,6 +125,7 @@ export default function Table() {
     };
 
     return (
+        <>
         <StyledTable className="directorist-gutenberg-templates-table">
             <DataViews
                 data={items}
@@ -157,18 +168,42 @@ export default function Table() {
                     },
                 ]}
             >
-                <div className="directorist-gutenberg-templates-table-create-new">
-                    <h2>{__('All Templates', 'directorist-gutenberg')}</h2>
-                    <button className="directorist-btn directorist-btn-primary">
-                        {__('Create New Template', 'directorist-gutenberg')}
-                    </button>
+                <div className="directorist-gutenberg-templates-table-top">
+                    <div className="directorist-gutenberg-templates-table-top-left">
+                        <div className="directorist-gutenberg-templates-table-create-new">
+                            <h2>{__('All Templates', 'directorist-gutenberg')}</h2>
+                            <button
+                                className="directorist-btn directorist-btn-primary"
+                                onClick={openCreateModal}
+                            >
+                                {__('Create New Template', 'directorist-gutenberg')}
+                            </button>
+                        </div>
+                    </div>
+                    <div className="directorist-gutenberg-templates-table-top-right">
+                        <DataViews.Search />
+                        <DataViews.FiltersToggle />
+                        <DataViews.FiltersToggled />
+                    </div>
                 </div>
-                <DataViews.Search />
-                <DataViews.FiltersToggle />
-                <DataViews.FiltersToggled />
                 <DataViews.Layout />
                 <DataViews.Pagination />
             </DataViews>
         </StyledTable>
+
+        {isCreateModalOpen && (
+            <Modal
+                isOpen={isCreateModalOpen}
+                onRequestClose={closeCreateModal}
+                shouldCloseOnClickOutside={true}
+                focusOnMount={true}
+                __experimentalHideHeader={true}
+                isFullScreen={true}
+                overlayClassName="directorist-gutenberg-create-template-modal"
+            >
+                <CreateTemplate onClose={closeCreateModal} createType="all" />
+            </Modal>
+        )}
+        </>
     );
 }

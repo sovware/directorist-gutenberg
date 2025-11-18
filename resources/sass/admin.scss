@@ -3,3 +3,20 @@
  * Import DataViews CSS - webpack will handle this
  */
 @import '@wordpress/dataviews/build-style/style.css';
+
+/* Create Template Modal */
+.directorist-gutenberg-create-template-modal {
+    .components-modal__frame{
+        height: 100%;
+        min-height: 100%;
+        border-radius: 0px;
+        min-width: 100%;
+        background-color: #f3f4f6;
+    }
+    .components-modal__content{
+        padding: 0;
+        &>div{
+            height: 100%;
+        }
+    }
+}
