@@ -172,4 +172,25 @@ class TemplateRepository {
             ->delete();
     }
 
+    public function get_directories() {
+        $directories     = directorist_get_directories( [ 'hide_empty' => false ] );
+        $directory_types = [];
+
+        if ( ! is_wp_error( $directories ) && ! empty( $directories ) ) {
+            $directory_types = array_map( function( $directory ) {
+                $general_config = get_term_meta( $directory->term_id, 'general_config', true );
+                $is_default     = get_term_meta( $directory->term_id, '_default', true );
+
+                return [
+                    'value'      => $directory->term_id,
+                    'label'      => $directory->name,
+                    'is_default' => strval( $is_default ) === '1',
+                    'icon'       => ! empty( $general_config['icon'] ) ? $general_config['icon'] : null,
+                ];
+            }, $directories );
+        }
+        
+        return $directory_types;
+    }
+
 }

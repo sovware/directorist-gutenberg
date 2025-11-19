@@ -48,24 +48,9 @@ class TemplateController extends Controller {
     }
 
     public function directories(): array {
-        $directories     = directorist_get_directories( [ 'hide_empty' => false ] );
-        $directory_types = [];
-
-        if ( ! is_wp_error( $directories ) && ! empty( $directories ) ) {
-            $directory_types = array_map( function( $directory ) {
-                $general_config = get_term_meta( $directory->term_id, 'general_config', true );
-
-                return [
-                    'value' => $directory->term_id,
-                    'label' => $directory->name,
-                    'icon'  => ! empty( $general_config['icon'] ) ? $general_config['icon'] : null,
-                ];
-            }, $directories );
-        }
-
         return Response::send(
             [
-                'directories' => $directory_types,
+                'directories' => $this->repository->get_directories(),
             ]
         );
     }
