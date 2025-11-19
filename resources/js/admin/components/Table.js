@@ -357,7 +357,7 @@ export default function Table() {
 					<CreateTemplate
 						onClose={ closeCreateModal }
 						createType="all"
-						directoryTypes={ directoryTypes }
+						directoryType={ directoryType }
 					/>
 				</Modal>
 			) }

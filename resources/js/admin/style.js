@@ -183,29 +183,99 @@ const StyledModalContents = Styled.div`
             margin-bottom: 0;
         }
     }
-    .directorist-gutenberg-create-template-modal-content-actions{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+    .directorist-gutenberg-choose-template-type{
         width: 100%;
-        button{
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            svg{
-                width: 16px;
-                height: 16px;
-                fill: #fff;
-            }
+        padding: 0;
+        margin-bottom: 0;
+        padding: 24px;
+        background: #fff;
+        border-radius: 12px;
+        max-width: 500px;
+        h2{
+            color: #1E1E1E;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin: 0 0 6px;
+            padding: 0;
         }
-        span{
+        p{
             color: #757575;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 400;
             line-height: 1.5;
-            display: block;
+            margin: 0;
+            padding: 0;
         }
+    }
+    .directorist-gutenberg-template-type-options{
+        width: 100%;
+        margin-top: 12px;
+        .components-base-control{
+            margin-bottom: 0;
+        }
+        .components-radio-control__option{
+            padding: 16px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            position: relative;
+            &:hover{
+                border-color: #3858E9;
+                background-color: #F8F9FF;
+            }
+            &:last-child{
+                margin-bottom: 0;
+            }
+            input[type="radio"]{
+                margin-top: 2px;
+                width: 18px;
+                height: 18px;
+                min-width: 18px;
+                cursor: pointer;
+                flex-shrink: 0;
+                accent-color: #3858E9;
+            }
+            label{
+                cursor: pointer;
+                flex: 1;
+                margin: 0;
+                width: 100%;
+            }
+        }
+        .components-radio-control__option:has(input[type="radio"]:checked){
+            border-color: #3858E9;
+            background-color: #F8F9FF;
+        }
+    }
+    .directorist-gutenberg-template-type-option{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .directorist-gutenberg-template-type-option-label{
+        color: #1E1E1E;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+        &:after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .directorist-gutenberg-template-type-option-description{
+        color: #757575;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.5;
     }
     .directorist-gutenberg-create-template-modal-content-loading{
         display: flex;
@@ -240,6 +310,18 @@ const StyledModalContents = Styled.div`
                 left: 0;
                 top: 0;
             }
+        }
+    }
+    .directorist-gutenberg-create-template-modal-content-actions{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 30px;
+        .components-button{
+            flex: 1;
+            padding: 10px 16px;
+            justify-content: center;
+            border-radius: 8px;
         }
     }
 `;

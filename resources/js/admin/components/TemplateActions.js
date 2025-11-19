@@ -216,7 +216,7 @@ export default function TemplateActions( {
                             </div>
                         </div>
                     ) }
-                    renderContent={ () => (
+                    renderContent={ ( { onClose } ) => (
                         <div className="directorist-gutenberg-directory-type-popover">
                             <span className="directorist-gutenberg-directory-type-popover-title">
                                 { __( 'Switch Directory', 'directorist-gutenberg' ) }
@@ -230,7 +230,10 @@ export default function TemplateActions( {
                                             className={ `directorist-gutenberg-directory-type-dropdown-item ${
                                                 isActive ? 'active' : ''
                                             }` }
-                                            onClick={ () => handleDirectorySelect( type.value ) }
+                                            onClick={ () => {
+                                                handleDirectorySelect( type.value );
+                                                onClose();
+                                            } }
                                         >
                                             { renderIcon( type.icon ) }
                                             <span>{ type.label }</span>
