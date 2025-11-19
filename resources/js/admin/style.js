@@ -345,7 +345,62 @@ const StyledTemplateActions = Styled.div`
     padding: 24px 32px;
     border-radius: 4px;
     background: #fff;
-    
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: space-between;
+    .directorist-gutenberg-directory-type-button{
+        padding: 12px 12px 12px 16px;
+        border-radius: 40px;
+        border: 1px solid #E5E7EB;
+        background: #FFF;
+        box-shadow: 0 2px 8px 0 rgba(16, 24, 40, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 300px;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+    .directorist-gutenberg-directory-type-icon{
+        display: flex;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background: #3E62F5;
+        svg{
+            width: 17px;
+            height: 17px;
+            color: #fff;
+        }
+    }
+    .directorist-gutenberg-directory-type-name{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        span{
+            color: #747C89;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+            display: block;
+            margin-bottom: 3px;
+        }
+        strong{
+            color: #2C3239;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.32px;
+        }
+    }
+    .directorist-gutenberg-templates-types-toggle-icon{
+        margin-left: auto;
+        margin-right: 10px;
+    }
+
 `;
 
 export {

@@ -35,7 +35,7 @@ export default function TemplateActions() {
                             <ReactSVG src={ gridIcon } />
                         </div>
                         <div className="directorist-gutenberg-directory-type-name">
-                            <span>All Templates</span>
+                            <span>Seleted Directory</span>
                             <strong>Classified Ads</strong>
                         </div>
                         <div className="directorist-gutenberg-templates-types-toggle-icon">
@@ -45,9 +45,9 @@ export default function TemplateActions() {
                     ) }
                     renderContent={ () =>
                         <div className="directorist-gutenberg-directory-type-popover">
-                            <span>Switch Directory</span>
+                            <span className="directorist-gutenberg-directory-type-popover-title">Switch Directory</span>
                             <div className="directorist-gutenberg-directory-type-dropdown-items">
-                                <div className="directorist-gutenberg-directory-type-dropdown-item">
+                                <div className="directorist-gutenberg-directory-type-dropdown-item active">
                                     <ReactSVG src={ gridIcon } />
                                     <span>Classified Ads</span>
                                 </div>
@@ -64,7 +64,6 @@ export default function TemplateActions() {
                     }
                 />
             </div>
-
             <div className="directorist-gutenberg-create-template-action">
                 <Button
                     variant="primary"

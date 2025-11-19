@@ -20,3 +20,49 @@
         }
     }
 }
+
+/* Template Actions style */
+.directorist-gutenberg-directory-type-dropdown-content{
+    .components-popover__content{
+        width: 300px;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03);
+        padding: 12px;
+    }
+    .directorist-gutenberg-directory-type-popover-title{
+        color: #4D5761;
+        font-size: 14px;
+        font-weight: 400;
+        display: block;
+        margin-bottom: 9px;
+    }
+    .directorist-gutenberg-directory-type-dropdown-item{
+        padding: 12px 20px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        &:hover{
+            background: #D8E0FD;
+        }
+        svg{
+            width: 16px;
+            height: 16px;
+        }
+        span{
+            color: #2C3239;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.16;
+        }
+
+        &.active{
+            background: #D8E0FD;
+            svg, span{
+                color: #3E62F5;
+            }
+        }
+    }
+}

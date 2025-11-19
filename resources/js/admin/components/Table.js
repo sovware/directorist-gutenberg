@@ -285,6 +285,7 @@ export default function Table() {
 							</div>
 						</div>
 						<div className="directorist-gutenberg-templates-table-top-right">
+
 							<div className="directorist-gutenberg-templates-toggle-directory-type">
 								<SelectControl
 									options={ directoryTypes }
