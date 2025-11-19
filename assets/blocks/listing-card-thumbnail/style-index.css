@@ -25,6 +25,13 @@
   pointer-events: none;
   z-index: 1;
   position: relative;
+  border-radius: inherit;
+}
+.directorist-gutenberg-listing-card-thumbnail .directorist-gutenberg-listing-card-thumbnail-back img {
+  border-radius: inherit;
+}
+.directorist-gutenberg-listing-card-thumbnail .directorist-gutenberg-listing-card-thumbnail-overlay {
+  border-radius: inherit;
 }
 .directorist-gutenberg-listing-card-thumbnail .directorist-gutenberg-listing-card-thumbnail-overlay.has-background-dim {
   position: absolute;
