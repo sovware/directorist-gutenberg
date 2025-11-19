@@ -340,4 +340,19 @@ const StyledDeleteModal = Styled.div`
     }
 `;
 
-export { StyledHeader, StyledTable, StyledTemplates, StyledModalContents, StyledDeleteModal };
+const StyledTemplateActions = Styled.div`
+    margin: 24px 24px 0;
+    padding: 24px 32px;
+    border-radius: 4px;
+    background: #fff;
+    
+`;
+
+export {
+    StyledHeader,
+    StyledTable,
+    StyledTemplates,
+    StyledModalContents,
+    StyledDeleteModal,
+    StyledTemplateActions,
+};

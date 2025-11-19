@@ -21,6 +21,7 @@ import { StyledTable } from '../style';
 import CreateTemplate from './CreateTemplate';
 import trashIcon from '@icon/trash.svg';
 import plusIcon from '@icon/plus-solid.svg';
+import TemplateActions from './TemplateActions';
 
 const defaultLayouts = {
 	table: {
@@ -232,6 +233,7 @@ export default function Table() {
 
 	return (
 		<>
+			<TemplateActions />
 			<StyledTable className="directorist-gutenberg-templates-table">
 				<DataViews
 					data={ items }
