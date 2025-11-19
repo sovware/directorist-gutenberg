@@ -43,9 +43,6 @@ class PostTypeServiceProvider implements Provider {
         $blocks[] = "core/group";
         $blocks[] = "core/html";
         $blocks[] = "core/media-text";
-        $blocks[] = "core/page-list";
-        $blocks[] = "core/page-list-item";
-        $blocks[] = "core/pattern";
         $blocks[] = "core/preformatted";
         $blocks[] = "core/pullquote";
         $blocks[] = "core/rss";
@@ -62,7 +59,6 @@ class PostTypeServiceProvider implements Provider {
         $blocks[] = "core/site-logo";
         $blocks[] = "core/site-title";
         $blocks[] = "core/site-tagline";
-        $blocks[] = "core/query";
         $blocks[] = "core/avatar";
         $blocks[] = "core/post-title";
         $blocks[] = "core/post-excerpt";
@@ -72,9 +68,7 @@ class PostTypeServiceProvider implements Provider {
         $blocks[] = "core/post-author-name";
         $blocks[] = "core/post-date";
         $blocks[] = "core/post-terms";
-        $blocks[] = "core/loginout";
         $blocks[] = "core/term-description";
-        $blocks[] = "core/query-title";
         $blocks[] = "core/post-author-biography";
 
         return apply_filters( 'directorist_gutenberg_allowed_block_types', $blocks );
