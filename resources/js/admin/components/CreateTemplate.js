@@ -65,7 +65,6 @@ export default function CreateTemplate( { createType, onClose, directoryTypes } 
 				requestPromise,
 				progressPromise,
 			] );
-			console.log( 'Template creation success:', response );
 			setLoadingProgress( 50 );
 
 			// Delay 50% to 80%

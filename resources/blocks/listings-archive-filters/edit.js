@@ -29,6 +29,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const containerRef = useRef( null );
 
+	// Refresh template when filters_text or reset_text changes
 	useEffect( () => {
 		refreshTemplate( attributes );
 	}, [ attributes.filters_text, attributes.reset_text ] );

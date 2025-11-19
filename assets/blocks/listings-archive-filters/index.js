@@ -1220,12 +1220,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useArchiveBlockCommonTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useArchiveBlockCommonTask */ "./resources/js/gutenberg/hooks/useArchiveBlockCommonTask.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _directorist_gutenberg_gutenberg_hooks_useArchiveBlockCommonTask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/hooks/useArchiveBlockCommonTask */ "./resources/js/gutenberg/hooks/useArchiveBlockCommonTask.js");
+/* harmony import */ var _directorist_gutenberg_utils_debounce__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @directorist-gutenberg/utils/debounce */ "./resources/js/utils/debounce.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -1236,29 +1240,72 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
 function Controls({
   attributes,
   setAttributes
 }) {
-  (0,_directorist_gutenberg_gutenberg_hooks_useArchiveBlockCommonTask__WEBPACK_IMPORTED_MODULE_3__["default"])({
+  (0,_directorist_gutenberg_gutenberg_hooks_useArchiveBlockCommonTask__WEBPACK_IMPORTED_MODULE_4__["default"])({
     setAttributes
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+
+  // Local state for immediate UI updates
+  const [filtersText, setFiltersText] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(attributes.filters_text);
+  const [resetText, setResetText] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(attributes.reset_text);
+
+  // Sync local state with attributes when they change externally
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    setFiltersText(attributes.filters_text);
+  }, [attributes.filters_text]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    setResetText(attributes.reset_text);
+  }, [attributes.reset_text]);
+
+  // Create debounced setAttributes functions
+  const debouncedSetFiltersTextRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useRef)((0,_directorist_gutenberg_utils_debounce__WEBPACK_IMPORTED_MODULE_5__["default"])(value => {
+    setAttributes({
+      filters_text: value
+    });
+  }, 500));
+  const debouncedSetResetTextRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useRef)((0,_directorist_gutenberg_utils_debounce__WEBPACK_IMPORTED_MODULE_5__["default"])(value => {
+    setAttributes({
+      reset_text: value
+    });
+  }, 500));
+
+  // Update debounced functions when setAttributes changes
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    debouncedSetFiltersTextRef.current = (0,_directorist_gutenberg_utils_debounce__WEBPACK_IMPORTED_MODULE_5__["default"])(value => {
+      setAttributes({
+        filters_text: value
+      });
+    }, 500);
+  }, [setAttributes]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    debouncedSetResetTextRef.current = (0,_directorist_gutenberg_utils_debounce__WEBPACK_IMPORTED_MODULE_5__["default"])(value => {
+      setAttributes({
+        reset_text: value
+      });
+    }, 500);
+  }, [setAttributes]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Listings Archive Settings', 'directorist-gutenberg'),
       initialOpen: true,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Filters Text', 'directorist-gutenberg'),
-        value: attributes.filters_text,
-        onChange: value => setAttributes({
-          filters_text: value
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+        value: filtersText,
+        onChange: value => {
+          setFiltersText(value);
+          debouncedSetFiltersTextRef.current(value);
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Reset Text', 'directorist-gutenberg'),
-        value: attributes.reset_text,
-        onChange: value => setAttributes({
-          reset_text: value
-        })
+        value: resetText,
+        onChange: value => {
+          setResetText(value);
+          debouncedSetResetTextRef.current(value);
+        }
       })]
     })
   });
@@ -1325,6 +1372,8 @@ function Edit({
     blockAttributes: attributes
   });
   const containerRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+
+  // Refresh template when filters_text or reset_text changes
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     refreshTemplate(attributes);
   }, [attributes.filters_text, attributes.reset_text]);
@@ -2203,6 +2252,34 @@ function WidthControls({
       }, value))
     })
   });
+}
+
+/***/ }),
+
+/***/ "./resources/js/utils/debounce.js":
+/*!****************************************!*\
+  !*** ./resources/js/utils/debounce.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ debounce)
+/* harmony export */ });
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function () {
+    var context = this,
+      args = arguments;
+    var later = function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
 }
 
 /***/ }),
