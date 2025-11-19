@@ -2,40 +2,42 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "directorist-gutenberg/listings-archive",
+  "description": "This block shows the listing items",
   "version": "0.1.0",
   "title": "Listings Archive",
   "category": "directorist-listings-archive",
   "attributes": {
     "directory_type_id": {
+      "description": "The ID of the directory type to display listings for",
       "type": "number",
       "default": 0
     },
     "listings_columns": {
+      "description": "The number of columns to display the listings in",
       "type": "number",
       "default": "3"
     },
     "listings_per_page": {
+      "description": "The number of listings to display per page",
       "type": "number",
       "default": 6
     },
     "pagination_type": {
+      "description": "The type of pagination to use, available options: numbered, infinite_scroll",
       "type": "string",
       "default": "numbered"
     },
     "default_view": {
+      "description": "The default view to display the listings in, available options: list, grid, map",
       "type": "string",
       "default": "grid"
     },
     "block_width": {
+      "description": "The width of the block",
       "type": "string",
       "default": "100"
-    },
-    "is_preview": {
-      "type": "boolean",
-      "default": false
     }
   },
-  "description": "Listings archive block",
   "example": {},
   "supports": {
     "html": false

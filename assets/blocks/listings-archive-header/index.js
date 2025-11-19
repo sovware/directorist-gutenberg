@@ -1200,7 +1200,7 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
   \*************************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive-header","version":"0.1.0","title":"Listings Archive Header","category":"directorist-listings-archive","attributes":{"directory_type_id":{"type":"number","default":0},"template_id":{"type":"number","default":0},"show_listings_count":{"type":"number","default":1},"listings_count_text":{"type":"string","default":"Items Found"},"view_type":{"type":"array","default":["grid","list","map"]},"enable_sorting":{"type":"number","default":1},"sort_by_label":{"type":"string","default":"Sort by"},"sort_by":{"type":"array","default":["a_z","z_a","latest","oldest","popular","price_low_high","price_high_low","random"]},"block_width":{"type":"string","default":"100"},"is_preview":{"type":"boolean","default":false},"drop_shadow":{"type":"string","default":""}},"description":"Listings archive header block","example":{},"supports":{"html":false,"color":{"background":true,"gradients":true},"spacing":{"margin":true,"padding":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive-header","version":"0.1.0","title":"Listings Archive Header","description":"Listings archive header block","category":"directorist-listings-archive","attributes":{"directory_type_id":{"description":"The ID of the directory type to display header for","type":"number","default":0},"template_id":{"description":"The ID of the template to display header for","type":"number","default":0},"show_listings_count":{"description":"Whether to show the listings count","type":"number","default":1},"listings_count_text":{"description":"The text to display the listings count","type":"string","default":"Items Found"},"view_type":{"description":"The views to display in the header toolbar, available options: grid, list, map","type":"array","default":["grid","list","map"]},"enable_sorting":{"description":"Whether to enable sorting","type":"number","default":1},"sort_by_label":{"description":"The label of the sort by dropdown","type":"string","default":"Sort by"},"sort_by":{"description":"The sorting options in the sort by dropdown, available options: a_z, z_a, latest, oldest, popular, price_low_high, price_high_low, random","type":"array","default":["a_z","z_a","latest","oldest","popular","price_low_high","price_high_low","random"]},"drop_shadow":{"description":"The drop shadow of the block","type":"string","default":""},"block_width":{"description":"The width of the block","type":"string","default":"100"}},"example":{},"supports":{"html":false,"color":{"background":true,"gradients":true},"spacing":{"margin":true,"padding":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -1506,15 +1506,11 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-const exampleAttributes = {
-  is_preview: true
-};
 (0,_directorist_gutenberg_gutenberg_register_block__WEBPACK_IMPORTED_MODULE_0__["default"])({
   metadata: _block_json__WEBPACK_IMPORTED_MODULE_3__,
   Edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   Controls: _controls__WEBPACK_IMPORTED_MODULE_4__["default"],
   StylesControls: _controls__WEBPACK_IMPORTED_MODULE_4__.StylesControls,
-  exampleAttributes,
   templateTypes: ['listings-archive'],
   showWidthControls: false,
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__["default"], {

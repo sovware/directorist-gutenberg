@@ -13,15 +13,10 @@ import archiveSearchIcon from '@block-icon/archive-search.svg';
  */
 import ReactSVG from 'react-inlinesvg';
 
-const exampleAttributes = {
-	is_preview: true,
-};
-
 registerBlock( {
 	metadata,
 	Edit,
 	Controls,
-	exampleAttributes,
 	templateTypes: [ 'listings-archive' ],
 	showWidthControls: false,
 	icon: <ReactSVG src={ archiveSearchIcon } />,
