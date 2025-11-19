@@ -1,8 +1,9 @@
 <?php
 
-use DirectoristGutenberg\WpMVC\Enqueue\Enqueue;
-
 defined( 'ABSPATH' ) || exit;
+
+use DirectoristGutenberg\WpMVC\Enqueue\Enqueue;
+use DirectoristGutenberg\App\Repositories\TemplateRepository;
 
 /**
  * Builder scripts
@@ -25,4 +26,12 @@ if ( directorist_gutenberg_post_type() === get_post_type() ) {
 if ( 'at_biz_dir_page_directorist-template-builder' === $hook_suffix ) {
     Enqueue::script( 'directorist-gutenberg/admin', 'build/js/admin' );
     Enqueue::style( 'directorist-gutenberg/admin', 'build/css/admin' );
+
+    $template_repository = directorist_gutenberg_singleton( TemplateRepository::class );
+
+    wp_localize_script(
+        'directorist-gutenberg/admin', 'directorist_gutenberg_data', [
+            'directories' => $template_repository->get_directories(),
+        ]
+    );
 }
