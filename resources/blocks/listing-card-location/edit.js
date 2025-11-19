@@ -15,6 +15,7 @@ import BlockPreview from '@directorist-gutenberg/gutenberg/components/block-prev
 import previewImg from '@image/blocks-preview/listing-location.webp';
 import { getIconUrl } from '@directorist-gutenberg/gutenberg/utils/icon-url';
 import './editor.scss';
+import TextAlignControl from '@directorist-gutenberg/components/TextAlignControl';
 
 export default function Edit( { attributes, setAttributes } ) {
 	// Show block preview image
@@ -23,36 +24,39 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	const iconUrl = getIconUrl( attributes.icon );
-
+	const { textAlign } = attributes;
 	return (
-		<div className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-location">
-			<div className="directorist-gutenberg-listing-card-element-content">
-				{ iconUrl && (
-					<span
-						className="directorist-gutenberg-listing-card-element-icon"
-						style={ {
-							'--directorist-gutenberg-icon-color':
-								attributes.icon_color,
-						} }
-					>
-						<ReactSVG
-							src={ iconUrl }
-							width={ attributes.icon_size }
-							height={ attributes.icon_size }
-						/>
-					</span>
-				) }
-				<div className="directorist-gutenberg-listing-card-element-details">
-					{ attributes.show_label && (
-						<span className="directorist-gutenberg-listing-card-element-label">
-							Location:
+		<>
+			<TextAlignControl textAlign={ textAlign } setAttributes={ setAttributes } />
+			<div className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-location">
+				<div className="directorist-gutenberg-listing-card-element-content">
+					{ iconUrl && (
+						<span
+							className="directorist-gutenberg-listing-card-element-icon"
+							style={ {
+								'--directorist-gutenberg-icon-color':
+									attributes.icon_color,
+							} }
+						>
+							<ReactSVG
+								src={ iconUrl }
+								width={ attributes.icon_size }
+								height={ attributes.icon_size }
+							/>
 						</span>
 					) }
-					<span className="directorist-gutenberg-listing-card-element-value">
-						Dubai
-					</span>
+					<div className="directorist-gutenberg-listing-card-element-details">
+						{ attributes.show_label && (
+							<span className="directorist-gutenberg-listing-card-element-label">
+								Location:
+							</span>
+						) }
+						<span className="directorist-gutenberg-listing-card-element-value">
+							Dubai
+						</span>
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }

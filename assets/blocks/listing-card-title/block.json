@@ -14,6 +14,9 @@
     "is_preview": {
       "type": "boolean",
       "default": false
+    },
+    "textAlign": {
+      "type": "string"
     }
   },
   "example": {},

@@ -25,6 +25,15 @@
 .directorist-gutenberg-listing-card-block svg {
   width: var(--directorist-gutenberg-icon-size);
 }
+.directorist-gutenberg-listing-card-block.has-text-align-left .directorist-gutenberg-listing-card-element-content {
+  justify-content: flex-start;
+}
+.directorist-gutenberg-listing-card-block.has-text-align-center .directorist-gutenberg-listing-card-element-content {
+  justify-content: center;
+}
+.directorist-gutenberg-listing-card-block.has-text-align-right .directorist-gutenberg-listing-card-element-content {
+  justify-content: flex-end;
+}
 .block-editor-block-list__block .directorist-gutenberg-listing-card-block,
 .block-editor-block-list__layout.is-root-container .directorist-gutenberg-listing-card-block,
 .directorist-gutenberg-blocks-wrap .directorist-gutenberg-listing-card-block {

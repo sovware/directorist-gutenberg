@@ -8,7 +8,7 @@
 	"attributes": {
 		"icon": {
 			"type": "string",
-			"default": "line-awesome/file-invoice-dollar-solid.svg"
+			"default": ""
 		},
 		"icon_color": {
 			"type": "string",
@@ -25,6 +25,9 @@
 		"is_preview": {
 			"type": "boolean",
 			"default": false
+		},
+		"textAlign": {
+			"type": "string"
 		}
 	},
 	"description": "Listing Pricing Block",

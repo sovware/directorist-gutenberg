@@ -1,6 +1,7 @@
 /**
  * WordPress dependencies
  */
+import { AlignmentControl, BlockControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -23,36 +24,46 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	const iconUrl = getIconUrl( attributes.icon );
-
+	const { textAlign } = attributes;
 	return (
-		<div className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-address">
-			<div className="directorist-gutenberg-listing-card-element-content">
-				{ iconUrl && (
-					<span
-						className="directorist-gutenberg-listing-card-element-icon"
-						style={ {
-							'--directorist-gutenberg-icon-color':
-								attributes.icon_color,
-						} }
-					>
-						<ReactSVG
-							src={ iconUrl }
-							width={ attributes.icon_size }
-							height={ attributes.icon_size }
-						/>
-					</span>
-				) }
-				<div className="directorist-gutenberg-listing-card-element-details">
-					{ attributes.show_label && (
-						<span className="directorist-gutenberg-listing-card-element-label">
-							Address:
+		<>
+			<BlockControls group="block">
+				<AlignmentControl
+					value={ textAlign }
+					onChange={ ( nextAlign ) => {
+						setAttributes( { textAlign: nextAlign } );
+					} }
+				/>
+			</BlockControls>
+			<div className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-address">
+				<div className="directorist-gutenberg-listing-card-element-content">
+					{ iconUrl && (
+						<span
+							className="directorist-gutenberg-listing-card-element-icon"
+							style={ {
+								'--directorist-gutenberg-icon-color':
+									attributes.icon_color,
+							} }
+						>
+							<ReactSVG
+								src={ iconUrl }
+								width={ attributes.icon_size }
+								height={ attributes.icon_size }
+							/>
 						</span>
 					) }
-					<span className="directorist-gutenberg-listing-card-element-value">
-						New York, United States
-					</span>
+					<div className="directorist-gutenberg-listing-card-element-details">
+						{ attributes.show_label && (
+							<span className="directorist-gutenberg-listing-card-element-label">
+								Address:
+							</span>
+						) }
+						<span className="directorist-gutenberg-listing-card-element-value">
+							New York, United States
+						</span>
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
