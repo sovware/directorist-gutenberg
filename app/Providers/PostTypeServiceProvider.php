@@ -43,14 +43,11 @@ class PostTypeServiceProvider implements Provider {
         $blocks[] = "core/group";
         $blocks[] = "core/html";
         $blocks[] = "core/media-text";
-        $blocks[] = "core/more";
-        $blocks[] = "core/nextpage";
         $blocks[] = "core/page-list";
         $blocks[] = "core/page-list-item";
         $blocks[] = "core/pattern";
         $blocks[] = "core/preformatted";
         $blocks[] = "core/pullquote";
-        $blocks[] = "core/block";
         $blocks[] = "core/rss";
         $blocks[] = "core/separator";
         $blocks[] = "core/shortcode";
@@ -66,7 +63,6 @@ class PostTypeServiceProvider implements Provider {
         $blocks[] = "core/site-title";
         $blocks[] = "core/site-tagline";
         $blocks[] = "core/query";
-        $blocks[] = "core/template-part";
         $blocks[] = "core/avatar";
         $blocks[] = "core/post-title";
         $blocks[] = "core/post-excerpt";
@@ -76,23 +72,10 @@ class PostTypeServiceProvider implements Provider {
         $blocks[] = "core/post-author-name";
         $blocks[] = "core/post-date";
         $blocks[] = "core/post-terms";
-        $blocks[] = "core/post-navigation-link";
-        $blocks[] = "core/post-template";
-        $blocks[] = "core/query-pagination";
-        $blocks[] = "core/query-pagination-next";
-        $blocks[] = "core/query-pagination-numbers";
-        $blocks[] = "core/query-pagination-previous";
-        $blocks[] = "core/query-no-results";
-        $blocks[] = "core/query-total";
-        $blocks[] = "core/read-more";
-        $blocks[] = "core/comments";
-        $blocks[] = "core/home-link";
         $blocks[] = "core/loginout";
         $blocks[] = "core/term-description";
         $blocks[] = "core/query-title";
         $blocks[] = "core/post-author-biography";
-        $blocks[] = "core/freeform";
-        $blocks[] = "core/widget-group";
 
         return apply_filters( 'directorist_gutenberg_allowed_block_types', $blocks );
     }
