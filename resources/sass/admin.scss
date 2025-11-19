@@ -60,9 +60,15 @@
 
         &.active{
             background: #D8E0FD;
-            svg, span{
+            span{
                 color: #3E62F5;
             }
+            svg{
+                fill: #3E62F5;
+            }
         }
+    }
+    .directorist-gutenberg-directory-type-dropdown-item-active-icon{
+        margin-left: auto;
     }
 }

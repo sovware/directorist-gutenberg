@@ -30,6 +30,7 @@
 		"@svgr/webpack": "^8.1.0",
 		"@wordpress/icons": "^10.27.0",
 		"@wordpress/scripts": "^30.19.0",
+		"copy-webpack-plugin": "^13.0.1",
 		"filemanager-webpack-plugin": "^8.0.0",
 		"fs-extra": "^11.2.0",
 		"grunt": "^1.6.1",

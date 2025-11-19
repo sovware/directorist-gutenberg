@@ -1834,8 +1834,14 @@ div.dataviews-view-list {
 .directorist-gutenberg-directory-type-dropdown-content .directorist-gutenberg-directory-type-dropdown-item.active {
   background: #D8E0FD;
 }
-.directorist-gutenberg-directory-type-dropdown-content .directorist-gutenberg-directory-type-dropdown-item.active svg, .directorist-gutenberg-directory-type-dropdown-content .directorist-gutenberg-directory-type-dropdown-item.active span {
+.directorist-gutenberg-directory-type-dropdown-content .directorist-gutenberg-directory-type-dropdown-item.active span {
   color: #3E62F5;
+}
+.directorist-gutenberg-directory-type-dropdown-content .directorist-gutenberg-directory-type-dropdown-item.active svg {
+  fill: #3E62F5;
+}
+.directorist-gutenberg-directory-type-dropdown-content .directorist-gutenberg-directory-type-dropdown-item-active-icon {
+  margin-left: auto;
 }
 
 /*# sourceMappingURL=admin.css.map*/

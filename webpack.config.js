@@ -3,6 +3,7 @@ const fs = require( 'fs-extra' );
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
 const I18nLoaderWebpackPlugin = require( '@automattic/i18n-loader-webpack-plugin' );
+const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 
 // Remove old build files
 fs.removeSync( path.resolve( __dirname, './assets/build/' ) );
@@ -119,12 +120,23 @@ module.exports = [
 			filename: '[name].js',
 			chunkFilename: 'chunk/[name].js?ver=' + chunkUniqueKey,
 		},
-		plugins: plugins.reduce( ( acc, plugin ) => {
-			if ( plugin.constructor.name !== 'CopyPlugin' ) {
-				acc.push( plugin );
-			}
-			return acc;
-		}, [] ),
+		plugins: [
+			...plugins.reduce( ( acc, plugin ) => {
+				if ( plugin.constructor.name !== 'CopyPlugin' ) {
+					acc.push( plugin );
+				}
+				return acc;
+			}, [] ),
+			// Copy icon-library folder to build output
+			new CopyWebpackPlugin( {
+				patterns: [
+					{
+						from: path.resolve( __dirname, 'resources/svg/icons/icon-library' ),
+						to: path.resolve( __dirname, 'assets/build/icons/icon-library' ),
+					},
+				],
+			} ),
+		],
 		resolve,
 	},
 	{

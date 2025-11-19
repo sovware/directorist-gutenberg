@@ -59,3 +59,50 @@ export function formatDate(date, format = 'en-GB') {
 
     return `${day} ${month}, ${year}`;
 }
+
+/**
+ * Helper function to convert icon class name to SVG path
+ * @param {string} iconClass - Icon class name (e.g., "las la-business-time", "fas fa-home", "lab la-codepen")
+ * @returns {string|null} SVG path or null if invalid
+ * @example
+ * getIconSvgPath( 'las la-business-time' ) // '@icon/icon-library/line-awesome/business-time-solid.svg'
+ * getIconSvgPath( 'fas fa-home' ) // '@icon/icon-library/font-awesome/home.svg'
+ * getIconSvgPath( 'lab la-codepen' ) // '@icon/icon-library/line-awesome/codepen.svg'
+ */
+export function getIconSvgPath( iconClass ) {
+	if ( ! iconClass || typeof iconClass !== 'string' ) {
+		return null;
+	}
+
+	const parts = iconClass.trim().split( ' ' );
+
+	if ( parts.length < 2 ) {
+		return null;
+	}
+
+	const prefix = parts[ 0 ]; // "las", "fas", "far", "lab"
+	const iconName = parts[ 1 ]; // "la-business-time", "fa-home", "la-codepen"
+
+	// Line Awesome Solid (las)
+	if ( prefix === 'las' ) {
+		// Remove "la-" prefix and add "-solid" suffix
+		const name = iconName.replace( /^la-/, '' );
+		return `@icon/icon-library/line-awesome/${ name }-solid.svg`;
+	}
+
+	// Line Awesome Brand (lab)
+	if ( prefix === 'lab' ) {
+		// Remove "la-" prefix, no suffix needed
+		const name = iconName.replace( /^la-/, '' );
+		return `@icon/icon-library/line-awesome/${ name }.svg`;
+	}
+
+	// Font Awesome Solid (fas) or Regular (far)
+	if ( prefix === 'fas' || prefix === 'far' ) {
+		// Remove "fa-" prefix, no suffix needed
+		const name = iconName.replace( /^fa-/, '' );
+		return `@icon/icon-library/font-awesome/${ name }.svg`;
+	}
+
+	return null;
+}

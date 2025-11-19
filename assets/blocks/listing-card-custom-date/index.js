@@ -4073,16 +4073,25 @@ const useSubmissionFields = () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   getDirectories: () => (/* binding */ getDirectories),
+/* harmony export */   getLocalizedAdminData: () => (/* binding */ getLocalizedAdminData),
+/* harmony export */   getLocalizedAdminDataByKey: () => (/* binding */ getLocalizedAdminDataByKey),
 /* harmony export */   getLocalizedBlockData: () => (/* binding */ getLocalizedBlockData),
 /* harmony export */   getLocalizedBlockDataByKey: () => (/* binding */ getLocalizedBlockDataByKey),
 /* harmony export */   getSubmissionFormFields: () => (/* binding */ getSubmissionFormFields)
 /* harmony export */ });
+// Generic helper function to get data by key from any window object
+const getDataByKey = (data, key, defaultValue = null) => {
+  return data[key] !== undefined ? data[key] : defaultValue;
+};
+
+// Gutenberg Block Editor Data
 const getLocalizedBlockData = () => {
   return window.directorist_gutenberg_block_data || {};
 };
 const getLocalizedBlockDataByKey = (key, defaultValue = null) => {
   const data = getLocalizedBlockData();
-  return data[key] !== undefined ? data[key] : defaultValue;
+  return getDataByKey(data, key, defaultValue);
 };
 const getSubmissionFormFields = () => {
   const data = getLocalizedBlockData();
@@ -4091,10 +4100,26 @@ const getSubmissionFormFields = () => {
   }
   return {};
 };
+
+// Admin Page Data
+const getLocalizedAdminData = () => {
+  return window.directorist_gutenberg_data || {};
+};
+const getLocalizedAdminDataByKey = (key, defaultValue = null) => {
+  const data = getLocalizedAdminData();
+  return getDataByKey(data, key, defaultValue);
+};
+const getDirectories = () => {
+  const data = getLocalizedAdminData();
+  return getDataByKey(data, 'directories', []);
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   getLocalizedBlockData,
   getLocalizedBlockDataByKey,
-  getSubmissionFormFields
+  getSubmissionFormFields,
+  getLocalizedAdminData,
+  getLocalizedAdminDataByKey,
+  getDirectories
 });
 
 /***/ }),

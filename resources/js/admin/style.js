@@ -66,14 +66,6 @@ const StyledTable = Styled.div`
             font-weight: 600;
             line-height: 28px;
         }
-        button{
-            border-radius: 2px;
-            gap: 4px;
-            svg{
-                width: 16px;
-                height: 16px;
-            }
-        }
     }
     .dataviews-view-table{
         .dataviews-view-table__col-checkbox{
@@ -118,6 +110,17 @@ const StyledTable = Styled.div`
         &:checked{
             background: var(--wp-admin-theme-color, #3858e9);
             border-color: var(--wp-admin-theme-color, #3858e9);
+        }
+    }
+    .directorist-gutenberg-templates-table-top-right{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        .dataviews-search{
+            .components-input-control__backdrop{
+                border-color: #E0E0E0;
+                border-radius: 4px;
+            }
         }
     }
 `;
@@ -350,7 +353,7 @@ const StyledTemplateActions = Styled.div`
     gap: 12px;
     justify-content: space-between;
     .directorist-gutenberg-directory-type-button{
-        padding: 12px 12px 12px 16px;
+        padding: 12px;
         border-radius: 40px;
         border: 1px solid #E5E7EB;
         background: #FFF;
@@ -373,7 +376,7 @@ const StyledTemplateActions = Styled.div`
         svg{
             width: 17px;
             height: 17px;
-            color: #fff;
+            fill: #fff;
         }
     }
     .directorist-gutenberg-directory-type-name{
@@ -400,7 +403,16 @@ const StyledTemplateActions = Styled.div`
         margin-left: auto;
         margin-right: 10px;
     }
-
+    .directorist-gutenberg-create-template-action{
+        button{
+            border-radius: 25px;
+            gap: 4px;
+            svg{
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
 `;
 
 export {
