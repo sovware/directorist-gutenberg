@@ -53,9 +53,12 @@ class TemplateController extends Controller {
 
         if ( ! is_wp_error( $directories ) && ! empty( $directories ) ) {
             $directory_types = array_map( function( $directory ) {
+                $general_config = get_term_meta( $directory->term_id, 'general_config', true );
+
                 return [
                     'value' => $directory->term_id,
                     'label' => $directory->name,
+                    'icon'  => ! empty( $general_config['icon'] ) ? $general_config['icon'] : null,
                 ];
             }, $directories );
         }
