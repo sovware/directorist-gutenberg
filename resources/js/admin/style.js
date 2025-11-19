@@ -115,13 +115,152 @@ const StyledTable = Styled.div`
     .directorist-gutenberg-templates-table-top-right{
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 8px;
         .dataviews-search{
             .components-input-control__backdrop{
                 border-color: #E0E0E0;
                 border-radius: 4px;
             }
         }
+        .components-input-control__container{
+            border-radius: 4px;
+        }
+        .components-base-control__field{
+            margin-bottom: 0;
+        }
+    }
+`;
+
+const StyledTablePagination = Styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border-top: 1px solid #ddd;
+    gap: 8px;
+    margin-top: 16px;
+`;
+
+const StyledPaginationButton = Styled.button`
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    padding: 6px 12px;
+    min-width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+        background-color: #f5f5f5;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    ${ props => props.$isActive && `
+        background-color: #333;
+        color: #fff;
+        border-color: #333;
+
+        &:hover {
+            background-color: #333;
+        }
+    `}
+    svg{
+        width: 16px;
+        height: 16px;
+    }
+`;
+
+const StyledPaginationEllipsis = Styled.span`
+    padding: 0 8px;
+    color: #666;
+    display: flex;
+    align-items: center;
+`;
+
+const StyledTableFilters = Styled.div`
+    .directorist-gutenberg-table-filters-button {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        background: #f0f0f0;
+        box-shadow: none;
+        border: none;
+        color: #4D5761;
+    }
+
+    .directorist-gutenberg-table-filters-badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background-color: #fff;
+        color: #0073aa;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: bold;
+        border: 1px solid currentColor;
+    }
+`;
+
+const StyledFiltersPopover = Styled.div`
+    padding: 16px;
+    min-width: 300px;
+
+    .directorist-gutenberg-table-filters-section {
+        margin-bottom: 16px;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    .directorist-gutenberg-table-filters-title {
+        margin: 0 0 12px 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: #1E1E1E;
+    }
+
+    .directorist-gutenberg-table-filters-select {
+        width: 100%;
+        padding: 6px;
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #1E1E1E;
+        background-color: #fff;
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+            border-color: var(--wp-admin-theme-color, #3858e9);
+        }
+    }
+
+    .directorist-gutenberg-table-filters-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        margin-top: 16px;
     }
 `;
 
@@ -435,7 +574,7 @@ const StyledTemplateActions = Styled.div`
     gap: 12px;
     justify-content: space-between;
     .directorist-gutenberg-directory-type-button{
-        padding: 12px;
+        padding: 8px 12px;
         border-radius: 40px;
         border: 1px solid #E5E7EB;
         background: #FFF;
@@ -471,7 +610,7 @@ const StyledTemplateActions = Styled.div`
             font-weight: 400;
             line-height: 1.5;
             display: block;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
         strong{
             color: #2C3239;
@@ -504,4 +643,9 @@ export {
     StyledModalContents,
     StyledDeleteModal,
     StyledTemplateActions,
+    StyledTablePagination,
+    StyledPaginationButton,
+    StyledPaginationEllipsis,
+    StyledTableFilters,
+    StyledFiltersPopover,
 };

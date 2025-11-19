@@ -21,6 +21,9 @@ import { StyledTable } from '../style';
 import CreateTemplate from './CreateTemplate';
 import trashIcon from '@icon/trash.svg';
 import TemplateActions from './TemplateActions';
+import TableSearch from './TableSearch';
+import TableFilters from './TableFilters';
+import TablePagination from './TablePagination';
 
 const defaultLayouts = {
 	table: {
@@ -38,6 +41,13 @@ export default function Table() {
 	const [ isCreateModalOpen, setIsCreateModalOpen ] = useState( false );
 	const [ directoryType, setDirectoryType ] = useState( '' );
 	const [ directoryTypes, setDirectoryTypes ] = useState( [] );
+
+	// Custom search, filter, and pagination state
+	const [ searchQuery, setSearchQuery ] = useState( '' );
+	const [ filters, setFilters ] = useState( [] );
+	const [ currentPage, setCurrentPage ] = useState( 1 );
+	const [ hasInitialData, setHasInitialData ] = useState( false );
+	const perPage = 10;
 
 	// Helper: Map API response to table format
 	const mapItemsToTableFormat = ( apiItems ) => {
@@ -65,37 +75,106 @@ export default function Table() {
 		return [ ...new Set( values ) ].sort();
 	};
 
+	// Build API URL with query parameters
+	const buildApiUrl = useCallback( ( directoryType, search, filters, page, perPage ) => {
+		if ( ! directoryType ) return null;
+
+		const params = new URLSearchParams();
+		params.append( 'directory_type', directoryType );
+
+		// Add search parameter (title)
+		if ( search && search.trim() ) {
+			params.append( 'title', search.trim() );
+		}
+
+		// Add filter parameters - API expects arrays for status and type
+		filters.forEach( ( filter ) => {
+			if ( filter.value ) {
+				// Convert single value to array format for API
+				const values = Array.isArray( filter.value ) ? filter.value : [ filter.value ];
+				// WordPress REST API expects array parameters as field[]=value
+				values.forEach( ( value ) => {
+					params.append( `${ filter.field }[]`, value );
+				} );
+			}
+		} );
+
+		// Add pagination parameters
+		params.append( 'page', page );
+		params.append( 'per_page', perPage );
+
+		return `admin/templates?${ params.toString() }`;
+	}, [] );
+
 	// Fetch templates function (memoized)
 	const fetchTemplates = useCallback( async () => {
 		if ( ! directoryType ) return;
 
 		setIsLoading( true );
 		try {
-			const response = await fetchData(
-				`admin/templates?directory_type=${ directoryType }`
-			);
+			const apiUrl = buildApiUrl( directoryType, searchQuery, filters, currentPage, perPage );
+			if ( ! apiUrl ) return;
+
+			const response = await fetchData( apiUrl );
 
 			if ( response?.items ) {
 				const mappedItems = mapItemsToTableFormat( response.items );
 				setItems( mappedItems );
 				setTotal( response.total || mappedItems.length );
+				// Track if we have initial data (when no search/filters)
+				if ( ! searchQuery && filters.length === 0 ) {
+					setHasInitialData( mappedItems.length > 0 );
+				}
+			} else {
+				setItems( [] );
+				setTotal( 0 );
+				// Only mark as no initial data if there's no search/filters
+				if ( ! searchQuery && filters.length === 0 ) {
+					setHasInitialData( false );
+				}
 			}
 		} catch ( error ) {
 			console.error( 'Error fetching templates:', error );
+			setItems( [] );
+			setTotal( 0 );
+			if ( ! searchQuery && filters.length === 0 ) {
+				setHasInitialData( false );
+			}
 		} finally {
 			setIsLoading( false );
 		}
-	}, [ directoryType ] );
+	}, [ directoryType, searchQuery, filters, currentPage, perPage, buildApiUrl ] );
 
 	// Modal handlers
 	const openCreateModal = () => setIsCreateModalOpen( true );
 	const closeCreateModal = () => setIsCreateModalOpen( false );
 
 	// Get unique values for filters (memoized to prevent unnecessary recalculations)
+	// Note: These should ideally come from API, but using items for now
 	const statusValues = useMemo( () => getUniqueValues( 'status' ), [ items ] );
 	const typeValues = useMemo( () => getUniqueValues( 'type' ), [ items ] );
 	const statusElements = useMemo( () => createFilterElements( statusValues ), [ statusValues ] );
 	const typeElements = useMemo( () => createFilterElements( typeValues ), [ typeValues ] );
+
+	// Handlers for custom components
+	const handleSearchChange = useCallback( ( value ) => {
+		setSearchQuery( value );
+		setCurrentPage( 1 ); // Reset to first page on search
+	}, [] );
+
+	const handleSearch = useCallback( ( value ) => {
+		setSearchQuery( value );
+		setCurrentPage( 1 );
+	}, [] );
+
+	const handleFiltersChange = useCallback( ( newFilters ) => {
+		setFilters( newFilters );
+		setCurrentPage( 1 ); // Reset to first page on filter change
+	}, [] );
+
+	const handlePageChange = useCallback( ( page ) => {
+		setCurrentPage( page );
+	}, [] );
 
 	// Define fields (stable reference, only updates when filter values change)
 	const fields = useMemo( () => {
@@ -189,9 +268,13 @@ export default function Table() {
 		fetchTemplates();
 	}, [ fetchTemplates ] );
 
-	// Reset view (search, filters, pagination) when directory type changes
+	// Reset search, filters, and pagination when directory type changes
 	useEffect( () => {
 		if ( directoryType && prevDirectoryTypeRef.current !== directoryType ) {
+			setSearchQuery( '' );
+			setFilters( [] );
+			setCurrentPage( 1 );
+			setHasInitialData( false ); // Reset initial data flag
 			setView( ( prev ) => ( {
 				...initialView,
 				layout: prev.layout, // Preserve layout preferences
@@ -218,69 +301,47 @@ export default function Table() {
 		} ) );
 	}, [] );
 
-	// Filter, sort, and paginate data manually (required for free composition mode)
-	// According to DataViews docs: "It's the consumer's responsibility to query the data source
-	// appropriately and update the dataset based on the user's choices for sorting, filtering, etc."
+	// Process data for sorting only (search, filter, pagination handled by API)
 	const processedData = useMemo( () => {
 		if ( ! Array.isArray( items ) || items.length === 0 ) {
 			return [];
 		}
 
+		// Only handle sorting client-side, search/filter/pagination is done by API
+		const sortView = {
+			...view,
+			search: '', // No client-side search
+			filters: [], // No client-side filters
+			page: 1,
+			perPage: Infinity, // Show all items (already paginated by API)
+		};
+
 		// Check if filterSortAndPaginate is available
 		if ( ! filterSortAndPaginate || typeof filterSortAndPaginate !== 'function' ) {
-			console.warn( 'filterSortAndPaginate is not available, using raw data' );
 			return items;
 		}
 
 		try {
-			const result = filterSortAndPaginate( items, view, fields );
-			// filterSortAndPaginate returns an array
+			const result = filterSortAndPaginate( items, sortView, fields );
 			if ( Array.isArray( result ) ) {
 				return result;
 			}
-			console.warn( 'filterSortAndPaginate did not return an array, using raw data' );
 			return items;
 		} catch ( error ) {
 			console.error( 'Error in filterSortAndPaginate:', error );
-			console.error( 'Error details:', { items: items.length, view, fields: fields.length } );
-			// Fallback to raw data if filtering fails
 			return items;
 		}
 	}, [ items, view, fields ] );
 
-	// Calculate pagination info based on filtered (but not paginated) data
-	const paginationInfo = useMemo( () => {
-		if ( ! Array.isArray( items ) || items.length === 0 ) {
-			return {
-				totalItems: 0,
-				totalPages: 0,
-				infiniteScrollHandler: undefined,
-			};
-		}
-		try {
-			// Get filtered data without pagination to calculate total count
-			const filteredView = {
-				...view,
-				page: 1,
-				perPage: Infinity, // Get all filtered results
-			};
-			const filteredData = filterSortAndPaginate( items, filteredView, fields );
-			const filteredCount = Array.isArray( filteredData ) ? filteredData.length : items.length;
+	// Calculate pagination info from API response
+	const totalPages = Math.ceil( total / perPage );
 
-			return {
-				totalItems: filteredCount,
-				totalPages: Math.ceil( filteredCount / ( view.perPage || 10 ) ),
-				infiniteScrollHandler: undefined,
-			};
-		} catch ( error ) {
-			console.error( 'Error calculating pagination info:', error );
-			return {
-				totalItems: items.length,
-				totalPages: Math.ceil( items.length / ( view.perPage || 10 ) ),
-				infiniteScrollHandler: undefined,
-			};
-		}
-	}, [ items, view, fields ] );
+	// Provide paginationInfo for DataViews (required prop, but we use custom pagination)
+	const paginationInfo = useMemo( () => ( {
+		totalItems: total,
+		totalPages: totalPages,
+		infiniteScrollHandler: undefined,
+	} ), [ total, totalPages ] );
 
 	return (
 		<>
@@ -290,7 +351,7 @@ export default function Table() {
 				onDirectoryTypesReady={ handleDirectoryTypesReady }
 			/>
 			<StyledTable className="directorist-gutenberg-templates-table">
-				{ processedData.length === 0 ? (
+				{ ! hasInitialData && ! isLoading && processedData.length === 0 && ! searchQuery && filters.length === 0 ? (
 					<div className="directorist-gutenberg-templates-table-no-data">
 						<p>{ __( 'No data found', 'directorist-gutenberg' ) }</p>
 					</div>
@@ -330,16 +391,26 @@ export default function Table() {
 								</h2>
 							</div>
 							<div className="directorist-gutenberg-templates-table-top-right">
-								<DataViews.Search />
-								<DataViews.FiltersToggle />
-								<DataViews.FiltersToggled>
-									<DataViews.Filters />
-								</DataViews.FiltersToggled>
+								<TableSearch
+									value={ searchQuery }
+									onChange={ handleSearchChange }
+									onSearch={ handleSearch }
+								/>
+								<TableFilters
+									filters={ filters }
+									onFiltersChange={ handleFiltersChange }
+									statusOptions={ statusElements }
+									typeOptions={ typeElements }
+								/>
 							</div>
 						</div>
 						<DataViews.Layout />
 						<DataViews.BulkActionToolbar />
-						<DataViews.Pagination />
+						<TablePagination
+							currentPage={ currentPage }
+							totalPages={ totalPages }
+							onPageChange={ handlePageChange }
+						/>
 					</DataViews>
 				) }
 			</StyledTable>
