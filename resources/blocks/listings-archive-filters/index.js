@@ -13,15 +13,10 @@ import archiveFiltersIcon from '@block-icon/archive-filter.svg';
  */
 import ReactSVG from 'react-inlinesvg';
 
-const exampleAttributes = {
-	is_preview: true,
-};
-
 registerBlock( {
 	metadata,
 	Edit,
 	Controls,
-	exampleAttributes,
 	templateTypes: [ 'listings-archive' ],
 	showWidthControls: false,
 	icon: <ReactSVG src={archiveFiltersIcon} />,

@@ -4,22 +4,20 @@
   "name": "directorist-gutenberg/listings-archive-search",
   "version": "0.1.0",
   "title": "Listings Archive Search",
+  "description": "Listings archive search block",
   "category": "directorist-listings-archive",
   "attributes": {
     "directory_type_id": {
+      "description": "The ID of the directory type to display search for",
       "type": "number",
       "default": 0
     },
     "block_width": {
+      "description": "The width of the block",
       "type": "string",
       "default": "100"
-    },
-    "is_preview": {
-      "type": "boolean",
-      "default": false
     }
   },
-  "description": "Listings archive search block",
   "example": {},
   "supports": {
     "html": false

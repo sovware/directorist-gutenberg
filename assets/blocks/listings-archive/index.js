@@ -1200,7 +1200,7 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
   \******************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive","version":"0.1.0","title":"Listings Archive","category":"directorist-listings-archive","attributes":{"directory_type_id":{"type":"number","default":0},"listings_columns":{"type":"number","default":"3"},"listings_per_page":{"type":"number","default":6},"pagination_type":{"type":"string","default":"numbered"},"default_view":{"type":"string","default":"grid"},"block_width":{"type":"string","default":"100"},"is_preview":{"type":"boolean","default":false}},"description":"Listings archive block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive","description":"This block shows the listing items","version":"0.1.0","title":"Listings Archive","category":"directorist-listings-archive","attributes":{"directory_type_id":{"description":"The ID of the directory type to display listings for","type":"number","default":0},"listings_columns":{"description":"The number of columns to display the listings in","type":"number","default":"3"},"listings_per_page":{"description":"The number of listings to display per page","type":"number","default":6},"pagination_type":{"description":"The type of pagination to use, available options: numbered, infinite_scroll","type":"string","default":"numbered"},"default_view":{"description":"The default view to display the listings in, available options: list, grid, map","type":"string","default":"grid"},"block_width":{"description":"The width of the block","type":"string","default":"100"}},"example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -1484,14 +1484,10 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-const exampleAttributes = {
-  is_preview: true
-};
 (0,_directorist_gutenberg_gutenberg_register_block__WEBPACK_IMPORTED_MODULE_0__["default"])({
   metadata: _block_json__WEBPACK_IMPORTED_MODULE_3__,
   Edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   Controls: _controls__WEBPACK_IMPORTED_MODULE_4__["default"],
-  exampleAttributes,
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__["default"], {
     src: _block_icon_archive_svg__WEBPACK_IMPORTED_MODULE_5__
   }),

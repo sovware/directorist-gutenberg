@@ -1200,7 +1200,7 @@ module.exports = __webpack_require__.p + "icons/directorist-logo.svg";
   \*************************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive-search","version":"0.1.0","title":"Listings Archive Search","category":"directorist-listings-archive","attributes":{"directory_type_id":{"type":"number","default":0},"block_width":{"type":"string","default":"100"},"is_preview":{"type":"boolean","default":false}},"description":"Listings archive search block","example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listings-archive-search","version":"0.1.0","title":"Listings Archive Search","description":"Listings archive search block","category":"directorist-listings-archive","attributes":{"directory_type_id":{"description":"The ID of the directory type to display search for","type":"number","default":0},"block_width":{"description":"The width of the block","type":"string","default":"100"}},"example":{},"supports":{"html":false},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -1358,14 +1358,10 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-const exampleAttributes = {
-  is_preview: true
-};
 (0,_directorist_gutenberg_gutenberg_register_block__WEBPACK_IMPORTED_MODULE_0__["default"])({
   metadata: _block_json__WEBPACK_IMPORTED_MODULE_3__,
   Edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   Controls: _controls__WEBPACK_IMPORTED_MODULE_4__["default"],
-  exampleAttributes,
   templateTypes: ['listings-archive'],
   showWidthControls: false,
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_6__["default"], {
