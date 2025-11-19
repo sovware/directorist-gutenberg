@@ -9,6 +9,8 @@ use DirectoristGutenberg\WpMVC\DTO\DTO;
 class TemplateReadDTO extends DTO {
     private int $per_page = 10;
     private int $page = 1;
+
+    private ?string $title = null;
     private ?string $template_type = null;
     private ?int $directory_type = null;
     private ?array $status = null;
@@ -29,6 +31,15 @@ class TemplateReadDTO extends DTO {
 
     public function set_page( int $page ): self {
         $this->page = $page;
+        return $this;
+    }
+
+    public function get_title(): ?string {
+        return $this->title;
+    }
+
+    public function set_title( ?string $title ): self {
+        $this->title = $title;
         return $this;
     }
 

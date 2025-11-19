@@ -27,6 +27,7 @@ class TemplateController extends Controller {
             [
                 "per_page"       => "numeric",
                 "page"           => "numeric",
+                "title"          => "string",
                 "template_type"  => "string",
                 "directory_type" => "numeric",
                 "status"         => "array",
@@ -37,6 +38,7 @@ class TemplateController extends Controller {
         $read_dto = ( new TemplateReadDTO() )
             ->set_per_page( $request->get_param( 'per_page' ) ?? 10 )
             ->set_page( $request->get_param( 'page' ) ?? 1 )
+            ->set_title( $request->get_param( 'title' ) )
             ->set_template_type( $request->get_param( 'template_type' ) )
             ->set_directory_type( $request->get_param( 'directory_type' ) )
             ->set_status( $request->get_param( 'status' ) )
