@@ -34,6 +34,10 @@ class TemplateRepository {
                 'directory_meta.meta_value as directory_type'
             );
 
+        if ( ! empty( $read_dto->get_title() ) ) {
+            $select_query->where( 'posts.post_title', 'like', '%' . $read_dto->get_title() . '%' );
+        }
+
         if ( ! empty( $read_dto->get_directory_type() ) ) {
             $select_query->where( 'directory_meta.meta_value', $read_dto->get_directory_type() );
         }
