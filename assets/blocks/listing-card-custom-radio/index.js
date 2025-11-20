@@ -4013,7 +4013,7 @@ const StyledChatPanel = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"
         height: 48px;
         box-shadow: 0 4px 8px 0 rgba(16, 24, 40, 0.08);
         cursor: pointer;
-        animation: zoomInOut 2s ease-in-out infinite;
+        animation: zoomInOut 1.5s ease-in-out infinite;
         padding: 0;
         min-width: 48px;
 
