@@ -1824,6 +1824,7 @@ div.dataviews-view-list {
 .directorist-gutenberg-directory-type-dropdown-content .directorist-gutenberg-directory-type-dropdown-item svg {
   width: 16px;
   height: 16px;
+  flex: none;
 }
 .directorist-gutenberg-directory-type-dropdown-content .directorist-gutenberg-directory-type-dropdown-item span {
   color: #2C3239;

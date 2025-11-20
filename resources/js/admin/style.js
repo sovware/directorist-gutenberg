@@ -582,7 +582,7 @@ const StyledTemplateActions = Styled.div`
         display: flex;
         align-items: center;
         gap: 12px;
-        min-width: 300px;
+        width: 300px;
         cursor: pointer;
         box-sizing: border-box;
     }
@@ -594,6 +594,7 @@ const StyledTemplateActions = Styled.div`
         align-items: center;
         border-radius: 50%;
         background: #3E62F5;
+        flex: none;
         svg{
             width: 17px;
             height: 17px;
@@ -604,6 +605,7 @@ const StyledTemplateActions = Styled.div`
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        overflow: hidden;
         span{
             color: #747C89;
             font-size: 14px;
@@ -618,6 +620,10 @@ const StyledTemplateActions = Styled.div`
             font-weight: 600;
             line-height: 1.2;
             letter-spacing: -0.32px;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
     .directorist-gutenberg-templates-types-toggle-icon{
