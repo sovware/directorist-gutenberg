@@ -100,6 +100,18 @@ const StyledTable = Styled.div`
                 }
             }
         }
+        .dataviews-view-table__actions-column{
+            .components-button{
+                span{
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                }
+                &:hover{
+                    color: var(--wp-admin-theme-color, #3858e9);
+                }
+            }
+        }
     }
     .dataviews-bulk-actions-footer__container{
         padding: 15px 15px 0 15px ;

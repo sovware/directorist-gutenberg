@@ -101,7 +101,7 @@
     .components-button{
         display: flex;
         padding: 8px;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 8px;
         border-radius: 2px;
@@ -112,6 +112,15 @@
         text-overflow: ellipsis;
         font-size: 13px;
         line-height: 1.5;
+        max-width: 200px;
+        span{
+            max-width: 145px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        svg{
+            flex: none;
+        }
     }
 }
 .directorist-gutenberg-toggle-views-dropdown-content{
@@ -137,9 +146,46 @@
             width: 14px;
             height: 14px;
             fill: currentColor;
+            flex: none;
         }
     }
     .directorist-gutenberg-toggle-views-dropdown-item-current{
         background: #f0f0f0;
+    }
+}
+
+// Ai Assistant Toggle Styles
+.directorist-gutenberg-toolbar-actions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.directorist-gutenberg-ai-assistant-toggle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 2px;
+    border: 1px solid var(--directorist-color-border);
+    background: #fff;
+    color: var(--directorist-color-body);
+}
+
+// Ai Assistant Chat Toggle Styles
+#directorist-ai-assistant-chat-button-wrapper{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+//zoom in out the button every 3 seconds using keyframes
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
     }
 }

@@ -24,6 +24,7 @@ import TemplateActions from './TemplateActions';
 import TableSearch from './TableSearch';
 import TableFilters from './TableFilters';
 import TablePagination from './TablePagination';
+import editIcon from '@icon/edit-solid.svg';
 
 const defaultLayouts = {
 	table: {
@@ -366,6 +367,23 @@ export default function Table() {
 						isLoading={ isLoading }
 						actions={ [
 							{
+								id: 'edit',
+								label: () => (
+									<span className="directorist-gutenberg-templates-table-edit-button-label">
+										<ReactSVG width={ 16 } height={ 16 } src={ editIcon } /> { __( 'Edit Page', 'directorist-gutenberg' ) }
+									</span>
+								),
+								isPrimary: true,
+								supportsBulk: false,
+								callback: ( context ) => {
+									const item = context[0];
+
+									if ( item?.id ) {
+										window.location.href = `/wp-admin/post.php?post=${ item.id }&action=edit`;
+									}
+								},
+							},
+							{
 								RenderModal: ( { items: selectedItems, closeModal } ) => (
 									<DeleteItemModal
 										items={ selectedItems }
@@ -375,9 +393,9 @@ export default function Table() {
 								),
 								hideModalHeader: true,
 								id: 'delete',
-								label: () => <ReactSVG width={ 16 } height={ 16 } src={ trashIcon } />,
+								label: () => <span 					className="directorist-gutenberg-templates-table-delete-button"><ReactSVG width={ 16 } height={ 16 } src={ trashIcon } /> { __( 'Delete', 'directorist-gutenberg' ) }</span>,
 								supportsBulk: true,
-								isPrimary: true,
+								isPrimary: false,
 							},
 						] }
 					>

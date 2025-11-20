@@ -73,3 +73,12 @@
         margin-left: auto;
     }
 }
+
+// Teamplates table actions dropdown link styles
+.directorist-gutenberg-templates-table-edit-button-label,
+.directorist-gutenberg-templates-table-delete-button{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}

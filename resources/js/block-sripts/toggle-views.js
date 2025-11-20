@@ -8,6 +8,8 @@ import { createRoot } from '@wordpress/element';
  * Internal dependencies
  */
 import ToggleViewsDropdown from '../gutenberg/components/EditorToggleViews';
+import AiAssistantToggle from '../gutenberg/components/AiAssistantToggle';
+import AiAssistantChatPanel from '../gutenberg/components/AiAssistantChatPanel';
 
 domReady( () => {
 	const findAndInject = () => {
@@ -20,14 +22,16 @@ domReady( () => {
 			) ||
 			document.querySelector( '[class*="header"][class*="settings"]' );
 
-		if ( ! headerSettings ) {
+		let gutenbergEditorBody = document.querySelector( '.post-type-directorist_gbt' );
+
+		if ( ! headerSettings || ! gutenbergEditorBody ) {
 			// Retry after a short delay
 			setTimeout( findAndInject, 500 );
 			return;
 		}
 
 		// Check if already injected
-		if ( document.getElementById( 'directorist-toggle-views-container' ) ) {
+		if ( document.getElementById( 'directorist-toggle-views-container' ) && document.getElementById( 'directorist-ai-assistant-chat-button-wrapper' ) ) {
 			return;
 		}
 
@@ -41,12 +45,25 @@ domReady( () => {
 			headerSettings.firstChild
 		);
 
-		// Render the React app inside the new div
+		// Create the wrapper div for chat button toggle
+		let chatButtonWrapper = document.createElement( 'div' );
+		chatButtonWrapper.id = 'directorist-ai-assistant-chat-button-wrapper';
+		gutenbergEditorBody.insertBefore( chatButtonWrapper, gutenbergEditorBody.firstChild );
+
+		// Render the React app inside the header settings div
 		if ( createRoot ) {
 			const root = createRoot( reactAppElement );
-			root.render( <ToggleViewsDropdown /> );
+			root.render( <div className="directorist-gutenberg-toolbar-actions"><ToggleViewsDropdown /> <AiAssistantToggle /></div> );
 		} else {
-			render( <ToggleViewsDropdown />, reactAppElement );
+			render( <div className="directorist-gutenberg-toolbar-actions"><ToggleViewsDropdown /> <AiAssistantToggle /></div>, reactAppElement );
+		}
+
+		// Render the AI Assistant Chat Toggle inside the gutenberg editor body
+		if ( createRoot ) {
+			const chatRoot = createRoot( chatButtonWrapper );
+			chatRoot.render( <AiAssistantChatPanel /> );
+		} else {
+			render( <AiAssistantChatPanel />, chatButtonWrapper );
 		}
 	};
 

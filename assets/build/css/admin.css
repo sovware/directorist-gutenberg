@@ -1844,5 +1844,12 @@ div.dataviews-view-list {
 .directorist-gutenberg-directory-type-dropdown-content .directorist-gutenberg-directory-type-dropdown-item-active-icon {
   margin-left: auto;
 }
+.directorist-gutenberg-templates-table-edit-button-label,
+.directorist-gutenberg-templates-table-delete-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
 
 /*# sourceMappingURL=admin.css.map*/

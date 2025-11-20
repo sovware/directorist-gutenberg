@@ -46,6 +46,13 @@ class BlockServiceProvider implements Provider {
     }
 
     public function localize_block_editor_scripts() {
+        // Get current screen
+        $screen = get_current_screen();
+
+        if ( ! $screen || directorist_gutenberg_post_type() !== $screen->post_type ) {
+            return;
+        }
+
         // Get the first block to localize data for all blocks
         $blocks = directorist_gutenberg_config( 'blocks' );
 
