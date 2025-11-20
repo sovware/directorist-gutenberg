@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { Button, TextareaControl } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -31,6 +31,19 @@ export default function AiAssistantChatPanel() {
 	const togglePanel = () => {
 		setIsOpen( ! isOpen );
 	};
+
+	// Listen for toggle events from AiAssistantToggle button
+	useEffect( () => {
+		const handleToggleEvent = () => {
+			setIsOpen( ( prev ) => ! prev );
+		};
+
+		window.addEventListener( 'directorist-ai-assistant-toggle', handleToggleEvent );
+
+		return () => {
+			window.removeEventListener( 'directorist-ai-assistant-toggle', handleToggleEvent );
+		};
+	}, [] );
 
 	const suggestedActions = [
 		{

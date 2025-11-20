@@ -3255,6 +3255,17 @@ function AiAssistantChatPanel() {
   const togglePanel = () => {
     setIsOpen(!isOpen);
   };
+
+  // Listen for toggle events from AiAssistantToggle button
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const handleToggleEvent = () => {
+      setIsOpen(prev => !prev);
+    };
+    window.addEventListener('directorist-ai-assistant-toggle', handleToggleEvent);
+    return () => {
+      window.removeEventListener('directorist-ai-assistant-toggle', handleToggleEvent);
+    };
+  }, []);
   const suggestedActions = [{
     id: 'hover-shadow',
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Add subtle hover shadow', 'directorist-gutenberg'),
@@ -3458,7 +3469,7 @@ function AiAssistantChatPanel() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ToggleViewsDropdown)
+/* harmony export */   "default": () => (/* binding */ AiAssistantToggle)
 /* harmony export */ });
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__);
@@ -3486,9 +3497,14 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-function ToggleViewsDropdown() {
+function AiAssistantToggle() {
+  const handleClick = () => {
+    // Dispatch custom event to open/close the chat panel
+    window.dispatchEvent(new CustomEvent('directorist-ai-assistant-toggle'));
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.Button, {
     className: "directorist-gutenberg-ai-assistant-toggle",
+    onClick: handleClick,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_inlinesvg__WEBPACK_IMPORTED_MODULE_2__["default"], {
       width: 24,
       height: 24,
