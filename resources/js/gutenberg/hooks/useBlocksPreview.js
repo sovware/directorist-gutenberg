@@ -8,13 +8,16 @@ export default function useBlocksPreview( { directoryId, blockType, blockAttribu
     const [ template, setTemplate ] = useState( '' );
     const [ isLoading, setIsLoading ] = useState( false );
 
-    useEffect( () => {
-        if ( appliedArgs && JSON.stringify( args ) === JSON.stringify( appliedArgs ) ) {
-            return;
-        }
+	useEffect( () => {
+		if (
+			appliedArgs &&
+			JSON.stringify( args ) === JSON.stringify( appliedArgs )
+		) {
+			return;
+		}
 
-        fetchTemplate();
-    }, [ args ] );
+		fetchTemplate();
+	}, [ args ] );
 
     function refreshTemplate( newBlockAttributes = {} ) {
         setArgs( newBlockAttributes );
@@ -42,9 +45,32 @@ export default function useBlocksPreview( { directoryId, blockType, blockAttribu
 		} );
 	}
 
-    return {
-        template,
-        isLoading,
-        refreshTemplate,
-    };
+	function fetchTemplate() {
+		const url = addQueryArgs(
+			`/directorist-gutenberg/blocks-preview/${ blockType }`,
+			{
+				directory_id: directoryId,
+				...args,
+			}
+		);
+
+		setIsLoading( true );
+
+		apiFetch( { path: url } )
+			.then( ( response ) => {
+				setTemplate( response.template );
+				setIsLoading( false );
+				setAppliedArgs( args );
+			} )
+			.catch( ( error ) => {
+				console.error( 'error', error );
+				setIsLoading( false );
+			} );
+	}
+
+	return {
+		template,
+		isLoading,
+		refreshTemplate,
+	};
 }

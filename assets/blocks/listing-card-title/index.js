@@ -1200,7 +1200,7 @@ module.exports = __webpack_require__.p + "icons/title.svg";
   \********************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-title","version":"0.1.0","title":"Listing Title","category":"directorist-listing-card-preset-fields","description":"Listing title block","attributes":{"block_width":{"type":"string","default":"100"},"is_preview":{"type":"boolean","default":false}},"example":{},"supports":{"html":false,"color":{"text":true,"background":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalTextDecoration":true,"__experimentalLetterSpacing":true},"spacing":{"padding":true,"margin":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"directorist-gutenberg/listing-card-title","version":"0.1.0","title":"Listing Title","category":"directorist-listing-card-preset-fields","description":"Listing title block","attributes":{"block_width":{"type":"string","default":"100"},"is_preview":{"type":"boolean","default":false},"textAlign":{"type":"string"}},"example":{},"supports":{"html":false,"color":{"text":true,"background":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalTextDecoration":true,"__experimentalLetterSpacing":true},"spacing":{"padding":true,"margin":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}},"textdomain":"directorist-gutenberg","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -1214,16 +1214,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Edit)
 /* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/block-preview */ "./resources/js/gutenberg/components/block-preview.js");
-/* harmony import */ var _image_blocks_preview_listing_title_webp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @image/blocks-preview/listing-title.webp */ "./resources/images/blocks-preview/listing-title.webp");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-title/editor.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @directorist-gutenberg/gutenberg/components/block-preview */ "./resources/js/gutenberg/components/block-preview.js");
+/* harmony import */ var _image_blocks_preview_listing_title_webp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @image/blocks-preview/listing-title.webp */ "./resources/images/blocks-preview/listing-title.webp");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./resources/blocks/listing-card-title/editor.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 /**
  * WordPress dependencies
  */
+
 
 
 /**
@@ -1234,16 +1237,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Edit({
-  attributes
+  attributes,
+  setAttributes
 }) {
   // Show block preview image
   if (attributes.is_preview) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      image: _image_blocks_preview_listing_title_webp__WEBPACK_IMPORTED_MODULE_2__
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_directorist_gutenberg_gutenberg_components_block_preview__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      image: _image_blocks_preview_listing_title_webp__WEBPACK_IMPORTED_MODULE_3__
     });
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Listing Title', 'directorist-gutenberg')
+  const {
+    textAlign
+  } = attributes;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.BlockControls, {
+      group: "block",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.AlignmentControl, {
+        value: textAlign,
+        onChange: nextAlign => {
+          setAttributes({
+            textAlign: nextAlign
+          });
+        }
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Listing Title', 'directorist-gutenberg')
+    })]
   });
 }
 
@@ -1506,16 +1525,25 @@ function BlockPreview({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   getDirectories: () => (/* binding */ getDirectories),
+/* harmony export */   getLocalizedAdminData: () => (/* binding */ getLocalizedAdminData),
+/* harmony export */   getLocalizedAdminDataByKey: () => (/* binding */ getLocalizedAdminDataByKey),
 /* harmony export */   getLocalizedBlockData: () => (/* binding */ getLocalizedBlockData),
 /* harmony export */   getLocalizedBlockDataByKey: () => (/* binding */ getLocalizedBlockDataByKey),
 /* harmony export */   getSubmissionFormFields: () => (/* binding */ getSubmissionFormFields)
 /* harmony export */ });
+// Generic helper function to get data by key from any window object
+const getDataByKey = (data, key, defaultValue = null) => {
+  return data[key] !== undefined ? data[key] : defaultValue;
+};
+
+// Gutenberg Block Editor Data
 const getLocalizedBlockData = () => {
   return window.directorist_gutenberg_block_data || {};
 };
 const getLocalizedBlockDataByKey = (key, defaultValue = null) => {
   const data = getLocalizedBlockData();
-  return data[key] !== undefined ? data[key] : defaultValue;
+  return getDataByKey(data, key, defaultValue);
 };
 const getSubmissionFormFields = () => {
   const data = getLocalizedBlockData();
@@ -1524,10 +1552,26 @@ const getSubmissionFormFields = () => {
   }
   return {};
 };
+
+// Admin Page Data
+const getLocalizedAdminData = () => {
+  return window.directorist_gutenberg_data || {};
+};
+const getLocalizedAdminDataByKey = (key, defaultValue = null) => {
+  const data = getLocalizedAdminData();
+  return getDataByKey(data, key, defaultValue);
+};
+const getDirectories = () => {
+  const data = getLocalizedAdminData();
+  return getDataByKey(data, 'directories', []);
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   getLocalizedBlockData,
   getLocalizedBlockDataByKey,
-  getSubmissionFormFields
+  getSubmissionFormFields,
+  getLocalizedAdminData,
+  getLocalizedAdminDataByKey,
+  getDirectories
 });
 
 /***/ }),

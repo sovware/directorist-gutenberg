@@ -1502,7 +1502,7 @@ jQuery(document).ready(function ($) {
               (0,_utils_utils__WEBPACK_IMPORTED_MODULE_1__.handleRadiusVisibility)();
             } else {
               for (var i = 0; i < data.length; i++) {
-                res += "<li><a href=\"#\" data-lat=" + data[i].lat + ' data-lon=' + data[i].lon + '>' + data[i].address.country + '</a></li>';
+                res += '<li><a href="#" data-lat=' + data[i].lat + ' data-lon=' + data[i].lon + '>' + data[i].address.country + '</a></li>';
               }
               $(country_suggest).html('<ul>' + res + '</ul>');
               if (res.length) {

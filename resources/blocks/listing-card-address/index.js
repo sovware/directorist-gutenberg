@@ -22,7 +22,7 @@ registerBlock( {
 	Edit,
 	Controls,
 	exampleAttributes,
-	icon: <ReactSVG src={addressIcon} />,
+	icon: <ReactSVG src={ addressIcon } />,
 	templateTypes: [
 		'listings-archive-grid-view',
 		'listings-archive-list-view',

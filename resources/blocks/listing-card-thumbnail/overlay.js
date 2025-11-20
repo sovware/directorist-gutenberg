@@ -53,4 +53,3 @@ const Overlay = ( { attributes, overlayColor = {} } ) => {
 export default compose( [
 	withColors( { overlayColor: 'background-color' } ),
 ] )( Overlay );
-

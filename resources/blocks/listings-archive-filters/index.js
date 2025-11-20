@@ -19,5 +19,5 @@ registerBlock( {
 	Controls,
 	templateTypes: [ 'listings-archive' ],
 	showWidthControls: false,
-	icon: <ReactSVG src={archiveFiltersIcon} />,
+	icon: <ReactSVG src={ archiveFiltersIcon } />,
 } );

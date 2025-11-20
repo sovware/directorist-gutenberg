@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 $publish_date_format = $attributes['date_type'];
 
 if ( 'days_ago' === $attributes['date_type'] ) {
-    $text = sprintf( __( 'Posted %s ago', 'directorist' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
+    $text = sprintf( __( 'Posted %s ago', 'directorist-gutenberg' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
 } else {
     $text = get_the_date();
 }
@@ -13,8 +13,12 @@ if ( 'days_ago' === $attributes['date_type'] ) {
 $icon_style = directorist_gutenberg_build_icon_style( $attributes );
 // Get block width class
 $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
+// Get text alignment class
+$text_align_class = directorist_gutenberg_get_text_align_class( $attributes );
+// Combine classes
+$wrapper_classes = array_filter( [ $block_width_class, $text_align_class ] );
 ?>
-<div <?php echo get_block_wrapper_attributes(['class' => 'directorist-gutenberg-listing-card-block ' . $block_width_class]); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => 'directorist-gutenberg-listing-card-block ' . implode( ' ', $wrapper_classes )]); ?>>
     <div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-posted-date">
         <?php //echo esc_html( get_the_title( get_the_ID() ) ); ?>
         <div class="directorist-gutenberg-listing-card-element-content">

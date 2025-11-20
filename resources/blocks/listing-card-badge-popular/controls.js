@@ -11,38 +11,50 @@ import { useState } from '@wordpress/element';
  */
 import ColorPickerControl from '@directorist-gutenberg/gutenberg/components/controls/color-picker-control';
 
-export default function Controls({ attributes, setAttributes }) {
-	const [isTextColorPickerOpen, setIsTextColorPickerOpen] = useState(false);
-	const [isBackgroundColorPickerOpen, setIsBackgroundColorPickerOpen] = useState(false);
+export default function Controls( { attributes, setAttributes } ) {
+	const [ isTextColorPickerOpen, setIsTextColorPickerOpen ] =
+		useState( false );
+	const [ isBackgroundColorPickerOpen, setIsBackgroundColorPickerOpen ] =
+		useState( false );
 
 	return (
 		<InspectorControls>
 			<PanelBody
-				title={__( 'Badge Settings', 'directorist-gutenberg' )}
-				initialOpen={true}
+				title={ __( 'Badge Settings', 'directorist-gutenberg' ) }
+				initialOpen={ true }
 			>
 				<TextControl
-					label={__( 'Badge Text', 'directorist-gutenberg' )}
-					value={attributes.text}
-					onChange={(value) => setAttributes({ text: value })}
+					label={ __( 'Badge Text', 'directorist-gutenberg' ) }
+					value={ attributes.text }
+					onChange={ ( value ) => setAttributes( { text: value } ) }
 				/>
 
 				<ColorPickerControl
-					label={__( 'Text Color', 'directorist-gutenberg' )}
-					color={attributes.text_color}
+					label={ __( 'Text Color', 'directorist-gutenberg' ) }
+					color={ attributes.text_color }
 					defaultColor="#ffffff"
-					onChange={(color) => setAttributes({ text_color: color })}
-					isOpen={isTextColorPickerOpen}
-					onToggle={() => setIsTextColorPickerOpen(!isTextColorPickerOpen)}
+					onChange={ ( color ) =>
+						setAttributes( { text_color: color } )
+					}
+					isOpen={ isTextColorPickerOpen }
+					onToggle={ () =>
+						setIsTextColorPickerOpen( ! isTextColorPickerOpen )
+					}
 				/>
 
 				<ColorPickerControl
-					label={__( 'Background Color', 'directorist-gutenberg' )}
-					color={attributes.background_color}
+					label={ __( 'Background Color', 'directorist-gutenberg' ) }
+					color={ attributes.background_color }
 					defaultColor="#444752"
-					onChange={(color) => setAttributes({ background_color: color })}
-					isOpen={isBackgroundColorPickerOpen}
-					onToggle={() => setIsBackgroundColorPickerOpen(!isBackgroundColorPickerOpen)}
+					onChange={ ( color ) =>
+						setAttributes( { background_color: color } )
+					}
+					isOpen={ isBackgroundColorPickerOpen }
+					onToggle={ () =>
+						setIsBackgroundColorPickerOpen(
+							! isBackgroundColorPickerOpen
+						)
+					}
 				/>
 			</PanelBody>
 		</InspectorControls>

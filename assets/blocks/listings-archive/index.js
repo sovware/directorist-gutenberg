@@ -1302,9 +1302,6 @@ function Controls({
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('4', 'directorist-gutenberg'),
     value: 4
   }, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('5', 'directorist-gutenberg'),
-    value: 5
-  }, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('6', 'directorist-gutenberg'),
     value: 6
   }];
@@ -2013,6 +2010,23 @@ function useBlocksPreview({
       setIsLoading(false);
     });
   }
+  function fetchTemplate() {
+    const url = (0,_wordpress_url__WEBPACK_IMPORTED_MODULE_1__.addQueryArgs)(`/directorist-gutenberg/blocks-preview/${blockType}`, {
+      directory_id: directoryId,
+      ...args
+    });
+    setIsLoading(true);
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+      path: url
+    }).then(response => {
+      setTemplate(response.template);
+      setIsLoading(false);
+      setAppliedArgs(args);
+    }).catch(error => {
+      console.error('error', error);
+      setIsLoading(false);
+    });
+  }
   return {
     template,
     isLoading,
@@ -2056,16 +2070,25 @@ function useTemplateMeta() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   getDirectories: () => (/* binding */ getDirectories),
+/* harmony export */   getLocalizedAdminData: () => (/* binding */ getLocalizedAdminData),
+/* harmony export */   getLocalizedAdminDataByKey: () => (/* binding */ getLocalizedAdminDataByKey),
 /* harmony export */   getLocalizedBlockData: () => (/* binding */ getLocalizedBlockData),
 /* harmony export */   getLocalizedBlockDataByKey: () => (/* binding */ getLocalizedBlockDataByKey),
 /* harmony export */   getSubmissionFormFields: () => (/* binding */ getSubmissionFormFields)
 /* harmony export */ });
+// Generic helper function to get data by key from any window object
+const getDataByKey = (data, key, defaultValue = null) => {
+  return data[key] !== undefined ? data[key] : defaultValue;
+};
+
+// Gutenberg Block Editor Data
 const getLocalizedBlockData = () => {
   return window.directorist_gutenberg_block_data || {};
 };
 const getLocalizedBlockDataByKey = (key, defaultValue = null) => {
   const data = getLocalizedBlockData();
-  return data[key] !== undefined ? data[key] : defaultValue;
+  return getDataByKey(data, key, defaultValue);
 };
 const getSubmissionFormFields = () => {
   const data = getLocalizedBlockData();
@@ -2074,10 +2097,26 @@ const getSubmissionFormFields = () => {
   }
   return {};
 };
+
+// Admin Page Data
+const getLocalizedAdminData = () => {
+  return window.directorist_gutenberg_data || {};
+};
+const getLocalizedAdminDataByKey = (key, defaultValue = null) => {
+  const data = getLocalizedAdminData();
+  return getDataByKey(data, key, defaultValue);
+};
+const getDirectories = () => {
+  const data = getLocalizedAdminData();
+  return getDataByKey(data, 'directories', []);
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   getLocalizedBlockData,
   getLocalizedBlockDataByKey,
-  getSubmissionFormFields
+  getSubmissionFormFields,
+  getLocalizedAdminData,
+  getLocalizedAdminDataByKey,
+  getDirectories
 });
 
 /***/ }),

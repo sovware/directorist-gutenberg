@@ -11,11 +11,13 @@ import clsx from 'clsx';
  * @returns {string} Custom class names string
  */
 
-const setCustomClassNames = (classNames) => {
-	if (!classNames) {
+const setCustomClassNames = ( classNames ) => {
+	if ( ! classNames ) {
 		return '';
 	}
-	return Array.isArray(classNames) ? classNames.filter(Boolean).join(' ') : classNames;
+	return Array.isArray( classNames )
+		? classNames.filter( Boolean ).join( ' ' )
+		: classNames;
 };
 
 /**
@@ -33,23 +35,43 @@ export default function Block( {
 	Edit,
 	attributes,
 	setAttributes,
-    Controls,
+	Controls,
 	StylesControls,
 	classNames = '',
 	name,
 	...rest
 } ) {
-	const customClasses = setCustomClassNames(classNames);
+	const customClasses = setCustomClassNames( classNames );
 
 	// For thumbnail block, don't use useBlockProps on outer wrapper (Edit component handles it)
-	const isThumbnailBlock = name === 'directorist-gutenberg/listing-card-thumbnail';
+	const isThumbnailBlock =
+		name === 'directorist-gutenberg/listing-card-thumbnail';
 
 	if ( isThumbnailBlock ) {
 		return (
-			<div className={`directorist-gutenberg-listing-card-block ${customClasses} directorist-gutenberg-block-width-${Math.trunc(attributes.block_width)}`}>
-				{ Controls && <Controls attributes={attributes} setAttributes={setAttributes} /> }
-				{ StylesControls && <StylesControls attributes={attributes} setAttributes={setAttributes} /> }
-				<Edit attributes={attributes} setAttributes={setAttributes} name={name} {...rest} />
+			<div
+				className={ `directorist-gutenberg-listing-card-block ${ customClasses } directorist-gutenberg-block-width-${ Math.trunc(
+					attributes.block_width
+				) }` }
+			>
+				{ Controls && (
+					<Controls
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+					/>
+				) }
+				{ StylesControls && (
+					<StylesControls
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+					/>
+				) }
+				<Edit
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					name={ name }
+					{ ...rest }
+				/>
 			</div>
 		);
 	}
@@ -58,28 +80,47 @@ export default function Block( {
 	const { textAlign } = attributes || {};
 
 	// Apply drop shadow to parent for listings-archive-header block
-	const isArchiveHeaderBlock = name === 'directorist-gutenberg/listings-archive-header';
-	const shadowStyle = isArchiveHeaderBlock && attributes.drop_shadow
-		? { boxShadow: attributes.drop_shadow }
-		: {};
+	const isArchiveHeaderBlock =
+		name === 'directorist-gutenberg/listings-archive-header';
+	const shadowStyle =
+		isArchiveHeaderBlock && attributes.drop_shadow
+			? { boxShadow: attributes.drop_shadow }
+			: {};
 
-	const blockProps = useBlockProps({
+	const blockProps = useBlockProps( {
 		className: clsx(
 			'directorist-gutenberg-listing-card-block',
 			customClasses,
-			`directorist-gutenberg-block-width-${Math.trunc(attributes.block_width || 100)}`,
+			`directorist-gutenberg-block-width-${ Math.trunc(
+				attributes.block_width || 100
+			) }`,
 			{
 				[ `has-text-align-${ textAlign }` ]: textAlign,
 			}
 		),
 		style: shadowStyle,
-	});
+	} );
 
 	return (
-        <div {...blockProps}>
-            { Controls && <Controls attributes={attributes} setAttributes={setAttributes} /> }
-            { StylesControls && <StylesControls attributes={attributes} setAttributes={setAttributes} /> }
-            <Edit attributes={attributes} setAttributes={setAttributes} name={name} {...rest} />
-        </div>
-    );
+		<div { ...blockProps }>
+			{ Controls && (
+				<Controls
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+				/>
+			) }
+			{ StylesControls && (
+				<StylesControls
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+				/>
+			) }
+			<Edit
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+				name={ name }
+				{ ...rest }
+			/>
+		</div>
+	);
 }

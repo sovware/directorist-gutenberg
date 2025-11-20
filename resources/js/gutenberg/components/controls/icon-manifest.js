@@ -23,27 +23,26 @@ const requireLineAwesomeContext = require.context(
 
 // Create icon registry - we only use .keys() to get file names
 // The webpack loader prevents these from being bundled as assets
-const fontAwesomeIcons = requireFontAwesomeContext.keys().map((filename) => {
-	const iconName = filename.replace('./', '').replace('.svg', '');
+const fontAwesomeIcons = requireFontAwesomeContext.keys().map( ( filename ) => {
+	const iconName = filename.replace( './', '' ).replace( '.svg', '' );
 	return {
 		name: iconName,
 		set: 'fa',
 		displayName: iconName
-			.replace(/-/g, ' ')
-			.replace(/\b\w/g, (l) => l.toUpperCase()),
+			.replace( /-/g, ' ' )
+			.replace( /\b\w/g, ( l ) => l.toUpperCase() ),
 	};
-});
+} );
 
-const lineAwesomeIcons = requireLineAwesomeContext.keys().map((filename) => {
-	const iconName = filename.replace('./', '').replace('.svg', '');
+const lineAwesomeIcons = requireLineAwesomeContext.keys().map( ( filename ) => {
+	const iconName = filename.replace( './', '' ).replace( '.svg', '' );
 	return {
 		name: iconName,
 		set: 'la',
 		displayName: iconName
-			.replace(/-/g, ' ')
-			.replace(/\b\w/g, (l) => l.toUpperCase()),
+			.replace( /-/g, ' ' )
+			.replace( /\b\w/g, ( l ) => l.toUpperCase() ),
 	};
-});
+} );
 
-export const allIcons = [...fontAwesomeIcons, ...lineAwesomeIcons];
-
+export const allIcons = [ ...fontAwesomeIcons, ...lineAwesomeIcons ];

@@ -86,4 +86,3 @@ const OverlayControls = ( {
 export default compose( [
 	withColors( { overlayColor: 'background-color' } ),
 ] )( OverlayControls );
-

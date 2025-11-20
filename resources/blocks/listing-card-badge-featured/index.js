@@ -27,7 +27,7 @@ registerBlock( {
 	Edit,
 	Controls,
 	exampleAttributes,
-	icon: <ReactSVG src={badgeFeaturedIcon} />,
+	icon: <ReactSVG src={ badgeFeaturedIcon } />,
 	templateTypes: [
 		'listings-archive-grid-view',
 		'listings-archive-list-view',
@@ -37,9 +37,15 @@ registerBlock( {
 			from: [
 				{
 					type: 'block',
-					blocks: [ 'directorist-gutenberg/listing-card-badge-new', 'directorist-gutenberg/listing-card-badge-popular' ],
+					blocks: [
+						'directorist-gutenberg/listing-card-badge-new',
+						'directorist-gutenberg/listing-card-badge-popular',
+					],
 					transform: ( attributes ) => {
-						return createBlock( 'directorist-gutenberg/listing-card-badge-featured', attributes );
+						return createBlock(
+							'directorist-gutenberg/listing-card-badge-featured',
+							attributes
+						);
 					},
 				},
 			],
@@ -48,14 +54,22 @@ registerBlock( {
 					type: 'block',
 					blocks: [ 'directorist-gutenberg/listing-card-badge-new' ],
 					transform: ( attributes ) => {
-						return createBlock( 'directorist-gutenberg/listing-card-badge-new', attributes );
+						return createBlock(
+							'directorist-gutenberg/listing-card-badge-new',
+							attributes
+						);
 					},
 				},
 				{
 					type: 'block',
-					blocks: [ 'directorist-gutenberg/listing-card-badge-popular' ],
+					blocks: [
+						'directorist-gutenberg/listing-card-badge-popular',
+					],
 					transform: ( attributes ) => {
-						return createBlock( 'directorist-gutenberg/listing-card-badge-popular', attributes );
+						return createBlock(
+							'directorist-gutenberg/listing-card-badge-popular',
+							attributes
+						);
 					},
 				},
 			],

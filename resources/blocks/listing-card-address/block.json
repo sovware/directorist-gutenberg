@@ -14,7 +14,6 @@
 			"type": "string",
 			"default": "line-awesome/address-card-solid.svg"
 		},
-		
 		"show_label": {
 			"type": "boolean",
 			"default": false
@@ -34,6 +33,9 @@
 		"is_preview": {
 			"type": "boolean",
 			"default": false
+		},
+		"textAlign": {
+			"type": "string"
 		}
 	},
 	"description": "Listing Address Block",

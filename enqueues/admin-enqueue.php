@@ -24,6 +24,9 @@ if ( directorist_gutenberg_post_type() === get_post_type() ) {
  * Admin scripts
  */
 if ( 'at_biz_dir_page_directorist-template-builder' === $hook_suffix ) {
+    // Enqueue WordPress components styles for Modal and other components
+    wp_enqueue_style( 'wp-components' );
+
     Enqueue::script( 'directorist-gutenberg/admin', 'build/js/admin' );
     Enqueue::style( 'directorist-gutenberg/admin', 'build/css/admin' );
 

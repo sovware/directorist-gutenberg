@@ -14,11 +14,15 @@ if ( defined( 'ATBDP_CATEGORY' ) ) {
 		$cats = array();
 	}
 }
-
 // Get block width class
 $block_width_class = directorist_gutenberg_get_block_width_class( $attributes );
+// Get text alignment class
+$text_align_class = directorist_gutenberg_get_text_align_class( $attributes );
+// Combine classes
+$wrapper_classes = array_filter( [ $block_width_class, $text_align_class ] );
 ?>
-<div <?php echo get_block_wrapper_attributes(['class' => 'directorist-gutenberg-listing-card-block ' . $block_width_class]); ?>>
+
+<div <?php echo get_block_wrapper_attributes(['class' => 'directorist-gutenberg-listing-card-block ' . implode( ' ', $wrapper_classes )]); ?>>
     <div class="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-category">
 		<div class="directorist-gutenberg-listing-card-element-content">
 			<div class="directorist-gutenberg-listing-category">

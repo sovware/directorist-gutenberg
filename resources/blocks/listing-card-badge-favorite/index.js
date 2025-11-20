@@ -20,7 +20,7 @@ registerBlock( {
 	metadata,
 	Edit,
 	exampleAttributes,
-	icon: <ReactSVG src={badgeFavoriteIcon} />,
+	icon: <ReactSVG src={ badgeFavoriteIcon } />,
 	templateTypes: [
 		'listings-archive-grid-view',
 		'listings-archive-list-view',

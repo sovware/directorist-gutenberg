@@ -21,8 +21,8 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	const directoryId = getLocalizedBlockDataByKey( 'directory_type_id', 0 );
-	const { template, isLoading, refreshTemplate } = useBlocksPreview( { 
-		directoryId, 
+	const { template, isLoading, refreshTemplate } = useBlocksPreview( {
+		directoryId,
 		blockType: 'listings-archive/header',
 		blockAttributes: attributes,
 	} );
@@ -40,21 +40,17 @@ export default function Edit( { attributes, setAttributes } ) {
 	if ( isLoading ) {
 		return (
 			<div style={ { pointerEvents: 'none', padding: '20px' } }>
-				<Skeleton
-					variant="card"
-					count={ 3 }
-					width="100%"
-				/>
+				<Skeleton variant="card" count={ 3 } width="100%" />
 			</div>
 		);
 	}
 
 	return (
 		<div
-			style={{
+			style={ {
 				pointerEvents: 'none',
-			}}
-			dangerouslySetInnerHTML={{ __html: template }}
+			} }
+			dangerouslySetInnerHTML={ { __html: template } }
 		/>
 	);
 }

@@ -8,31 +8,34 @@
  *   - Legacy: "icons/icon-library/line-awesome/address-card-alt.svg"
  * @returns {string|null} Full URL to the icon or null if path is invalid
  */
-export function getIconUrl(iconPath) {
-	if (!iconPath) return null;
+export function getIconUrl( iconPath ) {
+	if ( ! iconPath ) return null;
 
 	// Get plugin URL from WordPress localized data
-	const pluginUrl = window.directoristGutenbergPluginData?.pluginUrl ||
+	const pluginUrl =
+		window.directoristGutenbergPluginData?.pluginUrl ||
 		window.directoristGutenberg?.pluginUrl ||
 		'/wp-content/plugins/directorist-gutenberg';
 
 	// Handle different path formats and construct full path
 	let fullPath;
 
-	if (iconPath.startsWith('icons/')) {
+	if ( iconPath.startsWith( 'icons/' ) ) {
 		// Legacy format: icons/icon-library/...
 		fullPath = iconPath;
-	} else if (iconPath.startsWith('icon-library/')) {
+	} else if ( iconPath.startsWith( 'icon-library/' ) ) {
 		// Medium format: icon-library/...
-		fullPath = `icons/${iconPath}`;
-	} else if (iconPath.includes('font-awesome/') || iconPath.includes('line-awesome/')) {
+		fullPath = `icons/${ iconPath }`;
+	} else if (
+		iconPath.includes( 'font-awesome/' ) ||
+		iconPath.includes( 'line-awesome/' )
+	) {
 		// Shortest format: font-awesome/... or line-awesome/...
-		fullPath = `icons/icon-library/${iconPath}`;
+		fullPath = `icons/icon-library/${ iconPath }`;
 	} else {
 		// Fallback: assume it's the shortest format
-		fullPath = `icons/icon-library/${iconPath}`;
+		fullPath = `icons/icon-library/${ iconPath }`;
 	}
 
-	return `${pluginUrl}/resources/svg/${fullPath}`;
+	return `${ pluginUrl }/resources/svg/${ fullPath }`;
 }
-

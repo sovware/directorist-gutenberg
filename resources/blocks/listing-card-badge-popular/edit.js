@@ -1,10 +1,7 @@
 /**
  * WordPress dependencies
  */
-import {
-	AlignmentControl,
-	BlockControls,
-} from '@wordpress/block-editor';
+import { AlignmentControl, BlockControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -20,7 +17,7 @@ import previewImg from '@image/blocks-preview/badge-popular.webp';
 import popularIcon from '@icon/fire-solid.svg';
 import './editor.scss';
 
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit( { attributes, setAttributes } ) {
 	const { textAlign } = attributes;
 
 	// Show block preview image
@@ -39,11 +36,17 @@ export default function Edit({ attributes, setAttributes }) {
 				/>
 			</BlockControls>
 			<div className="directorist-gutenberg-listing-card-element directorist-gutenberg-listing-card-element-badge">
-				<div className="directorist-gutenberg-listing-badge directorist-gutenberg-listing-badge-popular" style={{ backgroundColor: attributes.background_color, color: attributes.text_color }}>
+				<div
+					className="directorist-gutenberg-listing-badge directorist-gutenberg-listing-badge-popular"
+					style={ {
+						backgroundColor: attributes.background_color,
+						color: attributes.text_color,
+					} }
+				>
 					<ReactSVG src={ popularIcon } />
-					{ attributes.text && <span>{attributes.text}</span> }
+					{ attributes.text && <span>{ attributes.text }</span> }
 				</div>
 			</div>
 		</>
-	)
+	);
 }
