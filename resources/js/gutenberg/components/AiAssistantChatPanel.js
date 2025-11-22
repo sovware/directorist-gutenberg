@@ -3,7 +3,9 @@
  */
 import { Button, TextareaControl } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
+import { useDispatch, useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
+import { parse } from '@wordpress/blocks';
 
 /**
  * External dependencies
@@ -27,6 +29,10 @@ import aiCreditIcon from '@icon/ai-credit.svg';
 export default function AiAssistantChatPanel() {
 	const [ isOpen, setIsOpen ] = useState( false );
 	const [ inputValue, setInputValue ] = useState( '' );
+
+    const { editPost } = useDispatch( 'core/editor' );
+    const { resetBlocks } = useDispatch( 'core/block-editor' );
+    const currentContent = useSelect( ( select ) => select( 'core/editor' ).getEditedPostContent(), [] );
 
 	const togglePanel = () => {
 		setIsOpen( ! isOpen );
@@ -67,6 +73,63 @@ export default function AiAssistantChatPanel() {
 			icon: 'star',
 		},
 	];
+
+    const generateContent = async () => {
+        try {
+            const apiURL = 'https://api.wax-intelligent.orb.local/directorist/template/gutenberg/generate';
+
+            const response = await fetch( apiURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify( {
+                    template_type: "listings_archive",
+                    instruction: inputValue,
+                    current_template: currentContent
+                    // history: []
+                } ),
+            } );
+
+            const data = await response.json();
+
+            console.log( {data} );
+            
+            if ( ! response.ok ) {
+                return;
+            }
+
+            let templateContent = data?.template;
+
+            if ( ! templateContent ) {
+                console.warn( 'No template content returned from the AI Assistant API.' );
+                return;
+            }
+
+            templateContent = templateContent
+                .replace( /\\"/g, '"' )
+                .replace( /\\n/g, '\n' )
+                .replace( /\\\\/g, '\\' );
+
+            try {
+                const parsedBlocks = parse( templateContent ) || [];
+
+                if ( parsedBlocks.length > 0 ) {
+                    editPost( {
+                        content: templateContent,
+                    } );
+                    
+                    resetBlocks( parsedBlocks );
+                }
+            } catch ( parseError ) {
+                alert( 'Unable to replace blocks with AI template' );
+                console.error( 'Unable to replace blocks with AI template', parseError );
+            }
+
+        } catch (error) {
+            console.error( error );
+        }
+    };
 
 	return (
 		<StyledChatPanel className="directorist-gutenberg-ai-assistant-chat-panel">
@@ -191,6 +254,7 @@ export default function AiAssistantChatPanel() {
 							<Button
 								className="directorist-gutenberg-ai-assistant-chat-send"
 								aria-label={ __( 'Send', 'directorist-gutenberg' ) }
+								onClick={ generateContent }
 								disabled={ ! inputValue.trim() }
 							>
 								<ReactSVG width={ 20 } height={ 20 } src={ arrowRightIcon } />
